@@ -1,0 +1,364 @@
+<title>Lazy Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+@font-face{font-family:"Cafe24Dongdong";src:url("fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap}
+/* Layout: 위는 고요한 표면(게으름), 바로 아래는 쉬지 않고 흐르는 작업 로그(집착). 그 대비가 이 회사의 정체성. 나머지는 여백 많은 에디토리얼 목록. */
+:root{
+  --paper:#EEF0F3;     /* 차가운 종이색 바탕 */
+  --ink:#0E1116;       /* 본문 잉크 */
+  --mute:#5C6270;      /* 보조 글자 */
+  --hair:rgba(14,17,22,.14);
+  --klein:#2934E0;     /* 단 하나의 강조: 집착의 파랑 */
+  --engine:#0E1116;    /* 로그 띠 바탕 */
+  --engine-fg:#C9CDF7; /* 로그 글자 */
+  --f-display:"Cafe24Dongdong","IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif; /* 카페24 동동: 제목용 */
+  --f-serif-en:var(--f-display);
+  --f-serif:var(--f-display);
+  --f-sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C0E13; --ink:#E8EAF0; --mute:#8E95A6; --hair:rgba(232,234,240,.14);
+    --klein:#8C95FF; --engine:#161A24; --engine-fg:#AEB5F2; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C0E13; --ink:#E8EAF0; --mute:#8E95A6; --hair:rgba(232,234,240,.14);
+  --klein:#8C95FF; --engine:#161A24; --engine-fg:#AEB5F2; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--klein);outline-offset:4px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:26px;flex-wrap:wrap}
+.mark{text-decoration:none;font-size:22px;letter-spacing:-.01em;display:flex;align-items:baseline;gap:6px}
+.mark i{font-family:var(--f-display);font-size:26px;font-style:normal;color:var(--klein)}
+.mark span{font-family:var(--f-display);font-size:26px}
+.top-right{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.top nav{display:flex;gap:24px;font-size:14px}
+.top nav a{text-decoration:none;color:var(--mute)}
+.top nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--hair);border-radius:999px;padding:3px}
+.lang button{font:500 12px/1 var(--f-mono);letter-spacing:.06em;border:0;background:transparent;color:var(--mute);padding:7px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* hero */
+.hero{padding-block:clamp(56px,10vw,128px) clamp(40px,6vw,72px)}
+h1{margin:22px 0 0;font-weight:400;letter-spacing:-.01em;line-height:1.18;font-size:clamp(40px,7.2vw,96px);text-wrap:balance}
+h1 .calm{display:block;font-family:var(--f-serif);font-weight:400}
+h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--klein)}
+:lang(en) h1 .calm,:lang(en) h1 .fierce{font-family:var(--f-serif-en)}
+.hero-foot{display:grid;grid-template-columns:minmax(0,34em) auto;justify-content:space-between;align-items:end;gap:32px;margin-top:clamp(32px,5vw,56px)}
+.lede{margin:0;font-size:clamp(16px,1.5vw,18px);color:var(--mute)}
+.lede b{color:var(--ink);font-weight:600}
+.facts{display:flex;gap:36px;font-variant-numeric:tabular-nums}
+.facts div{display:grid;gap:2px}
+.facts strong{font-family:var(--f-serif-en);font-size:34px;font-weight:400;line-height:1}
+
+/* engine: 표면 vs 작업 로그 */
+.engine{background:var(--engine);color:var(--engine-fg);border-radius:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);overflow:hidden}
+.surface{padding:clamp(24px,3.4vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:28px;border-right:1px solid rgba(201,205,247,.14)}
+.surface .label{color:rgba(201,205,247,.6)}
+.surface p{margin:0;font-family:var(--f-serif);font-size:clamp(22px,2.4vw,30px);line-height:1.35;color:#F2F3FA}
+:lang(en) .surface p{font-family:var(--f-serif-en);font-size:clamp(26px,2.8vw,36px)}
+.tap{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);font-size:13px;color:#F2F3FA}
+.tap::before{content:"";width:14px;height:14px;border-radius:50%;background:#8C95FF;box-shadow:0 0 0 6px rgba(140,149,255,.18)}
+.log{position:relative;height:clamp(220px,26vw,280px);overflow:hidden;font-family:var(--f-mono);font-size:12.5px;line-height:2;padding:0 clamp(20px,3vw,36px)}
+.log::before,.log::after{content:"";position:absolute;left:0;right:0;height:56px;z-index:1;pointer-events:none}
+.log::before{top:0;background:linear-gradient(var(--engine),transparent)}
+.log::after{bottom:0;background:linear-gradient(transparent,var(--engine))}
+.log ul{list-style:none;margin:0;padding:20px 0;animation:roll 38s linear infinite}
+.log li{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:12px;white-space:nowrap}
+.log li span:last-child{overflow:hidden;text-overflow:ellipsis}
+.log time{color:rgba(201,205,247,.45);font-variant-numeric:tabular-nums}
+.log .ok{color:#8C95FF}
+@keyframes roll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.engine-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:14px}
+
+/* paradox */
+section{padding-block:clamp(72px,10vw,136px)}
+.paradox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.paradox h2{margin:14px 0 0;font-family:var(--f-serif);font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
+:lang(en) .paradox h2{font-family:var(--f-serif-en)}
+.paradox h2 em{font-style:normal;color:var(--klein)}
+.steps{display:grid;gap:0;border-top:1px solid var(--hair)}
+.steps div{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:20px;padding-block:20px;border-bottom:1px solid var(--hair)}
+.steps p{margin:0;color:var(--mute)}
+.steps p b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+
+/* micro saas 설명 */
+.msaas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(32px,6vw,96px);align-items:start;border-top:1px solid var(--hair);padding-top:40px}
+.msaas h2{margin:12px 0 0;font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3.4vw,44px);line-height:1.2;text-wrap:balance}
+.msaas p{margin:0 0 16px;color:var(--mute);max-width:36em}
+.msaas p b{color:var(--ink);font-weight:600}
+.tags{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tags li{font-size:13px;padding:6px 12px;border:1px solid var(--hair);border-radius:999px;color:var(--mute)}
+
+/* products */
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{margin:10px 0 0;font-family:var(--f-serif);font-weight:400;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.02em}
+:lang(en) .sec-head h2{font-family:var(--f-serif-en)}
+.products{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.products li{border-bottom:1px solid var(--hair)}
+.prod{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 8.5em 32px;gap:24px;align-items:center;padding-block:28px;text-decoration:none;transition:padding .35s ease}
+a.prod:hover{padding-inline:12px}
+.prod h3{margin:0;font-family:var(--f-serif-en);font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.01em}
+.prod h3 .ko{font-family:var(--f-serif)}
+.prod p{margin:0;color:var(--mute)}
+.badge{justify-self:start;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--klein)}
+.badge.soon{color:var(--mute)}
+.badge.soon::before{background:transparent;border:1px solid var(--mute)}
+.arrow{font-size:22px;color:var(--mute);transition:transform .35s ease,color .2s}
+a.prod:hover .arrow{transform:translateX(6px);color:var(--klein)}
+.prod.muted h3{color:var(--mute)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end;border-top:1px solid var(--ink);padding-top:40px}
+.contact h2{margin:12px 0 0;font-family:var(--f-serif);font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+:lang(en) .contact h2{font-family:var(--f-serif-en)}
+.contact p{margin:0 0 18px;color:var(--mute)}
+.mailrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mail{font-family:var(--f-mono);font-size:15px;padding:12px 16px;border:1px solid var(--hair);border-radius:12px;user-select:all}
+.copy{font:500 13px var(--f-sans);border:0;border-radius:12px;background:var(--ink);color:var(--paper);padding:13px 16px;cursor:pointer}
+.copied{font-family:var(--f-mono);font-size:12px;color:var(--klein);min-height:1.4em;margin-top:8px}
+
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 40px;font-size:13px;color:var(--mute)}
+footer .label{font-size:11px}
+
+@media (max-width:860px){
+  .hero-foot,.engine,.paradox,.contact,.msaas{grid-template-columns:1fr}
+  .surface{border-right:0;border-bottom:1px solid rgba(201,205,247,.14)}
+  .prod{grid-template-columns:minmax(0,1fr) auto;gap:8px 16px}
+  .prod p{grid-column:1 / -1;grid-row:2}
+  .prod .badge{grid-column:1;grid-row:3}
+  .prod .arrow{grid-column:2;grid-row:1}
+  .steps div{grid-template-columns:1fr;gap:4px}
+  .log li{white-space:normal;line-height:1.6;padding-block:4px}
+  .log li span:last-child{overflow:visible}
+  .top nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .log ul{animation:none}
+  *{transition:none!important}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" aria-label="Lazy Company"><i>Lazy</i><span>Company</span></a>
+    <div class="top-right">
+      <nav aria-label="menu">
+        <a href="#why" data-i18n="nav_why">왜 게으른가</a>
+        <a href="#products" data-i18n="nav_products">서비스</a>
+        <a href="#contact" data-i18n="nav_contact">연락</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="lang-ko" data-lang="ko" aria-pressed="true">KO</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div class="label" data-i18n="eyebrow">Micro SaaS Studio · Seoul</div>
+      <h1>
+        <span class="calm" data-i18n="h1a">당신이 게으를 수 있도록,</span>
+        <span class="fierce" data-i18n="h1b">우리는 지독하게 부지런합니다.</span>
+      </h1>
+      <div class="hero-foot">
+        <p class="lede" data-i18n-html="lede">게으른 사람이 불편함을 없애기로 작정하면, 누구보다 집요해집니다. 레이지컴퍼니는 <b>평생 게으르기 위해 딱 한 번 게으름을 포기하는</b> 작은 소프트웨어 스튜디오입니다.</p>
+        <div class="facts">
+          <div><strong>3</strong><span class="label" data-i18n="f1">Products</span></div>
+          <div><strong>1</strong><span class="label" data-i18n="f2">Person</span></div>
+          <div><strong>24/7</strong><span class="label" data-i18n="f3">Working for you</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="engine" aria-label="겉과 속">
+      <div class="surface">
+        <span class="label" data-i18n="surf_lbl">What you see</span>
+        <p data-i18n-html="surf_txt">당신에게 남는 건<br>버튼 하나.</p>
+        <span class="tap" data-i18n="surf_tap">1 tap · 0 thought</span>
+      </div>
+      <div class="log" aria-hidden="true">
+        <ul id="log"></ul>
+      </div>
+    </div>
+    <div class="engine-cap">
+      <span class="label" data-i18n="cap_l">↑ 왼쪽은 당신이 보는 것, 오른쪽은 그 뒤에서 우리가 한 일</span>
+      <span class="label" data-i18n="cap_r">Laziness, engineered.</span>
+    </div>
+
+    <section id="why">
+      <div class="paradox">
+        <div>
+          <div class="label" data-i18n="why_lbl">The lazy paradox</div>
+          <h2 data-i18n-html="why_h">게으름을 지키기 위해,<br><em>게으름을 포기합니다.</em></h2>
+        </div>
+        <div class="steps">
+          <div><span class="label" data-i18n="s1l">01 · 짜증</span><p data-i18n="s1">"이걸 매번 해야 돼?" 모든 서비스는 이 한마디에서 시작합니다.</p></div>
+          <div><span class="label" data-i18n="s2l">02 · 집착</span><p data-i18n="s2">밤을 새워서라도 그 일을 영원히 없앨 방법을 만듭니다.</p></div>
+          <div><span class="label" data-i18n="s3l">03 · 낮잠</span><p data-i18n="s3">그리고 다시는 그 일을 하지 않습니다. 당신도요.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="micro-saas" style="padding-top:0">
+      <div class="msaas">
+        <div>
+          <div class="label" data-i18n="m_lbl">What is Micro SaaS</div>
+          <h2 data-i18n="m_h">큰 플랫폼 말고, 딱 하나의 불편만 없애는 Micro SaaS</h2>
+        </div>
+        <div>
+          <p data-i18n-html="m_p1"><b>Micro SaaS(마이크로 SaaS)</b>는 한 가지 문제만 정확하게 해결하는 작고 가벼운 구독형 소프트웨어입니다. 배울 것이 거의 없고, 설치하면 바로 쓰고, 필요 없는 기능은 처음부터 만들지 않습니다.</p>
+          <p data-i18n="m_p2">레이지컴퍼니는 1인 개발 Micro SaaS 스튜디오입니다. 매일 반복되는 업무 자동화, 노션 템플릿과 업무 툴, 생활 속 작은 귀찮음을 해결하는 웹 서비스와 앱을 만듭니다.</p>
+          <ul class="tags" data-i18n-list="m_tags">
+            <li>마이크로 SaaS</li><li>1인 SaaS</li><li>업무 자동화 툴</li><li>노션 CRM</li><li>생산성 서비스</li><li>작은 구독형 소프트웨어</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="sec-head">
+        <div>
+          <div class="label" data-i18n="p_lbl">Products</div>
+          <h2 data-i18n="p_h">지금까지 없앤 귀찮음</h2>
+        </div>
+        <span class="label" data-i18n="p_note">자세한 이야기는 각 서비스 안에서</span>
+      </div>
+      <ul class="products">
+        <li>
+          <div class="prod">
+            <h3>Teswatch</h3>
+            <p data-i18n="tw">폰 없이, 손목에서 바로 테슬라를.</p>
+            <span class="badge" data-i18n="live">Live</span>
+            <span class="arrow" aria-hidden="true"></span>
+          </div>
+        </li>
+        <li>
+          <a class="prod" href="/simulator">
+            <h3 data-i18n-html="sg_name"><span class="ko">스토리 게임</span></h3>
+            <p data-i18n="sg">누워서 즐기는, 선택이 이야기를 바꾸는 게임.</p>
+            <span class="badge" data-i18n="live">Live</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <div class="prod muted">
+            <h3 data-i18n-html="crm_name"><span class="ko">노션</span> CRM</h3>
+            <p data-i18n="crm">이미 쓰는 노션 위에, 영업 관리판을 통째로.</p>
+            <span class="badge soon" data-i18n="soon">Coming soon</span>
+            <span class="arrow" aria-hidden="true"></span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact" style="padding-top:0">
+      <div class="contact">
+        <div>
+          <div class="label" data-i18n="c_lbl">Your next annoyance</div>
+          <h2 data-i18n="c_h">당신을 제일 귀찮게 하는 일을 알려주세요.</h2>
+        </div>
+        <div>
+          <p data-i18n="c_p">한 줄이면 충분합니다. 다음 집착의 대상이 될지도 모릅니다.</p>
+          <div class="mailrow">
+            <span class="mail" id="mail">hello@lazycompany.app</span>
+            <button class="copy" type="button" id="copyBtn" data-i18n="copy">주소 복사</button>
+          </div>
+          <div class="copied" id="copied" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Lazy Company</span>
+    <span class="label" data-i18n="foot">Built with obsession. Used with a yawn.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var T={
+    ko:{nav_why:"왜 게으른가",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
+      h1a:"당신이 게으를 수 있도록,",h1b:"우리는 지독하게 부지런합니다.",
+      lede:"게으른 사람이 불편함을 없애기로 작정하면, 누구보다 집요해집니다. 레이지컴퍼니는 <b>평생 게으르기 위해 딱 한 번 게으름을 포기하는</b> 작은 소프트웨어 스튜디오입니다.",
+      f1:"Products",f2:"Person",f3:"Working for you",
+      surf_lbl:"What you see",surf_txt:"당신에게 남는 건<br>버튼 하나.",surf_tap:"1 tap · 0 thought",
+      cap_l:"↑ 왼쪽은 당신이 보는 것, 오른쪽은 그 뒤에서 우리가 한 일",cap_r:"Laziness, engineered.",
+      why_lbl:"The lazy paradox",why_h:"게으름을 지키기 위해,<br><em>게으름을 포기합니다.</em>",
+      s1l:"01 · 짜증",s1:"\"이걸 매번 해야 돼?\" 모든 서비스는 이 한마디에서 시작합니다.",s2l:"02 · 집착",s2:"밤을 새워서라도 그 일을 영원히 없앨 방법을 만듭니다.",s3l:"03 · 낮잠",s3:"그리고 다시는 그 일을 하지 않습니다. 당신도요.",
+      m_lbl:"What is Micro SaaS",m_h:"큰 플랫폼 말고, 딱 하나의 불편만 없애는 Micro SaaS",
+      m_p1:"<b>Micro SaaS(마이크로 SaaS)</b>는 한 가지 문제만 정확하게 해결하는 작고 가벼운 구독형 소프트웨어입니다. 배울 것이 거의 없고, 설치하면 바로 쓰고, 필요 없는 기능은 처음부터 만들지 않습니다.",
+      m_p2:"레이지컴퍼니는 1인 개발 Micro SaaS 스튜디오입니다. 매일 반복되는 업무 자동화, 노션 템플릿과 업무 툴, 생활 속 작은 귀찮음을 해결하는 웹 서비스와 앱을 만듭니다.",
+      m_tags:["마이크로 SaaS","1인 SaaS","업무 자동화 툴","노션 CRM","생산성 서비스","작은 구독형 소프트웨어"],
+      p_lbl:"Products",p_h:"지금까지 없앤 귀찮음",p_note:"자세한 이야기는 각 서비스 안에서",
+      tw:"폰 없이, 손목에서 바로 테슬라를.",sg_name:"<span class=\"ko\">스토리 게임</span>",sg:"누워서 즐기는, 선택이 이야기를 바꾸는 게임.",
+      crm_name:"<span class=\"ko\">노션</span> CRM",crm:"이미 쓰는 노션 위에, 영업 관리판을 통째로.",live:"Live",soon:"Coming soon",
+      c_lbl:"Your next annoyance",c_h:"당신을 제일 귀찮게 하는 일을 알려주세요.",c_p:"한 줄이면 충분합니다. 다음 집착의 대상이 될지도 모릅니다.",
+      copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",foot:"Built with obsession. Used with a yawn."},
+    en:{nav_why:"Why lazy",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
+      h1a:"So you can be lazy,",h1b:"we work relentlessly.",
+      lede:"When a lazy person decides to kill an annoyance, they become the most obsessive person in the room. Lazy Company is a small software studio that <b>gives up laziness once, so you never have to work at it again</b>.",
+      f1:"Products",f2:"Person",f3:"Working for you",
+      surf_lbl:"What you see",surf_txt:"All that's left for you<br>is one button.",surf_tap:"1 tap · 0 thought",
+      cap_l:"↑ Left: what you see. Right: what we did behind it.",cap_r:"Laziness, engineered.",
+      why_lbl:"The lazy paradox",why_h:"To protect our laziness,<br><em>we give it up.</em>",
+      s1l:"01 · Annoyed",s1:"\"Do I really have to do this every time?\" Every product starts with that sentence.",s2l:"02 · Obsessed",s2:"We stay up all night building the thing that ends it for good.",s3l:"03 · Asleep",s3:"Then we never do that task again. Neither do you.",
+      m_lbl:"What is Micro SaaS",m_h:"Not another big platform. Micro SaaS that removes one annoyance.",
+      m_p1:"<b>Micro SaaS</b> is small, focused subscription software that solves exactly one problem. Almost nothing to learn, useful the moment you open it, and no features you didn't need.",
+      m_p2:"Lazy Company is an indie, one-person Micro SaaS studio. We build workflow automation, Notion tools and templates, and small web apps that remove everyday friction.",
+      m_tags:["Micro SaaS","Indie SaaS","Workflow automation","Notion CRM","Productivity tools","Small subscription software"],
+      p_lbl:"Products",p_h:"Annoyances we've removed",p_note:"The full story lives inside each product",
+      tw:"Your Tesla, from your wrist. No phone.",sg_name:"Story Game",sg:"A story you steer with your choices, from the couch.",
+      crm_name:"Notion CRM",crm:"A full sales pipeline, inside the Notion you already use.",live:"Live",soon:"Coming soon",
+      c_lbl:"Your next annoyance",c_h:"Tell us the thing that annoys you most.",c_p:"One line is enough. It might become our next obsession.",
+      copy:"Copy address",copied:"Copied.",copyfail:"Address selected. Copy it from there.",foot:"Built with obsession. Used with a yawn."}
+  };
+  var LOG={
+    ko:["워치 ↔ 폰 6자리 코드 연동 설계","Tesla OAuth 콜백 47번째 재시도",["ok","통과: 문 열림 응답 0.8초"],"엣지 케이스: 지하주차장, 신호 1칸","공개키 자동 등록 스크립트 작성","잠금 해제 동작 12단계 → 1단계",["ok","배포 완료 · Cloudflare Workers"],"새벽 3시, 선택지 분기 214개 검수","스토리 분기 꼬임 수정 (엔딩 B ↔ C)",["ok","통과: 누워서 한 손으로 플레이"],"노션 DB 관계형 구조 9번째 갈아엎기","영업 단계 자동 이동 수식 작성","\"이건 더 줄일 수 있다\" 리팩터링",["ok","통과: 설명서 없이 첫 사용 성공"]],
+    en:["Designing 6-digit watch ↔ phone pairing","Tesla OAuth callback, retry #47",["ok","PASS: door unlock in 0.8s"],"Edge case: basement garage, 1 bar of signal","Writing public-key auto-registration","Unlock flow: 12 steps → 1",["ok","Deployed · Cloudflare Workers"],"3 a.m., reviewing 214 story branches","Fixing tangled branch (ending B ↔ C)",["ok","PASS: playable one-handed, lying down"],"Rebuilding Notion DB relations, attempt #9","Auto-advancing deal stages with formulas","Refactor: \"this can be even shorter\"",["ok","PASS: first use with no manual"]]
+  };
+  function stamp(i){var m=(2*60+14+i*7)%(24*60);return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0");}
+  function renderLog(lang){
+    var ul=document.getElementById("log"),rows=LOG[lang],html="";
+    for(var r=0;r<2;r++){rows.forEach(function(x,i){var ok=Array.isArray(x),t=ok?x[1]:x;
+      html+="<li><time>"+stamp(i)+"</time><span"+(ok?" class=\"ok\"":"")+">"+(ok?"✓ ":"")+t+"</span></li>";});}
+    ul.innerHTML=html;
+  }
+  var cur="ko";
+  function setLang(lang){
+    cur=lang;var d=T[lang];
+    document.documentElement.lang=lang;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(d[k]!==undefined&&d[k]!=="")el.textContent=d[k];});
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){var k=el.getAttribute("data-i18n-html");if(d[k]!==undefined)el.innerHTML=d[k];});
+    document.querySelectorAll("[data-i18n-list]").forEach(function(el){var a=d[el.getAttribute("data-i18n-list")];if(a)el.innerHTML=a.map(function(x){return "<li>"+x+"</li>";}).join("");});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===lang?"true":"false");});
+    renderLog(lang);
+    try{localStorage.setItem("lc-lang",lang);}catch(e){}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
+  var start="ko";
+  try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
+  setLang(start);
+
+  var btn=document.getElementById("copyBtn"),out=document.getElementById("copied"),mail=document.getElementById("mail");
+  btn.addEventListener("click",function(){
+    function fail(){var r=document.createRange();r.selectNodeContents(mail);var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent=T[cur].copyfail;}
+    try{navigator.clipboard.writeText(mail.textContent).then(function(){out.textContent=T[cur].copied;},fail);}catch(e){fail();}
+  });
+})();
+</script>
