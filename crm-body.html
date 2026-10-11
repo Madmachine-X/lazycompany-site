@@ -3,7 +3,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap}
+@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
 /* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 가운데에 직접 눌러보는 데모 CRM 창이 이 페이지의 주인공. */
 :root{
   --paper:#EEF0F3; --ink:#0E1116; --mute:#5C6270; --hair:rgba(14,17,22,.14); --klein:#2934E0;
@@ -834,11 +834,11 @@ footer a{text-decoration:none}
     $("mailBtn").href="mailto:hello@lazycompany.app?subject="+encodeURIComponent(d.mailSubject);
     renderSide();renderMain();
     if($("peek").classList.contains("open"))closePeek();
-    try{localStorage.setItem("lc-lang",l);}catch(e){}
+    if(!forced){try{localStorage.setItem("lc-lang",l);}catch(e){}}
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
-  var start="ko";
-  try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
+  var start="ko",forced=document.documentElement.getAttribute("data-force-lang");
+  if(forced)start=forced;else try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
   fit();setLang(start);
 
   var btn=$("copyBtn"),out=$("copied"),mail=$("mail");

@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-@font-face{font-family:"Cafe24Dongdong";src:url("fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap}
+@font-face{font-family:"Cafe24Dongdong";src:url("fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
 /* Layout: 위는 고요한 표면(게으름), 바로 아래는 쉬지 않고 흐르는 작업 로그(집착). 그 대비가 이 회사의 정체성. 나머지는 여백 많은 에디토리얼 목록. */
 :root{
   --paper:#EEF0F3;     /* 차가운 종이색 바탕 */
@@ -278,7 +278,7 @@ footer .label{font-size:11px}
           </a>
         </li>
         <li>
-          <a class="prod" href="/crm/">
+          <a class="prod" href="/crm/" id="crmLink">
             <h3 data-i18n-html="crm_name"><span class="ko">노션</span> CRM</h3>
             <p data-i18n="crm">이미 쓰는 노션 위에, 영업 관리판을 통째로.</p>
             <span class="badge" data-i18n="crm_badge">상담 가능</span>
@@ -370,6 +370,7 @@ footer .label{font-size:11px}
     document.querySelectorAll("[data-i18n-list]").forEach(function(el){var a=d[el.getAttribute("data-i18n-list")];if(a)el.innerHTML=a.map(function(x){return "<li>"+x+"</li>";}).join("");});
     document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===lang?"true":"false");});
     renderLog(lang);
+    var cl=document.getElementById("crmLink");if(cl)cl.href=lang==="en"?"/crm/en/":"/crm/";
     try{localStorage.setItem("lc-lang",lang);}catch(e){}
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});

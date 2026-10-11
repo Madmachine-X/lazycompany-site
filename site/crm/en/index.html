@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en" data-force-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notion CRM Building | A low-cost CRM inside Notion · Lazy Company</title>
+<meta name="description" content="A BD lead with 10+ years on Salesforce designs and builds a CRM that fits your team inside Notion. Around ₩120,000 a year to run, AI automation, mobile ready. Try the clickable demo CRM.">
+<meta name="keywords" content="Notion CRM, Notion sales pipeline, Notion CRM setup, low-cost CRM, small business CRM, Salesforce alternative, B2B sales tracking, AI CRM automation, Lazy Company">
+<link rel="canonical" href="https://lazycompany.app/crm/en/">
+<link rel="alternate" hreflang="ko" href="https://lazycompany.app/crm/">
+<link rel="alternate" hreflang="en" href="https://lazycompany.app/crm/en/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lazycompany.app/crm/en/">
+<meta property="og:site_name" content="Lazy Company">
+<meta property="og:title" content="Notion CRM Building | Lazy Company">
+<meta property="og:description" content="Use your CRM lazily. We design it obsessively. A CRM inside Notion for around ₩120,000 a year.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<link rel="preload" href="/fonts/Cafe24Dongdong.woff" as="font" type="font/woff" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Notion CRM Building","url":"https://lazycompany.app/crm/en/","serviceType":"CRM design and implementation on Notion","provider":{"@type":"Organization","name":"Lazy Company","url":"https://lazycompany.app/","email":"hello@lazycompany.app"},"description":"Custom CRM built on Notion by a BD professional with 10+ years of Salesforce experience. Low running cost, AI automation, mobile ready."}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
+/* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 가운데에 직접 눌러보는 데모 CRM 창이 이 페이지의 주인공. */
+:root{
+  --paper:#EEF0F3; --ink:#0E1116; --mute:#5C6270; --hair:rgba(14,17,22,.14); --klein:#2934E0;
+  --engine:#0E1116; --engine-fg:#C9CDF7;
+  --card:#FFFFFF; --card-2:#F7F7F5; --card-hair:rgba(55,53,47,.12); --card-ink:#37352F; --card-mute:#787774; --card-hover:rgba(55,53,47,.06);
+  /* 노션 태그 색 */
+  --t-gray:#E3E2E0; --t-gray-f:#32302C; --t-brown:#EEE0DA; --t-brown-f:#442A1E; --t-orange:#FADEC9; --t-orange-f:#49290E;
+  --t-yellow:#FBEDD6; --t-yellow-f:#402C1B; --t-green:#DBEDDB; --t-green-f:#1C3829; --t-blue:#D3E5EF; --t-blue-f:#183347;
+  --t-purple:#E8DEEE; --t-purple-f:#412454; --t-pink:#F5E0E9; --t-pink-f:#4C2337; --t-red:#FFE2DD; --t-red-f:#5D1715;
+  --f-display:"Cafe24Dongdong","IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+  --f-sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C0E13; --ink:#E8EAF0; --mute:#8E95A6; --hair:rgba(232,234,240,.14); --klein:#8C95FF; --engine:#161A24; --engine-fg:#AEB5F2;
+    --card:#191919; --card-2:#202020; --card-hair:rgba(255,255,255,.09); --card-ink:#D4D4D4; --card-mute:#9B9B9B; --card-hover:rgba(255,255,255,.055);
+    --t-gray:#373737; --t-gray-f:#D4D4D4; --t-brown:#4A3228; --t-brown-f:#E3CFC4; --t-orange:#5C3B23; --t-orange-f:#F2D0B4;
+    --t-yellow:#564328; --t-yellow-f:#F0DFB6; --t-green:#243D30; --t-green-f:#C6E3CF; --t-blue:#143A4E; --t-blue-f:#BFDDF0;
+    --t-purple:#3C2D49; --t-purple-f:#DCC8EC; --t-pink:#4E2C3C; --t-pink-f:#F0C8DA; --t-red:#522E2A; --t-red-f:#F5C6BF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C0E13; --ink:#E8EAF0; --mute:#8E95A6; --hair:rgba(232,234,240,.14); --klein:#8C95FF; --engine:#161A24; --engine-fg:#AEB5F2;
+  --card:#191919; --card-2:#202020; --card-hair:rgba(255,255,255,.09); --card-ink:#D4D4D4; --card-mute:#9B9B9B; --card-hover:rgba(255,255,255,.055);
+  --t-gray:#373737; --t-gray-f:#D4D4D4; --t-brown:#4A3228; --t-brown-f:#E3CFC4; --t-orange:#5C3B23; --t-orange-f:#F2D0B4;
+  --t-yellow:#564328; --t-yellow-f:#F0DFB6; --t-green:#243D30; --t-green-f:#C6E3CF; --t-blue:#143A4E; --t-blue-f:#BFDDF0;
+  --t-purple:#3C2D49; --t-purple-f:#DCC8EC; --t-pink:#4E2C3C; --t-pink-f:#F0C8DA; --t-red:#522E2A; --t-red-f:#F5C6BF;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--klein);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{font-weight:400}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:26px;flex-wrap:wrap}
+.mark{text-decoration:none;display:flex;align-items:baseline;gap:6px}
+.mark i{font-family:var(--f-display);font-size:26px;font-style:normal;color:var(--klein)}
+.mark span{font-family:var(--f-display);font-size:26px}
+.top-right{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.top nav{display:flex;gap:24px;font-size:14px}
+.top nav a{text-decoration:none;color:var(--mute)}
+.top nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--hair);border-radius:999px;padding:3px}
+.lang button{font:500 12px/1 var(--f-mono);letter-spacing:.06em;border:0;background:transparent;color:var(--mute);padding:7px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* hero */
+.hero{padding-block:clamp(48px,9vw,112px) clamp(40px,6vw,72px)}
+.crumb{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.crumb a{text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+h1{margin:22px 0 0;letter-spacing:-.01em;line-height:1.18;font-size:clamp(38px,6.6vw,88px);text-wrap:balance}
+h1 span{display:block;font-family:var(--f-display)}
+h1 .fierce{color:var(--klein)}
+.hero-foot{display:grid;grid-template-columns:minmax(0,36em) auto;justify-content:space-between;align-items:end;gap:32px;margin-top:clamp(32px,5vw,56px)}
+.lede{margin:0;font-size:clamp(16px,1.5vw,18px);color:var(--mute)}
+.lede b{color:var(--ink);font-weight:600}
+.facts{display:flex;gap:36px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.facts div{display:grid;gap:4px}
+.facts strong{font-family:var(--f-display);font-size:34px;font-weight:400;line-height:1}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 14px var(--f-sans);text-decoration:none;border-radius:12px;padding:13px 18px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--hair)}
+.btn.ghost:hover{border-color:var(--ink)}
+
+section{padding-block:clamp(72px,10vw,128px)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2,.h2{margin:10px 0 0;font-family:var(--f-display);font-size:clamp(28px,3.6vw,48px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.h2 em,.sec-head h2 em{font-style:normal;color:var(--klein)}
+.sec-note{max-width:30em;color:var(--mute);margin:0}
+
+/* ───── 데모 CRM (노션 느낌의 창) ───── */
+.demo-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.seg{display:inline-flex;border:1px solid var(--hair);border-radius:999px;padding:3px}
+.seg button{font:500 12.5px/1 var(--f-sans);border:0;background:transparent;color:var(--mute);padding:8px 13px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.stage{display:flex;justify-content:center;transition:padding .3s}
+.stage.phone{padding-block:8px}
+.app{position:relative;width:100%;height:640px;background:var(--card);color:var(--card-ink);border:1px solid var(--hair);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:220px minmax(0,1fr);font-size:14px;line-height:1.5;box-shadow:0 30px 60px -30px rgba(14,17,22,.35);transition:width .35s ease,border-radius .35s}
+.app *{word-break:normal}
+.side{background:var(--card-2);border-right:1px solid var(--card-hair);padding:14px 8px;display:flex;flex-direction:column;gap:2px;overflow:auto}
+.ws{display:flex;align-items:center;gap:8px;padding:6px 10px 14px;font-weight:600;font-size:14px}
+.ws i{width:22px;height:22px;border-radius:5px;background:var(--klein);color:#fff;font:600 12px/22px var(--f-sans);text-align:center;font-style:normal}
+.side .grp{font-size:11.5px;color:var(--card-mute);padding:12px 10px 4px}
+.nav-btn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:0;background:transparent;color:var(--card-ink);font:inherit;padding:5px 10px;border-radius:6px;cursor:pointer}
+.nav-btn:hover{background:var(--card-hover)}
+.nav-btn[aria-current="true"]{background:var(--card-hover);font-weight:600}
+.nav-btn .ic{width:18px;text-align:center}
+.main{display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.mhead{padding:22px 28px 0}
+.mhead h3{margin:0;font:700 26px/1.25 var(--f-sans);color:var(--card-ink);display:flex;align-items:center;gap:10px}
+.mhead p{margin:6px 0 0;color:var(--card-mute);font-size:13px}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 28px 8px;border-bottom:1px solid var(--card-hair)}
+.tabs{display:flex;gap:2px;flex-wrap:wrap}
+.tab{border:0;background:transparent;color:var(--card-mute);font:inherit;font-size:13px;padding:5px 9px;border-radius:6px;cursor:pointer}
+.tab[aria-pressed="true"]{color:var(--card-ink);background:var(--card-hover);font-weight:600}
+.tright{display:flex;gap:8px;align-items:center}
+.search{font:inherit;font-size:13px;border:1px solid var(--card-hair);background:transparent;color:var(--card-ink);border-radius:6px;padding:5px 10px;width:150px}
+.ai-btn{font:600 13px var(--f-sans);border:0;border-radius:6px;padding:6px 11px;background:var(--klein);color:#fff;cursor:pointer;white-space:nowrap}
+.body{flex:1;overflow:auto;padding:12px 28px 28px}
+
+.tbl{border-collapse:collapse;min-width:100%;font-size:13.5px}
+.tbl th{font-weight:400;color:var(--card-mute);text-align:left;padding:7px 10px;border-bottom:1px solid var(--card-hair);white-space:nowrap;font-size:13px}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--card-hair);white-space:nowrap;max-width:280px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+.tbl tr.row{cursor:pointer}
+.tbl tr.row:hover td{background:var(--card-hover)}
+.tbl td.ttl{font-weight:600}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;padding:0 7px;border-radius:4px;font-size:12.5px;line-height:20px;white-space:nowrap;margin-right:4px}
+.c-gray{background:var(--t-gray);color:var(--t-gray-f)} .c-brown{background:var(--t-brown);color:var(--t-brown-f)} .c-orange{background:var(--t-orange);color:var(--t-orange-f)}
+.c-yellow{background:var(--t-yellow);color:var(--t-yellow-f)} .c-green{background:var(--t-green);color:var(--t-green-f)} .c-blue{background:var(--t-blue);color:var(--t-blue-f)}
+.c-purple{background:var(--t-purple);color:var(--t-purple-f)} .c-pink{background:var(--t-pink);color:var(--t-pink-f)} .c-red{background:var(--t-red);color:var(--t-red-f)} .c-default{background:var(--t-gray);color:var(--t-gray-f)}
+.rel{display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:inherit;font:inherit;padding:0 2px;text-decoration:underline;text-decoration-color:var(--card-hair);text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+.rel:hover{text-decoration-color:currentColor}
+.dim{color:var(--card-mute)}
+
+.board{display:flex;gap:12px;align-items:flex-start;min-width:max-content}
+.col{width:230px;flex:none}
+.col-h{display:flex;align-items:center;gap:8px;padding:4px 2px 10px;font-size:13px;color:var(--card-mute)}
+.card{display:block;width:100%;text-align:left;border:1px solid var(--card-hair);background:var(--card);color:var(--card-ink);font:inherit;border-radius:8px;padding:10px 12px;margin-bottom:8px;cursor:pointer;box-shadow:0 1px 2px rgba(15,15,15,.06)}
+.card:hover{background:var(--card-hover)}
+.card b{display:block;font-size:13.5px;margin-bottom:6px}
+.card .meta{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--card-mute)}
+.col-sum{font-size:12px;color:var(--card-mute);padding:2px 2px 0}
+
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:6px 0 18px}
+.kpi{border:1px solid var(--card-hair);border-radius:10px;padding:14px}
+.kpi span{display:block;font-size:12px;color:var(--card-mute)}
+.kpi strong{display:block;font:600 22px/1.3 var(--f-sans);margin-top:4px;font-variant-numeric:tabular-nums}
+.dash{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px}
+.panel{border:1px solid var(--card-hair);border-radius:10px;padding:14px 16px}
+.panel h4{margin:0 0 12px;font-size:13px;font-weight:600}
+.bars{display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:86px minmax(0,1fr) 70px;gap:10px;align-items:center;font-size:12.5px}
+.bar .trk{height:14px;border-radius:4px;background:var(--card-hover);overflow:hidden}
+.bar .fill{height:100%;border-radius:4px;background:var(--klein);opacity:.85}
+.todo{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:13px}
+.todo li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px}
+.todo button{all:unset;cursor:pointer;font-weight:600}
+.todo button:hover{text-decoration:underline}
+
+/* 옆에서 열리는 상세(노션의 사이드 피크) */
+.peek{position:absolute;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--card);border-left:1px solid var(--card-hair);box-shadow:-20px 0 40px -20px rgba(0,0,0,.25);transform:translateX(102%);transition:transform .28s ease;display:flex;flex-direction:column;z-index:5}
+.peek.open{transform:none}
+.peek-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--card-hair);font-size:12.5px;color:var(--card-mute)}
+.x{border:0;background:transparent;color:var(--card-mute);font-size:20px;line-height:1;cursor:pointer;padding:4px 8px;border-radius:6px}
+.x:hover{background:var(--card-hover)}
+.peek-body{overflow:auto;padding:22px 26px 30px}
+.peek-body h3{margin:0 0 16px;font:700 24px/1.3 var(--f-sans)}
+.props{display:grid;grid-template-columns:130px minmax(0,1fr);gap:8px 12px;font-size:13.5px;margin:0}
+.props dt{color:var(--card-mute)}
+.props dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.props select{font:inherit;font-size:13px;border:1px solid var(--card-hair);border-radius:6px;background:var(--card);color:var(--card-ink);padding:2px 6px}
+.peek-sec{margin-top:22px;padding-top:16px;border-top:1px solid var(--card-hair)}
+.peek-sec h5{margin:0 0 8px;font-size:12px;font-weight:600;color:var(--card-mute)}
+.peek-sec ul{margin:0;padding-left:18px;font-size:13.5px}
+.mini{list-style:none;padding:0!important;display:grid;gap:8px}
+.mini li{border:1px solid var(--card-hair);border-radius:8px;padding:8px 10px;font-size:13px}
+.ai-box textarea{width:100%;min-height:150px;font:13px/1.6 var(--f-sans);border:1px solid var(--card-hair);border-radius:8px;background:var(--card-2);color:var(--card-ink);padding:10px;resize:vertical}
+.ai-out{margin-top:14px;font-size:13.5px;border:1px solid var(--card-hair);border-left:3px solid var(--klein);border-radius:8px;padding:12px 14px;white-space:pre-wrap;min-height:2em;display:none}
+.ai-out.on{display:block}
+.ai-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.ai-note{font-size:12px;color:var(--card-mute);margin-top:10px}
+.toast{position:absolute;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;background:var(--card-ink);color:var(--card);font-size:13px;padding:8px 14px;border-radius:8px;transition:.25s;pointer-events:none;z-index:6;width:max-content;max-width:calc(100% - 24px);text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* 모바일 미리보기 모드 + 좁은 화면 */
+.app.compact{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+.app.compact .side{flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:8px;border-right:0;border-bottom:1px solid var(--card-hair);gap:4px;scrollbar-width:none}
+.app.compact .ws,.app.compact .side .grp{display:none}
+.app.compact .nav-btn{width:auto;white-space:nowrap;flex:none}
+.app.compact .mhead{padding:16px 16px 0}
+.app.compact .mhead h3{font-size:21px}
+.app.compact .tools{padding:10px 16px 8px}
+.app.compact .body{padding:10px 16px 20px}
+.app.compact .search{width:110px}
+.app.compact .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+.app.compact .dash{grid-template-columns:1fr}
+.app.compact .col{width:200px}
+.app.compact .peek-body{padding:18px 18px 26px}
+.app.compact .props{grid-template-columns:110px minmax(0,1fr)}
+.app.phone{width:390px;max-width:100%;height:760px;border-radius:38px;border:10px solid var(--ink)}
+.demo-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:14px}
+
+/* why notion */
+.why{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink)}
+.why div{padding:26px 22px 26px 0;border-right:1px solid var(--hair)}
+.why div+div{padding-left:22px}
+.why div:last-child{border-right:0}
+.why strong{display:block;font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.25;margin:12px 0 10px}
+.why p{margin:0;color:var(--mute);font-size:15px}
+
+/* cost */
+.cost{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(32px,6vw,96px);align-items:center;border-top:1px solid var(--hair);padding-top:40px}
+.cost-bars{display:grid;gap:22px}
+.cb .row{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:15px}
+.cb .row b{font-weight:600;font-variant-numeric:tabular-nums}
+.cb .trk{height:18px;border-radius:999px;background:var(--hair);overflow:hidden}
+.cb .fill{height:100%;border-radius:999px;background:var(--mute)}
+.cb.us .fill{background:var(--klein)}
+.cb.us .row b{color:var(--klein)}
+.fine{font-size:12.5px;color:var(--mute);margin:14px 0 0}
+
+/* salesforce */
+.sf{background:var(--engine);color:var(--engine-fg);border-radius:20px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:center}
+.sf .label{color:rgba(201,205,247,.6)}
+.sf h2{margin:12px 0 16px;font-family:var(--f-display);font-size:clamp(28px,3.4vw,44px);line-height:1.22;color:#F2F3FA;text-wrap:balance}
+.sf p{margin:0 0 14px;color:var(--engine-fg)}
+.sf p b{color:#F2F3FA;font-weight:600}
+.map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;font-family:var(--f-mono);font-size:12.5px}
+.node{border:1px solid rgba(201,205,247,.22);border-radius:10px;padding:12px;display:grid;gap:4px}
+.node b{font-family:var(--f-sans);font-size:14px;color:#F2F3FA;font-weight:600}
+.node span{color:rgba(201,205,247,.6)}
+.node.hub{border-color:#8C95FF;background:rgba(140,149,255,.1)}
+.map-cap{grid-column:1/-1;color:rgba(201,205,247,.6);font-size:12px;margin-top:4px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}
+.steps div{padding:24px 20px 24px 0}
+.steps div+div{padding-left:20px;border-left:1px solid var(--hair)}
+.steps strong{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;margin:10px 0 8px}
+.steps p{margin:0;color:var(--mute);font-size:15px}
+
+/* ai */
+.ai-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.ai-list li{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1.2fr);gap:20px;align-items:center;padding-block:20px;border-bottom:1px solid var(--hair)}
+.ai-list .from{color:var(--mute)}
+.ai-list .to{font-weight:500}
+.ai-list .arw{color:var(--klein);font-size:20px;text-align:center}
+
+/* faq */
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--hair);padding-block:18px}
+.faq summary{cursor:pointer;font-weight:500;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--mute);font-family:var(--f-mono)}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0;color:var(--mute);max-width:46em}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end;border-top:1px solid var(--ink);padding-top:40px}
+.contact h2{margin:12px 0 0;font-family:var(--f-display);font-size:clamp(30px,4.4vw,58px);line-height:1.15;text-wrap:balance}
+.contact p{margin:0 0 18px;color:var(--mute)}
+.mailrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.mail{font-family:var(--f-mono);font-size:15px;padding:12px 16px;border:1px solid var(--hair);border-radius:12px;user-select:all}
+.copied{font-family:var(--f-mono);font-size:12px;color:var(--klein);min-height:1.4em;margin-top:8px}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 40px;font-size:13px;color:var(--mute)}
+footer a{text-decoration:none}
+
+@media (max-width:900px){
+  .hero-foot,.cost,.sf,.contact{grid-template-columns:1fr}
+  .why,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .why div,.why div+div,.steps div,.steps div+div{padding:22px 16px 22px 0;border-left:0;border-right:0;border-bottom:1px solid var(--hair)}
+  .why div:nth-child(even),.steps div:nth-child(even){padding-left:16px;border-left:1px solid var(--hair)}
+  .ai-list li{grid-template-columns:1fr;gap:4px}
+  .ai-list .arw{text-align:left;transform:rotate(90deg);width:20px}
+  .top nav{display:none}
+  .app{height:620px}
+}
+@media (max-width:560px){
+  .why,.steps{grid-template-columns:1fr}
+  .why div:nth-child(even),.steps div:nth-child(even){padding-left:0;border-left:0}
+  .map{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .app.phone{border-width:6px;border-radius:24px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="/" aria-label="Lazy Company 홈"><i>Lazy</i><span>Company</span></a>
+    <div class="top-right">
+      <nav aria-label="menu">
+        <a href="#demo" data-i18n="nav_demo">데모</a>
+        <a href="#why" data-i18n="nav_why">왜 노션인가</a>
+        <a href="#how" data-i18n="nav_how">진행 방식</a>
+        <a href="#contact" data-i18n="nav_contact">상담</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="crumb label"><a href="/">Lazy Company</a><span>/</span><span data-i18n="eyebrow">Notion CRM Building</span></div>
+      <h1>
+        <span data-i18n="h1a">CRM은 게으르게 쓰고,</span>
+        <span class="fierce" data-i18n="h1b">설계는 지독하게 합니다.</span>
+      </h1>
+      <div class="hero-foot">
+        <div>
+          <p class="lede" data-i18n-html="lede">Salesforce를 10년 넘게 써 온 BD가, 이미 쓰는 노션 위에 당신 팀에 꼭 맞는 CRM을 지어 드립니다. 유지비는 <b>연 12만 원 수준</b>. 기록은 AI가 정리하고, 업데이트는 핸드폰으로 끝냅니다.</p>
+          <div class="ctas">
+            <a class="btn" href="#demo" data-i18n="cta1">데모 직접 눌러보기 ↓</a>
+            <a class="btn ghost" href="#contact" data-i18n="cta2">상담 요청하기</a>
+          </div>
+        </div>
+        <div class="facts">
+          <div><strong data-i18n="f1v">₩12만</strong><span class="label" data-i18n="f1">유지비 / 년</span></div>
+          <div><strong>10+</strong><span class="label" data-i18n="f2">Years of Salesforce</span></div>
+          <div><strong>AI · 📱</strong><span class="label" data-i18n="f3">Auto + Mobile</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="demo" style="padding-top:clamp(24px,4vw,48px)">
+      <div class="sec-head">
+        <div>
+          <div class="label" data-i18n="d_lbl">Live demo</div>
+          <h2 data-i18n-html="d_h">말보다, <em>직접 눌러보세요.</em></h2>
+        </div>
+        <p class="sec-note" data-i18n="d_note">실제로 운영 중인 노션 CRM 구조를 그대로 옮기고, 데이터만 가상으로 바꿨습니다. 카드를 눌러 상세를 열고, 영업 단계를 바꿔 보세요.</p>
+      </div>
+      <div class="demo-bar">
+        <div class="seg" role="group" aria-label="screen">
+          <button type="button" id="viewDesk" aria-pressed="true" data-i18n="d_desk">💻 PC 화면</button>
+          <button type="button" id="viewPhone" aria-pressed="false" data-i18n="d_phone">📱 핸드폰 화면</button>
+        </div>
+        <span class="label" data-i18n="d_sample">Sample data · 모든 회사·인물은 가상입니다</span>
+      </div>
+      <div class="stage" id="stage">
+        <div class="app" id="app">
+          <aside class="side" id="side"></aside>
+          <div class="main">
+            <div class="mhead"><h3 id="mTitle"></h3><p id="mDesc"></p></div>
+            <div class="tools">
+              <div class="tabs" id="tabs"></div>
+              <div class="tright" id="tright"></div>
+            </div>
+            <div class="body" id="mBody"></div>
+          </div>
+          <div class="peek" id="peek" aria-hidden="true">
+            <div class="peek-top"><span id="peekPath"></span><button class="x" type="button" id="peekX" aria-label="닫기">×</button></div>
+            <div class="peek-body" id="peekBody"></div>
+          </div>
+          <div class="toast" id="toast" role="status"></div>
+        </div>
+      </div>
+      <div class="demo-cap">
+        <span class="label" data-i18n="d_cap1">↑ 노션 화면을 웹에서 흉내 낸 데모입니다. 실제 서비스는 고객의 노션 워크스페이스에 만들어집니다.</span>
+        <span class="label">Lazy to use. Obsessive to build.</span>
+      </div>
+    </section>
+
+    <section id="why" style="padding-top:0">
+      <div class="sec-head">
+        <div>
+          <div class="label" data-i18n="w_lbl">Why Notion</div>
+          <h2 data-i18n-html="w_h">비싼 CRM 대신, <em>이미 쓰는 노션</em>으로.</h2>
+        </div>
+      </div>
+      <div class="why">
+        <div><span class="label">01 · Cost</span><strong data-i18n="w1t">연 12만 원 수준</strong><p data-i18n="w1">사용자마다 비싼 라이선스를 낼 필요가 없습니다. 노션 요금제 하나로 끝나고, 서버도 개발자도 필요 없습니다.</p></div>
+        <div><span class="label">02 · Flexible</span><strong data-i18n="w2t">내 맘대로 바꾸는 구조</strong><p data-i18n="w2">영업 단계 하나, 항목 하나 바꾸려고 IT팀에 요청할 일이 없습니다. 표·보드·캘린더·차트 화면도 클릭 몇 번이면 생깁니다.</p></div>
+        <div><span class="label">03 · AI</span><strong data-i18n="w3t">기록은 AI가</strong><p data-i18n="w3">회의 메모를 붙여 넣으면 요약, 다음 할 일, 단계 변경까지 정리합니다. 반복되는 입력은 노션 자동화가 대신합니다.</p></div>
+        <div><span class="label">04 · Mobile</span><strong data-i18n="w4t">미팅 끝나고 주차장에서</strong><p data-i18n="w4">노션 앱으로 핸드폰에서 바로 확인하고 기록합니다. 사무실로 돌아와 다시 입력할 필요가 없습니다.</p></div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="cost">
+        <div>
+          <div class="label" data-i18n="c_lbl">Running cost</div>
+          <h2 class="h2" data-i18n-html="c_h">기능은 필요한 만큼,<br><em>비용은 게으를 만큼.</em></h2>
+        </div>
+        <div>
+          <div class="cost-bars">
+            <div class="cb"><div class="row"><span data-i18n="c_big">대형 CRM 1인 라이선스</span><b data-i18n="c_bigv">연 수백만 원</b></div><div class="trk"><div class="fill" style="width:100%"></div></div></div>
+            <div class="cb us"><div class="row"><span data-i18n="c_us">노션 CRM (Lazy Company)</span><b data-i18n="c_usv">연 12만 원 수준</b></div><div class="trk"><div class="fill" style="width:5%"></div></div></div>
+          </div>
+          <p class="fine" data-i18n="c_fine">* 1인 기준 유지비 예시입니다. 노션 요금제와 환율, 사용 인원에 따라 달라지며 구축 비용은 별도입니다. 막대 길이는 대략적인 비교입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sf" style="padding-top:0">
+      <div class="sf">
+        <div>
+          <div class="label" data-i18n="s_lbl">10+ years of Salesforce</div>
+          <h2 data-i18n="s_h">Salesforce 10년, 그래서 무엇을 뺄지 압니다.</h2>
+          <p data-i18n-html="s_p1">대형 CRM의 수많은 기능 중 매일 쓰는 건 일부입니다. <b>10년 넘게 Salesforce로 영업을 관리하고 15년간 B2B 현장에서 BD를 해 온 경험</b>으로, 꼭 필요한 구조만 남기고 나머지는 덜어냅니다.</p>
+          <p data-i18n="s_p2">회사·담당자·영업 기회·활동이 서로 연결되는 Salesforce의 핵심 구조를 노션 위에 그대로 살리고, 당신 팀의 단계와 용어에 맞춥니다.</p>
+        </div>
+        <div class="map" aria-label="CRM structure">
+          <div class="node"><b>🏢 Company</b><span>Account</span></div>
+          <div class="node hub"><b>📈 Opportunities</b><span>Opportunity</span></div>
+          <div class="node"><b>🤳🏻 Contact info</b><span>Contact</span></div>
+          <div class="node"><b>💊 Pipeline</b><span>Product</span></div>
+          <div class="node"><b>🗓 Sales activities</b><span>Activity</span></div>
+          <div class="node"><b>✍️ Contract</b><span>Contract</span></div>
+          <div class="map-cap" data-i18n="s_cap">노션 DB 이름 ↔ Salesforce에서 같은 역할을 하는 개체. 모두 서로 연결(관계형)되어 있습니다.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" style="padding-top:0">
+      <div class="sec-head">
+        <div>
+          <div class="label" data-i18n="a_lbl">AI automation</div>
+          <h2 data-i18n-html="a_h">손으로 하던 일을, <em>AI에게 미룹니다.</em></h2>
+        </div>
+        <p class="sec-note" data-i18n="a_note">고객사의 업무 방식에 맞춰 골라 구성하는 자동화 예시입니다.</p>
+      </div>
+      <ul class="ai-list">
+        <li><span class="from" data-i18n="a1f">미팅 후 휘갈긴 메모</span><span class="arw" aria-hidden="true">→</span><span class="to" data-i18n="a1t">요약 · 다음 단계 · 영업 단계 변경 제안까지 정리된 활동 기록</span></li>
+        <li><span class="from" data-i18n="a2f">받은 명함 사진</span><span class="arw" aria-hidden="true">→</span><span class="to" data-i18n="a2t">회사와 연결된 담당자 카드 자동 생성</span></li>
+        <li><span class="from" data-i18n="a3f">매주 월요일 아침</span><span class="arw" aria-hidden="true">→</span><span class="to" data-i18n="a3t">단계별 파이프라인 금액과 이번 주 팔로업 목록 리포트</span></li>
+        <li><span class="from" data-i18n="a4f">2주 넘게 연락이 없는 기회</span><span class="arw" aria-hidden="true">→</span><span class="to" data-i18n="a4t">담당자에게 알림, 팔로업 메일 초안까지</span></li>
+      </ul>
+    </section>
+
+    <section id="how" style="padding-top:0">
+      <div class="sec-head">
+        <div>
+          <div class="label" data-i18n="h_lbl">How it works</div>
+          <h2 data-i18n="h_h">한 번만 같이 부지런해지면 됩니다.</h2>
+        </div>
+      </div>
+      <div class="steps">
+        <div><span class="label">01</span><strong data-i18n="h1t">인터뷰</strong><p data-i18n="h1">지금 영업을 어떻게 관리하는지, 엑셀과 메일함부터 같이 봅니다.</p></div>
+        <div><span class="label">02</span><strong data-i18n="h2t">설계</strong><p data-i18n="h2">영업 단계, 꼭 필요한 항목, 보고 싶은 화면을 정합니다.</p></div>
+        <div><span class="label">03</span><strong data-i18n="h3t">구축 · 이관</strong><p data-i18n="h3">노션에 CRM을 만들고, 기존 엑셀·명함 데이터를 옮깁니다.</p></div>
+        <div><span class="label">04</span><strong data-i18n="h4t">교육 · 자동화</strong><p data-i18n="h4">팀 교육, 핸드폰 세팅, AI 자동화까지 붙이고 손을 뗍니다.</p></div>
+      </div>
+    </section>
+
+    <section id="faq" style="padding-top:0">
+      <div class="sec-head"><div><div class="label">FAQ</div><h2 data-i18n="q_h">자주 받는 질문</h2></div></div>
+      <div class="faq">
+        <details><summary data-i18n="q1">노션을 한 번도 안 써 봤는데 괜찮을까요?</summary><p data-i18n="q1a">괜찮습니다. 매일 쓰는 화면만 남기고, 사용법 교육까지 함께 진행합니다.</p></details>
+        <details><summary data-i18n="q2">지금 엑셀로 관리하던 데이터도 옮길 수 있나요?</summary><p data-i18n="q2a">네. 엑셀·CSV로 정리된 고객, 담당자, 영업 기록을 노션 CRM으로 옮겨 드립니다.</p></details>
+        <details><summary data-i18n="q3">우리 업종에도 맞을까요?</summary><p data-i18n="q3a">회사·담당자·영업 기회·활동이라는 뼈대는 대부분의 B2B 영업에 공통입니다. 단계와 항목은 업종에 맞춰 바꿉니다.</p></details>
+        <details><summary data-i18n="q4">고객 데이터는 어디에 저장되나요?</summary><p data-i18n="q4a">고객사의 노션 워크스페이스에 저장됩니다. 레이지컴퍼니가 데이터를 따로 보관하지 않습니다.</p></details>
+        <details><summary data-i18n="q5">구축 비용은 얼마인가요?</summary><p data-i18n="q5a">인원과 범위에 따라 달라서, 짧은 상담 후 견적을 드립니다.</p></details>
+      </div>
+    </section>
+
+    <section id="contact" style="padding-top:0">
+      <div class="contact">
+        <div>
+          <div class="label" data-i18n="k_lbl">Talk to us</div>
+          <h2 data-i18n="k_h">엑셀 영업 관리에 지쳤다면, 한 줄만 보내 주세요.</h2>
+        </div>
+        <div>
+          <p data-i18n="k_p">팀 인원과 지금 쓰는 방식만 알려 주시면 됩니다.</p>
+          <div class="mailrow">
+            <span class="mail" id="mail">hello@lazycompany.app</span>
+            <a class="btn" id="mailBtn" href="mailto:hello@lazycompany.app?subject=%EB%85%B8%EC%85%98%20CRM%20%EC%83%81%EB%8B%B4" data-i18n="k_btn">메일 쓰기</a>
+            <button class="btn ghost" type="button" id="copyBtn" data-i18n="copy">주소 복사</button>
+          </div>
+          <div class="copied" id="copied" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← Lazy Company</a>
+    <span class="label">Built with obsession. Used with a yawn.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  /* ───────── 페이지 문구 (한/영) ───────── */
+  var T={
+    ko:{nav_demo:"데모",nav_why:"왜 노션인가",nav_how:"진행 방식",nav_contact:"상담",eyebrow:"Notion CRM Building",
+      h1a:"CRM은 게으르게 쓰고,",h1b:"설계는 지독하게 합니다.",
+      lede:"Salesforce를 10년 넘게 써 온 BD가, 이미 쓰는 노션 위에 당신 팀에 꼭 맞는 CRM을 지어 드립니다. 유지비는 <b>연 12만 원 수준</b>. 기록은 AI가 정리하고, 업데이트는 핸드폰으로 끝냅니다.",
+      cta1:"데모 직접 눌러보기 ↓",cta2:"상담 요청하기",f1v:"₩12만",f1:"유지비 / 년",f2:"Years of Salesforce",f3:"Auto + Mobile",
+      d_lbl:"Live demo",d_h:"말보다, <em>직접 눌러보세요.</em>",d_note:"실제로 운영 중인 노션 CRM 구조를 그대로 옮기고, 데이터만 가상으로 바꿨습니다. 카드를 눌러 상세를 열고, 영업 단계를 바꿔 보세요.",
+      d_desk:"💻 PC 화면",d_phone:"📱 핸드폰 화면",d_sample:"Sample data · 모든 회사·인물은 가상입니다",
+      d_cap1:"↑ 노션 화면을 웹에서 흉내 낸 데모입니다. 실제 서비스는 고객의 노션 워크스페이스에 만들어집니다.",
+      w_lbl:"Why Notion",w_h:"비싼 CRM 대신, <em>이미 쓰는 노션</em>으로.",
+      w1t:"연 12만 원 수준",w1:"사용자마다 비싼 라이선스를 낼 필요가 없습니다. 노션 요금제 하나로 끝나고, 서버도 개발자도 필요 없습니다.",
+      w2t:"내 맘대로 바꾸는 구조",w2:"영업 단계 하나, 항목 하나 바꾸려고 IT팀에 요청할 일이 없습니다. 표·보드·캘린더·차트 화면도 클릭 몇 번이면 생깁니다.",
+      w3t:"기록은 AI가",w3:"회의 메모를 붙여 넣으면 요약, 다음 할 일, 단계 변경까지 정리합니다. 반복되는 입력은 노션 자동화가 대신합니다.",
+      w4t:"미팅 끝나고 주차장에서",w4:"노션 앱으로 핸드폰에서 바로 확인하고 기록합니다. 사무실로 돌아와 다시 입력할 필요가 없습니다.",
+      c_lbl:"Running cost",c_h:"기능은 필요한 만큼,<br><em>비용은 게으를 만큼.</em>",c_big:"대형 CRM 1인 라이선스",c_bigv:"연 수백만 원",c_us:"노션 CRM (Lazy Company)",c_usv:"연 12만 원 수준",
+      c_fine:"* 1인 기준 유지비 예시입니다. 노션 요금제와 환율, 사용 인원에 따라 달라지며 구축 비용은 별도입니다. 막대 길이는 대략적인 비교입니다.",
+      s_lbl:"10+ years of Salesforce",s_h:"Salesforce 10년, 그래서 무엇을 뺄지 압니다.",
+      s_p1:"대형 CRM의 수많은 기능 중 매일 쓰는 건 일부입니다. <b>10년 넘게 Salesforce로 영업을 관리하고 15년간 B2B 현장에서 BD를 해 온 경험</b>으로, 꼭 필요한 구조만 남기고 나머지는 덜어냅니다.",
+      s_p2:"회사·담당자·영업 기회·활동이 서로 연결되는 Salesforce의 핵심 구조를 노션 위에 그대로 살리고, 당신 팀의 단계와 용어에 맞춥니다.",
+      s_cap:"노션 DB 이름 ↔ Salesforce에서 같은 역할을 하는 개체. 모두 서로 연결(관계형)되어 있습니다.",
+      a_lbl:"AI automation",a_h:"손으로 하던 일을, <em>AI에게 미룹니다.</em>",a_note:"고객사의 업무 방식에 맞춰 골라 구성하는 자동화 예시입니다.",
+      a1f:"미팅 후 휘갈긴 메모",a1t:"요약 · 다음 단계 · 영업 단계 변경 제안까지 정리된 활동 기록",a2f:"받은 명함 사진",a2t:"회사와 연결된 담당자 카드 자동 생성",
+      a3f:"매주 월요일 아침",a3t:"단계별 파이프라인 금액과 이번 주 팔로업 목록 리포트",a4f:"2주 넘게 연락이 없는 기회",a4t:"담당자에게 알림, 팔로업 메일 초안까지",
+      h_lbl:"How it works",h_h:"한 번만 같이 부지런해지면 됩니다.",
+      h1t:"인터뷰",h1:"지금 영업을 어떻게 관리하는지, 엑셀과 메일함부터 같이 봅니다.",h2t:"설계",h2:"영업 단계, 꼭 필요한 항목, 보고 싶은 화면을 정합니다.",
+      h3t:"구축 · 이관",h3:"노션에 CRM을 만들고, 기존 엑셀·명함 데이터를 옮깁니다.",h4t:"교육 · 자동화",h4:"팀 교육, 핸드폰 세팅, AI 자동화까지 붙이고 손을 뗍니다.",
+      q_h:"자주 받는 질문",q1:"노션을 한 번도 안 써 봤는데 괜찮을까요?",q1a:"괜찮습니다. 매일 쓰는 화면만 남기고, 사용법 교육까지 함께 진행합니다.",
+      q2:"지금 엑셀로 관리하던 데이터도 옮길 수 있나요?",q2a:"네. 엑셀·CSV로 정리된 고객, 담당자, 영업 기록을 노션 CRM으로 옮겨 드립니다.",
+      q3:"우리 업종에도 맞을까요?",q3a:"회사·담당자·영업 기회·활동이라는 뼈대는 대부분의 B2B 영업에 공통입니다. 단계와 항목은 업종에 맞춰 바꿉니다.",
+      q4:"고객 데이터는 어디에 저장되나요?",q4a:"고객사의 노션 워크스페이스에 저장됩니다. 레이지컴퍼니가 데이터를 따로 보관하지 않습니다.",
+      q5:"구축 비용은 얼마인가요?",q5a:"인원과 범위에 따라 달라서, 짧은 상담 후 견적을 드립니다.",
+      k_lbl:"Talk to us",k_h:"엑셀 영업 관리에 지쳤다면, 한 줄만 보내 주세요.",k_p:"팀 인원과 지금 쓰는 방식만 알려 주시면 됩니다.",k_btn:"메일 쓰기",
+      copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",mailSubject:"노션 CRM 상담"},
+    en:{nav_demo:"Demo",nav_why:"Why Notion",nav_how:"How",nav_contact:"Contact",eyebrow:"Notion CRM Building",
+      h1a:"Use your CRM lazily.",h1b:"We design it obsessively.",
+      lede:"A BD lead with 10+ years on Salesforce builds a CRM that fits your team, right inside the Notion you already use. Running cost is <b>around ₩120,000 a year</b>. AI writes the notes, and updates happen on your phone.",
+      cta1:"Try the live demo ↓",cta2:"Talk to us",f1v:"₩120K",f1:"Running cost / yr",f2:"Years of Salesforce",f3:"Auto + Mobile",
+      d_lbl:"Live demo",d_h:"Don't read about it. <em>Click it.</em>",d_note:"The exact structure of a Notion CRM in daily use, with made-up data. Open a card, change a deal stage, try the AI notes.",
+      d_desk:"💻 Desktop",d_phone:"📱 Phone",d_sample:"Sample data · all companies and people are fictional",
+      d_cap1:"↑ A web replica of the Notion screens. The real thing is built in your own Notion workspace.",
+      w_lbl:"Why Notion",w_h:"Skip the pricey CRM. <em>Use the Notion you have.</em>",
+      w1t:"≈ ₩120K a year",w1:"No expensive per-seat licenses. One Notion plan, no servers, no developers.",
+      w2t:"Change it yourself",w2:"No IT ticket to rename a stage or add a field. Table, board, calendar and chart views are a few clicks away.",
+      w3t:"AI takes the notes",w3:"Paste your meeting scribbles and get a summary, next steps and a stage update. Notion automations handle the repetitive input.",
+      w4t:"Update from the parking lot",w4:"Check and log from the Notion app on your phone, right after the meeting. No re-typing back at the office.",
+      c_lbl:"Running cost",c_h:"Features as needed.<br><em>Costs as lazy as possible.</em>",c_big:"Enterprise CRM, 1 seat",c_bigv:"Thousands of $ / yr",c_us:"Notion CRM (Lazy Company)",c_usv:"≈ ₩120K / yr",
+      c_fine:"* Example running cost for one user. Varies with Notion plan, exchange rate and team size; setup is billed separately. Bar lengths are approximate.",
+      s_lbl:"10+ years of Salesforce",s_h:"A decade on Salesforce taught us what to leave out.",
+      s_p1:"Most teams use a fraction of an enterprise CRM. With <b>10+ years running sales on Salesforce and 15 years doing B2B business development</b>, we keep the structure that matters and drop the rest.",
+      s_p2:"Companies, contacts, opportunities and activities stay linked, just like Salesforce's core model, then get tuned to your stages and vocabulary.",
+      s_cap:"Notion database ↔ the Salesforce object that plays the same role. All of them are linked to each other.",
+      a_lbl:"AI automation",a_h:"Hand the busywork <em>to AI.</em>",a_note:"Examples of automations we pick and set up to match how your team works.",
+      a1f:"Scribbled post-meeting notes",a1t:"A clean activity log with summary, next steps and a suggested stage change",a2f:"A photo of a business card",a2t:"A contact card, already linked to the company",
+      a3f:"Every Monday morning",a3t:"Pipeline value by stage plus this week's follow-up list",a4f:"Deals silent for 2+ weeks",a4t:"A nudge to the owner, with a follow-up email draft",
+      h_lbl:"How it works",h_h:"We get busy together, once.",
+      h1t:"Interview",h1:"We look at how you track sales today, starting with your spreadsheets and inbox.",h2t:"Design",h2:"We agree on stages, the fields you really need and the views you want.",
+      h3t:"Build · Migrate",h3:"We build the CRM in Notion and move your existing spreadsheets and contacts in.",h4t:"Train · Automate",h4:"Team training, phone setup and AI automations, then we step away.",
+      q_h:"FAQ",q1:"We've never used Notion. Is that OK?",q1a:"Yes. We keep only the screens you use daily and train your team.",
+      q2:"Can you move our spreadsheet data?",q2a:"Yes. Customers, contacts and deal history from Excel or CSV can be migrated.",
+      q3:"Will it fit our industry?",q3a:"Companies, contacts, opportunities and activities are the backbone of almost any B2B sale. Stages and fields are tailored to you.",
+      q4:"Where is our customer data stored?",q4a:"In your own Notion workspace. Lazy Company does not keep a copy.",
+      q5:"How much does setup cost?",q5a:"It depends on team size and scope. We quote after a short call.",
+      k_lbl:"Talk to us",k_h:"Tired of tracking sales in spreadsheets? Send one line.",k_p:"Just tell us your team size and how you track deals today.",k_btn:"Write an email",
+      copy:"Copy address",copied:"Copied.",copyfail:"Address selected. Copy it from there.",mailSubject:"Notion CRM inquiry"}
+  };
+
+  /* ───────── 데모 화면 문구 ───────── */
+  var U={
+    ko:{dash:"CRM dashboard",dashD:"한눈에 보는 영업 현황",opps:"Opportunities",oppsD:"영업 기회. 단계(Lead status)별로 관리합니다.",company:"Company",companyD:"고객사. 모회사·자회사까지 연결됩니다.",
+      contact:"Contact info",contactD:"담당자. 명함 한 장이 카드 하나.",acts:"Sales activities",actsD:"전화(Phone)·화상(TC)·대면(F2F) 미팅 기록.",pipe:"Pipeline",pipeD:"고객사의 개발 과제(파이프라인).",
+      contract:"Contract",contractD:"계약과 변경 계약(Amendment) 이력.",grp:"Databases",board:"보드",table:"표",all:"전체",search:"검색",
+      k1:"진행 중인 기회",k2:"진행 중 파이프라인",k3:"이번 달 활동",k4:"계약 금액 합계",byStage:"단계별 예상 금액",next:"다음 할 일 (최근 연락순)",
+      ai:"✦ AI 회의록 정리",aiTitle:"AI 회의록 정리",aiHint:"미팅 직후 적은 메모를 그대로 붙여 넣으세요. (데모에는 예시 메모가 들어 있습니다)",
+      aiRun:"정리하기",aiSave:"활동으로 저장",aiNote:"데모용 동작입니다. 실제 서비스에서는 노션 AI 또는 연결한 AI가 같은 일을 합니다.",aiSaved:"활동이 저장되고, 영업 기회의 다음 할 일이 업데이트됐습니다.",
+      stageChanged:"단계를 바꿨습니다. 보드에서 카드가 옮겨졌어요.",relOpp:"연결된 영업 기회",relCt:"담당자",relAct:"영업 활동",relPipe:"파이프라인",relContract:"계약",relSub:"자회사",none:"없음",items:"개",
+      aiDraft:"오늘 누리제약 이도윤 이사 대면 미팅\n- NR-220 2상 견적 v2 검토함. 모니터링 방문 횟수 줄이면 예산 맞출 수 있을 듯\n- 사이트 12곳 → 10곳으로 줄이는 안 내부 검토 중\n- 11월 첫주까지 수정 견적 원함, 계약은 연말 목표\n- 다음주 화상회의로 의학팀 같이 보자고 함",
+      aiResult:"요약\n누리제약 NR-220 2상 견적 v2 검토. 사이트 축소(12→10)와 모니터링 방문 조정으로 예산 맞추는 방향. 연내 계약 목표.\n\n다음 할 일\n• 11/6까지 수정 견적(v3) 제출\n• 다음 주 의학팀 포함 화상회의(TC) 일정 잡기\n\n업데이트 제안\n• Lead status: Negotiation 유지\n• Next step: \"11/6 수정 견적 v3 제출 · 의학팀 TC\"\n• Last contact: 오늘"},
+    en:{dash:"CRM dashboard",dashD:"Your sales at a glance",opps:"Opportunities",oppsD:"Deals, managed by Lead status.",company:"Company",companyD:"Accounts, linked to parents and subsidiaries.",
+      contact:"Contact info",contactD:"People. One business card, one card.",acts:"Sales activities",actsD:"Phone, TC (video) and F2F meeting logs.",pipe:"Pipeline",pipeD:"Your customers' development programs.",
+      contract:"Contract",contractD:"Contracts and amendment history.",grp:"Databases",board:"Board",table:"Table",all:"All",search:"Search",
+      k1:"Open deals",k2:"Open pipeline",k3:"Activities this month",k4:"Contracted total",byStage:"Expected value by stage",next:"Next steps (most recent contact)",
+      ai:"✦ AI meeting notes",aiTitle:"AI meeting notes",aiHint:"Paste the notes you jotted right after the meeting. (A sample is pre-filled.)",
+      aiRun:"Clean it up",aiSave:"Save as activity",aiNote:"Demo behavior. In the real service, Notion AI or your connected AI does the same job.",aiSaved:"Activity saved. The deal's next step was updated.",
+      stageChanged:"Stage changed. The card moved on the board.",relOpp:"Linked opportunities",relCt:"Contacts",relAct:"Sales activities",relPipe:"Pipeline",relContract:"Contracts",relSub:"Subsidiaries",none:"None",items:"",
+      aiDraft:"F2F with Director Doyun Lee, Nuri Pharm, today\n- Reviewed NR-220 Ph2 quote v2. Fewer monitoring visits could fit their budget\n- Considering 12 → 10 sites internally\n- Wants revised quote by 1st week of Nov, aiming to sign by year end\n- Asked for a TC next week with their medical team",
+      aiResult:"Summary\nReviewed Nuri Pharm NR-220 Ph2 quote v2. Budget fit via fewer sites (12→10) and adjusted monitoring visits. Target: sign this year.\n\nNext steps\n• Send revised quote v3 by Nov 6\n• Schedule a TC with their medical team next week\n\nSuggested updates\n• Lead status: keep Negotiation\n• Next step: \"Quote v3 by Nov 6 · TC with medical\"\n• Last contact: today"}
+  };
+
+  /* ───────── 가상 데이터 (실제 CRM과 같은 구조, 내용은 전부 지어낸 것) ───────── */
+  var STATUS=[["Lead","blue"],["Engage","yellow"],["Proposal","pink"],["Negotiation","purple"],["Contract","green"],["Complete","purple"],["Hold","gray"],["Lost","red"]];
+  var PTYPE={CDP:"purple",Regulatory:"yellow","TE PM":"orange","TE MM":"red",BD:"pink","Phase I":"brown","Phase II":"blue","Phase III":"green",Others:"gray"};
+  var CTYPE={Biotech:"brown","Mid Pharm":"blue","Global company":"orange","Top 30 Pharm":"gray",Others:"pink"};
+  var FIN={"Series A":"red","Series B":"yellow","Series C":"green",Listed:"orange","Pre-IPO":"blue","pre-Series A":"brown","N/A":"pink"};
+  var STAGE={Discovery:"gray","Pre-clinical":"yellow","Phase I":"brown","Phase I/II":"default","Phase II":"orange","Phase III":"purple",Approved:"blue"};
+  var ATYPE={Phone:"pink",TC:"gray",F2F:"orange"};
+  var KTYPE={Original:"default",Addendum:"yellow","Amendment 1":"purple","Amendment 2":"gray"};
+
+  var D={
+    company:[
+      {id:"c1",name:"한빛바이오",type:"Biotech",fin:"Series B",desc:{ko:"표적항암제 개발 바이오텍",en:"Targeted oncology biotech"},home:"hanbit-bio.example"},
+      {id:"c2",name:"누리제약",type:"Mid Pharm",fin:"Listed",desc:{ko:"대사질환 중심 중견 제약사",en:"Mid-size pharma focused on metabolic disease"},home:"nuri-pharm.example"},
+      {id:"c3",name:"Orion Therapeutics",type:"Global company",fin:"Listed",desc:{ko:"면역질환 글로벌 제약사 (한국 지사)",en:"Global immunology company (Korea branch)"},home:"orion-tx.example"},
+      {id:"c4",name:"세움파마",type:"Top 30 Pharm",fin:"Listed",desc:{ko:"비만·대사 신약 파이프라인 보유",en:"Obesity & metabolic pipeline"},home:"seum-pharma.example",sub:["c7"]},
+      {id:"c5",name:"다온셀",type:"Biotech",fin:"pre-Series A",desc:{ko:"고형암 세포치료제 스타트업",en:"Solid-tumor cell therapy startup"},home:"daoncell.example"},
+      {id:"c6",name:"마루진",type:"Biotech",fin:"Series A",desc:{ko:"간질환(MASH) 신약 개발",en:"Liver disease (MASH) drug developer"},home:"marugene.example"},
+      {id:"c7",name:"세움바이오랩",type:"Others",fin:"N/A",desc:{ko:"세움파마 연구 자회사",en:"Research subsidiary of Seum Pharma"},home:"seum-biolab.example"}
+    ],
+    contact:[
+      {id:"p1",name:"김하늘",title:{ko:"팀장",en:"Team Lead"},dept:{ko:"임상개발팀",en:"Clinical Development"},co:"c1",email:"haneul.kim@hanbit-bio.example",mobile:"010-0000-1201"},
+      {id:"p2",name:"이도윤",title:{ko:"이사",en:"Director"},dept:{ko:"개발본부",en:"Development"},co:"c2",email:"doyun.lee@nuri-pharm.example",mobile:"010-0000-2302"},
+      {id:"p3",name:"Emily Carter",title:{ko:"Clinical Operations Director",en:"Clinical Operations Director"},dept:{ko:"APAC Clinical Ops",en:"APAC Clinical Ops"},co:"c3",email:"emily.carter@orion-tx.example",mobile:"010-0000-3403"},
+      {id:"p4",name:"박서준",title:{ko:"부장",en:"General Manager"},dept:{ko:"임상팀",en:"Clinical Team"},co:"c4",email:"seojun.park@seum-pharma.example",mobile:"010-0000-4504"},
+      {id:"p5",name:"정예린",title:{ko:"CSO",en:"CSO"},dept:{ko:"경영진",en:"Management"},co:"c5",email:"yerin.jung@daoncell.example",mobile:"010-0000-5605"},
+      {id:"p6",name:"최민호",title:{ko:"R&D 매니저",en:"R&D Manager"},dept:{ko:"연구개발",en:"R&D"},co:"c6",email:"minho.choi@marugene.example",mobile:"010-0000-6706"},
+      {id:"p7",name:"한지우",title:{ko:"과장",en:"Manager"},dept:{ko:"사업개발팀",en:"Business Development"},co:"c2",email:"jiwoo.han@nuri-pharm.example",mobile:"010-0000-7807"}
+    ],
+    pipe:[
+      {id:"g1",name:"HB-101",co:"c1",ind:{ko:"비소세포폐암",en:"NSCLC"},target:"KRAS G12C",stage:"Phase I"},
+      {id:"g2",name:"NR-220",co:"c2",ind:{ko:"당뇨병성 신증",en:"Diabetic nephropathy"},target:"SGLT2 / MR",stage:"Phase II"},
+      {id:"g3",name:"OT-7",co:"c3",ind:{ko:"중등도~중증 아토피피부염",en:"Moderate-to-severe atopic dermatitis"},target:"IL-13",stage:"Phase III"},
+      {id:"g4",name:"SP-03",co:"c4",ind:{ko:"비만",en:"Obesity"},target:"GLP-1 / GIP",stage:"Phase I/II"},
+      {id:"g5",name:"DC-1",co:"c5",ind:{ko:"고형암",en:"Solid tumors"},target:"CAR-T (Claudin18.2)",stage:"Pre-clinical"},
+      {id:"g6",name:"MJ-55",co:"c6",ind:{ko:"MASH",en:"MASH"},target:"FGF21",stage:"Phase I"}
+    ],
+    opps:[
+      {id:"o1",code:"OPP_2601",co:"c1",status:"Proposal",types:["Phase I","TE PM"],value:1250000000,last:"2026-10-06",ct:["p1"],pipe:["g1"],next:{ko:"예산안 회신 대기 · 10/15 TC",en:"Waiting on budget feedback · TC on 10/15"},scope:{ko:"1상 임상 운영 전반 (PM, 모니터링)",en:"Full Ph1 operations (PM, monitoring)"}},
+      {id:"o2",code:"OPP_2602",co:"c2",status:"Negotiation",types:["Phase II"],value:3400000000,last:"2026-10-08",ct:["p2","p7"],pipe:["g2"],next:{ko:"단가 조정안 회신 대기",en:"Waiting on revised unit prices"},scope:{ko:"2상 국내 12개 사이트",en:"Ph2, 12 sites in Korea"}},
+      {id:"o3",code:"OPP_2603",co:"c3",status:"Engage",types:["Phase III","BD"],value:5800000000,last:"2026-09-29",ct:["p3"],pipe:["g3"],next:{ko:"한국 사이트 타당성 자료 송부",en:"Send Korea site feasibility pack"},scope:{ko:"글로벌 3상 한국 파트",en:"Korea arm of a global Ph3"}},
+      {id:"o4",code:"OPP_2604",co:"c4",status:"Lead",types:["Phase I","Regulatory"],value:900000000,last:"2026-09-18",ct:["p4"],pipe:["g4"],next:{ko:"첫 미팅 일정 조율",en:"Set up the first meeting"},scope:{ko:"1/2상 IND 및 운영",en:"Ph1/2 IND and operations"}},
+      {id:"o5",code:"OPP_2605",co:"c5",status:"Lead",types:["Regulatory","CDP"],value:320000000,last:"2026-09-12",ct:["p5"],pipe:["g5"],next:{ko:"IND 로드맵 자료 공유",en:"Share IND roadmap deck"},scope:{ko:"비임상 → IND 개발 전략",en:"Non-clinical to IND strategy"}},
+      {id:"o6",code:"OPP_2606",co:"c6",status:"Contract",types:["Phase I"],value:1100000000,last:"2026-10-02",ct:["p6"],pipe:["g6"],next:{ko:"킥오프 미팅 10/20",en:"Kick-off on 10/20"},scope:{ko:"1상 SAD/MAD",en:"Ph1 SAD/MAD"}},
+      {id:"o7",code:"OPP_2607",co:"c2",status:"Hold",types:["Others"],value:150000000,last:"2026-08-21",ct:["p7"],pipe:[],next:{ko:"내년 1분기 재검토",en:"Revisit in Q1 next year"},scope:{ko:"PK 분석 추가",en:"Additional PK analysis"}},
+      {id:"o8",code:"OPP_2608",co:"c1",status:"Complete",types:["CDP"],value:80000000,last:"2026-07-30",ct:["p1"],pipe:["g1"],next:{ko:"최종 보고서 전달 완료",en:"Final report delivered"},scope:{ko:"임상개발계획 자문",en:"Clinical development plan advisory"}},
+      {id:"o9",code:"OPP_2609",co:"c3",status:"Lost",types:["TE MM"],value:450000000,last:"2026-08-05",ct:["p3"],pipe:[],next:{ko:"사유: 글로벌 벤더 일원화",en:"Reason: global vendor consolidation"},scope:{ko:"메디컬 모니터링",en:"Medical monitoring"}}
+    ],
+    acts:[
+      {id:"a1",code:"ACT_1008",opp:"o2",ct:["p2"],type:"F2F",date:"2026-10-08",sum:{ko:"견적 v2 설명. 사이트 수 조정 시 예산 맞출 수 있다는 반응",en:"Walked through quote v2; budget fits if site count changes"}},
+      {id:"a2",code:"ACT_1006",opp:"o1",ct:["p1"],type:"TC",date:"2026-10-06",sum:{ko:"제안서 Q&A. 모니터링 빈도 질문 다수",en:"Proposal Q&A; many questions on monitoring frequency"}},
+      {id:"a3",code:"ACT_1002",opp:"o6",ct:["p6"],type:"Phone",date:"2026-10-02",sum:{ko:"계약서 최종본 서명 일정 확인",en:"Confirmed signing date for final contract"}},
+      {id:"a4",code:"ACT_0929",opp:"o3",ct:["p3"],type:"TC",date:"2026-09-29",sum:{ko:"글로벌 3상 한국 참여 가능성 논의",en:"Discussed Korea joining the global Ph3"}},
+      {id:"a5",code:"ACT_0918",opp:"o4",ct:["p4"],type:"Phone",date:"2026-09-18",sum:{ko:"학회에서 받은 명함으로 첫 연락",en:"First call after meeting at a conference"}},
+      {id:"a6",code:"ACT_0912",opp:"o5",ct:["p5"],type:"F2F",date:"2026-09-12",sum:{ko:"IR 행사 후 커피 미팅. IND 준비 상황 공유받음",en:"Coffee after an IR event; heard IND readiness"}}
+    ],
+    contract:[
+      {id:"k1",code:"CT_2601",co:"c6",opp:"o6",type:"Original",value:1100000000,date:"2026-10-05",period:"2026-10-20 → 2027-12-31"},
+      {id:"k2",code:"CT_2502",co:"c1",opp:"o8",type:"Original",value:60000000,date:"2026-03-14",period:"2026-03-15 → 2026-07-31"},
+      {id:"k3",code:"CT_2502-A1",co:"c1",opp:"o8",type:"Amendment 1",value:20000000,date:"2026-06-02",period:"2026-03-15 → 2026-07-31",orig:"k2"}
+    ]
+  };
+
+  var lang="ko",view="opps",oppMode="board",query="",aiDone=false;
+  var app=document.getElementById("app");
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+  function L(v){return v&&typeof v==="object"?v[lang]:v;}
+  function find(list,id){for(var i=0;i<list.length;i++)if(list[i].id===id)return list[i];return null;}
+  function tag(text,color){return "<span class=\"tag c-"+(color||"default")+"\">"+esc(text)+"</span>";}
+  function statusColor(s){for(var i=0;i<STATUS.length;i++)if(STATUS[i][0]===s)return STATUS[i][1];return "gray";}
+  function won(n){return "₩"+n.toLocaleString("en-US");}
+  function wonShort(n){
+    if(lang==="ko"){var e=n/1e8;return "₩"+(e>=10?Math.round(e):Math.round(e*10)/10)+"억";}
+    return n>=1e9?"₩"+(Math.round(n/1e8)/10)+"B":"₩"+Math.round(n/1e6)+"M";
+  }
+  function rel(kind,id,label){return "<button type=\"button\" class=\"rel\" data-open=\""+kind+":"+id+"\">"+esc(label)+"</button>";}
+  function coRel(id){var c=find(D.company,id);return c?rel("company",id,"🏢 "+c.name):"";}
+  function ctRel(id){var p=find(D.contact,id);return p?rel("contact",id,p.name):"";}
+  function oppRel(id){var o=find(D.opps,id);return o?rel("opps",id,"📈 "+o.code):"";}
+  function pipeRel(id){var g=find(D.pipe,id);return g?rel("pipe",id,"💊 "+g.name):"";}
+  function fmtDate(d){if(lang==="ko")return d.replace(/-/g,"/");var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],p=d.split("-");return m[+p[1]-1]+" "+(+p[2])+", "+p[0];}
+  function match(s){return !query||s.toLowerCase().indexOf(query.toLowerCase())>=0;}
+
+  var NAV=[["dash","📊"],["opps","📈"],["company","🏢"],["contact","🤳🏻"],["acts","🗓"],["pipe","💊"],["contract","✍️"]];
+  function renderSide(){
+    var u=U[lang],h="<div class=\"ws\"><i>L</i>Lazy CRM</div>";
+    NAV.forEach(function(n,i){
+      if(i===1)h+="<div class=\"grp\">"+u.grp+"</div>";
+      h+="<button type=\"button\" class=\"nav-btn\" data-view=\""+n[0]+"\""+(view===n[0]?" aria-current=\"true\"":"")+"><span class=\"ic\">"+n[1]+"</span>"+u[n[0]]+"</button>";
+    });
+    $("side").innerHTML=h;
+  }
+
+  function renderMain(){
+    var u=U[lang],icon={dash:"📊",opps:"📈",company:"🏢",contact:"🤳🏻",acts:"🗓",pipe:"💊",contract:"✍️"}[view];
+    $("mTitle").innerHTML="<span>"+icon+"</span>"+esc(u[view]);
+    $("mDesc").textContent=u[view+"D"];
+    var tabs="";
+    if(view==="opps"){tabs="<button type=\"button\" class=\"tab\" data-mode=\"board\" aria-pressed=\""+(oppMode==="board")+"\">▦ "+u.board+"</button><button type=\"button\" class=\"tab\" data-mode=\"table\" aria-pressed=\""+(oppMode==="table")+"\">☰ "+u.table+"</button>";}
+    else if(view!=="dash"){tabs="<button type=\"button\" class=\"tab\" aria-pressed=\"true\">☰ "+u.all+"</button>";}
+    $("tabs").innerHTML=tabs;
+    var tr="";
+    if(view!=="dash")tr+="<input class=\"search\" id=\"q\" type=\"search\" placeholder=\"⌕ "+u.search+"\" value=\""+esc(query)+"\" aria-label=\""+u.search+"\">";
+    if(view==="acts"||view==="dash")tr+="<button type=\"button\" class=\"ai-btn\" id=\"aiOpen\">"+u.ai+"</button>";
+    $("tright").innerHTML=tr;
+    var q=$("q");if(q)q.addEventListener("input",function(){query=q.value;renderBody();});
+    var ai=$("aiOpen");if(ai)ai.addEventListener("click",openAI);
+    renderBody();
+  }
+
+  function table(cols,rows,kind){
+    var h="<table class=\"tbl\"><thead><tr>"+cols.map(function(c){return "<th"+(c[2]?" class=\"num\"":"")+">"+c[0]+"</th>";}).join("")+"</tr></thead><tbody>";
+    rows.forEach(function(r){h+="<tr class=\"row\" data-open=\""+kind+":"+r.id+"\">"+cols.map(function(c,i){return "<td class=\""+(i===0?"ttl":"")+(c[2]?" num":"")+"\">"+c[1](r)+"</td>";}).join("")+"</tr>";});
+    return h+"</tbody></table>";
+  }
+
+  function renderBody(){
+    var b=$("mBody"),u=U[lang],h="";
+    if(view==="dash"){
+      var open=D.opps.filter(function(o){return ["Lead","Engage","Proposal","Negotiation"].indexOf(o.status)>=0;});
+      var sum=open.reduce(function(a,o){return a+o.value;},0);
+      var month=D.acts.filter(function(a){return a.date.slice(0,7)==="2026-10";}).length;
+      var ctot=D.contract.reduce(function(a,k){return a+k.value;},0);
+      h+="<div class=\"kpis\"><div class=\"kpi\"><span>"+u.k1+"</span><strong>"+open.length+(u.items?" "+u.items:"")+"</strong></div><div class=\"kpi\"><span>"+u.k2+"</span><strong>"+wonShort(sum)+"</strong></div><div class=\"kpi\"><span>"+u.k3+"</span><strong>"+month+"</strong></div><div class=\"kpi\"><span>"+u.k4+"</span><strong>"+wonShort(ctot)+"</strong></div></div>";
+      var stages=["Lead","Engage","Proposal","Negotiation","Contract"],max=1,vals={};
+      stages.forEach(function(s){vals[s]=D.opps.filter(function(o){return o.status===s;}).reduce(function(a,o){return a+o.value;},0);if(vals[s]>max)max=vals[s];});
+      h+="<div class=\"dash\"><div class=\"panel\"><h4>"+u.byStage+"</h4><div class=\"bars\">";
+      stages.forEach(function(s){h+="<div class=\"bar\"><span>"+tag(s,statusColor(s))+"</span><div class=\"trk\"><div class=\"fill\" style=\"width:"+(vals[s]/max*100)+"%\"></div></div><span class=\"num dim\">"+wonShort(vals[s])+"</span></div>";});
+      h+="</div></div><div class=\"panel\"><h4>"+u.next+"</h4><ul class=\"todo\">";
+      open.slice().sort(function(a,b){return a.last<b.last?1:-1;}).forEach(function(o){h+="<li>"+tag(o.status,statusColor(o.status))+"<span><button type=\"button\" data-open=\"opps:"+o.id+"\">"+esc(find(D.company,o.co).name)+"</button> · "+esc(L(o.next))+"</span></li>";});
+      h+="</ul></div></div>";
+    }
+    else if(view==="opps"){
+      var rows=D.opps.filter(function(o){return match(o.code+find(D.company,o.co).name+L(o.next)+L(o.scope));});
+      if(oppMode==="board"){
+        h="<div class=\"board\">";
+        STATUS.forEach(function(s){
+          var cs=rows.filter(function(o){return o.status===s[0];});
+          var tot=cs.reduce(function(a,o){return a+o.value;},0);
+          h+="<div class=\"col\"><div class=\"col-h\">"+tag(s[0],s[1])+"<span>"+cs.length+"</span></div>";
+          cs.forEach(function(o){h+="<button type=\"button\" class=\"card\" data-open=\"opps:"+o.id+"\"><b>"+esc(o.code)+"</b><span class=\"meta\"><span>🏢 "+esc(find(D.company,o.co).name)+"</span><span>"+o.types.map(function(t){return tag(t,PTYPE[t]);}).join("")+"</span><span>"+won(o.value)+"</span><span>→ "+esc(L(o.next))+"</span></span></button>";});
+          if(cs.length)h+="<div class=\"col-sum\">SUM "+wonShort(tot)+"</div>";
+          h+="</div>";
+        });
+        h+="</div>";
+      } else {
+        h=table([["Opp Code",function(o){return esc(o.code);}],["Company",function(o){return esc(find(D.company,o.co).name);}],["Lead status",function(o){return tag(o.status,statusColor(o.status));}],["Proposal type",function(o){return o.types.map(function(t){return tag(t,PTYPE[t]);}).join("");}],["Potential value",function(o){return won(o.value);},1],["Last contact",function(o){return fmtDate(o.last);}],["Next step",function(o){return esc(L(o.next));}]],rows,"opps");
+      }
+    }
+    else if(view==="company"){
+      h=table([["Company",function(c){return esc(c.name);}],["Type",function(c){return tag(c.type,CTYPE[c.type]);}],["Financial status",function(c){return tag(c.fin,FIN[c.fin]);}],["Description",function(c){return esc(L(c.desc));}],["Opportunities",function(c){return D.opps.filter(function(o){return o.co===c.id;}).length;},1]],D.company.filter(function(c){return match(c.name+L(c.desc));}),"company");
+    }
+    else if(view==="contact"){
+      h=table([["Name",function(p){return esc(p.name);}],["Company",function(p){return esc(find(D.company,p.co).name);}],["Job Title",function(p){return esc(L(p.title));}],["Department",function(p){return esc(L(p.dept));}],["e-mail",function(p){return esc(p.email);}],["Mobile",function(p){return esc(p.mobile);}]],D.contact.filter(function(p){return match(p.name+find(D.company,p.co).name+L(p.dept));}),"contact");
+    }
+    else if(view==="acts"){
+      h=table([["Code",function(a){return esc(a.code);}],["Date of Meeting",function(a){return fmtDate(a.date);}],["Type",function(a){return tag(a.type,ATYPE[a.type]);}],["Opportunity",function(a){return esc(find(D.opps,a.opp).code);}],["Contact",function(a){return a.ct.map(function(id){return esc(find(D.contact,id).name);}).join(", ");}],["Summary",function(a){return esc(L(a.sum));}]],D.acts.filter(function(a){return match(a.code+L(a.sum)+find(D.opps,a.opp).code);}).sort(function(a,b){return a.date<b.date?1:-1;}),"acts");
+    }
+    else if(view==="pipe"){
+      h=table([["Name",function(g){return esc(g.name);}],["Company",function(g){return esc(find(D.company,g.co).name);}],["Clinical stage",function(g){return tag(g.stage,STAGE[g.stage]);}],["Indication",function(g){return esc(L(g.ind));}],["Target",function(g){return esc(g.target);}]],D.pipe.filter(function(g){return match(g.name+L(g.ind)+g.target);}),"pipe");
+    }
+    else if(view==="contract"){
+      h=table([["Contract Code",function(k){return esc(k.code);}],["Contract Type",function(k){return tag(k.type,KTYPE[k.type]);}],["Contract Value",function(k){return won(k.value);},1],["Contract date",function(k){return fmtDate(k.date);}],["Contract period",function(k){return esc(k.period);}],["🏢 Company",function(k){return esc(find(D.company,k.co).name);}]],D.contract.filter(function(k){return match(k.code+find(D.company,k.co).name);}),"contract");
+    }
+    b.innerHTML=h;
+  }
+
+  /* 상세 보기 */
+  function dl(pairs){return "<dl class=\"props\">"+pairs.map(function(p){return "<dt>"+p[0]+"</dt><dd>"+(p[1]||"<span class=\"dim\">—</span>")+"</dd>";}).join("")+"</dl>";}
+  function sec(title,items){return "<div class=\"peek-sec\"><h5>"+title+"</h5>"+(items.length?"<ul class=\"mini\">"+items.map(function(x){return "<li>"+x+"</li>";}).join("")+"</ul>":"<span class=\"dim\">"+U[lang].none+"</span>")+"</div>";}
+  function openPeek(kind,id){
+    var u=U[lang],h="",path=u[kind];
+    if(kind==="opps"){
+      var o=find(D.opps,id),sel="<select id=\"stSel\" aria-label=\"Lead status\">"+STATUS.map(function(s){return "<option"+(s[0]===o.status?" selected":"")+">"+s[0]+"</option>";}).join("")+"</select>";
+      h="<h3>📈 "+esc(o.code)+"</h3>"+dl([["Company",coRel(o.co)],["Type",tag(find(D.company,o.co).type,CTYPE[find(D.company,o.co).type])],["Lead status",sel],["Main contact",o.ct.map(ctRel).join(" ")],["Last contact",fmtDate(o.last)],["Next step",esc(L(o.next))],["Pipeline",o.pipe.map(pipeRel).join(" ")],["Potential value",won(o.value)],["Work scope",esc(L(o.scope))],["Proposal type",o.types.map(function(t){return tag(t,PTYPE[t]);}).join("")]]);
+      h+=sec(u.relAct,D.acts.filter(function(a){return a.opp===id;}).map(function(a){return tag(a.type,ATYPE[a.type])+" <b>"+fmtDate(a.date)+"</b><br><span class=\"dim\">"+esc(L(a.sum))+"</span>";}));
+      h+=sec(u.relContract,D.contract.filter(function(k){return k.opp===id;}).map(function(k){return rel("contract",k.id,"✍️ "+k.code)+" "+tag(k.type,KTYPE[k.type])+" "+won(k.value);}));
+    }
+    else if(kind==="company"){
+      var c=find(D.company,id),parent=D.company.filter(function(x){return (x.sub||[]).indexOf(id)>=0;})[0];
+      h="<h3>🏢 "+esc(c.name)+"</h3>"+dl([["Description",esc(L(c.desc))],["Type",tag(c.type,CTYPE[c.type])],["Financial status",tag(c.fin,FIN[c.fin])],["homepage","<span class=\"dim\">"+esc(c.home)+"</span>"],["Mother comp.",parent?coRel(parent.id):""],["Subsidiary",(c.sub||[]).map(coRel).join(" ")],["No. contact.",String(D.contact.filter(function(p){return p.co===id;}).length)]]);
+      h+=sec(u.relOpp,D.opps.filter(function(o){return o.co===id;}).map(function(o){return oppRel(o.id)+" "+tag(o.status,statusColor(o.status))+"<br><span class=\"dim\">"+esc(L(o.scope))+" · "+won(o.value)+"</span>";}));
+      h+=sec(u.relCt,D.contact.filter(function(p){return p.co===id;}).map(function(p){return ctRel(p.id)+" <span class=\"dim\">"+esc(L(p.dept))+" · "+esc(L(p.title))+"</span>";}));
+      h+=sec(u.relPipe,D.pipe.filter(function(g){return g.co===id;}).map(function(g){return pipeRel(g.id)+" "+tag(g.stage,STAGE[g.stage])+" <span class=\"dim\">"+esc(L(g.ind))+"</span>";}));
+    }
+    else if(kind==="contact"){
+      var p=find(D.contact,id);
+      h="<h3>🤳🏻 "+esc(p.name)+"</h3>"+dl([["Job Title",esc(L(p.title))],["Department",esc(L(p.dept))],["Company",coRel(p.co)],["e-mail",esc(p.email)],["Mobile",esc(p.mobile)]]);
+      h+=sec("📈 BD activities",D.opps.filter(function(o){return o.ct.indexOf(id)>=0;}).map(function(o){return oppRel(o.id)+" "+tag(o.status,statusColor(o.status));}));
+    }
+    else if(kind==="acts"){
+      var a=find(D.acts,id);
+      h="<h3>🗓 "+esc(a.code)+"</h3>"+dl([["Date of Meeting",fmtDate(a.date)],["Type",tag(a.type,ATYPE[a.type])],["Opportunity",oppRel(a.opp)],["Contact",a.ct.map(ctRel).join(" ")],["Summary",esc(L(a.sum)).replace(/\n/g,"<br>")]]);
+    }
+    else if(kind==="pipe"){
+      var g=find(D.pipe,id);
+      h="<h3>💊 "+esc(g.name)+"</h3>"+dl([["Company",coRel(g.co)],["Clinical stage",tag(g.stage,STAGE[g.stage])],["Indication",esc(L(g.ind))],["Target",esc(g.target)]]);
+      h+=sec(u.relOpp,D.opps.filter(function(o){return o.pipe.indexOf(id)>=0;}).map(function(o){return oppRel(o.id)+" "+tag(o.status,statusColor(o.status));}));
+    }
+    else if(kind==="contract"){
+      var k=find(D.contract,id);
+      h="<h3>✍️ "+esc(k.code)+"</h3>"+dl([["Contract Type",tag(k.type,KTYPE[k.type])],["Contract Value",won(k.value)],["Contract date",fmtDate(k.date)],["Contract period",esc(k.period)],["Original contract",k.orig?rel("contract",k.orig,"✍️ "+find(D.contract,k.orig).code):""],["Sub contract",D.contract.filter(function(x){return x.orig===id;}).map(function(x){return rel("contract",x.id,"✍️ "+x.code);}).join(" ")],["🏢 Company",coRel(k.co)],["📈 BD Code",oppRel(k.opp)]]);
+    }
+    showPeek(path,h);
+    var s=$("stSel");
+    if(s)s.addEventListener("change",function(){find(D.opps,id).status=s.value;renderBody();toast(U[lang].stageChanged);});
+  }
+  function showPeek(path,h){
+    $("peekPath").textContent="Lazy CRM / "+path;
+    $("peekBody").innerHTML=h;$("peekBody").scrollTop=0;
+    var p=$("peek");p.classList.add("open");p.setAttribute("aria-hidden","false");
+  }
+  function closePeek(){var p=$("peek");p.classList.remove("open");p.setAttribute("aria-hidden","true");}
+  var tt;
+  function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on");},2600);}
+
+  /* AI 회의록 데모 (실제 AI 호출 없이 미리 준비한 결과를 타이핑처럼 보여 줌) */
+  var typing;
+  function openAI(){
+    var u=U[lang];
+    var h="<h3>✦ "+u.aiTitle+"</h3><div class=\"ai-box\"><p class=\"dim\" style=\"margin:0 0 10px;font-size:13px\">"+u.aiHint+"</p><textarea id=\"aiIn\" aria-label=\"memo\">"+esc(u.aiDraft)+"</textarea>"+
+      "<div class=\"ai-actions\"><button type=\"button\" class=\"ai-btn\" id=\"aiRun\">"+u.aiRun+"</button><button type=\"button\" class=\"ai-btn\" id=\"aiSave\" style=\"display:none\">"+u.aiSave+"</button></div>"+
+      "<div class=\"ai-out\" id=\"aiOut\"></div><p class=\"ai-note\">"+u.aiNote+"</p></div>";
+    showPeek(u.acts,h);
+    $("aiRun").addEventListener("click",function(){
+      var out=$("aiOut"),txt=U[lang].aiResult,i=0;out.classList.add("on");out.textContent="";clearInterval(typing);
+      this.disabled=true;
+      typing=setInterval(function(){i+=3;out.textContent=txt.slice(0,i);if(i>=txt.length){clearInterval(typing);$("aiSave").style.display="";}},16);
+    });
+    $("aiSave").addEventListener("click",function(){
+      if(!aiDone){
+        aiDone=true;
+        D.acts.unshift({id:"a0",code:"ACT_1011",opp:"o2",ct:["p2"],type:"F2F",date:"2026-10-11",sum:{ko:"NR-220 2상 견적 v2 검토. 사이트 12→10 축소 검토, 11/6까지 수정 견적 요청. 다음 주 의학팀 TC.",en:"Reviewed NR-220 Ph2 quote v2. Considering 12→10 sites; revised quote due Nov 6. TC with medical team next week."}});
+        var o=find(D.opps,"o2");o.last="2026-10-11";o.next={ko:"11/6 수정 견적 v3 제출 · 의학팀 TC",en:"Quote v3 by Nov 6 · TC with medical"};
+      }
+      view="acts";query="";renderSide();renderMain();openPeek("acts","a0");toast(U[lang].aiSaved);
+    });
+  }
+
+  /* 클릭 처리 */
+  app.addEventListener("click",function(e){
+    var t=e.target.closest("[data-view],[data-mode],[data-open]");
+    if(!t||!app.contains(t))return;
+    if(t.hasAttribute("data-view")){view=t.getAttribute("data-view");query="";closePeek();renderSide();renderMain();return;}
+    if(t.hasAttribute("data-mode")){oppMode=t.getAttribute("data-mode");renderMain();return;}
+    var v=t.getAttribute("data-open").split(":");openPeek(v[0],v[1]);
+  });
+  $("peekX").addEventListener("click",closePeek);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closePeek();});
+
+  /* PC / 핸드폰 화면 */
+  var phone=false;
+  function fit(){app.classList.toggle("compact",phone||app.parentNode.clientWidth<760);}
+  function setPhone(on){phone=on;closePeek();app.classList.toggle("phone",on);$("viewPhone").setAttribute("aria-pressed",on);$("viewDesk").setAttribute("aria-pressed",!on);if(on&&view==="opps")oppMode="table";fit();renderMain();}
+  $("viewPhone").addEventListener("click",function(){setPhone(true);});
+  $("viewDesk").addEventListener("click",function(){setPhone(false);});
+  window.addEventListener("resize",fit);
+
+  /* 언어 */
+  function setLang(l){
+    lang=l;var d=T[l];document.documentElement.lang=l;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(d[k]!==undefined)el.textContent=d[k];});
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){var k=el.getAttribute("data-i18n-html");if(d[k]!==undefined)el.innerHTML=d[k];});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false");});
+    $("mailBtn").href="mailto:hello@lazycompany.app?subject="+encodeURIComponent(d.mailSubject);
+    renderSide();renderMain();
+    if($("peek").classList.contains("open"))closePeek();
+    if(!forced){try{localStorage.setItem("lc-lang",l);}catch(e){}}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
+  var start="ko",forced=document.documentElement.getAttribute("data-force-lang");
+  if(forced)start=forced;else try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
+  fit();setLang(start);
+
+  var btn=$("copyBtn"),out=$("copied"),mail=$("mail");
+  btn.addEventListener("click",function(){
+    function fail(){var r=document.createRange();r.selectNodeContents(mail);var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent=T[lang].copyfail;}
+    try{navigator.clipboard.writeText(mail.textContent).then(function(){out.textContent=T[lang].copied;},fail);}catch(e){fail();}
+  });
+})();
+</script>
+</body>
+</html>

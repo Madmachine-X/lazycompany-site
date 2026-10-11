@@ -7,6 +7,8 @@
 <meta name="description" content="Salesforce를 10년 넘게 써 온 BD가 노션(Notion) 위에 회사에 맞는 CRM을 설계·구축합니다. 유지비 연 12만 원 수준, AI 자동화, 모바일 지원. 웹에서 바로 눌러보는 데모 CRM 제공.">
 <meta name="keywords" content="노션 CRM, Notion CRM, 노션 영업관리, 노션 CRM 구축, 노션 CRM 템플릿, 저렴한 CRM, 소규모 CRM, Salesforce 대안, 영업 파이프라인, B2B 영업 관리, AI CRM 자동화, Lazy Company">
 <link rel="canonical" href="https://lazycompany.app/crm/">
+<link rel="alternate" hreflang="ko" href="https://lazycompany.app/crm/">
+<link rel="alternate" hreflang="en" href="https://lazycompany.app/crm/en/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://lazycompany.app/crm/">
 <meta property="og:site_name" content="Lazy Company">
@@ -23,7 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap}
+@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
 /* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 가운데에 직접 눌러보는 데모 CRM 창이 이 페이지의 주인공. */
 :root{
   --paper:#EEF0F3; --ink:#0E1116; --mute:#5C6270; --hair:rgba(14,17,22,.14); --klein:#2934E0;
@@ -856,11 +858,11 @@ footer a{text-decoration:none}
     $("mailBtn").href="mailto:hello@lazycompany.app?subject="+encodeURIComponent(d.mailSubject);
     renderSide();renderMain();
     if($("peek").classList.contains("open"))closePeek();
-    try{localStorage.setItem("lc-lang",l);}catch(e){}
+    if(!forced){try{localStorage.setItem("lc-lang",l);}catch(e){}}
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
-  var start="ko";
-  try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
+  var start="ko",forced=document.documentElement.getAttribute("data-force-lang");
+  if(forced)start=forced;else try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
   fit();setLang(start);
 
   var btn=$("copyBtn"),out=$("copied"),mail=$("mail");

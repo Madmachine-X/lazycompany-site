@@ -10,4 +10,6 @@ python3 -c 'import base64;b=base64.b64encode(open("site/fonts/Cafe24Dongdong.wof
 # 노션 CRM 소개 페이지 (lazycompany.app/crm/)
 mkdir -p site/crm
 wrap crm-head.html crm-body.html site/crm/index.html
+mkdir -p site/crm/en
+wrap crm-head-en.html crm-body.html site/crm/en/index.html
 python3 -c 'import base64;b=base64.b64encode(open("site/fonts/Cafe24Dongdong.woff","rb").read()).decode();s=open("crm-body.html").read().replace("url(\"/fonts/Cafe24Dongdong.woff\")","url(\"data:font/woff;base64,"+b+"\")");open("crm-preview.html","w").write(s)'
