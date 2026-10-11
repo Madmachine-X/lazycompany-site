@@ -215,7 +215,60 @@ section{padding-block:clamp(72px,10vw,128px)}
 .app.compact .col{width:200px}
 .app.compact .peek-body{padding:18px 18px 26px}
 .app.compact .props{grid-template-columns:110px minmax(0,1fr)}
-.app.phone{width:390px;max-width:100%;height:760px;border-radius:38px;border:10px solid var(--ink)}
+/* 핸드폰 화면: 노션 모바일 앱처럼 (목록형 화면, 전체 화면 상세, 하단 탭) */
+.stage{overflow:hidden}
+.ph{--bezel:#0E1116;position:relative;width:380px;max-width:100%;height:760px;border:10px solid var(--bezel);border-radius:46px;background:var(--card);color:var(--card-ink);overflow:hidden;display:flex;flex-direction:column;font-size:15px;line-height:1.45;box-shadow:0 30px 60px -30px rgba(14,17,22,.45)}
+.ph *{word-break:normal}
+.ph[hidden],.app[hidden]{display:none}
+.ph-status{flex:none;height:44px;display:flex;justify-content:space-between;align-items:center;padding:6px 26px 0;font:600 14px var(--f-sans);position:relative}
+.ph-status::before{content:"";position:absolute;left:50%;top:8px;width:96px;height:26px;margin-left:-48px;border-radius:20px;background:var(--bezel)}
+.ph-ind{display:flex;align-items:flex-end;gap:2px}
+.ph-ind i{width:3px;background:currentColor;border-radius:1px}
+.ph-ind i:nth-child(1){height:4px}.ph-ind i:nth-child(2){height:6px}.ph-ind i:nth-child(3){height:8px}.ph-ind i:nth-child(4){height:10px}
+.ph-ind b{font-size:11px;margin:0 5px 0 4px;line-height:1}
+.ph-ind em{width:22px;height:11px;border:1.5px solid currentColor;border-radius:3px;position:relative;opacity:.9}
+.ph-ind em::after{content:"";position:absolute;inset:1.5px 5px 1.5px 1.5px;background:currentColor;border-radius:1px}
+.ph-scr{flex:1;overflow:auto;padding:6px 16px 20px;scrollbar-width:none}
+.ph-tab{flex:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--card-hair);padding:6px 4px 16px;background:var(--card)}
+.ph-tab button{border:0;background:transparent;color:var(--card-mute);font:500 10.5px/1.2 var(--f-sans);display:grid;justify-items:center;gap:3px;padding:4px 0;cursor:pointer}
+.ph-tab button span{font-size:19px;line-height:1.1}
+.ph-tab button[aria-current="true"]{color:var(--card-ink)}
+.ph-tab .new span{width:30px;height:24px;border-radius:8px;background:var(--klein);color:#fff;font-size:15px;line-height:24px}
+.ph-ws{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;padding:8px 0 14px}
+.ph-ws i{width:26px;height:26px;border-radius:7px;background:var(--klein);color:#fff;font:600 13px/26px var(--f-sans);text-align:center;font-style:normal}
+.ph-search{display:flex;gap:8px;width:100%;border:0;background:var(--card-hover);border-radius:10px;padding:10px 12px;color:var(--card-mute);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.ph-sec{font-size:12.5px;color:var(--card-mute);margin:20px 0 4px;font-weight:600}
+.ph-row{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:inherit;font:inherit;padding:11px 2px;border-bottom:1px solid var(--card-hair);text-align:left;cursor:pointer}
+.ph-row .ic{width:24px;text-align:center;font-size:18px}
+.ph-row .chev{margin-left:auto;color:var(--card-mute);font-size:18px}
+.ph-back{border:0;background:transparent;color:var(--card-mute);font:inherit;font-size:15px;padding:6px 0;cursor:pointer}
+.ph-title{font:700 26px/1.25 var(--f-sans);margin:4px 0 4px;display:flex;align-items:center;gap:8px}
+.ph-desc{color:var(--card-mute);font-size:13px;margin:0 0 12px}
+.ph-chips{display:flex;gap:6px;margin:0 0 6px}
+.ph-chip{border:1px solid var(--card-hair);background:transparent;color:var(--card-mute);border-radius:999px;padding:5px 13px;font:inherit;font-size:13px;cursor:pointer}
+.ph-chip[aria-pressed="true"]{background:var(--card-ink);color:var(--card);border-color:var(--card-ink)}
+.ph-item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--card-hair);background:transparent;color:inherit;font:inherit;padding:12px 2px;cursor:pointer}
+.ph-item b{display:block;font-size:15px;margin-bottom:5px}
+.ph-item span.m{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center;font-size:13px;color:var(--card-mute)}
+.ph-item .one{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:var(--card-mute);margin-top:4px}
+.ph-board{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:8px -16px 0;padding:0 16px 8px;scrollbar-width:none}
+.ph-board .col{width:80%;flex:none;scroll-snap-align:start}
+.ph-input{width:100%;font:inherit;font-size:15px;border:1px solid var(--card-hair);border-radius:10px;padding:10px 12px;background:var(--card-2);color:var(--card-ink);margin:6px 0 4px}
+.ph-noti{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--card-hair);background:transparent;color:inherit;font:inherit;font-size:14px;padding:12px 0;cursor:pointer}
+.ph-noti .av{width:32px;height:32px;border-radius:50%;background:var(--card-hover);display:grid;place-items:center;font-size:16px}
+.ph-noti small{display:block;color:var(--card-mute);font-size:12px;margin-top:2px}
+.ph .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ph .dash{grid-template-columns:1fr}
+.ph .bar{grid-template-columns:84px minmax(0,1fr) 56px}
+.ph-page{position:absolute;top:44px;left:0;right:0;bottom:0;background:var(--card);transform:translateX(102%);transition:transform .28s ease;z-index:5;display:flex;flex-direction:column}
+.ph-page.open{transform:none}
+.ph-bar{flex:none;display:flex;align-items:center;gap:8px;padding:2px 14px 6px 6px;border-bottom:1px solid var(--card-hair);font-size:13px;color:var(--card-mute)}
+.ph-bar button{border:0;background:transparent;color:var(--card-ink);font-size:30px;line-height:1;padding:2px 10px 6px;cursor:pointer}
+.ph-bar span:nth-child(2){flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph-pbody{flex:1;overflow:auto;padding:16px 18px 30px}
+.ph-pbody h3{margin:0 0 14px;font:700 24px/1.3 var(--f-sans)}
+.ph-pbody .props{grid-template-columns:108px minmax(0,1fr);font-size:14px}
+.ph .toast{bottom:84px}
 .demo-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:14px}
 
 /* why notion */
@@ -303,10 +356,10 @@ footer a{text-decoration:none}
   .app{height:620px}
 }
 @media (max-width:560px){
+  .ph{border-width:8px;border-radius:38px;height:720px}
   .why,.steps{grid-template-columns:1fr}
   .why div:nth-child(even),.steps div:nth-child(even){padding-left:0;border-left:0}
   .map{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .app.phone{border-width:6px;border-radius:24px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -384,6 +437,16 @@ footer a{text-decoration:none}
             <div class="peek-body" id="peekBody"></div>
           </div>
           <div class="toast" id="toast" role="status"></div>
+        </div>
+        <div class="ph" id="ph" hidden>
+          <div class="ph-status"><span>9:41</span><span class="ph-ind" aria-hidden="true"><i></i><i></i><i></i><i></i><b>5G</b><em></em></span></div>
+          <div class="ph-scr" id="phScr"></div>
+          <nav class="ph-tab" id="phTab"></nav>
+          <div class="ph-page" id="phPage" aria-hidden="true">
+            <div class="ph-bar"><button type="button" data-ph-back aria-label="뒤로">‹</button><span id="phPath"></span><span class="dim">···</span></div>
+            <div class="ph-pbody" id="phPageBody"></div>
+          </div>
+          <div class="toast" id="phToast" role="status"></div>
         </div>
       </div>
       <div class="demo-cap">
@@ -626,7 +689,7 @@ footer a{text-decoration:none}
       k1:"진행 중인 기회",k2:"진행 중 파이프라인",k3:"이번 달 활동",k4:"계약 금액 합계",byStage:"단계별 예상 금액",next:"다음 할 일 (최근 연락순)",
       ai:"✦ AI 회의록 정리",aiTitle:"AI 회의록 정리",aiHint:"미팅 직후 적은 메모를 그대로 붙여 넣으세요. (데모에는 예시 메모가 들어 있습니다)",
       aiRun:"정리하기",aiSave:"활동으로 저장",aiNote:"데모용 동작입니다. 실제 서비스에서는 노션 AI 또는 연결한 AI가 같은 일을 합니다.",aiSaved:"활동이 저장되고, 영업 기회의 다음 할 일이 업데이트됐습니다.",
-      stageChanged:"단계를 바꿨습니다. 보드에서 카드가 옮겨졌어요.",relOpp:"연결된 영업 기회",relCt:"담당자",relAct:"영업 활동",relPipe:"파이프라인",relContract:"계약",relSub:"자회사",none:"없음",items:"개",
+      stageChanged:"단계를 바꿨습니다. 보드에서 카드가 옮겨졌어요.",relOpp:"연결된 영업 기회",relCt:"담당자",relAct:"영업 활동",relPipe:"파이프라인",relContract:"계약",relSub:"자회사",none:"없음",items:"개",home:"홈",searchT:"검색",inbox:"수신함",newRec:"새 기록",listV:"목록",searchPh:"고객사, 담당자, 영업 기회 검색",recent:"최근 영업 기회",auto:"자동 알림",staleMsg:"일째 연락이 없어요. 팔로업할 때예요.",aiMsg:"AI가 미팅 메모를 활동으로 정리했어요.",noRes:"검색 결과가 없습니다.",
       aiDraft:"오늘 누리제약 이도윤 이사 대면 미팅\n- NR-220 2상 견적 v2 검토함. 모니터링 방문 횟수 줄이면 예산 맞출 수 있을 듯\n- 사이트 12곳 → 10곳으로 줄이는 안 내부 검토 중\n- 11월 첫주까지 수정 견적 원함, 계약은 연말 목표\n- 다음주 화상회의로 의학팀 같이 보자고 함",
       aiResult:"요약\n누리제약 NR-220 2상 견적 v2 검토. 사이트 축소(12→10)와 모니터링 방문 조정으로 예산 맞추는 방향. 연내 계약 목표.\n\n다음 할 일\n• 11/6까지 수정 견적(v3) 제출\n• 다음 주 의학팀 포함 화상회의(TC) 일정 잡기\n\n업데이트 제안\n• Lead status: Negotiation 유지\n• Next step: \"11/6 수정 견적 v3 제출 · 의학팀 TC\"\n• Last contact: 오늘"},
     en:{dash:"CRM dashboard",dashD:"Your sales at a glance",opps:"Opportunities",oppsD:"Deals, managed by Lead status.",company:"Company",companyD:"Accounts, linked to parents and subsidiaries.",
@@ -635,7 +698,7 @@ footer a{text-decoration:none}
       k1:"Open deals",k2:"Open pipeline",k3:"Activities this month",k4:"Contracted total",byStage:"Expected value by stage",next:"Next steps (most recent contact)",
       ai:"✦ AI meeting notes",aiTitle:"AI meeting notes",aiHint:"Paste the notes you jotted right after the meeting. (A sample is pre-filled.)",
       aiRun:"Clean it up",aiSave:"Save as activity",aiNote:"Demo behavior. In the real service, Notion AI or your connected AI does the same job.",aiSaved:"Activity saved. The deal's next step was updated.",
-      stageChanged:"Stage changed. The card moved on the board.",relOpp:"Linked opportunities",relCt:"Contacts",relAct:"Sales activities",relPipe:"Pipeline",relContract:"Contracts",relSub:"Subsidiaries",none:"None",items:"",
+      stageChanged:"Stage changed. The card moved on the board.",relOpp:"Linked opportunities",relCt:"Contacts",relAct:"Sales activities",relPipe:"Pipeline",relContract:"Contracts",relSub:"Subsidiaries",none:"None",items:"",home:"Home",searchT:"Search",inbox:"Inbox",newRec:"New",listV:"List",searchPh:"Search companies, contacts, deals",recent:"Recent deals",auto:"Auto reminder",staleMsg:" days without contact. Time to follow up.",aiMsg:"AI turned your meeting notes into an activity.",noRes:"No results.",
       aiDraft:"F2F with Director Doyun Lee, Nuri Pharm, today\n- Reviewed NR-220 Ph2 quote v2. Fewer monitoring visits could fit their budget\n- Considering 12 → 10 sites internally\n- Wants revised quote by 1st week of Nov, aiming to sign by year end\n- Asked for a TC next week with their medical team",
       aiResult:"Summary\nReviewed Nuri Pharm NR-220 Ph2 quote v2. Budget fit via fewer sites (12→10) and adjusted monitoring visits. Target: sign this year.\n\nNext steps\n• Send revised quote v3 by Nov 6\n• Schedule a TC with their medical team next week\n\nSuggested updates\n• Lead status: keep Negotiation\n• Next step: \"Quote v3 by Nov 6 · TC with medical\"\n• Last contact: today"}
   };
@@ -756,9 +819,8 @@ footer a{text-decoration:none}
     return h+"</tbody></table>";
   }
 
-  function renderBody(){
-    var b=$("mBody"),u=U[lang],h="";
-    if(view==="dash"){
+  function dashHTML(){
+    var u=U[lang],h="";
       var open=D.opps.filter(function(o){return ["Lead","Engage","Proposal","Negotiation"].indexOf(o.status)>=0;});
       var sum=open.reduce(function(a,o){return a+o.value;},0);
       var month=D.acts.filter(function(a){return a.date.slice(0,7)==="2026-10";}).length;
@@ -771,7 +833,12 @@ footer a{text-decoration:none}
       h+="</div></div><div class=\"panel\"><h4>"+u.next+"</h4><ul class=\"todo\">";
       open.slice().sort(function(a,b){return a.last<b.last?1:-1;}).forEach(function(o){h+="<li>"+tag(o.status,statusColor(o.status))+"<span><button type=\"button\" data-open=\"opps:"+o.id+"\">"+esc(find(D.company,o.co).name)+"</button> · "+esc(L(o.next))+"</span></li>";});
       h+="</ul></div></div>";
-    }
+    
+    return h;
+  }
+  function renderBody(){
+    var b=$("mBody"),u=U[lang],h="";
+    if(view==="dash"){h=dashHTML();}
     else if(view==="opps"){
       var rows=D.opps.filter(function(o){return match(o.code+find(D.company,o.co).name+L(o.next)+L(o.scope));});
       if(oppMode==="board"){
@@ -845,16 +912,23 @@ footer a{text-decoration:none}
     }
     showPeek(path,h);
     var s=$("stSel");
-    if(s)s.addEventListener("change",function(){find(D.opps,id).status=s.value;renderBody();toast(U[lang].stageChanged);});
+    if(s)s.addEventListener("change",function(){find(D.opps,id).status=s.value;if(phone)renderPhone();else renderBody();toast(U[lang].stageChanged);});
   }
   function showPeek(path,h){
+    if(phone){
+      $("peekBody").innerHTML="";
+      $("phPath").textContent="Lazy CRM / "+path;$("phPageBody").innerHTML=h;$("phPageBody").scrollTop=0;
+      var q=$("phPage");q.classList.add("open");q.setAttribute("aria-hidden","false");return;
+    }
+    $("phPageBody").innerHTML="";
     $("peekPath").textContent="Lazy CRM / "+path;
     $("peekBody").innerHTML=h;$("peekBody").scrollTop=0;
     var p=$("peek");p.classList.add("open");p.setAttribute("aria-hidden","false");
   }
+  function closePhPage(){var q=$("phPage");q.classList.remove("open");q.setAttribute("aria-hidden","true");}
   function closePeek(){var p=$("peek");p.classList.remove("open");p.setAttribute("aria-hidden","true");}
   var tt;
-  function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on");},2600);}
+  function toast(msg){var t=$(phone?"phToast":"toast");t.textContent=msg;t.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){t.classList.remove("on");},2600);}
 
   /* AI 회의록 데모 (실제 AI 호출 없이 미리 준비한 결과를 타이핑처럼 보여 줌) */
   var typing;
@@ -875,7 +949,7 @@ footer a{text-decoration:none}
         D.acts.unshift({id:"a0",code:"ACT_1011",opp:"o2",ct:["p2"],type:"F2F",date:"2026-10-11",sum:{ko:"NR-220 2상 견적 v2 검토. 사이트 12→10 축소 검토, 11/6까지 수정 견적 요청. 다음 주 의학팀 TC.",en:"Reviewed NR-220 Ph2 quote v2. Considering 12→10 sites; revised quote due Nov 6. TC with medical team next week."}});
         var o=find(D.opps,"o2");o.last="2026-10-11";o.next={ko:"11/6 수정 견적 v3 제출 · 의학팀 TC",en:"Quote v3 by Nov 6 · TC with medical"};
       }
-      view="acts";query="";renderSide();renderMain();openPeek("acts","a0");toast(U[lang].aiSaved);
+      view="acts";phScreen="acts";query="";rerender();openPeek("acts","a0");toast(U[lang].aiSaved);
     });
   }
 
@@ -891,9 +965,105 @@ footer a{text-decoration:none}
   document.addEventListener("keydown",function(e){if(e.key==="Escape")closePeek();});
 
   /* PC / 핸드폰 화면 */
-  var phone=false;
-  function fit(){app.classList.toggle("compact",phone||app.parentNode.clientWidth<760);}
-  function setPhone(on){phone=on;closePeek();app.classList.toggle("phone",on);$("viewPhone").setAttribute("aria-pressed",on);$("viewDesk").setAttribute("aria-pressed",!on);if(on&&view==="opps")oppMode="table";fit();renderMain();}
+  var phone=false,phScreen="home",ph=$("ph");
+  function rerender(){if(phone)renderPhone();else{renderSide();renderMain();}}
+  var NAVIC={dash:"📊",opps:"📈",company:"🏢",contact:"🤳🏻",acts:"🗓",pipe:"💊",contract:"✍️"};
+  function phItem(kind,r){
+    var b="",m="",one="";
+    if(kind==="opps"){b=r.code;m=tag(r.status,statusColor(r.status))+"<span>"+esc(find(D.company,r.co).name)+"</span><span>· "+wonShort(r.value)+"</span>";one="→ "+esc(L(r.next));}
+    else if(kind==="company"){b=r.name;m=tag(r.type,CTYPE[r.type])+tag(r.fin,FIN[r.fin]);one=esc(L(r.desc));}
+    else if(kind==="contact"){b=r.name;m="<span>"+esc(find(D.company,r.co).name)+" · "+esc(L(r.title))+"</span>";one=esc(r.mobile);}
+    else if(kind==="acts"){b=r.code;m=tag(r.type,ATYPE[r.type])+"<span>"+fmtDate(r.date)+" · "+esc(find(D.opps,r.opp).code)+"</span>";one=esc(L(r.sum));}
+    else if(kind==="pipe"){b=r.name;m=tag(r.stage,STAGE[r.stage])+"<span>"+esc(find(D.company,r.co).name)+"</span>";one=esc(L(r.ind))+" · "+esc(r.target);}
+    else if(kind==="contract"){b=r.code;m=tag(r.type,KTYPE[r.type])+"<span>"+esc(find(D.company,r.co).name)+" · "+wonShort(r.value)+"</span>";one=esc(r.period);}
+    return "<button type=\"button\" class=\"ph-item\" data-open=\""+kind+":"+r.id+"\"><b>"+esc(b)+"</b><span class=\"m\">"+m+"</span>"+(one?"<span class=\"one\">"+one+"</span>":"")+"</button>";
+  }
+  function daysSince(d){return Math.round((Date.parse("2026-10-11")-Date.parse(d))/864e5);}
+  function openDeals(){return D.opps.filter(function(o){return ["Lead","Engage","Proposal","Negotiation"].indexOf(o.status)>=0;});}
+  function renderPhone(){
+    var u=U[lang],h="",scr=$("phScr");
+    var tabs=[["home","⌂",u.home],["search","⌕",u.searchT],["inbox","🔔",u.inbox],["new","+",u.newRec]];
+    var cur=(phScreen==="search"||phScreen==="inbox")?phScreen:"home";
+    $("phTab").innerHTML=tabs.map(function(t){return "<button type=\"button\" data-ph=\""+t[0]+"\""+(t[0]==="new"?" class=\"new\"":"")+(t[0]===cur?" aria-current=\"true\"":"")+"><span>"+t[1]+"</span>"+t[2]+"</button>";}).join("");
+    if(phScreen==="home"){
+      h="<div class=\"ph-ws\"><i>L</i>Lazy CRM <span class=\"dim\">⌄</span></div><button type=\"button\" class=\"ph-search\" data-ph=\"search\">⌕ "+u.searchPh+"</button><div class=\"ph-sec\">"+u.grp+"</div>";
+      NAV.forEach(function(n){h+="<button type=\"button\" class=\"ph-row\" data-view=\""+n[0]+"\"><span class=\"ic\">"+n[1]+"</span>"+u[n[0]]+"<span class=\"chev\">›</span></button>";});
+      h+="<div class=\"ph-sec\">"+u.next+"</div>";
+      openDeals().sort(function(a,b){return a.last<b.last?1:-1;}).slice(0,3).forEach(function(o){h+=phItem("opps",o);});
+    }
+    else if(phScreen==="search"){
+      h="<div class=\"ph-title\">"+u.searchT+"</div><input class=\"ph-input\" id=\"phQ\" type=\"search\" placeholder=\""+u.searchPh+"\" aria-label=\""+u.searchT+"\" value=\""+esc(query)+"\"><div id=\"phRes\"></div>";
+    }
+    else if(phScreen==="inbox"){
+      h="<div class=\"ph-title\">"+u.inbox+"</div>";
+      if(aiDone)h+="<button type=\"button\" class=\"ph-noti\" data-open=\"acts:a0\"><span class=\"av\">✦</span><span><b>ACT_1011</b> · "+u.aiMsg+"<small>"+u.auto+"</small></span></button>";
+      openDeals().filter(function(o){return daysSince(o.last)>=14;}).sort(function(a,b){return a.last<b.last?-1:1;}).forEach(function(o){
+        h+="<button type=\"button\" class=\"ph-noti\" data-open=\"opps:"+o.id+"\"><span class=\"av\">⏰</span><span><b>"+esc(o.code)+"</b> · "+esc(find(D.company,o.co).name)+" "+daysSince(o.last)+u.staleMsg+"<small>"+u.auto+" · "+fmtDate(o.last)+"</small></span></button>";
+      });
+    }
+    else{
+      h="<button type=\"button\" class=\"ph-back\" data-ph=\"home\">‹ "+u.home+"</button><div class=\"ph-title\"><span>"+NAVIC[phScreen]+"</span>"+esc(u[phScreen])+"</div><p class=\"ph-desc\">"+u[phScreen+"D"]+"</p>";
+      if(phScreen==="dash")h+=dashHTML();
+      else if(phScreen==="opps"){
+        h+="<div class=\"ph-chips\"><button type=\"button\" class=\"ph-chip\" data-mode=\"board\" aria-pressed=\""+(oppMode==="board")+"\">"+u.board+"</button><button type=\"button\" class=\"ph-chip\" data-mode=\"table\" aria-pressed=\""+(oppMode==="table")+"\">"+u.listV+"</button></div>";
+        if(oppMode==="board"){
+          h+="<div class=\"ph-board\">";
+          STATUS.forEach(function(st){var cs=D.opps.filter(function(o){return o.status===st[0];});
+            h+="<div class=\"col\"><div class=\"col-h\">"+tag(st[0],st[1])+"<span>"+cs.length+"</span></div>";
+            cs.forEach(function(o){h+="<button type=\"button\" class=\"card\" data-open=\"opps:"+o.id+"\"><b>"+esc(o.code)+"</b><span class=\"meta\"><span>🏢 "+esc(find(D.company,o.co).name)+"</span><span>"+won(o.value)+"</span><span>→ "+esc(L(o.next))+"</span></span></button>";});
+            h+="</div>";});
+          h+="</div>";
+        } else D.opps.forEach(function(o){h+=phItem("opps",o);});
+      }
+      else{
+        var list=phScreen==="acts"?D.acts.slice().sort(function(a,b){return a.date<b.date?1:-1;}):D[phScreen];
+        list.forEach(function(r){h+=phItem(phScreen,r);});
+      }
+    }
+    scr.innerHTML=h;scr.scrollTop=0;
+    var q=$("phQ");
+    if(q){
+      var fill=function(){
+        var v=q.value.toLowerCase(),out="";query=q.value;
+        if(!v){out="<div class=\"ph-sec\">"+u.recent+"</div>";D.opps.slice(0,5).forEach(function(o){out+=phItem("opps",o);});}
+        else{
+          D.opps.forEach(function(o){if((o.code+find(D.company,o.co).name+L(o.next)).toLowerCase().indexOf(v)>=0)out+=phItem("opps",o);});
+          D.company.forEach(function(c){if((c.name+L(c.desc)).toLowerCase().indexOf(v)>=0)out+=phItem("company",c);});
+          D.contact.forEach(function(p){if((p.name+find(D.company,p.co).name).toLowerCase().indexOf(v)>=0)out+=phItem("contact",p);});
+          if(!out)out="<p class=\"dim\" style=\"padding:12px 2px\">"+u.noRes+"</p>";
+        }
+        $("phRes").innerHTML=out;
+      };
+      q.addEventListener("input",fill);fill();
+    }
+  }
+  ph.addEventListener("click",function(e){
+    var t=e.target.closest("[data-view],[data-mode],[data-open],[data-ph],[data-ph-back]");
+    if(!t||!ph.contains(t))return;
+    if(t.hasAttribute("data-ph-back")){closePhPage();return;}
+    if(t.hasAttribute("data-ph")){var k=t.getAttribute("data-ph");closePhPage();if(k==="new"){openAI();return;}phScreen=k;query="";renderPhone();return;}
+    if(t.hasAttribute("data-view")){view=t.getAttribute("data-view");phScreen=view;query="";closePhPage();renderPhone();return;}
+    if(t.hasAttribute("data-mode")){oppMode=t.getAttribute("data-mode");renderPhone();return;}
+    var v=t.getAttribute("data-open").split(":");openPeek(v[0],v[1]);
+  });
+  /* 좁은 화면에서 PC 화면은 실제 PC 크기 그대로 축소해서 보여 줌 */
+  function fit(){
+    var st=$("stage");
+    app.classList.remove("compact");
+    if(phone){app.style.width="";app.style.transform="";st.style.height="";st.style.justifyContent="";return;}
+    var w=st.clientWidth;
+    if(w<900){
+      var k=w/1000;app.style.width="1000px";app.style.maxWidth="none";app.style.flex="none";app.style.transformOrigin="top left";app.style.transform="scale("+k+")";
+      st.style.justifyContent="flex-start";st.style.height=Math.ceil(app.offsetHeight*k)+"px";
+    } else {app.style.width="";app.style.maxWidth="";app.style.flex="";app.style.transform="";st.style.height="";st.style.justifyContent="";}
+  }
+  function setPhone(on){
+    phone=on;closePeek();closePhPage();
+    app.hidden=on;ph.hidden=!on;
+    $("viewPhone").setAttribute("aria-pressed",on);$("viewDesk").setAttribute("aria-pressed",!on);
+    if(on)phScreen="home";
+    fit();rerender();
+  }
   $("viewPhone").addEventListener("click",function(){setPhone(true);});
   $("viewDesk").addEventListener("click",function(){setPhone(false);});
   window.addEventListener("resize",fit);
@@ -906,14 +1076,14 @@ footer a{text-decoration:none}
     document.querySelectorAll("[data-i18n-list]").forEach(function(el){var a=d[el.getAttribute("data-i18n-list")];if(a)el.innerHTML=a.map(function(x){return "<li>"+x+"</li>";}).join("");});
     document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false");});
     $("mailBtn").href="mailto:hello@lazycompany.app?subject="+encodeURIComponent(d.mailSubject);
-    renderSide();renderMain();
-    if($("peek").classList.contains("open"))closePeek();
+    rerender();
+    closePeek();closePhPage();
     if(!forced){try{localStorage.setItem("lc-lang",l);}catch(e){}}
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
   var start="ko",forced=document.documentElement.getAttribute("data-force-lang");
   if(forced)start=forced;else try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
-  fit();setLang(start);
+  setLang(start);setPhone(window.innerWidth<700);
 
   var btn=$("copyBtn"),out=$("copied"),mail=$("mail");
   btn.addEventListener("click",function(){
