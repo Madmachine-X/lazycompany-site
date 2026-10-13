@@ -13,3 +13,8 @@ wrap crm-head.html crm-body.html site/crm/index.html
 mkdir -p site/crm/en
 wrap crm-head-en.html crm-body.html site/crm/en/index.html
 python3 -c 'import base64;b=base64.b64encode(open("site/fonts/Cafe24Dongdong.woff","rb").read()).decode();s=open("crm-body.html").read().replace("url(\"/fonts/Cafe24Dongdong.woff\")","url(\"data:font/woff;base64,"+b+"\")");open("crm-preview.html","w").write(s)'
+# Myriatale(스토리 게임) 소개 페이지 (lazycompany.app/Myriatale/, 게임은 /Myriatale/play/)
+mkdir -p site/Myriatale/en
+wrap myr-head.html myr-body.html site/Myriatale/index.html
+wrap myr-head-en.html myr-body.html site/Myriatale/en/index.html
+python3 -c 'import base64,re;f=lambda p:base64.b64encode(open(p,"rb").read()).decode();s=open("myr-body.html").read().replace("url(\"/fonts/Cafe24Dongdong.woff\")","url(\"data:font/woff;base64,"+f("site/fonts/Cafe24Dongdong.woff")+"\")");s=re.sub(r"/Myriatale/img/([\w-]+)\.webp",lambda m:"data:image/webp;base64,"+f("site/Myriatale/img/"+m.group(1)+".webp"),s);open("myr-preview.html","w").write("<meta charset=\"utf-8\">\n"+s)'

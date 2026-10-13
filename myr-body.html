@@ -1,0 +1,350 @@
+<title>Myriatale · Lazy Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
+/* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 게임다운 부분은 가운데 '게임 화면' 패널 하나에만: 게임과 같은 심야 남색 + 소설체 본문. */
+:root{
+  --paper:#EEF0F3; --ink:#0E1116; --mute:#5C6270; --hair:rgba(14,17,22,.14); --klein:#2934E0;
+  --night:#050B12; --night-2:#0B1823; --night-fg:#DCEAF4; --night-dim:#8FA6B6; --night-line:rgba(112,221,255,.18); --cyan:#70DDFF;
+  --f-display:"Cafe24Dongdong","IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
+  --f-sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-novel:"Nanum Myeongjo","Noto Serif KR",Georgia,serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--paper:#0C0E13; --ink:#E8EAF0; --mute:#8E95A6; --hair:rgba(232,234,240,.14); --klein:#8C95FF; --night:#03070C; --night-2:#0A141D; color-scheme:dark}
+}
+:root[data-theme="dark"]{--paper:#0C0E13; --ink:#E8EAF0; --mute:#8E95A6; --hair:rgba(232,234,240,.14); --klein:#8C95FF; --night:#03070C; --night-2:#0A141D; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--klein);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+h1,h2,h3{font-weight:400}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:26px;flex-wrap:wrap}
+.mark{text-decoration:none;display:flex;align-items:baseline;gap:6px}
+.mark i{font-family:var(--f-display);font-size:26px;font-style:normal;color:var(--klein)}
+.mark span{font-family:var(--f-display);font-size:26px}
+.top-right{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.top nav{display:flex;gap:24px;font-size:14px}
+.top nav a{text-decoration:none;color:var(--mute)}
+.top nav a:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid var(--hair);border-radius:999px;padding:3px}
+.lang button{font:500 12px/1 var(--f-mono);letter-spacing:.06em;border:0;background:transparent;color:var(--mute);padding:7px 11px;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* hero: 왼쪽 글, 오른쪽 표지 두 장 */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center;padding-block:clamp(40px,7vw,96px) clamp(48px,7vw,96px)}
+.crumb{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.crumb a{text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+h1{margin:22px 0 0;letter-spacing:-.01em;line-height:1.18;font-size:clamp(40px,6.4vw,84px);text-wrap:balance}
+h1>span{display:block;font-family:var(--f-display)}
+h1 .fierce{color:var(--klein)}
+.lede{margin:28px 0 0;font-size:clamp(16px,1.5vw,18px);color:var(--mute);max-width:32em}
+.lede b{color:var(--ink);font-weight:600}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font:500 15px var(--f-sans);text-decoration:none;border-radius:12px;padding:14px 20px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.btn:hover{background:var(--klein);border-color:var(--klein);color:#fff}
+.btn.off{background:transparent;color:var(--mute);border:1px dashed var(--hair);cursor:not-allowed}
+.btn.off:hover{background:transparent;color:var(--mute);border-color:var(--hair)}
+.btn.off small{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
+.facts{display:flex;gap:36px;font-variant-numeric:tabular-nums;flex-wrap:wrap;margin-top:40px}
+.facts div{display:grid;gap:4px}
+.facts strong{font-family:var(--f-display);font-size:34px;font-weight:400;line-height:1}
+.covers{position:relative;aspect-ratio:1/1;min-width:0}
+.covers img{position:absolute;width:62%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;box-shadow:0 30px 60px -30px rgba(5,11,18,.55)}
+.covers img:first-child{left:0;top:0;transform:rotate(-3deg)}
+.covers img:last-child{right:0;bottom:0;transform:rotate(3deg)}
+
+section{padding-block:clamp(64px,9vw,120px)}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+.sec-head h2,.h2{margin:10px 0 0;font-family:var(--f-display);font-size:clamp(28px,3.6vw,48px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.h2 em,.sec-head h2 em{font-style:normal;color:var(--klein)}
+.sec-note{max-width:30em;color:var(--mute);margin:0}
+
+/* name: 단어 풀이 */
+.name{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.2fr);gap:clamp(12px,2.4vw,32px);align-items:start;border-top:1px solid var(--ink);padding-top:32px}
+.part strong{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(36px,4.6vw,60px);line-height:1}
+.part .label{display:block;margin:12px 0 8px}
+.part p{margin:0;color:var(--mute);font-size:15px}
+.part.sum strong{color:var(--klein)}
+.op{font-family:var(--f-mono);font-size:28px;color:var(--mute);line-height:1.4}
+.name-note{margin:36px 0 0;font-family:var(--f-novel);font-size:clamp(20px,2.4vw,28px);line-height:1.55;max-width:26em}
+
+/* difference: 게임 화면 패널 + 세 가지 이유 */
+.diff{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,5vw,72px);align-items:start}
+.why{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.why li{padding-block:22px;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px}
+.why .n{font-family:var(--f-mono);font-size:12px;color:var(--klein);padding-top:6px}
+.why strong{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.3;margin-bottom:6px}
+.why p{margin:0;color:var(--mute);font-size:15px}
+
+.screen{background:var(--night);color:var(--night-fg);border-radius:20px;padding:clamp(20px,3vw,32px);border:1px solid var(--night-line);position:sticky;top:24px}
+.screen .hud{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.screen .hud span{color:var(--night-dim)}
+.scene-text{font-family:var(--f-novel);font-size:16.5px;line-height:1.85;margin:16px 0 18px;color:#EAF4FB}
+.choice{display:block;width:100%;text-align:left;font:15px/1.5 var(--f-sans);color:var(--night-fg);background:var(--night-2);border:1px solid var(--night-line);border-radius:10px;padding:11px 14px;margin-bottom:8px}
+.choice .st{font-family:var(--f-mono);font-size:11px;color:var(--cyan);margin-left:6px}
+.write{display:flex;align-items:center;gap:10px;border:1px dashed var(--cyan);border-radius:10px;padding:11px 14px;margin-top:4px;font-size:15px}
+.write .lbl{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;color:var(--cyan);white-space:nowrap}
+.write .typed{color:#fff}
+.caret{display:inline-block;width:2px;height:1em;background:var(--cyan);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.roll{display:flex;align-items:center;gap:14px;margin-top:16px;padding-top:16px;border-top:1px solid var(--night-line);font-family:var(--f-mono);font-size:13px;color:var(--night-dim);flex-wrap:wrap}
+.d20{width:44px;height:44px;display:grid;place-items:center;flex:none;background:var(--cyan);color:var(--night);font-weight:500;font-size:16px;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.roll b{color:#7CFFB2;font-weight:500}
+.screen-cap{font-size:12.5px;color:var(--mute);margin:12px 4px 0}
+
+/* how to play */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink)}
+.steps div{padding:24px 20px 24px 0;min-width:0}
+.steps div+div{padding-left:20px;border-left:1px solid var(--hair)}
+.steps strong{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;margin:10px 0 8px}
+.steps p{margin:0;color:var(--mute);font-size:15px}
+.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.mode{border:1px solid var(--hair);border-radius:14px;padding:20px 22px;min-width:0}
+.mode b{display:block;font-weight:600;margin:8px 0 4px}
+.mode p{margin:0;color:var(--mute);font-size:14.5px}
+
+/* worlds */
+.worlds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.world{border:1px solid var(--hair);border-radius:14px;overflow:hidden;min-width:0;display:flex;flex-direction:column;background:color-mix(in srgb,var(--paper) 70%,#fff 30%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .world{background:rgba(255,255,255,.03)}}
+:root[data-theme="dark"] .world{background:rgba(255,255,255,.03)}
+.world .cv{aspect-ratio:16/9;overflow:hidden;display:grid;grid-template-columns:1fr;background:var(--night)}
+.world .cv.duo{grid-template-columns:1fr 1fr;gap:2px}
+.world .cv img{width:100%;height:100%;object-fit:cover}
+.world .tx{padding:16px 18px 20px;display:grid;gap:6px}
+.world .meta{display:flex;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;color:var(--mute)}
+.world h3{margin:0;font-weight:600;font-size:17px;line-height:1.4}
+.world p{margin:0;color:var(--mute);font-size:14.5px}
+
+/* price + end */
+.price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink)}
+.price div{padding:22px 20px 22px 0;min-width:0}
+.price div+div{padding-left:20px;border-left:1px solid var(--hair)}
+.price strong{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.2;margin:8px 0 6px}
+.price p{margin:0;color:var(--mute);font-size:15px}
+.end{border-top:1px solid var(--ink);padding-top:40px;display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:32px;align-items:end}
+.end h2{margin:12px 0 0;font-family:var(--f-display);font-size:clamp(30px,4.4vw,58px);line-height:1.15;text-wrap:balance}
+.end .ctas{margin-top:0}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 40px;font-size:13px;color:var(--mute)}
+footer a{text-decoration:none}
+footer p{margin:0;max-width:46em}
+
+@media (max-width:900px){
+  .hero,.diff,.end{grid-template-columns:1fr}
+  .covers{max-width:340px;width:100%;margin-inline:auto}
+  .screen{position:static}
+  .name{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+  .name .op.eq{display:none}
+  .part.sum{grid-column:1/-1;border-top:1px solid var(--hair);padding-top:20px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps div,.steps div+div{padding:22px 16px 22px 0;border-left:0;border-bottom:1px solid var(--hair)}
+  .worlds,.modes{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  .top nav{display:none}
+  .steps,.worlds,.modes,.price{grid-template-columns:1fr}
+  .price div,.price div+div{padding:18px 0;border-left:0;border-bottom:1px solid var(--hair)}
+  .facts{gap:24px}
+  .btn{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="/" aria-label="Lazy Company 홈"><i>Lazy</i><span>Company</span></a>
+    <div class="top-right">
+      <nav aria-label="menu">
+        <a href="#name" data-i18n="nav_name">이름</a>
+        <a href="#diff" data-i18n="nav_diff">차별점</a>
+        <a href="#how" data-i18n="nav_how">플레이 방법</a>
+        <a href="#worlds" data-i18n="nav_worlds">세계</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <div class="crumb label"><a href="/">Lazy Company</a><span>/</span><span>Story game</span></div>
+        <h1><span>Myriatale</span><span data-i18n-html="h1">누워서, <span class="fierce">다른 삶</span>을 삽니다.</span></h1>
+        <p class="lede" data-i18n-html="lede">선택이 이야기를 바꾸는 인터랙티브 스토리 게임. <b>작가가 쓴 장편 위에서, 선택지에 없는 행동까지 AI가 이어 씁니다.</b> 설치 없이 브라우저에서 바로 시작하세요.</p>
+        <div class="ctas">
+          <a class="btn" href="/Myriatale/play/" data-i18n="play">웹에서 플레이</a>
+          <span class="btn off" role="link" aria-disabled="true" title="App Store"><span>App Store</span><small data-i18n="soon">준비 중</small></span>
+        </div>
+        <div class="facts">
+          <div><strong>8</strong><span class="label" data-i18n="f1">Worlds</span></div>
+          <div><strong>D20</strong><span class="label" data-i18n="f2">Dice checks</span></div>
+          <div><strong>0</strong><span class="label" data-i18n="f3">Install</span></div>
+        </div>
+      </div>
+      <div class="covers" aria-hidden="true">
+        <img src="/Myriatale/img/glitch.webp" alt="">
+        <img src="/Myriatale/img/crown.webp" alt="">
+      </div>
+    </div>
+
+    <section id="name">
+      <div class="sec-head"><div><div class="label">The name</div><h2 data-i18n-html="n_h">Myriatale은 <em>셀 수 없이 많은 이야기</em>라는 뜻입니다.</h2></div></div>
+      <div class="name">
+        <div class="part"><strong>Myria</strong><span class="label" data-i18n="n1l">Greek · myrias</span><p data-i18n="n1">그리스어로 ‘1만’. 영어 myriad처럼 ‘헤아릴 수 없이 많은’이라는 뜻으로 쓰입니다.</p></div>
+        <div class="op" aria-hidden="true">+</div>
+        <div class="part"><strong>Tale</strong><span class="label" data-i18n="n2l">English · tale</span><p data-i18n="n2">이야기. 누군가 들려주는, 그리고 듣는 사람에 따라 조금씩 달라지는 이야기.</p></div>
+        <div class="op eq" aria-hidden="true">=</div>
+        <div class="part sum"><strong>Myriatale</strong><span class="label" data-i18n="n3l">A myriad of tales</span><p data-i18n="n3">같은 첫 장면에서 출발해도, 고른 길마다 다른 이야기가 됩니다.</p></div>
+      </div>
+      <p class="name-note" data-i18n="n_note">한 사람에게는 한 갈래, 만 명에게는 만 갈래의 이야기.</p>
+    </section>
+
+    <section id="diff" style="padding-top:0">
+      <div class="sec-head"><div><div class="label">What makes it different</div><h2 data-i18n-html="d_h">고르기만 하는 게 아니라, <em>다음 장면을 직접 씁니다.</em></h2></div></div>
+      <div class="diff">
+        <ol class="why">
+          <li><span class="n">01</span><div><strong data-i18n="d1h">작가의 이야기 위에, AI의 자유</strong><p data-i18n="d1">공들여 쓴 장편이 뼈대가 됩니다. 선택지에 없는 행동을 쓰면 AI가 그 결과로 새 장면을 이어 씁니다. 이야기는 무너지지 않고, 끝은 열려 있습니다.</p></div></li>
+          <li><span class="n">02</span><div><strong data-i18n="d2h">원한다고 다 되지는 않습니다</strong><p data-i18n="d2">신체능력·관찰력·정신력·설득력·창의력. 중요한 순간마다 D20 주사위가 성패를 정하고, 성공한 능력은 자랍니다.</p></div></li>
+          <li><span class="n">03</span><div><strong data-i18n="d3h">한 판이 끝나도 남는 것</strong><p data-i18n="d3">엔딩마다 기억 조각과 Perk가 남아, 다음 삶에 들고 갈 수 있습니다. 같은 세계도 두 번째는 다르게 흘러갑니다.</p></div></li>
+        </ol>
+        <div>
+          <div class="screen" aria-label="게임 화면 예시">
+            <div class="hud">GLITCH · ACT 2 <span data-i18n="sc_hud">관찰력 2 · 정신력 1</span></div>
+            <p class="scene-text" data-i18n="sc_text">퇴근길 지하철. 맞은편 창에 비친 얼굴이 한 박자 늦게 눈을 깜빡였다. 서연이 사라진 지 사흘째, 휴대폰에 낯선 번호로 문자가 온다. “지금 내리면 안 돼요.”</p>
+            <div class="choice" data-i18n-html="sc_c1">문자에 답장한다</div>
+            <div class="choice" data-i18n-html="sc_c2">창에 비친 얼굴을 자세히 본다 <span class="st">관찰력</span></div>
+            <div class="write"><span class="lbl" data-i18n="sc_w">직접 쓰기</span><span><span class="typed" data-i18n="sc_typed">비상 정지 버튼을 누르고 반대편 문으로 나간다</span><span class="caret" aria-hidden="true"></span></span></div>
+            <div class="roll"><span class="d20">14</span><span data-i18n-html="sc_roll">D20 14 + 신체능력 0 ≥ DC 12 · <b>성공</b> · AI가 다음 장면을 쓰는 중…</span></div>
+          </div>
+          <p class="screen-cap" data-i18n="sc_cap">화면 구성을 보여 주기 위한 예시 장면입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" style="padding-top:0">
+      <div class="sec-head"><div><div class="label">How to play</div><h2 data-i18n="h_h">이렇게 즐깁니다</h2></div><p class="sec-note" data-i18n="h_note">휴대폰과 PC 브라우저 어디서나. 자동 저장되니 출퇴근길에 조금씩 이어가도 됩니다.</p></div>
+      <div class="steps">
+        <div><span class="label">01</span><strong data-i18n="s1h">세계를 고릅니다</strong><p data-i18n="s1">심리 SF, 다크 판타지, 삼국지, 고딕 미스터리, 지정학 스릴러까지.</p></div>
+        <div><span class="label">02</span><strong data-i18n="s2h">고르거나, 직접 씁니다</strong><p data-i18n="s2">장면마다 선택지 3~5개. 마음에 드는 게 없으면 하고 싶은 행동을 그대로 입력하세요.</p></div>
+        <div><span class="label">03</span><strong data-i18n="s3h">주사위를 굴립니다</strong><p data-i18n="s3">판정이 필요한 순간엔 D20. 20이 나오면 대성공, 1이 나오면 대실패입니다.</p></div>
+        <div><span class="label">04</span><strong data-i18n="s4h">나만의 결말</strong><p data-i18n="s4">엔딩은 하나가 아닙니다. 다른 선택으로 다시 살아보세요.</p></div>
+      </div>
+      <div class="modes">
+        <div class="mode"><span class="label" data-i18n="m1l">Authored</span><b data-i18n="m1h">작가가 쓴 장편</b><p data-i18n="m1">분기와 엔딩이 설계된 이야기. 중간중간 AI 분기로 빠져나갈 수 있습니다.</p></div>
+        <div class="mode"><span class="label" data-i18n="m2l">Live AI</span><b data-i18n="m2h">매 장면 AI가 쓰는 이야기</b><p data-i18n="m2">정해진 시나리오 없이, 글이 써지는 대로 화면에 흘러나옵니다.</p></div>
+        <div class="mode"><span class="label" data-i18n="m3l">Story room</span><b data-i18n="m3h">들려주는 이야기</b><p data-i18n="m3">기분과 듣는 사람을 물은 뒤, 딱 맞는 이야기를 골라 목소리로 읽어 줍니다.</p></div>
+      </div>
+    </section>
+
+    <section id="worlds" style="padding-top:0">
+      <div class="sec-head"><div><div class="label">Worlds</div><h2 data-i18n="w_h">지금 접속할 수 있는 세계</h2></div></div>
+      <div class="worlds">
+        <article class="world"><div class="cv"><img src="/Myriatale/img/glitch.webp" alt="" loading="lazy" style="object-position:50% 30%"></div><div class="tx"><div class="meta"><span data-i18n="w1g">심리 SF · 미스터리</span><span data-i18n="w1t">65~130분</span></div><h3>GLITCH</h3><p data-i18n="w1">사라진 서연, 지워진 기억, 서로 다른 다섯 개의 일상.</p></div></article>
+        <article class="world"><div class="cv"><img src="/Myriatale/img/crown.webp" alt="" loading="lazy" style="object-position:50% 35%"></div><div class="tx"><div class="meta"><span data-i18n="w2g">다크 판타지 · 모험</span><span data-i18n="w2t">120~220분</span></div><h3>CROWN</h3><p data-i18n="w2">기억을 잃은 사형수로 깨어나, 죽은 왕과 자신의 진명을 쫓는다.</p></div></article>
+        <article class="world"><div class="cv"><img src="/Myriatale/img/three-kingdoms.webp" alt="" loading="lazy"></div><div class="tx"><div class="meta"><span data-i18n="w3g">역사 · 대체역사</span><span data-i18n="w3t">편당 15~25분</span></div><h3 data-i18n="w3n">삼국지</h3><p data-i18n="w3">도원결의부터 출사표까지 여덟 편. 원작과 다른 생사와 결말을.</p></div></article>
+        <article class="world"><div class="cv duo"><img src="/Myriatale/img/strait.webp" alt="" loading="lazy"><img src="/Myriatale/img/warroom.webp" alt="" loading="lazy"></div><div class="tx"><div class="meta"><span data-i18n="w4g">지정학 스릴러 · 2부작</span><span data-i18n="w4t">60~90분 + 20~40분</span></div><h3 data-i18n="w4n">호르무즈의 겨울 · 임계점</h3><p data-i18n="w4">대통령 특사의 4년 반. 다른 카드를 쥐면 세계가 핵의 문턱에 선다.</p></div></article>
+        <article class="world"><div class="cv duo"><img src="/Myriatale/img/hound-classic.webp" alt="" loading="lazy"><img src="/Myriatale/img/hound.webp" alt="" loading="lazy"></div><div class="tx"><div class="meta"><span data-i18n="w5g">고딕 미스터리 · 2부작</span><span data-i18n="w5t">60~90분 + 40~60분</span></div><h3 data-i18n="w5n">바스커빌가의 개 · 황야의 사냥개</h3><p data-i18n="w5">왓슨이 되어 다트무어의 사냥개를 쫓는다. 2부는 매 장면 AI가 새로 쓴다.</p></div></article>
+        <article class="world"><div class="cv"><img src="/Myriatale/img/grandpa.webp" alt="" loading="lazy"></div><div class="tx"><div class="meta"><span data-i18n="w6g">이야기방 · 목소리</span><span data-i18n="w6t">10~20분</span></div><h3 data-i18n="w6n">화롯가 이야기</h3><p data-i18n="w6">오늘의 기분을 물은 할아버지가, 딱 맞는 옛이야기를 읽어 준다.</p></div></article>
+      </div>
+    </section>
+
+    <section id="price" style="padding-top:0">
+      <div class="sec-head"><div><div class="label">Price</div><h2 data-i18n="p_h">작가가 쓴 이야기는 무료입니다</h2></div><p class="sec-note" data-i18n="p_note">AI가 새로 쓰는 장면만 장면 단위로 씁니다.</p></div>
+      <div class="price">
+        <div><span class="label" data-i18n="p1l">No login</span><strong data-i18n="p1h">AI 장면 5개 체험</strong><p data-i18n="p1">가입 없이 바로. 작가가 쓴 이야기는 제한 없이.</p></div>
+        <div><span class="label" data-i18n="p2l">Sign up</span><strong data-i18n="p2h">AI 장면 20개 무료</strong><p data-i18n="p2">구글이나 이메일로 가입하면 드립니다. 목소리 듣기도 열립니다.</p></div>
+        <div><span class="label" data-i18n="p3l">Top up · soon</span><strong data-i18n="p3h">장면 충전</strong><p data-i18n="p3">100장면 $6.99부터. 결제는 곧 열립니다.</p></div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="end">
+        <div><div class="label">Play now</div><h2 data-i18n="e_h">오늘 밤엔 누워서, 다른 사람으로 살아보세요.</h2></div>
+        <div class="ctas">
+          <a class="btn" href="/Myriatale/play/" data-i18n="play">웹에서 플레이</a>
+          <span class="btn off" role="link" aria-disabled="true" title="App Store"><span>App Store</span><small data-i18n="soon">준비 중</small></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← Lazy Company</a>
+    <p data-i18n="legal">바스커빌가의 개와 화롯가 이야기는 저작권이 끝난 원전만 사용합니다. 호르무즈의 겨울과 임계점은 실화를 바탕으로 하지만 등장인물은 모두 가상입니다.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var EN={nav_name:"Name",nav_diff:"Why it's different",nav_how:"How to play",nav_worlds:"Worlds",
+    h1:"Lie down. <span class=\"fierce\">Live another life.</span>",
+    lede:"An interactive story game where your choices change the story. <b>Long-form stories written by an author, where AI writes on from any action you type, even ones not on the list.</b> Nothing to install. Start in your browser.",
+    play:"Play on the web",soon:"Coming soon",f1:"Worlds",f2:"Dice checks",f3:"Install",
+    n_h:"Myriatale means <em>a myriad of tales.</em>",
+    n1l:"Greek · myrias",n1:"Greek for ‘ten thousand’. Like the English word myriad, it means ‘too many to count’.",
+    n2l:"English · tale",n2:"A story. One that someone tells, and that changes a little with whoever listens.",
+    n3l:"A myriad of tales",n3:"Start from the same first scene, and every path you take becomes a different story.",
+    n_note:"One path for one player. Ten thousand paths for ten thousand players.",
+    d_h:"You don't just pick. <em>You write the next scene.</em>",
+    d1h:"Authored stories, AI freedom",d1:"A carefully written story is the backbone. Type an action that isn't on the list, and AI writes the next scene from it. The story holds together, and the ending stays open.",
+    d2h:"Wanting it isn't enough",d2:"Physique, perception, willpower, persuasion, creativity. At key moments a D20 decides success or failure, and the stats you succeed with grow.",
+    d3h:"What stays after a run",d3:"Every ending leaves memory fragments and Perks you carry into your next life. The same world plays differently the second time.",
+    sc_hud:"Perception 2 · Willpower 1",
+    sc_text:"The subway home. The face reflected in the opposite window blinks a beat late. Three days since Seoyeon vanished, a text arrives from an unknown number: “Don't get off now.”",
+    sc_c1:"Reply to the text",sc_c2:"Look closely at the reflection <span class=\"st\">Perception</span>",
+    sc_w:"WRITE",sc_typed:"Pull the emergency stop and leave by the other door",
+    sc_roll:"D20 14 + Physique 0 ≥ DC 12 · <b>Success</b> · AI is writing the next scene…",
+    sc_cap:"An example scene showing how the game screen works.",
+    h_h:"How it plays",h_note:"On any phone or desktop browser. It saves automatically, so you can play a little on every commute.",
+    s1h:"Pick a world",s1:"Psychological SF, dark fantasy, the Three Kingdoms, gothic mystery, geopolitical thriller.",
+    s2h:"Choose, or write",s2:"3 to 5 choices each scene. If none fits, just type what you want to do.",
+    s3h:"Roll the dice",s3:"When it matters, roll a D20. A 20 is a critical success, a 1 a critical failure.",
+    s4h:"Your own ending",s4:"There's more than one ending. Live it again with different choices.",
+    m1l:"Authored",m1h:"Author-written epics",m1:"Stories with designed branches and endings, with AI branches to break away along the way.",
+    m2l:"Live AI",m2h:"AI writes every scene",m2:"No fixed script. The text streams onto the screen as it's written.",
+    m3l:"Story room",m3h:"Stories read to you",m3:"It asks your mood and who's listening, then picks the right tale and reads it aloud.",
+    w_h:"Worlds you can enter now",
+    w1g:"Psychological SF · Mystery",w1t:"65–130 min",w1:"A missing Seoyeon, erased memories, five different everyday lives.",
+    w2g:"Dark fantasy · Adventure",w2t:"120–220 min",w2:"Wake as a condemned prisoner with no memory, and chase a dead king and your own true name.",
+    w3g:"History · Alternate history",w3t:"15–25 min each",w3n:"Three Kingdoms",w3:"Eight episodes from the Peach Garden Oath to the Northern Expeditions. Change who lives and how it ends.",
+    w4g:"Geopolitical thriller · 2 parts",w4t:"60–90 + 20–40 min",w4n:"Winter in Hormuz · Critical Point",w4:"Four and a half years as a presidential envoy. Pick the wrong card and the world nears the nuclear threshold.",
+    w5g:"Gothic mystery · 2 parts",w5t:"60–90 + 40–60 min",w5n:"The Hound of the Baskervilles · Hound of the Moor",w5:"Become Watson and hunt Dartmoor's hound. In part 2, AI writes every scene fresh.",
+    w6g:"Story room · Voice",w6t:"10–20 min",w6n:"Fireside Tales",w6:"A grandfather asks how your day was, then reads you just the right old tale.",
+    p_h:"Authored stories are free",p_note:"You only spend on scenes the AI writes.",
+    p1l:"No login",p1h:"Try 5 AI scenes",p1:"No sign-up needed. Authored stories have no limit.",
+    p2l:"Sign up",p2h:"20 AI scenes free",p2:"Sign up with Google or email. Voice reading unlocks too.",
+    p3l:"Top up · soon",p3h:"Scene packs",p3:"From $6.99 for 100 scenes. Payments open soon.",
+    e_h:"Tonight, lie down and live as someone else.",
+    legal:"The Hound of the Baskervilles and Fireside Tales use only public-domain sources. Winter in Hormuz and Critical Point are based on real events, but all characters are fictional."};
+  var KO={};
+  document.querySelectorAll("[data-i18n]").forEach(function(el){KO[el.getAttribute("data-i18n")]=el.textContent;});
+  document.querySelectorAll("[data-i18n-html]").forEach(function(el){KO[el.getAttribute("data-i18n-html")]=el.innerHTML;});
+  var forced=document.documentElement.getAttribute("data-force-lang");
+  function setLang(l){
+    var d=l==="en"?EN:KO;
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(d[k]!=null)el.textContent=d[k];});
+    document.querySelectorAll("[data-i18n-html]").forEach(function(el){var k=el.getAttribute("data-i18n-html");if(d[k]!=null)el.innerHTML=d[k];});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false");});
+    if(!forced){try{localStorage.setItem("lc-lang",l);}catch(e){}}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
+  var start="ko";
+  if(forced)start=forced;else try{start=localStorage.getItem("lc-lang")||((navigator.language||"ko").toLowerCase().indexOf("ko")===0?"ko":"en");}catch(e){}
+  setLang(start);
+})();
+</script>
