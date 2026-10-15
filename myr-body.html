@@ -71,6 +71,12 @@ section{padding-block:clamp(64px,9vw,120px)}
 .h2 em,.sec-head h2 em{font-style:normal;color:var(--klein)}
 .sec-note{max-width:30em;color:var(--mute);margin:0}
 
+/* trailer */
+.trailer{padding-block:0 clamp(24px,4vw,48px)}
+.trailer .frame{background:var(--night);border:1px solid var(--night-line);border-radius:20px;overflow:hidden;aspect-ratio:16/9}
+.trailer video{display:block;width:100%;height:100%;object-fit:cover;background:var(--night)}
+.trailer .cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px}
+
 /* name: 단어 풀이 */
 .name{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.2fr);gap:clamp(12px,2.4vw,32px);align-items:start;border-top:1px solid var(--ink);padding-top:32px}
 .part strong{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(36px,4.6vw,60px);line-height:1}
@@ -201,6 +207,15 @@ footer p{margin:0;max-width:46em}
       </div>
     </div>
 
+    <section class="trailer" aria-label="Myriatale 소개 영상">
+      <div class="frame">
+        <video controls playsinline preload="metadata" poster="/Myriatale/video/poster.jpg">
+          <source src="/Myriatale/video/intro.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="cap"><span class="label">Trailer · 0:40</span><span class="label" data-i18n="tr_cap">소리를 켜고 보세요</span></div>
+    </section>
+
     <section id="name">
       <div class="sec-head"><div><div class="label">The name</div><h2 data-i18n-html="n_h">Myriatale은 <em>셀 수 없이 많은 이야기</em>라는 뜻입니다.</h2></div></div>
       <div class="name">
@@ -293,7 +308,7 @@ footer p{margin:0;max-width:46em}
   var EN={nav_name:"Name",nav_diff:"Why it's different",nav_how:"How to play",nav_worlds:"Worlds",
     h1:"Lie down. <span class=\"fierce\">Live another life.</span>",
     lede:"An interactive story game where your choices change the story. <b>Long-form stories written by an author, where AI writes on from any action you type, even ones not on the list.</b> Nothing to install. Start in your browser.",
-    play:"Play on the web",soon:"Coming soon",f1:"Worlds",f2:"Dice checks",f3:"Install",
+    play:"Play on the web",soon:"Coming soon",tr_cap:"Best with sound on",f1:"Worlds",f2:"Dice checks",f3:"Install",
     n_h:"Myriatale means <em>a myriad of tales.</em>",
     n1l:"Greek · myrias",n1:"Greek for ‘ten thousand’. Like the English word myriad, it means ‘too many to count’.",
     n2l:"English · tale",n2:"A story. One that someone tells, and that changes a little with whoever listens.",
