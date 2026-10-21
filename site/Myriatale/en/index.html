@@ -168,9 +168,15 @@ section{padding-block:clamp(64px,9vw,120px)}
 .end{border-top:1px solid var(--ink);padding-top:40px;display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:32px;align-items:end}
 .end h2{margin:12px 0 0;font-family:var(--f-display);font-size:clamp(30px,4.4vw,58px);line-height:1.15;text-wrap:balance}
 .end .ctas{margin-top:0}
-footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 40px;font-size:13px;color:var(--mute)}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 20px;font-size:13px;color:var(--mute)}
 footer a{text-decoration:none}
 footer p{margin:0;max-width:46em}
+/* 사업자 정보 (전자상거래법·결제 심사 필수 표기) */
+.biz{border-top:1px solid var(--hair);padding-block:24px 48px;font-size:12px;line-height:1.8;color:var(--mute);word-break:keep-all}
+.biz p{margin:0}
+.biz b{font-weight:600;color:var(--ink)}
+.biz span{display:inline-block;margin-right:14px}
+.biz a{color:inherit}
 
 @media (max-width:900px){
   .hero,.diff,.end{grid-template-columns:1fr}
@@ -355,6 +361,12 @@ footer p{margin:0;max-width:46em}
     <span><a href="/">← Lazy Gompany</a> · <a href="/Myriatale/refund/" data-i18n="refund">환불 정책</a></span>
     <p data-i18n="legal">바스커빌가의 개와 화롯가 이야기는 저작권이 끝난 원전만 사용합니다. 호르무즈의 겨울과 임계점은 실화를 바탕으로 하지만 등장인물은 모두 가상입니다.</p>
   </footer>
+  <div class="biz" lang="ko">
+    <p><b>레이지곰패니 (Lazy Gompany)</b></p>
+    <p><span>대표자 장동훈</span><span>사업자등록번호 594-34-01756</span><span>통신판매업 신고번호 {{MAILORDER}}</span></p>
+    <p><span>주소 서울특별시 동작구 장승배기로4길 9, 101동 1104호(상도동, 상도 더 샾 아파트)</span></p>
+    <p><span>전화 {{PHONE}}</span><span>이메일 <a href="mailto:hello@lazycompany.app">hello@lazycompany.app</a></span></p>
+  </div>
 </div>
 
 <script>

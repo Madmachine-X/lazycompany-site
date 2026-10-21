@@ -134,8 +134,14 @@ a.prod:hover .arrow{transform:translateX(6px);color:var(--klein)}
 .copy{font:500 13px var(--f-sans);border:0;border-radius:12px;background:var(--ink);color:var(--paper);padding:13px 16px;cursor:pointer}
 .copied{font-family:var(--f-mono);font-size:12px;color:var(--klein);min-height:1.4em;margin-top:8px}
 
-footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 40px;font-size:13px;color:var(--mute)}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 20px;font-size:13px;color:var(--mute)}
 footer .label{font-size:11px}
+/* 사업자 정보 (전자상거래법·결제 심사 필수 표기) */
+.biz{border-top:1px solid var(--hair);padding-block:24px 48px;font-size:12px;line-height:1.8;color:var(--mute);word-break:keep-all}
+.biz p{margin:0}
+.biz b{font-weight:600;color:var(--ink)}
+.biz span{display:inline-block;margin-right:14px}
+.biz a{color:inherit}
 
 @media (max-width:860px){
   .hero-foot,.engine,.paradox,.contact,.msaas{grid-template-columns:1fr}
@@ -318,6 +324,12 @@ footer .label{font-size:11px}
     <span>© 2026 Lazy Gompany</span>
     <span class="label" data-i18n="foot">Built with obsession. Used with a yawn.</span>
   </footer>
+  <div class="biz" lang="ko">
+    <p><b>레이지곰패니 (Lazy Gompany)</b></p>
+    <p><span>대표자 장동훈</span><span>사업자등록번호 594-34-01756</span><span>통신판매업 신고번호 {{MAILORDER}}</span></p>
+    <p><span>주소 서울특별시 동작구 장승배기로4길 9, 101동 1104호(상도동, 상도 더 샾 아파트)</span></p>
+    <p><span>전화 {{PHONE}}</span><span>이메일 <a href="mailto:hello@lazycompany.app">hello@lazycompany.app</a></span></p>
+  </div>
 </div>
 
 <script>
