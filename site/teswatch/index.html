@@ -15,9 +15,6 @@
 
 <title>Teswatch — 워치로 여는 테슬라</title>
 <meta name="description" content="구독료 없음, 계정 가입 불필요. Wear OS 워치에서 폰 없이 테슬라를 여는 키 앱, Teswatch.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0a0d12;
@@ -38,13 +35,13 @@
     margin:0;
     background:var(--bg);
     color:var(--ink);
-    font-family:"IBM Plex Sans KR","IBM Plex Sans",-apple-system,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
     word-break:keep-all;overflow-wrap:break-word;
   }
   h1,h2,h3,.disp{
-    font-family:"Archivo","IBM Plex Sans KR",sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
     letter-spacing:-0.01em;
     margin:0;
   }
@@ -61,13 +58,13 @@
     display:flex;align-items:center;justify-content:space-between;
     height:64px;
   }
-  .wordmark{font-family:"Archivo",sans-serif;font-weight:800;font-size:19px;letter-spacing:-0.02em;}
+  .wordmark{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;font-weight:800;font-size:19px;letter-spacing:-0.02em;}
   .langtoggle{
     display:flex;border:1px solid var(--surface-line);border-radius:999px;overflow:hidden;
   }
   .langtoggle button{
     appearance:none;border:0;background:transparent;color:var(--ink-dim);
-    font:500 13px/1 "IBM Plex Sans",sans-serif;padding:8px 16px;cursor:pointer;
+    font:500 13px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;padding:8px 16px;cursor:pointer;
   }
   .langtoggle button.active{background:var(--surface-line);color:var(--ink);}
 
@@ -129,7 +126,7 @@
   /* ---------- statement ---------- */
   .statement{border-top:1px solid var(--surface-line);border-bottom:1px solid var(--surface-line);padding:40px 0;}
   .statement p{
-    font-family:"Archivo",sans-serif;font-weight:700;
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;font-weight:700;
     font-size:clamp(20px,2.6vw,28px);text-align:center;max-width:720px;margin:0 auto;
   }
 
@@ -146,7 +143,7 @@
   }
   .tier:last-child{border-bottom:1px solid var(--surface-line);}
   .tier .num{
-    font-family:"Archivo",sans-serif;font-weight:800;font-size:28px;color:var(--ink-dim);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;font-weight:800;font-size:28px;color:var(--ink-dim);
   }
   .tier h3{font-size:19px;font-weight:700;}
   .tier .tag{
@@ -189,7 +186,7 @@
   .lg-ink{fill:currentColor} .lg-g{fill:#C07A3A} .lg-bear{fill:#C9894A} .lg-face{fill:#F6E3C3} .lg-line{stroke:currentColor}
   .brand .sep{width:1px;height:22px;background:var(--surface-line)}
   .navr{display:flex;align-items:center;gap:10px}
-  .home{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--surface-line);border-radius:999px;font:500 13px/1 "IBM Plex Sans KR","IBM Plex Sans",sans-serif;color:var(--ink-dim);text-decoration:none;white-space:nowrap}
+  .home{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--surface-line);border-radius:999px;font:500 13px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;color:var(--ink-dim);text-decoration:none;white-space:nowrap}
   .home:hover{color:var(--ink);border-color:var(--ink-dim)}
   @media (max-width:560px){
     header.nav .wrap{height:auto;padding-block:12px;flex-wrap:wrap;gap:10px}

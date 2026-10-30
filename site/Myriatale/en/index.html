@@ -20,23 +20,18 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="/fonts/Cafe24Dongdong.woff" as="font" type="font/woff" crossorigin>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"VideoGame","name":"Myriatale","url":"https://lazycompany.app/Myriatale/en/","inLanguage":["ko","en"],"genre":["Interactive fiction","Mystery","Fantasy","Thriller"],"gamePlatform":["Web browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Lazy Gompany","url":"https://lazycompany.app/"}}
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-@font-face{font-family:"Cafe24Dongdong";src:url("/fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
 /* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 게임다운 부분은 가운데 '게임 화면' 패널 하나에만: 게임과 같은 심야 남색 + 소설체 본문. */
 :root{
   --paper:#F6F1EA; --ink:#2B1A11; --mute:#7A6355; --hair:rgba(74,42,26,.16); --klein:#B26A2E;
   --night:#050B12; --night-2:#0B1823; --night-fg:#DCEAF4; --night-dim:#8FA6B6; --night-line:rgba(112,221,255,.18); --cyan:#70DDFF;
-  --f-display:"Cafe24Dongdong","IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif;
-  --f-sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  --f-novel:"Nanum Myeongjo","Noto Serif KR",Georgia,serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --f-display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
+  --f-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
+  --f-novel:"AppleMyungjo","Batang","바탕","Noto Serif KR",Georgia,serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){--paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14); --klein:#E29A57; --night:#03070C; --night-2:#0A141D; color-scheme:dark}
@@ -51,7 +46,7 @@ img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--klein);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px)}
 .label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-h1,h2,h3{font-weight:400}
+h1,h2,h3{font-weight:700}
 
 /* header */
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:26px;flex-wrap:wrap}
@@ -71,8 +66,8 @@ h1,h2,h3{font-weight:400}
 .crumb{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .crumb a{text-decoration:none}
 .crumb a:hover{color:var(--ink)}
-h1{margin:22px 0 0;letter-spacing:-.01em;line-height:1.18;font-size:clamp(40px,6.4vw,84px);text-wrap:balance}
-h1>span{display:block;font-family:var(--f-display)}
+h1{margin:22px 0 0;letter-spacing:-.03em;line-height:1.18;font-size:clamp(32px,4.8vw,62px);text-wrap:balance}
+h1>span{display:block;font-family:var(--f-display);font-weight:700}
 h1 .fierce{color:var(--klein)}
 .lede{margin:28px 0 0;font-size:clamp(16px,1.5vw,18px);color:var(--mute);max-width:32em}
 .lede b{color:var(--ink);font-weight:600}
@@ -84,7 +79,7 @@ h1 .fierce{color:var(--klein)}
 .btn.off small{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--hair);border-radius:999px;padding:2px 8px}
 .facts{display:flex;gap:36px;font-variant-numeric:tabular-nums;flex-wrap:wrap;margin-top:40px}
 .facts div{display:grid;gap:4px}
-.facts strong{font-family:var(--f-display);font-size:34px;font-weight:400;line-height:1}
+.facts strong{font-family:var(--f-display);font-size:34px;font-weight:700;line-height:1}
 .covers{position:relative;aspect-ratio:1/1;min-width:0}
 .covers img{position:absolute;width:62%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;box-shadow:0 30px 60px -30px rgba(5,11,18,.55)}
 .covers img:first-child{left:0;top:0;transform:rotate(-3deg)}
@@ -92,7 +87,7 @@ h1 .fierce{color:var(--klein)}
 
 section{padding-block:clamp(64px,9vw,120px)}
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
-.sec-head h2,.h2{margin:10px 0 0;font-family:var(--f-display);font-size:clamp(28px,3.6vw,48px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.sec-head h2,.h2{margin:10px 0 0;font-family:var(--f-display);font-size:clamp(28px,3.6vw,48px);line-height:1.2;letter-spacing:-.01em;text-wrap:balance;font-weight:700}
 .h2 em,.sec-head h2 em{font-style:normal;color:var(--klein)}
 .sec-note{max-width:30em;color:var(--mute);margin:0}
 
@@ -104,7 +99,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 
 /* name: 단어 풀이 */
 .name{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.2fr);gap:clamp(12px,2.4vw,32px);align-items:start;border-top:1px solid var(--ink);padding-top:32px}
-.part strong{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(36px,4.6vw,60px);line-height:1}
+.part strong{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(36px,4.6vw,60px);line-height:1}
 .part .label{display:block;margin:12px 0 8px}
 .part p{margin:0;color:var(--mute);font-size:15px}
 .part.sum strong{color:var(--klein)}
@@ -116,7 +111,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .why{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
 .why li{padding-block:22px;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px}
 .why .n{font-family:var(--f-mono);font-size:12px;color:var(--klein);padding-top:6px}
-.why strong{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.3;margin-bottom:6px}
+.why strong{display:block;font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1.3;margin-bottom:6px}
 .why p{margin:0;color:var(--mute);font-size:15px}
 
 .screen{background:var(--night);color:var(--night-fg);border-radius:20px;padding:clamp(20px,3vw,32px);border:1px solid var(--night-line);position:sticky;top:24px}
@@ -139,7 +134,7 @@ section{padding-block:clamp(64px,9vw,120px)}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink)}
 .steps div{padding:24px 20px 24px 0;min-width:0}
 .steps div+div{padding-left:20px;border-left:1px solid var(--hair)}
-.steps strong{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;margin:10px 0 8px}
+.steps strong{display:block;font-family:var(--f-display);font-weight:700;font-size:24px;margin:10px 0 8px}
 .steps p{margin:0;color:var(--mute);font-size:15px}
 .modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
 .mode{border:1px solid var(--hair);border-radius:14px;padding:20px 22px;min-width:0}
@@ -163,10 +158,10 @@ section{padding-block:clamp(64px,9vw,120px)}
 .price{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink)}
 .price div{padding:22px 20px 22px 0;min-width:0}
 .price div+div{padding-left:20px;border-left:1px solid var(--hair)}
-.price strong{display:block;font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.2;margin:8px 0 6px}
+.price strong{display:block;font-family:var(--f-display);font-weight:700;font-size:30px;line-height:1.2;margin:8px 0 6px}
 .price p{margin:0;color:var(--mute);font-size:15px}
 .end{border-top:1px solid var(--ink);padding-top:40px;display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:32px;align-items:end}
-.end h2{margin:12px 0 0;font-family:var(--f-display);font-size:clamp(30px,4.4vw,58px);line-height:1.15;text-wrap:balance}
+.end h2{margin:12px 0 0;font-family:var(--f-display);font-size:clamp(30px,4.4vw,58px);line-height:1.15;text-wrap:balance;font-weight:700}
 .end .ctas{margin-top:0}
 footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:56px 20px;font-size:13px;color:var(--mute)}
 footer a{text-decoration:none}
