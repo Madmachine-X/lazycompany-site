@@ -1,9 +1,5 @@
 <title>Lazy Gompany</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-@font-face{font-family:"Cafe24Dongdong";src:url("fonts/Cafe24Dongdong.woff") format("woff");font-weight:normal;font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+2018-2019,U+201C-201D,U+2026,U+3131-3163,U+AC00-D7A3}
 /* Layout: 위는 고요한 표면(게으름), 바로 아래는 쉬지 않고 흐르는 작업 로그(집착). 그 대비가 이 회사의 정체성. 나머지는 여백 많은 에디토리얼 목록. */
 :root{
   --paper:#F6F1EA;     /* 따뜻한 종이색 바탕 (곰 로고 톤) */
@@ -17,11 +13,11 @@
   --engine-acc:#E29A57;
   --rage:#C2452D;       /* RageGom 전용 */
   --logo-ink:#4A2A1A; --logo-g:#C07A3A; --logo-bear:#C9894A; --logo-face:#F6E3C3; --logo-line:#111111;
-  --f-display:"Cafe24Dongdong","IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif; /* 카페24 동동: 제목용 */
+  --f-display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif; /* 기본 글꼴: 내려받기 없음 */
   --f-serif-en:var(--f-display);
   --f-serif:var(--f-display);
-  --f-sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --f-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
+  --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -50,22 +46,34 @@ a{color:inherit}
 .top nav{display:flex;gap:24px;font-size:14px}
 .top nav a{text-decoration:none;color:var(--mute)}
 .top nav a:hover{color:var(--ink)}
+.top nav{align-items:center}
+.dd{position:relative}
+.dd-caret{font-size:12px;display:inline-block;transition:transform .2s}
+.dd-menu{position:absolute;top:100%;right:-12px;z-index:30;list-style:none;margin:0;padding:8px;min-width:280px;background:var(--paper);border:1px solid var(--hair);border-radius:14px;box-shadow:0 18px 40px -16px rgba(43,26,17,.35);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s,transform .18s,visibility .18s}
+.dd::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px}
+.dd-menu{margin-top:10px}
+.dd:hover .dd-menu,.dd:focus-within .dd-menu{opacity:1;visibility:visible;transform:none}
+.dd:hover .dd-caret,.dd:focus-within .dd-caret{transform:rotate(180deg)}
+.top nav .dd-menu a{display:grid;gap:2px;padding:10px 12px;border-radius:10px;color:var(--ink)}
+.top nav .dd-menu a:hover,.top nav .dd-menu a:focus-visible{background:var(--hair)}
+.dd-menu b{font-weight:600;font-size:15px}
+.dd-menu span{font-size:12.5px;color:var(--mute);line-height:1.4}
 .lang{display:inline-flex;border:1px solid var(--hair);border-radius:999px;padding:3px}
 .lang button{font:500 12px/1 var(--f-mono);letter-spacing:.06em;border:0;background:transparent;color:var(--mute);padding:7px 11px;border-radius:999px;cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 
 /* hero */
 .hero{padding-block:clamp(56px,10vw,128px) clamp(40px,6vw,72px)}
-h1{margin:22px 0 0;font-weight:400;letter-spacing:-.01em;line-height:1.18;font-size:clamp(40px,7.2vw,96px);text-wrap:balance}
-h1 .calm{display:block;font-family:var(--f-serif);font-weight:400}
-h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--klein)}
+h1{margin:22px 0 0;font-weight:700;letter-spacing:-.03em;line-height:1.18;font-size:clamp(40px,7.2vw,96px);text-wrap:balance}
+h1 .calm{display:block;font-family:var(--f-serif);font-weight:700}
+h1 .fierce{display:block;font-family:var(--f-serif);font-weight:700;color:var(--klein)}
 :lang(en) h1 .calm,:lang(en) h1 .fierce{font-family:var(--f-serif-en)}
 .hero-foot{display:grid;grid-template-columns:minmax(0,34em) auto;justify-content:space-between;align-items:end;gap:32px;margin-top:clamp(32px,5vw,56px)}
 .lede{margin:0;font-size:clamp(16px,1.5vw,18px);color:var(--mute)}
 .lede b{color:var(--ink);font-weight:600}
 .facts{display:flex;gap:36px;font-variant-numeric:tabular-nums}
 .facts div{display:grid;gap:2px}
-.facts strong{font-family:var(--f-serif-en);font-size:34px;font-weight:400;line-height:1}
+.facts strong{font-family:var(--f-serif-en);font-size:34px;font-weight:700;line-height:1}
 
 /* engine: 표면 vs 작업 로그 */
 .engine{background:var(--engine);color:var(--engine-fg);border-radius:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);overflow:hidden}
@@ -93,7 +101,7 @@ h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--
 .bears{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(12px,2.4vw,28px);align-items:stretch}
 .bear{border:1px solid var(--hair);border-radius:20px;padding:clamp(24px,3vw,36px);display:grid;gap:14px;align-content:start;background:var(--paper)}
 .bear-top{display:grid;gap:18px}
-.bear h3{margin:6px 0 0;font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.2vw,42px);line-height:1.05}
+.bear h3{margin:6px 0 0;font-family:var(--f-display);font-weight:700;font-size:clamp(30px,3.2vw,42px);line-height:1.05}
 .bear h3 small{display:block;margin-top:6px;font-family:var(--f-sans);font-size:14px;color:var(--mute)}
 .bear .want{margin:4px 0 0;font-family:var(--f-display);font-size:clamp(20px,2vw,26px);line-height:1.3}
 .bear.lazy .want{color:var(--klein)}
@@ -102,7 +110,7 @@ h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--
 .bear .tags{margin-top:4px}
 .plus{align-self:center;font-family:var(--f-mono);font-size:28px;color:var(--mute)}
 .bears-cap{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;text-align:center}
-.bears-cap b{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,2vw,26px);color:var(--ink)}
+.bears-cap b{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2vw,26px);color:var(--ink)}
 .bear-art{border-radius:14px;padding:20px;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:#F1E6D8}
 .bear.rage .bear-art{background:#F3E2DC}
 .bear-img{display:block;width:100%;height:100%;object-fit:contain}
@@ -110,7 +118,7 @@ h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--
 /* paradox */
 section{padding-block:clamp(72px,10vw,136px)}
 .paradox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start}
-.paradox h2{margin:14px 0 0;font-family:var(--f-serif);font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
+.paradox h2{margin:14px 0 0;font-family:var(--f-serif);font-weight:700;font-size:clamp(30px,4vw,52px);line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
 :lang(en) .paradox h2{font-family:var(--f-serif-en)}
 .paradox h2 em{font-style:normal;color:var(--klein)}
 .steps{display:grid;gap:0;border-top:1px solid var(--hair)}
@@ -120,7 +128,7 @@ section{padding-block:clamp(72px,10vw,136px)}
 
 /* micro saas 설명 */
 .msaas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(32px,6vw,96px);align-items:start;border-top:1px solid var(--hair);padding-top:40px}
-.msaas h2{margin:12px 0 0;font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3.4vw,44px);line-height:1.2;text-wrap:balance}
+.msaas h2{margin:12px 0 0;font-family:var(--f-display);font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1.2;text-wrap:balance}
 .msaas p{margin:0 0 16px;color:var(--mute);max-width:36em}
 .msaas p b{color:var(--ink);font-weight:600}
 .tags{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
@@ -128,13 +136,13 @@ section{padding-block:clamp(72px,10vw,136px)}
 
 /* products */
 .sec-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
-.sec-head h2{margin:10px 0 0;font-family:var(--f-serif);font-weight:400;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.02em}
+.sec-head h2{margin:10px 0 0;font-family:var(--f-serif);font-weight:700;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.02em}
 :lang(en) .sec-head h2{font-family:var(--f-serif-en)}
 .products{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
 .products li{border-bottom:1px solid var(--hair)}
 .prod{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) 8.5em 32px;gap:24px;align-items:center;padding-block:28px;text-decoration:none;transition:padding .35s ease}
 a.prod:hover{padding-inline:12px}
-.prod h3{margin:0;font-family:var(--f-serif-en);font-weight:400;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.01em}
+.prod h3{margin:0;font-family:var(--f-serif-en);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.01em}
 .prod h3 .ko{font-family:var(--f-serif)}
 .prod p{margin:0;color:var(--mute)}
 .badge{justify-self:start;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
@@ -147,7 +155,7 @@ a.prod:hover .arrow{transform:translateX(6px);color:var(--klein)}
 
 /* contact */
 .contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:end;border-top:1px solid var(--ink);padding-top:40px}
-.contact h2{margin:12px 0 0;font-family:var(--f-serif);font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
+.contact h2{margin:12px 0 0;font-family:var(--f-serif);font-weight:700;font-size:clamp(30px,4.4vw,58px);line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
 :lang(en) .contact h2{font-family:var(--f-serif-en)}
 .contact p{margin:0 0 18px;color:var(--mute)}
 .mailrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -215,8 +223,15 @@ footer .label{font-size:11px}
 </svg></a>
     <div class="top-right">
       <nav aria-label="menu">
-        <a href="#bears" data-i18n="nav_why">두 곰</a>
-        <a href="#products" data-i18n="nav_products">서비스</a>
+        <a href="#bears" data-i18n="nav_why">Lazy or Rage</a>
+        <div class="dd">
+          <a href="#products" class="dd-btn" aria-haspopup="true"><span data-i18n="nav_products">서비스</span> <span class="dd-caret" aria-hidden="true">▾</span></a>
+          <ul class="dd-menu">
+            <li><a href="/teswatch"><b>Teswatch</b><span data-i18n="tw">폰 없이, 손목에서 바로 테슬라를.</span></a></li>
+            <li><a href="/Myriatale/" id="myrNav"><b>Myriatale</b><span data-i18n="sg">선택이 이야기를 바꾸는 인터랙티브 스토리 게임.</span></a></li>
+            <li><a href="/crm/" id="crmNav"><b data-i18n="crm_nav">CRM 빌딩</b><span data-i18n="crm">노션이나 Coda 위에, 영업 관리판을 통째로.</span></a></li>
+          </ul>
+        </div>
         <a href="#contact" data-i18n="nav_contact">연락</a>
       </nav>
       <div class="lang" role="group" aria-label="Language">
@@ -377,7 +392,7 @@ footer .label{font-size:11px}
 <script>
 (function(){
   var T={
-    ko:{b1a:"엎드려 졸면서 앞발로 빨간 버튼을 누르는 게으른곰",b2a:"안경을 쓰고 말없이 노려보는 화난곰",b1l:"Likes",b1n:"게으른곰",b1w:"불편함을 해결하는 딸깍툴을 좋아합니다.",b1s:"\"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데.\"",b1t:["딸깍 한 번", "자동화", "설정 없이 바로"],b2l:"Hates",b2n:"화난곰",b2w:"불필요한 월결제 앱을 싫어합니다.",b2s:"\"한 달에 두 번 쓰는데 매달 결제라고?\"",b2t:["쓸데없는 구독료", "안 쓰는 기능", "억지 회원가입"],bc_l:"Needs + Needs =",bc:"개발 시작",nav_why:"두 곰",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
+    ko:{b1a:"엎드려 졸면서 앞발로 빨간 버튼을 누르는 게으른곰",b2a:"안경을 쓰고 말없이 노려보는 화난곰",b1l:"Likes",b1n:"게으른곰",b1w:"불편함을 해결하는 딸깍툴을 좋아합니다.",b1s:"\"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데.\"",b1t:["딸깍 한 번", "자동화", "설정 없이 바로"],b2l:"Hates",b2n:"화난곰",b2w:"불필요한 월결제 앱을 싫어합니다.",b2s:"\"한 달에 두 번 쓰는데 매달 결제라고?\"",b2t:["쓸데없는 구독료", "안 쓰는 기능", "억지 회원가입"],bc_l:"Needs + Needs =",bc:"개발 시작",nav_why:"Lazy or Rage",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
       h1a:"lazyGom은 딸깍을 좋아하고,",h1b:"RageGom은 월결제를 싫어합니다.",
       lede:"레이지곰패니의 모든 서비스는 두 곰의 Needs에서 시작합니다. 귀찮은 일을 <b>딸깍 한 번에</b> 끝내고 싶은 게으른곰, 쓰지도 않는 기능에 <b>매달 돈 내기 싫은</b> 화난곰. 두 곰이 함께 고개를 끄덕여야 만들기 시작합니다.",
       f1:"Bears",f2:"Click",f3:"Pointless fees",
@@ -391,10 +406,10 @@ footer .label{font-size:11px}
       m_tags:["마이크로 SaaS","1인 SaaS","업무 자동화 툴","노션 CRM","Coda CRM","생산성 서비스","작은 구독형 소프트웨어"],
       p_lbl:"Products",p_h:"두 곰을 달랜 서비스",p_note:"자세한 이야기는 각 서비스 안에서",
       tw:"폰 없이, 손목에서 바로 테슬라를.",sg_name:"Myriatale",sg:"선택이 이야기를 바꾸는 인터랙티브 스토리 게임.",
-      crm_name:"CRM <span class=\"ko\">빌딩</span>",crm:"노션이나 Coda 위에, 영업 관리판을 통째로.",live:"Live",soon:"Coming soon",crm_badge:"상담 가능",
+      crm_name:"CRM <span class=\"ko\">빌딩</span>",crm_nav:"CRM 빌딩",crm:"노션이나 Coda 위에, 영업 관리판을 통째로.",live:"Live",soon:"Coming soon",crm_badge:"상담 가능",
       c_lbl:"Feed the bears",c_h:"두 곰을 화나게 하는 일을 알려주세요.",c_p:"귀찮은 일이든, 아까운 월결제든 한 줄이면 충분합니다. 다음 개발의 시작이 될지도 모릅니다.",
       copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",foot:"Made by lazyGom & RageGom."},
-    en:{b1a:"A lazy bear lying flat, pressing a red button with one paw",b2a:"An angry bear in glasses, glaring in silence",b1l:"Likes",b1n:"the lazy bear",b1w:"Loves one-click tools that fix annoyances.",b1s:"\"Do I have to do this by hand every time? One click would be nice.\"",b1t:["One click", "Automation", "No setup"],b2l:"Hates",b2n:"the angry bear",b2w:"Hates monthly fees for apps that don't need them.",b2s:"\"I use it twice a month and it bills me monthly?\"",b2t:["Pointless subscriptions", "Unused features", "Forced sign-ups"],bc_l:"Needs + Needs =",bc:"Let's build",nav_why:"The bears",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
+    en:{b1a:"A lazy bear lying flat, pressing a red button with one paw",b2a:"An angry bear in glasses, glaring in silence",b1l:"Likes",b1n:"the lazy bear",b1w:"Loves one-click tools that fix annoyances.",b1s:"\"Do I have to do this by hand every time? One click would be nice.\"",b1t:["One click", "Automation", "No setup"],b2l:"Hates",b2n:"the angry bear",b2w:"Hates monthly fees for apps that don't need them.",b2s:"\"I use it twice a month and it bills me monthly?\"",b2t:["Pointless subscriptions", "Unused features", "Forced sign-ups"],bc_l:"Needs + Needs =",bc:"Let's build",nav_why:"Lazy or Rage",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
       h1a:"lazyGom loves one-click tools.",h1b:"RageGom hates pointless subscriptions.",
       lede:"Every Lazy Gompany product starts from the needs of two bears. lazyGom wants annoying chores <b>gone in one click</b>. RageGom refuses to <b>pay every month</b> for features nobody uses. We only start building when both bears nod.",
       f1:"Bears",f2:"Click",f3:"Pointless fees",
@@ -408,7 +423,7 @@ footer .label{font-size:11px}
       m_tags:["Micro SaaS","Indie SaaS","Workflow automation","Notion CRM","Coda CRM","Productivity tools","Small subscription software"],
       p_lbl:"Products",p_h:"Products that calmed the bears",p_note:"The full story lives inside each product",
       tw:"Your Tesla, from your wrist. No phone.",sg_name:"Myriatale",sg:"An interactive story game where your choices change the story.",
-      crm_name:"CRM Building",crm:"A full sales pipeline, built inside Notion or Coda.",live:"Live",soon:"Coming soon",crm_badge:"Now booking",
+      crm_name:"CRM Building",crm_nav:"CRM Building",crm:"A full sales pipeline, built inside Notion or Coda.",live:"Live",soon:"Coming soon",crm_badge:"Now booking",
       c_lbl:"Feed the bears",c_h:"Tell us what makes the bears angry.",c_p:"A tedious chore or a subscription you resent, one line is enough. It might start our next build.",
       copy:"Copy address",copied:"Copied.",copyfail:"Address selected. Copy it from there.",foot:"Made by lazyGom & RageGom."}
   };
@@ -435,6 +450,8 @@ footer .label{font-size:11px}
     renderLog(lang);
     var cl=document.getElementById("crmLink");if(cl)cl.href=lang==="en"?"/crm/en/":"/crm/";
     var ml=document.getElementById("myrLink");if(ml)ml.href=lang==="en"?"/Myriatale/en/":"/Myriatale/";
+    var cn=document.getElementById("crmNav");if(cn)cn.href=lang==="en"?"/crm/en/":"/crm/";
+    var mn=document.getElementById("myrNav");if(mn)mn.href=lang==="en"?"/Myriatale/en/":"/Myriatale/";
     try{localStorage.setItem("lc-lang",lang);}catch(e){}
   }
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
