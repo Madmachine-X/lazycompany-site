@@ -103,20 +103,9 @@ h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--
 .plus{align-self:center;font-family:var(--f-mono);font-size:28px;color:var(--mute)}
 .bears-cap{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;text-align:center}
 .bears-cap b{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,2vw,26px);color:var(--ink)}
-.bo>*{stroke:#1A120D;stroke-width:3.4;stroke-linejoin:round;stroke-linecap:round}
-.bf{fill:#C9894A}.bf2{fill:#B8622F}.bm{fill:#F6E3C3}.bi{fill:#1A120D;stroke:none}.bch{fill:#E8977A;opacity:.55}.bch2{fill:#E0533A;opacity:.6}
-.bs{fill:none;stroke:#1A120D;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
-.bsh{fill:var(--ink);opacity:.08}
-.bbtn{fill:#E29A57;stroke:#1A120D;stroke-width:3.2}
-.bclick{fill:none;stroke:var(--klein);stroke-width:3.4;stroke-linecap:round}
-.bzz{stroke:var(--ink)}
-.bsteam{fill:none;stroke:var(--mute);stroke-width:3;stroke-linecap:round;opacity:.7}
-.bx{fill:none;stroke:var(--rage);stroke-width:3.6;stroke-linecap:round}
-.brc{fill:#FFFDF8}.brl{stroke:#2B1A11;stroke-width:1;stroke-dasharray:2 2;opacity:.5}.brt{font:600 8.5px var(--f-mono);fill:#2B1A11}.brr{fill:#C2452D;font-size:11px;font-weight:700}
-.bxx{stroke:var(--rage);stroke-width:4;stroke-linecap:round;opacity:.85}
-.bear-art{border-radius:14px;padding:18px 12px 10px;display:flex;justify-content:center;background:rgba(201,137,74,.10)}
-.bear.rage .bear-art{background:rgba(194,69,45,.08)}
-.bear-svg{width:min(100%,300px);height:auto;display:block;overflow:visible}
+.bear-art{border-radius:14px;padding:20px;display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;background:#F1E6D8}
+.bear.rage .bear-art{background:#F3E2DC}
+.bear-img{display:block;width:100%;height:100%;object-fit:contain}
 
 /* paradox */
 section{padding-block:clamp(72px,10vw,136px)}
@@ -258,51 +247,14 @@ footer .label{font-size:11px}
     <section id="bears" aria-label="두 곰">
       <div class="bears">
         <article class="bear lazy">
-          <div class="bear-top"><div class="bear-art"><svg class="bear-svg" viewBox="0 0 240 150" aria-hidden="true">
-<ellipse cx="122" cy="139" rx="104" ry="7" class="bsh"/>
-<g class="bo">
-<circle cx="72" cy="52" r="11" class="bf"/><circle cx="118" cy="50" r="11" class="bf"/>
-<path class="bf" d="M18 134C22 112 46 96 68 92C86 70 118 66 134 86C158 88 176 104 180 124C182 133 178 137 170 137L28 137C19 137 16 136 18 134Z"/>
-<circle cx="95" cy="80" r="31" class="bf"/>
-
-<g><ellipse cx="204" cy="132" rx="20" ry="6.5" class="bi"/><path d="M187 131v-8a17 6.5 0 0 1 34 0v8" class="bbtn"/><ellipse cx="204" cy="123" rx="17" ry="6.5" class="bbtn"/></g>
-<path class="bf" d="M128 120C142 108 168 104 192 110C204 113 206 120 196 122L140 127C130 128 125 124 128 120Z"/>
-</g>
-<circle cx="72" cy="52" r="5" class="bm"/><circle cx="118" cy="50" r="5" class="bm"/>
-<ellipse cx="95" cy="91" rx="16" ry="12" class="bm"/>
-<ellipse cx="74" cy="90" rx="5" ry="3" class="bch"/><ellipse cx="116" cy="90" rx="5" ry="3" class="bch"/>
-<g class="bs"><path d="M70 77h11M109 77h11"/><ellipse cx="95" cy="85" rx="4.5" ry="3.2" class="bi"/><circle cx="95" cy="96" r="3"/><path d="M186 111v5M193 111v5"/></g>
-<g class="bclick"><path d="M222 108l7-6M226 119h9M214 99l2-9"/></g>
-<g class="bs bzz"><path d="M134 34h10l-10 10h10M152 18h7l-7 7h7"/></g>
-</svg></div><div><span class="label" data-i18n="b1l">Likes</span><h3>lazyGom<small data-i18n="b1n">게으른곰</small></h3></div></div>
+          <div class="bear-top"><div class="bear-art"><img class="bear-img" src="/img/lazygom.svg" width="350" height="130" alt="엎드려 졸면서 앞발로 빨간 버튼을 누르는 게으른곰" data-i18n-alt="b1a"></div><div><span class="label" data-i18n="b1l">Likes</span><h3>lazyGom<small data-i18n="b1n">게으른곰</small></h3></div></div>
           <p class="want" data-i18n="b1w">불편함을 해결하는 딸깍툴을 좋아합니다.</p>
           <p class="say" data-i18n="b1s">"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데."</p>
           <ul class="tags" data-i18n-list="b1t"><li>딸깍 한 번</li><li>자동화</li><li>설정 없이 바로</li></ul>
         </article>
         <div class="plus" aria-hidden="true">+</div>
         <article class="bear rage">
-          <div class="bear-top"><div class="bear-art"><svg class="bear-svg" viewBox="0 0 240 150" aria-hidden="true">
-<ellipse cx="120" cy="140" rx="70" ry="7" class="bsh"/>
-<g class="bsteam"><path d="M84 24q-5-6 0-12t0-12M156 24q5-6 0-12t0-12"/></g>
-<g class="bo">
-<circle cx="94" cy="36" r="11" class="bf2"/><circle cx="146" cy="36" r="11" class="bf2"/>
-<path class="bf2" d="M80 138C70 112 80 88 120 86C160 88 170 112 160 138Z"/>
-<ellipse cx="100" cy="138" rx="15" ry="7" class="bf2"/><ellipse cx="140" cy="138" rx="15" ry="7" class="bf2"/>
-<path class="bf2" d="M154 100C168 92 170 80 168 70L182 68C186 86 178 102 162 112Z"/>
-<circle cx="175" cy="64" r="11" class="bf2"/>
-<circle cx="120" cy="62" r="33" class="bf2"/>
-<g transform="rotate(-10 58 92) translate(-12 -6)"><path class="brc" d="M30 62h46v52l-5.75 4-5.75-4-5.75 4-5.75-4-5.75 4-5.75-4-5.75 4-5.75-4z"/></g>
-<path class="bf2" d="M84 108C74 108 70 100 74 94C80 88 90 92 92 100Z"/>
-</g>
-<g transform="rotate(-10 58 92) translate(-12 -6)" class="brt"><text x="35" y="75">구독료</text><path d="M35 80h36" class="brl"/><text x="35" y="93" class="brr">₩9,900</text><text x="35" y="106">매월 결제</text></g>
-<circle cx="94" cy="36" r="5" class="bm"/><circle cx="146" cy="36" r="5" class="bm"/>
-<ellipse cx="120" cy="116" rx="20" ry="15" class="bm"/>
-<ellipse cx="120" cy="76" rx="15" ry="11" class="bm"/>
-<ellipse cx="99" cy="76" rx="5" ry="3" class="bch2"/><ellipse cx="141" cy="76" rx="5" ry="3" class="bch2"/>
-<g class="bs"><path d="M97 50l15 7M143 50l-15 7" style="stroke-width:4.6"/><ellipse cx="120" cy="70" rx="5" ry="3.5" class="bi"/><path d="M111 85q9-7 18 0"/></g>
-<circle cx="107" cy="63" r="3.6" class="bi"/><circle cx="133" cy="63" r="3.6" class="bi"/>
-<g class="bx"><path d="M188 24q7 0 7-7M212 24q-7 0-7-7M188 38q7 0 7 7M212 38q-7 0-7 7"/></g>
-</svg></div><div><span class="label" data-i18n="b2l">Hates</span><h3>RageGom<small data-i18n="b2n">화난곰</small></h3></div></div>
+          <div class="bear-top"><div class="bear-art"><img class="bear-img" src="/img/ragegom.svg" width="294" height="204" alt="안경을 쓰고 말없이 노려보는 화난곰" data-i18n-alt="b2a"></div><div><span class="label" data-i18n="b2l">Hates</span><h3>RageGom<small data-i18n="b2n">화난곰</small></h3></div></div>
           <p class="want" data-i18n="b2w">불필요한 월결제 앱을 싫어합니다.</p>
           <p class="say" data-i18n="b2s">"한 달에 두 번 쓰는데 매달 결제라고?"</p>
           <ul class="tags" data-i18n-list="b2t"><li>쓸데없는 구독료</li><li>안 쓰는 기능</li><li>억지 회원가입</li></ul>
@@ -425,7 +377,7 @@ footer .label{font-size:11px}
 <script>
 (function(){
   var T={
-    ko:{b1l:"Likes",b1n:"게으른곰",b1w:"불편함을 해결하는 딸깍툴을 좋아합니다.",b1s:"\"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데.\"",b1t:["딸깍 한 번", "자동화", "설정 없이 바로"],b2l:"Hates",b2n:"화난곰",b2w:"불필요한 월결제 앱을 싫어합니다.",b2s:"\"한 달에 두 번 쓰는데 매달 결제라고?\"",b2t:["쓸데없는 구독료", "안 쓰는 기능", "억지 회원가입"],bc_l:"Needs + Needs =",bc:"개발 시작",nav_why:"두 곰",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
+    ko:{b1a:"엎드려 졸면서 앞발로 빨간 버튼을 누르는 게으른곰",b2a:"안경을 쓰고 말없이 노려보는 화난곰",b1l:"Likes",b1n:"게으른곰",b1w:"불편함을 해결하는 딸깍툴을 좋아합니다.",b1s:"\"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데.\"",b1t:["딸깍 한 번", "자동화", "설정 없이 바로"],b2l:"Hates",b2n:"화난곰",b2w:"불필요한 월결제 앱을 싫어합니다.",b2s:"\"한 달에 두 번 쓰는데 매달 결제라고?\"",b2t:["쓸데없는 구독료", "안 쓰는 기능", "억지 회원가입"],bc_l:"Needs + Needs =",bc:"개발 시작",nav_why:"두 곰",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
       h1a:"lazyGom은 딸깍을 좋아하고,",h1b:"RageGom은 월결제를 싫어합니다.",
       lede:"레이지곰패니의 모든 서비스는 두 곰의 Needs에서 시작합니다. 귀찮은 일을 <b>딸깍 한 번에</b> 끝내고 싶은 게으른곰, 쓰지도 않는 기능에 <b>매달 돈 내기 싫은</b> 화난곰. 두 곰이 함께 고개를 끄덕여야 만들기 시작합니다.",
       f1:"Bears",f2:"Click",f3:"Pointless fees",
@@ -442,7 +394,7 @@ footer .label{font-size:11px}
       crm_name:"CRM <span class=\"ko\">빌딩</span>",crm:"노션이나 Coda 위에, 영업 관리판을 통째로.",live:"Live",soon:"Coming soon",crm_badge:"상담 가능",
       c_lbl:"Feed the bears",c_h:"두 곰을 화나게 하는 일을 알려주세요.",c_p:"귀찮은 일이든, 아까운 월결제든 한 줄이면 충분합니다. 다음 개발의 시작이 될지도 모릅니다.",
       copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",foot:"Made by lazyGom & RageGom."},
-    en:{b1l:"Likes",b1n:"the lazy bear",b1w:"Loves one-click tools that fix annoyances.",b1s:"\"Do I have to do this by hand every time? One click would be nice.\"",b1t:["One click", "Automation", "No setup"],b2l:"Hates",b2n:"the angry bear",b2w:"Hates monthly fees for apps that don't need them.",b2s:"\"I use it twice a month and it bills me monthly?\"",b2t:["Pointless subscriptions", "Unused features", "Forced sign-ups"],bc_l:"Needs + Needs =",bc:"Let's build",nav_why:"The bears",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
+    en:{b1a:"A lazy bear lying flat, pressing a red button with one paw",b2a:"An angry bear in glasses, glaring in silence",b1l:"Likes",b1n:"the lazy bear",b1w:"Loves one-click tools that fix annoyances.",b1s:"\"Do I have to do this by hand every time? One click would be nice.\"",b1t:["One click", "Automation", "No setup"],b2l:"Hates",b2n:"the angry bear",b2w:"Hates monthly fees for apps that don't need them.",b2s:"\"I use it twice a month and it bills me monthly?\"",b2t:["Pointless subscriptions", "Unused features", "Forced sign-ups"],bc_l:"Needs + Needs =",bc:"Let's build",nav_why:"The bears",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
       h1a:"lazyGom loves one-click tools.",h1b:"RageGom hates pointless subscriptions.",
       lede:"Every Lazy Gompany product starts from the needs of two bears. lazyGom wants annoying chores <b>gone in one click</b>. RageGom refuses to <b>pay every month</b> for features nobody uses. We only start building when both bears nod.",
       f1:"Bears",f2:"Click",f3:"Pointless fees",
@@ -477,6 +429,7 @@ footer .label{font-size:11px}
     document.documentElement.lang=lang;
     document.querySelectorAll("[data-i18n]").forEach(function(el){var k=el.getAttribute("data-i18n");if(d[k]!==undefined&&d[k]!=="")el.textContent=d[k];});
     document.querySelectorAll("[data-i18n-html]").forEach(function(el){var k=el.getAttribute("data-i18n-html");if(d[k]!==undefined)el.innerHTML=d[k];});
+    document.querySelectorAll("[data-i18n-alt]").forEach(function(el){var k=el.getAttribute("data-i18n-alt");if(d[k])el.alt=d[k];});
     document.querySelectorAll("[data-i18n-list]").forEach(function(el){var a=d[el.getAttribute("data-i18n-list")];if(a)el.innerHTML=a.map(function(x){return "<li>"+x+"</li>";}).join("");});
     document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===lang?"true":"false");});
     renderLog(lang);

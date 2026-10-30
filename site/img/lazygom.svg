@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="20 166 350 130">
+<g id="lazygom">
+  <!-- LazyGom: one melted, puddle-like blob. Wit = shape + half-closed eyes -->
+  <g id="lazygom-ears" fill="#C9894A" stroke="#111" stroke-width="4" stroke-linejoin="round">
+    <circle cx="170" cy="190" r="17"/>
+    <circle cx="238" cy="192" r="17"/>
+  </g>
+  <!-- the one-click button + one tiny paw touching it -->
+  <g id="lazygom-button">
+    <ellipse cx="50" cy="284" rx="24" ry="7" fill="#4A2A1A"/>
+    <circle cx="50" cy="270" r="15" fill="#E4572E" stroke="#111" stroke-width="4"/>
+  </g>
+  <!-- one tiny paw, reaching for the button (sits behind the body) -->
+  <ellipse id="lazygom-paw" cx="80" cy="274" rx="18" ry="9" fill="#C9894A" stroke="#111" stroke-width="4"/>
+  <path id="lazygom-body" fill="#C9894A" stroke="#111" stroke-width="4" stroke-linejoin="round"
+        d="M84,288 C84,268 112,258 136,246 C148,210 180,196 206,196 C236,196 258,214 270,238
+           C304,250 356,256 362,276 C364,284 358,288 350,288 Z"/>
+  <g id="lazygom-face" stroke="#111" stroke-width="4" stroke-linecap="round" fill="none">
+    <!-- half-closed eyes: lid line + tiny droop -->
+    <path d="M168,236 L190,236"/><path d="M172,237 Q179,243 186,237"/>
+    <path d="M218,236 L240,236"/><path d="M222,237 Q229,243 236,237"/>
+    <path d="M200,250 Q204,254 208,250"/>
+  </g>
+  <text id="lazygom-z" x="276" y="222" font-family="Fredoka, 'Arial Rounded MT Bold', 'Noto Sans KR', sans-serif" font-weight="600" font-size="26" fill="#4A2A1A">z</text>
+</g>
+</svg>
