@@ -15,6 +15,7 @@
   --engine-fg:#E9CFAE; /* 로그 글자 */
   --engine-hi:#FFF4E6;
   --engine-acc:#E29A57;
+  --rage:#C2452D;       /* RageGom 전용 */
   --logo-ink:#4A2A1A; --logo-g:#C07A3A; --logo-bear:#C9894A; --logo-face:#F6E3C3; --logo-line:#111111;
   --f-display:"Cafe24Dongdong","IBM Plex Sans KR","Apple SD Gothic Neo",system-ui,sans-serif; /* 카페24 동동: 제목용 */
   --f-serif-en:var(--f-display);
@@ -25,12 +26,12 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14);
-    --klein:#E29A57; --engine:#24180F; --engine-fg:#E9CFAE; --logo-ink:#F3E6D6; --logo-line:#F3E6D6; color-scheme:dark;
+    --klein:#E29A57; --engine:#24180F; --engine-fg:#E9CFAE; --logo-ink:#F3E6D6; --logo-line:#F3E6D6; --rage:#F07A5E; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14);
-  --klein:#E29A57; --engine:#24180F; --engine-fg:#E9CFAE; --logo-ink:#F3E6D6; --logo-line:#F3E6D6; color-scheme:dark;
+  --klein:#E29A57; --engine:#24180F; --engine-fg:#E9CFAE; --logo-ink:#F3E6D6; --logo-line:#F3E6D6; --rage:#F07A5E; color-scheme:dark;
 }
 
 *{box-sizing:border-box}
@@ -85,6 +86,26 @@ h1 .fierce{display:block;font-family:var(--f-serif);font-weight:400;color:var(--
 .log .ok{color:var(--engine-acc)}
 @keyframes roll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 .engine-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:14px}
+
+
+/* 두 곰: lazyGom(딸깍툴 좋아함) + RageGom(월결제 싫어함) = 개발 시작 */
+#bears{padding-top:0}
+.bears{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(12px,2.4vw,28px);align-items:stretch}
+.bear{border:1px solid var(--hair);border-radius:20px;padding:clamp(24px,3vw,36px);display:grid;gap:14px;align-content:start;background:var(--paper)}
+.bear-top{display:flex;align-items:center;gap:18px}
+.bear svg{width:clamp(76px,8vw,96px);height:auto;flex:none}
+.bear h3{margin:6px 0 0;font-family:var(--f-display);font-weight:400;font-size:clamp(30px,3.2vw,42px);line-height:1.05}
+.bear h3 small{display:block;margin-top:6px;font-family:var(--f-sans);font-size:14px;color:var(--mute)}
+.bear .want{margin:4px 0 0;font-family:var(--f-display);font-size:clamp(20px,2vw,26px);line-height:1.3}
+.bear.lazy .want{color:var(--klein)}
+.bear.rage .want{color:var(--rage)}
+.bear .say{margin:0;color:var(--mute)}
+.bear .tags{margin-top:4px}
+.plus{align-self:center;font-family:var(--f-mono);font-size:28px;color:var(--mute)}
+.bears-cap{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px;text-align:center}
+.bears-cap b{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,2vw,26px);color:var(--ink)}
+.bf{fill:#C9894A}.bf-rage{fill:#B8622F}.bm{fill:#F6E3C3}.bi{fill:#2B1A11}.bs{fill:none;stroke:#2B1A11;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.bz{font:600 15px var(--f-mono);fill:var(--mute)}.bx{fill:none;stroke:var(--rage);stroke-width:3.4;stroke-linecap:round}
 
 /* paradox */
 section{padding-block:clamp(72px,10vw,136px)}
@@ -144,7 +165,8 @@ footer .label{font-size:11px}
 .biz a{color:inherit}
 
 @media (max-width:860px){
-  .hero-foot,.engine,.paradox,.contact,.msaas{grid-template-columns:1fr}
+  .hero-foot,.engine,.paradox,.contact,.msaas,.bears{grid-template-columns:1fr}
+  .plus{justify-self:center;line-height:1}
   .surface{border-right:0;border-bottom:1px solid rgba(233,207,174,.14)}
   .prod{grid-template-columns:minmax(0,1fr) auto;gap:8px 16px}
   .prod p{grid-column:1 / -1;grid-row:2}
@@ -193,7 +215,7 @@ footer .label{font-size:11px}
 </svg></a>
     <div class="top-right">
       <nav aria-label="menu">
-        <a href="#why" data-i18n="nav_why">왜 게으른가</a>
+        <a href="#bears" data-i18n="nav_why">두 곰</a>
         <a href="#products" data-i18n="nav_products">서비스</a>
         <a href="#contact" data-i18n="nav_contact">연락</a>
       </nav>
@@ -208,23 +230,43 @@ footer .label{font-size:11px}
     <div class="hero">
       <div class="label" data-i18n="eyebrow">Micro SaaS Studio · Seoul</div>
       <h1>
-        <span class="calm" data-i18n="h1a">당신이 게으를 수 있도록,</span>
-        <span class="fierce" data-i18n="h1b">우리는 지독하게 부지런합니다.</span>
+        <span class="calm" data-i18n="h1a">lazyGom은 딸깍을 좋아하고,</span>
+        <span class="fierce" data-i18n="h1b">RageGom은 월결제를 싫어합니다.</span>
       </h1>
       <div class="hero-foot">
-        <p class="lede" data-i18n-html="lede">게으른 사람이 불편함을 없애기로 작정하면, 누구보다 집요해집니다. 레이지곰퍼니는 <b>평생 게으르기 위해 딱 한 번 게으름을 포기하는</b> 작은 소프트웨어 스튜디오입니다.</p>
+        <p class="lede" data-i18n-html="lede">레이지곰패니의 모든 서비스는 두 곰의 Needs에서 시작합니다. 귀찮은 일을 <b>딸깍 한 번에</b> 끝내고 싶은 게으른곰, 쓰지도 않는 기능에 <b>매달 돈 내기 싫은</b> 화난곰. 두 곰이 함께 고개를 끄덕여야 만들기 시작합니다.</b> 작은 소프트웨어 스튜디오입니다.</p>
         <div class="facts">
-          <div><strong>3</strong><span class="label" data-i18n="f1">Products</span></div>
-          <div><strong>1</strong><span class="label" data-i18n="f2">Person</span></div>
-          <div><strong>24/7</strong><span class="label" data-i18n="f3">Working for you</span></div>
+          <div><strong>2</strong><span class="label" data-i18n="f1">Bears</span></div>
+          <div><strong>1</strong><span class="label" data-i18n="f2">Click</span></div>
+          <div><strong>0</strong><span class="label" data-i18n="f3">Pointless fees</span></div>
         </div>
       </div>
     </div>
 
+
+    <section id="bears" aria-label="두 곰">
+      <div class="bears">
+        <article class="bear lazy">
+          <div class="bear-top"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bf" cx="28" cy="32" r="16"/><circle class="bf" cx="92" cy="32" r="16"/><circle class="bm" cx="28" cy="32" r="8"/><circle class="bm" cx="92" cy="32" r="8"/><circle class="bf" cx="60" cy="66" r="44"/><ellipse class="bm" cx="60" cy="82" rx="23" ry="17"/><ellipse class="bi" cx="60" cy="75" rx="7" ry="5"/><path class="bs" d="M36 60q7 6 14 0M70 60q7 6 14 0M53 88q7 5 14 0"/><text class="bz" x="96" y="14">z</text><text class="bz" x="106" y="6" style="font-size:11px">z</text></svg><div><span class="label" data-i18n="b1l">Likes</span><h3>lazyGom<small data-i18n="b1n">게으른곰</small></h3></div></div>
+          <p class="want" data-i18n="b1w">불편함을 해결하는 딸깍툴을 좋아합니다.</p>
+          <p class="say" data-i18n="b1s">"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데."</p>
+          <ul class="tags" data-i18n-list="b1t"><li>딸깍 한 번</li><li>자동화</li><li>설정 없이 바로</li></ul>
+        </article>
+        <div class="plus" aria-hidden="true">+</div>
+        <article class="bear rage">
+          <div class="bear-top"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="bf-rage" cx="28" cy="32" r="16"/><circle class="bf-rage" cx="92" cy="32" r="16"/><circle class="bm" cx="28" cy="32" r="8"/><circle class="bm" cx="92" cy="32" r="8"/><circle class="bf-rage" cx="60" cy="66" r="44"/><ellipse class="bm" cx="60" cy="82" rx="23" ry="17"/><ellipse class="bi" cx="60" cy="75" rx="7" ry="5"/><path class="bs" d="M34 50l16 7M86 50l-16 7M52 93q8-7 16 0"/><circle class="bi" cx="45" cy="62" r="4"/><circle class="bi" cx="75" cy="62" r="4"/><path class="bx" d="M98 6q2 6 8 8M114 6q-6 2-8 8M98 22q6-2 8-8M114 22q-2-6-8-8"/></svg><div><span class="label" data-i18n="b2l">Hates</span><h3>RageGom<small data-i18n="b2n">화난곰</small></h3></div></div>
+          <p class="want" data-i18n="b2w">불필요한 월결제 앱을 싫어합니다.</p>
+          <p class="say" data-i18n="b2s">"한 달에 두 번 쓰는데 매달 결제라고?"</p>
+          <ul class="tags" data-i18n-list="b2t"><li>쓸데없는 구독료</li><li>안 쓰는 기능</li><li>억지 회원가입</li></ul>
+        </article>
+      </div>
+      <div class="bears-cap"><span class="label" data-i18n="bc_l">Needs + Needs =</span><b data-i18n="bc">개발 시작</b></div>
+    </section>
+
     <div class="engine" aria-label="겉과 속">
       <div class="surface">
         <span class="label" data-i18n="surf_lbl">What you see</span>
-        <p data-i18n-html="surf_txt">당신에게 남는 건<br>버튼 하나.</p>
+        <p data-i18n-html="surf_txt">당신에게 남는 건<br>딸깍 한 번.</p>
         <span class="tap" data-i18n="surf_tap">1 tap · 0 thought</span>
       </div>
       <div class="log" aria-hidden="true">
@@ -239,13 +281,13 @@ footer .label{font-size:11px}
     <section id="why">
       <div class="paradox">
         <div>
-          <div class="label" data-i18n="why_lbl">The lazy paradox</div>
-          <h2 data-i18n-html="why_h">게으름을 지키기 위해,<br><em>게으름을 포기합니다.</em></h2>
+          <div class="label" data-i18n="why_lbl">How a product starts</div>
+          <h2 data-i18n-html="why_h">두 곰의 Needs가 겹치면,<br><em>개발이 시작됩니다.</em></h2>
         </div>
         <div class="steps">
-          <div><span class="label" data-i18n="s1l">01 · 짜증</span><p data-i18n="s1">"이걸 매번 해야 돼?" 모든 서비스는 이 한마디에서 시작합니다.</p></div>
-          <div><span class="label" data-i18n="s2l">02 · 집착</span><p data-i18n="s2">밤을 새워서라도 그 일을 영원히 없앨 방법을 만듭니다.</p></div>
-          <div><span class="label" data-i18n="s3l">03 · 낮잠</span><p data-i18n="s3">그리고 다시는 그 일을 하지 않습니다. 당신도요.</p></div>
+          <div><span class="label" data-i18n="s1l">01 · lazyGom</span><p data-i18n="s1">"이거 너무 귀찮아." 매번 손이 가는 불편을 찾습니다.</p></div>
+          <div><span class="label" data-i18n="s2l">02 · RageGom</span><p data-i18n="s2">"이걸 매달 돈 내고 써야 돼?" 이미 있는 앱이 쓸데없이 비싸거나 무겁지 않은지 따집니다.</p></div>
+          <div><span class="label" data-i18n="s3l">03 · 딸깍</span><p data-i18n="s3">두 곰이 모두 납득하는 딸깍툴을 만듭니다. 필요한 기능만, 필요한 만큼의 비용으로.</p></div>
         </div>
       </div>
     </section>
@@ -257,8 +299,8 @@ footer .label{font-size:11px}
           <h2 data-i18n="m_h">큰 플랫폼 말고, 딱 하나의 불편만 없애는 Micro SaaS</h2>
         </div>
         <div>
-          <p data-i18n-html="m_p1"><b>Micro SaaS(마이크로 SaaS)</b>는 한 가지 문제만 정확하게 해결하는 작고 가벼운 구독형 소프트웨어입니다. 배울 것이 거의 없고, 설치하면 바로 쓰고, 필요 없는 기능은 처음부터 만들지 않습니다.</p>
-          <p data-i18n="m_p2">레이지곰퍼니는 1인 개발 Micro SaaS 스튜디오입니다. 매일 반복되는 업무 자동화, 노션 템플릿과 업무 툴, 생활 속 작은 귀찮음을 해결하는 웹 서비스와 앱을 만듭니다.</p>
+          <p data-i18n-html="m_p1"><b>Micro SaaS(마이크로 SaaS)</b>는 한 가지 문제만 정확하게 해결하는 작고 가벼운 구독형 소프트웨어입니다. 배울 것이 거의 없고, 설치하면 바로 쓰고, 필요 없는 기능은 처음부터 만들지 않습니다.</b>는 한 가지 문제만 정확하게 해결하는 작고 가벼운 구독형 소프트웨어입니다. 배울 것이 거의 없고, 설치하면 바로 쓰고, 필요 없는 기능은 처음부터 만들지 않습니다.</p>
+          <p data-i18n="m_p2">레이지곰패니는 1인 개발 Micro SaaS 스튜디오입니다. 매일 반복되는 업무 자동화, 노션 템플릿과 업무 툴, 생활 속 작은 귀찮음을 해결하는 웹 서비스와 앱을 만듭니다.</p>
           <ul class="tags" data-i18n-list="m_tags">
             <li>마이크로 SaaS</li><li>1인 SaaS</li><li>업무 자동화 툴</li><li>노션 CRM</li><li>Coda CRM</li><li>생산성 서비스</li><li>작은 구독형 소프트웨어</li>
           </ul>
@@ -270,7 +312,7 @@ footer .label{font-size:11px}
       <div class="sec-head">
         <div>
           <div class="label" data-i18n="p_lbl">Products</div>
-          <h2 data-i18n="p_h">지금까지 없앤 귀찮음</h2>
+          <h2 data-i18n="p_h">두 곰을 달랜 서비스</h2>
         </div>
         <span class="label" data-i18n="p_note">자세한 이야기는 각 서비스 안에서</span>
       </div>
@@ -305,11 +347,11 @@ footer .label{font-size:11px}
     <section id="contact" style="padding-top:0">
       <div class="contact">
         <div>
-          <div class="label" data-i18n="c_lbl">Your next annoyance</div>
-          <h2 data-i18n="c_h">당신을 제일 귀찮게 하는 일을 알려주세요.</h2>
+          <div class="label" data-i18n="c_lbl">Feed the bears</div>
+          <h2 data-i18n="c_h">두 곰을 화나게 하는 일을 알려주세요.</h2>
         </div>
         <div>
-          <p data-i18n="c_p">한 줄이면 충분합니다. 다음 집착의 대상이 될지도 모릅니다.</p>
+          <p data-i18n="c_p">귀찮은 일이든, 아까운 월결제든 한 줄이면 충분합니다. 다음 개발의 시작이 될지도 모릅니다.</p>
           <div class="mailrow">
             <span class="mail" id="mail">hello@lazycompany.app</span>
             <button class="copy" type="button" id="copyBtn" data-i18n="copy">주소 복사</button>
@@ -322,7 +364,7 @@ footer .label{font-size:11px}
 
   <footer>
     <span>© 2026 Lazy Gompany</span>
-    <span class="label" data-i18n="foot">Built with obsession. Used with a yawn.</span>
+    <span class="label" data-i18n="foot">Made by lazyGom &amp; RageGom.</span>
   </footer>
   <div class="biz" lang="ko">
     <p><b>레이지곰패니 (Lazy Gompany)</b></p>
@@ -335,40 +377,40 @@ footer .label{font-size:11px}
 <script>
 (function(){
   var T={
-    ko:{nav_why:"왜 게으른가",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
-      h1a:"당신이 게으를 수 있도록,",h1b:"우리는 지독하게 부지런합니다.",
-      lede:"게으른 사람이 불편함을 없애기로 작정하면, 누구보다 집요해집니다. 레이지곰퍼니는 <b>평생 게으르기 위해 딱 한 번 게으름을 포기하는</b> 작은 소프트웨어 스튜디오입니다.",
-      f1:"Products",f2:"Person",f3:"Working for you",
-      surf_lbl:"What you see",surf_txt:"당신에게 남는 건<br>버튼 하나.",surf_tap:"1 tap · 0 thought",
+    ko:{b1l:"Likes",b1n:"게으른곰",b1w:"불편함을 해결하는 딸깍툴을 좋아합니다.",b1s:"\"이걸 매번 손으로 해야 돼? 딸깍 한 번이면 좋겠는데.\"",b1t:["딸깍 한 번", "자동화", "설정 없이 바로"],b2l:"Hates",b2n:"화난곰",b2w:"불필요한 월결제 앱을 싫어합니다.",b2s:"\"한 달에 두 번 쓰는데 매달 결제라고?\"",b2t:["쓸데없는 구독료", "안 쓰는 기능", "억지 회원가입"],bc_l:"Needs + Needs =",bc:"개발 시작",nav_why:"두 곰",nav_products:"서비스",nav_contact:"연락",eyebrow:"Micro SaaS Studio · Seoul",
+      h1a:"lazyGom은 딸깍을 좋아하고,",h1b:"RageGom은 월결제를 싫어합니다.",
+      lede:"레이지곰패니의 모든 서비스는 두 곰의 Needs에서 시작합니다. 귀찮은 일을 <b>딸깍 한 번에</b> 끝내고 싶은 게으른곰, 쓰지도 않는 기능에 <b>매달 돈 내기 싫은</b> 화난곰. 두 곰이 함께 고개를 끄덕여야 만들기 시작합니다.",
+      f1:"Bears",f2:"Click",f3:"Pointless fees",
+      surf_lbl:"What you see",surf_txt:"당신에게 남는 건<br>딸깍 한 번.",surf_tap:"1 tap · 0 thought",
       cap_l:"↑ 왼쪽은 당신이 보는 것, 오른쪽은 그 뒤에서 우리가 한 일",cap_r:"Laziness, engineered.",
-      why_lbl:"The lazy paradox",why_h:"게으름을 지키기 위해,<br><em>게으름을 포기합니다.</em>",
-      s1l:"01 · 짜증",s1:"\"이걸 매번 해야 돼?\" 모든 서비스는 이 한마디에서 시작합니다.",s2l:"02 · 집착",s2:"밤을 새워서라도 그 일을 영원히 없앨 방법을 만듭니다.",s3l:"03 · 낮잠",s3:"그리고 다시는 그 일을 하지 않습니다. 당신도요.",
+      why_lbl:"How a product starts",why_h:"두 곰의 Needs가 겹치면,<br><em>개발이 시작됩니다.</em>",
+      s1l:"01 · lazyGom",s1:"\"이거 너무 귀찮아.\" 매번 손이 가는 불편을 찾습니다.",s2l:"02 · RageGom",s2:"\"이걸 매달 돈 내고 써야 돼?\" 이미 있는 앱이 쓸데없이 비싸거나 무겁지 않은지 따집니다.",s3l:"03 · 딸깍",s3:"두 곰이 모두 납득하는 딸깍툴을 만듭니다. 필요한 기능만, 필요한 만큼의 비용으로.",
       m_lbl:"What is Micro SaaS",m_h:"큰 플랫폼 말고, 딱 하나의 불편만 없애는 Micro SaaS",
       m_p1:"<b>Micro SaaS(마이크로 SaaS)</b>는 한 가지 문제만 정확하게 해결하는 작고 가벼운 구독형 소프트웨어입니다. 배울 것이 거의 없고, 설치하면 바로 쓰고, 필요 없는 기능은 처음부터 만들지 않습니다.",
-      m_p2:"레이지곰퍼니는 1인 개발 Micro SaaS 스튜디오입니다. 매일 반복되는 업무 자동화, 노션 템플릿과 업무 툴, 생활 속 작은 귀찮음을 해결하는 웹 서비스와 앱을 만듭니다.",
+      m_p2:"레이지곰패니는 1인 개발 Micro SaaS 스튜디오입니다. 매일 반복되는 업무 자동화, 노션 템플릿과 업무 툴, 생활 속 작은 귀찮음을 해결하는 웹 서비스와 앱을 만듭니다.",
       m_tags:["마이크로 SaaS","1인 SaaS","업무 자동화 툴","노션 CRM","Coda CRM","생산성 서비스","작은 구독형 소프트웨어"],
-      p_lbl:"Products",p_h:"지금까지 없앤 귀찮음",p_note:"자세한 이야기는 각 서비스 안에서",
+      p_lbl:"Products",p_h:"두 곰을 달랜 서비스",p_note:"자세한 이야기는 각 서비스 안에서",
       tw:"폰 없이, 손목에서 바로 테슬라를.",sg_name:"Myriatale",sg:"선택이 이야기를 바꾸는 인터랙티브 스토리 게임.",
       crm_name:"CRM <span class=\"ko\">빌딩</span>",crm:"노션이나 Coda 위에, 영업 관리판을 통째로.",live:"Live",soon:"Coming soon",crm_badge:"상담 가능",
-      c_lbl:"Your next annoyance",c_h:"당신을 제일 귀찮게 하는 일을 알려주세요.",c_p:"한 줄이면 충분합니다. 다음 집착의 대상이 될지도 모릅니다.",
-      copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",foot:"Built with obsession. Used with a yawn."},
-    en:{nav_why:"Why lazy",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
-      h1a:"So you can be lazy,",h1b:"we work relentlessly.",
-      lede:"When a lazy person decides to kill an annoyance, they become the most obsessive person in the room. Lazy Gompany is a small software studio that <b>gives up laziness once, so you never have to work at it again</b>.",
-      f1:"Products",f2:"Person",f3:"Working for you",
-      surf_lbl:"What you see",surf_txt:"All that's left for you<br>is one button.",surf_tap:"1 tap · 0 thought",
+      c_lbl:"Feed the bears",c_h:"두 곰을 화나게 하는 일을 알려주세요.",c_p:"귀찮은 일이든, 아까운 월결제든 한 줄이면 충분합니다. 다음 개발의 시작이 될지도 모릅니다.",
+      copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",foot:"Made by lazyGom & RageGom."},
+    en:{b1l:"Likes",b1n:"the lazy bear",b1w:"Loves one-click tools that fix annoyances.",b1s:"\"Do I have to do this by hand every time? One click would be nice.\"",b1t:["One click", "Automation", "No setup"],b2l:"Hates",b2n:"the angry bear",b2w:"Hates monthly fees for apps that don't need them.",b2s:"\"I use it twice a month and it bills me monthly?\"",b2t:["Pointless subscriptions", "Unused features", "Forced sign-ups"],bc_l:"Needs + Needs =",bc:"Let's build",nav_why:"The bears",nav_products:"Products",nav_contact:"Contact",eyebrow:"Micro SaaS Studio · Seoul",
+      h1a:"lazyGom loves one-click tools.",h1b:"RageGom hates pointless subscriptions.",
+      lede:"Every Lazy Gompany product starts from the needs of two bears. lazyGom wants annoying chores <b>gone in one click</b>. RageGom refuses to <b>pay every month</b> for features nobody uses. We only start building when both bears nod.",
+      f1:"Bears",f2:"Click",f3:"Pointless fees",
+      surf_lbl:"What you see",surf_txt:"All that's left for you<br>is one click.",surf_tap:"1 tap · 0 thought",
       cap_l:"↑ Left: what you see. Right: what we did behind it.",cap_r:"Laziness, engineered.",
-      why_lbl:"The lazy paradox",why_h:"To protect our laziness,<br><em>we give it up.</em>",
-      s1l:"01 · Annoyed",s1:"\"Do I really have to do this every time?\" Every product starts with that sentence.",s2l:"02 · Obsessed",s2:"We stay up all night building the thing that ends it for good.",s3l:"03 · Asleep",s3:"Then we never do that task again. Neither do you.",
+      why_lbl:"How a product starts",why_h:"When both bears need it,<br><em>we start building.</em>",
+      s1l:"01 · lazyGom",s1:"\"This is so tedious.\" We find the chore you keep doing by hand.",s2l:"02 · RageGom",s2:"\"A monthly fee for this?\" We check whether the existing apps are overpriced or bloated.",s3l:"03 · Click",s3:"We build a one-click tool both bears accept. Only the features you need, at only the cost you need.",
       m_lbl:"What is Micro SaaS",m_h:"Not another big platform. Micro SaaS that removes one annoyance.",
       m_p1:"<b>Micro SaaS</b> is small, focused subscription software that solves exactly one problem. Almost nothing to learn, useful the moment you open it, and no features you didn't need.",
       m_p2:"Lazy Gompany is an indie, one-person Micro SaaS studio. We build workflow automation, Notion tools and templates, and small web apps that remove everyday friction.",
       m_tags:["Micro SaaS","Indie SaaS","Workflow automation","Notion CRM","Coda CRM","Productivity tools","Small subscription software"],
-      p_lbl:"Products",p_h:"Annoyances we've removed",p_note:"The full story lives inside each product",
+      p_lbl:"Products",p_h:"Products that calmed the bears",p_note:"The full story lives inside each product",
       tw:"Your Tesla, from your wrist. No phone.",sg_name:"Myriatale",sg:"An interactive story game where your choices change the story.",
       crm_name:"CRM Building",crm:"A full sales pipeline, built inside Notion or Coda.",live:"Live",soon:"Coming soon",crm_badge:"Now booking",
-      c_lbl:"Your next annoyance",c_h:"Tell us the thing that annoys you most.",c_p:"One line is enough. It might become our next obsession.",
-      copy:"Copy address",copied:"Copied.",copyfail:"Address selected. Copy it from there.",foot:"Built with obsession. Used with a yawn."}
+      c_lbl:"Feed the bears",c_h:"Tell us what makes the bears angry.",c_p:"A tedious chore or a subscription you resent, one line is enough. It might start our next build.",
+      copy:"Copy address",copied:"Copied.",copyfail:"Address selected. Copy it from there.",foot:"Made by lazyGom & RageGom."}
   };
   var LOG={
     ko:["워치 ↔ 폰 6자리 코드 연동 설계","Tesla OAuth 콜백 47번째 재시도",["ok","통과: 문 열림 응답 0.8초"],"엣지 케이스: 지하주차장, 신호 1칸","공개키 자동 등록 스크립트 작성","잠금 해제 동작 12단계 → 1단계",["ok","배포 완료 · Cloudflare Workers"],"새벽 3시, 선택지 분기 214개 검수","스토리 분기 꼬임 수정 (엔딩 B ↔ C)",["ok","통과: 누워서 한 손으로 플레이"],"노션 DB 관계형 구조 9번째 갈아엎기","영업 단계 자동 이동 수식 작성","\"이건 더 줄일 수 있다\" 리팩터링",["ok","통과: 설명서 없이 첫 사용 성공"]],
