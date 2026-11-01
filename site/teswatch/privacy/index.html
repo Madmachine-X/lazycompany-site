@@ -8,26 +8,26 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://lazycompany.app/teswatch/privacy">
 <style>
-  :root{--bg:#0a0d12;--surface:#11151d;--surface-line:#1c2430;--ink:#e9eef1;--ink-dim:#90a0ac;--accent:#52b88f}
+  :root{--bg:#FFFFFF;--surface:#F5F5F3;--surface-line:#E6E4E1;--ink:#1F1A17;--ink-dim:#6F6A66;--accent:#A8642B;color-scheme:light}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-  header.nav{position:sticky;top:0;z-index:20;background:rgba(10,13,18,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--surface-line)}
+  header.nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--surface-line)}
   header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
-  .wordmark{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;font-weight:800;font-size:19px;letter-spacing:-0.02em;text-decoration:none}
-  .langtoggle{display:flex;border:1px solid var(--surface-line);border-radius:999px;overflow:hidden}
+  .wordmark{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;font-weight:700;font-size:17px;letter-spacing:-0.01em;text-decoration:none}
+  .langtoggle{display:flex}
   .langtoggle button{appearance:none;border:0;background:transparent;color:var(--ink-dim);font:500 13px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;padding:8px 16px;cursor:pointer}
-  .langtoggle button.active{background:var(--surface-line);color:var(--ink)}
+  .langtoggle button.active{color:var(--ink);font-weight:700}
 
   /* Lazy Gompany 브랜드 헤더 */
   .brand{display:flex;align-items:center;gap:14px;min-width:0}
-  .mark{display:block;line-height:0;color:#F3E6D6;text-decoration:none}
+  .mark{display:block;line-height:0;color:#3A2416;text-decoration:none}
   .logo{height:30px;width:auto;display:block;overflow:visible}
-  .lg-ink{fill:currentColor} .lg-g{fill:#C07A3A} .lg-bear{fill:#C9894A} .lg-face{fill:#F6E3C3} .lg-line{stroke:currentColor}
+  .lg-ink{fill:currentColor} .lg-g{fill:#C07A3A} .lg-bear{fill:#C9894A} .lg-face{fill:#F6E3C3} .lg-line{stroke:#111}
   .brand .sep{width:1px;height:22px;background:var(--surface-line)}
   .navr{display:flex;align-items:center;gap:10px}
-  .home{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--surface-line);border-radius:999px;font:500 13px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;color:var(--ink-dim);text-decoration:none;white-space:nowrap}
+  .home{display:inline-flex;align-items:center;gap:6px;padding:8px 6px;font:500 13px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;color:var(--ink-dim);text-decoration:none;white-space:nowrap}
   .home:hover{color:var(--ink);border-color:var(--ink-dim)}
   @media (max-width:560px){
     header.nav .wrap{height:auto;padding-block:12px;flex-wrap:wrap;gap:10px}
@@ -43,8 +43,8 @@
   .back:hover{color:var(--ink)}
   h1{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;font-size:clamp(26px,4vw,34px);font-weight:800;letter-spacing:-0.01em;margin:0}
   .updated{color:var(--ink-dim);font-size:13px;margin:6px 0 20px}
-  h2{font-size:16px;color:var(--accent);margin:32px 0 8px}
-  p,li{color:#cdd6dc}
+  h2{font-size:17px;color:var(--ink);margin:32px 0 8px}
+  p,li{color:#3d3733}
   ul{padding-left:20px} li{margin-bottom:6px}
   b{color:var(--ink)}
   [data-sec="en"]{display:none}

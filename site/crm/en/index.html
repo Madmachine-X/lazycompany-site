@@ -25,7 +25,7 @@
 <style>
 /* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 가운데에 직접 눌러보는 데모 CRM 창이 이 페이지의 주인공. */
 :root{
-  --paper:#F6F1EA; --ink:#2B1A11; --mute:#7A6355; --hair:rgba(74,42,26,.16); --klein:#B26A2E;
+  --paper:#FFFFFF; --ink:#1F1A17; --mute:#6F6A66; --hair:#E6E4E1; --klein:#A8642B; color-scheme:light; /* 2026-11 담백한 톤: 흰 바탕, 다크모드 없음 */
   --engine:#2B1A11; --engine-fg:#E9CFAE;
   --card:#FFFFFF; --card-2:#F7F7F5; --card-hair:rgba(55,53,47,.12); --card-ink:#37352F; --card-mute:#787774; --card-hover:rgba(55,53,47,.06);
   /* 노션 태그 색 */
@@ -35,24 +35,6 @@
   --f-display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
   --f-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
   --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14); --klein:#E29A57; --engine:#24180F; --engine-fg:#E9CFAE;
-    --card:#191919; --card-2:#202020; --card-hair:rgba(255,255,255,.09); --card-ink:#D4D4D4; --card-mute:#9B9B9B; --card-hover:rgba(255,255,255,.055);
-    --t-gray:#373737; --t-gray-f:#D4D4D4; --t-brown:#4A3228; --t-brown-f:#E3CFC4; --t-orange:#5C3B23; --t-orange-f:#F2D0B4;
-    --t-yellow:#564328; --t-yellow-f:#F0DFB6; --t-green:#243D30; --t-green-f:#C6E3CF; --t-blue:#143A4E; --t-blue-f:#BFDDF0;
-    --t-purple:#3C2D49; --t-purple-f:#DCC8EC; --t-pink:#4E2C3C; --t-pink-f:#F0C8DA; --t-red:#522E2A; --t-red-f:#F5C6BF;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14); --klein:#E29A57; --engine:#24180F; --engine-fg:#E9CFAE;
-  --card:#191919; --card-2:#202020; --card-hair:rgba(255,255,255,.09); --card-ink:#D4D4D4; --card-mute:#9B9B9B; --card-hover:rgba(255,255,255,.055);
-  --t-gray:#373737; --t-gray-f:#D4D4D4; --t-brown:#4A3228; --t-brown-f:#E3CFC4; --t-orange:#5C3B23; --t-orange-f:#F2D0B4;
-  --t-yellow:#564328; --t-yellow-f:#F0DFB6; --t-green:#243D30; --t-green-f:#C6E3CF; --t-blue:#143A4E; --t-blue-f:#BFDDF0;
-  --t-purple:#3C2D49; --t-purple-f:#DCC8EC; --t-pink:#4E2C3C; --t-pink-f:#F0C8DA; --t-red:#522E2A; --t-red-f:#F5C6BF;
-  color-scheme:dark;
 }
 
 *{box-sizing:border-box}

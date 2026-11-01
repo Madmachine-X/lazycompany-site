@@ -26,17 +26,13 @@
 <style>
 /* 홈과 같은 디자인 언어(차가운 종이 + 잉크 + 클라인 블루). 게임다운 부분은 가운데 '게임 화면' 패널 하나에만: 게임과 같은 심야 남색 + 소설체 본문. */
 :root{
-  --paper:#F6F1EA; --ink:#2B1A11; --mute:#7A6355; --hair:rgba(74,42,26,.16); --klein:#B26A2E;
+  --paper:#FFFFFF; --ink:#1F1A17; --mute:#6F6A66; --hair:#E6E4E1; --klein:#A8642B; color-scheme:light; /* 2026-11 담백한 톤: 흰 바탕, 다크모드 없음 */
   --night:#050B12; --night-2:#0B1823; --night-fg:#DCEAF4; --night-dim:#8FA6B6; --night-line:rgba(112,221,255,.18); --cyan:#70DDFF;
   --f-display:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
   --f-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR","Segoe UI",Roboto,system-ui,sans-serif;
   --f-novel:"AppleMyungjo","Batang","바탕","Noto Serif KR",Georgia,serif;
   --f-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){--paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14); --klein:#E29A57; --night:#03070C; --night-2:#0A141D; color-scheme:dark}
-}
-:root[data-theme="dark"]{--paper:#17100B; --ink:#F3E6D6; --mute:#B09A88; --hair:rgba(243,230,214,.14); --klein:#E29A57; --night:#03070C; --night-2:#0A141D; color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -144,8 +140,6 @@ section{padding-block:clamp(64px,9vw,120px)}
 /* worlds */
 .worlds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .world{border:1px solid var(--hair);border-radius:14px;overflow:hidden;min-width:0;display:flex;flex-direction:column;background:color-mix(in srgb,var(--paper) 70%,#fff 30%)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .world{background:rgba(255,255,255,.03)}}
-:root[data-theme="dark"] .world{background:rgba(255,255,255,.03)}
 .world .cv{aspect-ratio:16/9;overflow:hidden;display:grid;grid-template-columns:1fr;background:var(--night)}
 .world .cv.duo{grid-template-columns:1fr 1fr;gap:2px}
 .world .cv img{width:100%;height:100%;object-fit:cover}
