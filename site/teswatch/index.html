@@ -119,6 +119,15 @@
     .home .lbl-short{display:inline}
   }
 
+  /* 편의 기능 */
+  .extras{padding:clamp(64px,9vw,104px) 0 0;}
+  .extras h2{font-size:clamp(24px,2.8vw,34px);line-height:1.3;}
+  .extra-list{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+  .extra-list li{border-top:2px solid var(--ink);padding-top:14px;}
+  .extra-list h3{font-size:17px;}
+  .extra-list p{margin:6px 0 0;color:var(--mute);font-size:15px;}
+  @media (max-width:860px){.extra-list{grid-template-columns:1fr}}
+
   [data-en]{display:none;}
   html[data-lang="en"] [data-ko]{display:none;}
   html[data-lang="en"] [data-en]{display:inline;}
@@ -244,6 +253,26 @@
         <span data-ko>한 번 구매로 끝. 월 구독료도, 회원가입도, 서버에 남는 개인정보도 없습니다.</span>
         <span data-en>Buy once, done. No monthly fee, no sign-up, nothing stored on a server.</span>
       </p>
+    </div>
+  </section>
+
+  <section class="extras" id="features">
+    <div class="wrap">
+      <h2><span data-ko>폰을 꺼낼 일이 더 줄어듭니다</span><span data-en>Even fewer reasons to reach for your phone</span></h2>
+      <ul class="extra-list">
+        <li>
+          <h3><span data-ko>오토락</span><span data-en>Walk-away lock</span></h3>
+          <p><span data-ko>차에서 멀어지면 워치가 알아서 문을 잠급니다. 잠갔는지 다시 돌아볼 필요가 없습니다.</span><span data-en>Walk away and your watch locks the car for you. No more turning back to check.</span></p>
+        </li>
+        <li>
+          <h3><span data-ko>차 방향 나침반</span><span data-en>Car compass</span></h3>
+          <p><span data-ko>넓은 주차장에서 차가 어느 쪽에 있는지 워치 화면의 화살표가 가리킵니다.</span><span data-en>In a big parking lot, an arrow on your watch points toward your car.</span></p>
+        </li>
+        <li>
+          <h3><span data-ko>차까지 거리</span><span data-en>Distance to car</span></h3>
+          <p><span data-ko>차까지 몇 미터 남았는지 워치에서 바로 보여줍니다.</span><span data-en>See how many meters you are from your car, right on your watch.</span></p>
+        </li>
+      </ul>
     </div>
   </section>
 
