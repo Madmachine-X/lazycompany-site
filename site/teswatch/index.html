@@ -96,7 +96,7 @@
   .flist p{margin:6px 0 0;color:var(--mute);font-size:15px;}
   .new{display:inline-block;font-size:11px;font-weight:700;color:var(--brand);border:1px solid rgba(168,100,43,.4);border-radius:4px;padding:0 5px;vertical-align:3px;letter-spacing:.04em;}
   .deep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:36px;}
-  .deep article{background:var(--bg-2);border-radius:12px;padding:clamp(22px,3vw,32px);min-width:0;}
+  .deep article{background:#fff;border-radius:12px;padding:clamp(22px,3vw,32px);min-width:0;}
   .deep h3{font-size:20px;}
   .deep-shot{margin:0 0 22px;}
   .deep-shot .shot-phone{max-width:220px;}
@@ -292,20 +292,13 @@
         <li><h3><span data-ko>내 차 찾기</span><span data-en>Where's my car</span></h3>
           <p><span data-ko>차에서 내린 뒤 걸어간 길을 기록해 돌아가는 방향을 알려 줍니다. 지하 주차장처럼 GPS가 약한 곳에서도 걸음 수와 방향으로 찾습니다.</span><span data-en>Records your walk after you leave the car and shows the way back, even in underground parking where GPS is weak, using steps and direction.</span></p></li>
       </ul>
-    </div>
-  </section>
-
-  <section class="feat" id="safety">
-    <div class="wrap">
-      <h2><span data-ko>블랙박스 소리와 사고 알림</span><span data-en>Dashcam audio and crash alert</span></h2>
-      <p class="sub"><span data-ko>주행 중에 폰이 차내 소리를 녹음해 두기 때문에 가능한 두 가지 기능입니다. 녹음은 폰에만 저장됩니다.</span><span data-en>Both work because your phone records in-cabin audio while you drive. Recordings stay on your phone.</span></p>
       <div class="deep">
         <article>
           <figure class="deep-shot">
             <img class="shot-phone" data-ko src="/teswatch/img/phone-dashcam-ko.webp" width="540" height="1170" alt="블랙박스 영상에 차내 녹음을 붙이고 싱크를 맞추는 화면" loading="lazy">
             <img class="shot-phone" data-en src="/teswatch/img/phone-dashcam-en.webp" width="540" height="1170" alt="Dashcam clip with in-car audio and sync controls" loading="lazy">
           </figure>
-          <h3><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span> <span class="new soon"><span data-ko>출시 예정</span><span data-en>SOON</span></span></h3>
+          <h3><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span> <span class="new">NEW</span></h3>
           <p class="why"><span data-ko>테슬라 블랙박스 영상에는 소리가 없습니다. 사고 순간의 경적, 충돌음, 대화가 남지 않습니다. Teswatch가 그 빈자리를 채워서, 별도 블랙박스를 살 필요가 없습니다.</span><span data-en>Tesla dashcam clips have no audio, so horns, impact sounds and voices are lost. Teswatch fills that gap, so you don't need a separate dashcam.</span></p>
           <ol class="howto">
             <li><span data-ko>주행 중 폰 마이크로 차내 소리를 녹음합니다.</span><span data-en>While you drive, your phone's mic records in-cabin audio.</span></li>
@@ -318,7 +311,7 @@
             <img class="shot-phone" data-ko src="/teswatch/img/phone-crash-ko.webp" width="540" height="1170" alt="사고 감지 30초 카운트다운 화면: 괜찮아요, 지금 보내기, 119 전화" loading="lazy">
             <img class="shot-phone" data-en src="/teswatch/img/phone-crash-en.webp" width="540" height="1170" alt="Crash detected countdown: I'm OK, Send now, Call 119" loading="lazy">
           </figure>
-          <h3><span data-ko>사고 알림</span><span data-en>Crash alert</span> <span class="new soon"><span data-ko>출시 예정</span><span data-en>SOON</span></span></h3>
+          <h3><span data-ko>사고 알림</span><span data-en>Crash alert</span> <span class="new">NEW</span></h3>
           <p class="why"><span data-ko>사고가 나면 연락할 정신이 없을 수 있습니다. 내가 움직이지 못해도, 미리 정해 둔 사람에게 위치와 상황이 전달됩니다.</span><span data-en>After a crash you may not be able to call anyone. Even then, the people you chose get your location and what happened.</span></p>
           <ol class="howto">
             <li><span data-ko>주행 중 큰 충격을 감지합니다.</span><span data-en>Teswatch detects a hard impact while driving.</span></li>
@@ -330,9 +323,9 @@
     </div>
   </section>
 
-  <section class="feat band" id="soon">
+  <section class="feat" id="soon">
     <div class="wrap">
-      <h2><span data-ko>그 밖의 출시 예정</span><span data-en>Also coming soon</span></h2>
+      <h2><span data-ko>출시 예정</span><span data-en>Coming soon</span></h2>
       <ul class="flist">
         <li><h3><span data-ko>충전 기록·월간 리포트</span><span data-en>Charging history and monthly report</span></h3>
           <p><span data-ko>충전 기록, 슈퍼차저 이용 기록, 한 달 주행·충전 리포트, 국내 충전 요금을 정리합니다.</span><span data-en>Charging sessions, Supercharger history and a monthly drive and charging report.</span></p></li>
@@ -340,7 +333,7 @@
     </div>
   </section>
 
-  <section class="feat" id="privacy-cost">
+  <section class="feat band" id="privacy-cost">
     <div class="wrap">
       <h2><span data-ko>개인정보와 비용</span><span data-en>Privacy and cost</span></h2>
       <ul class="flist three">
