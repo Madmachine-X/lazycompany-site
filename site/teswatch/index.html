@@ -70,6 +70,7 @@
   .watch-stage{background:var(--bg-2);border-radius:12px;padding:clamp(28px,5vw,56px);display:flex;justify-content:center;}
   .shot-watch{display:block;width:100%;height:auto;aspect-ratio:1/1;max-width:220px;margin:0 auto;border-radius:50%;background:#000;box-shadow:0 0 0 6px #2a2a2a,0 18px 40px -20px rgba(0,0,0,.45);}
   .shot-watch.big{max-width:340px;}
+  .intro{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:9/16;border-radius:14px;background:#000;}
   .shot-phone{display:block;width:100%;height:auto;max-width:250px;margin:0 auto;border-radius:20px;border:6px solid #1c1c1c;box-shadow:0 18px 40px -22px rgba(0,0,0,.5);}
   html[data-lang="en"] img[data-en]{display:block;}
 
@@ -115,7 +116,7 @@
 
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;gap:40px}
-    .shot-watch.big{max-width:260px;}
+    .intro{max-width:260px;}
     .shots{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
     .shots figure{padding:14px 8px 10px;gap:8px}
     .shots figcaption{font-size:12px}
@@ -215,8 +216,7 @@
         </div>
       </div>
       <div class="watch-stage">
-        <img class="shot-watch big" data-ko src="/teswatch/img/watch-key-ko.webp" width="454" height="454" alt="워치 키 화면: 프렁크, 잠금, 트렁크, 충전구">
-        <img class="shot-watch big" data-en src="/teswatch/img/watch-key-en.webp" width="454" height="454" alt="Watch key: frunk, lock, trunk, charge port">
+        <video class="intro" src="/teswatch/video/intro.mp4" poster="/teswatch/video/poster.jpg" width="720" height="1280" autoplay muted loop playsinline controls preload="metadata" aria-label="Teswatch 30초 소개 영상"></video>
       </div>
     </div>
   </section>
