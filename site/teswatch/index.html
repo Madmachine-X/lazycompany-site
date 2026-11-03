@@ -8,13 +8,13 @@
 <link rel="canonical" href="https://lazycompany.app/teswatch">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lazy Gompany">
-<meta property="og:title" content="Teswatch — 워치로 여는 테슬라 | Lazy Gompany">
-<meta property="og:description" content="구독료 없음, 계정 가입 불필요. Wear OS 워치에서 폰 없이 테슬라를 여는 키 앱.">
+<meta property="og:title" content="Teswatch — 손목 위의 테슬라 디지털 키 | Lazy Gompany">
+<meta property="og:description" content="손목 위의 테슬라 디지털 키. 구독료 없이, 내 데이터는 내 폰에만. Wear OS 워치 키, 주행 기록, 내 차 찾기.">
 <meta property="og:url" content="https://lazycompany.app/teswatch">
 <meta property="og:image" content="https://lazycompany.app/og.png">
 
-<title>Teswatch — 워치로 여는 테슬라</title>
-<meta name="description" content="구독료 없음, 계정 가입 불필요. Wear OS 워치에서 폰 없이 테슬라를 여는 키 앱, Teswatch.">
+<title>Teswatch — 손목 위의 테슬라 디지털 키</title>
+<meta name="description" content="손목 위의 테슬라 디지털 키, Teswatch. 구독료 없이, 내 데이터는 내 폰에만. Wear OS 워치 키, 타일, 주행 기록, 내 차 찾기.">
 <style>
   /* 홈과 같은 담백한 톤(2026-11): 흰 바탕 + 옅은 회색 띠, 강조색은 로고 갈색 하나 */
   :root{
@@ -66,35 +66,36 @@
   .btn-ghost{color:var(--ink);font-weight:500;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:5px;text-decoration-thickness:2px;}
   .btn-ghost:hover{text-decoration-color:var(--ink)}
 
-  /* 워치 그림: 옅은 회색 판 위에 실제 워치 화면 */
-  .watch-stage{background:var(--bg-2);border-radius:12px;padding:clamp(28px,5vw,56px);}
-  .watch{
-    position:relative;aspect-ratio:1/1;max-width:340px;margin:0 auto;border-radius:50%;
-    background:#0b0e13;box-shadow:0 0 0 8px #2a2a2a, 0 0 0 10px #d9d6d2, 0 24px 50px -24px rgba(0,0,0,.45);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .watch .grid{width:78%;display:grid;grid-template-columns:1fr 1fr;gap:4%;}
-  .watch .cell{aspect-ratio:1/1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6%;}
-  .watch .cell svg{width:46%;height:auto;}
-  .watch .cell span{color:#fff;font-size:9.5px;font-weight:500;letter-spacing:-0.01em;}
-  .watch .f{background:var(--frunk);} .watch .u{background:var(--unlock);} .watch .t{background:var(--trunk);} .watch .c{background:var(--charge);}
+  /* 앱 화면 캡처 */
+  .watch-stage{background:var(--bg-2);border-radius:12px;padding:clamp(28px,5vw,56px);display:flex;justify-content:center;}
+  .shot-watch{display:block;width:100%;height:auto;aspect-ratio:1/1;max-width:220px;margin:0 auto;border-radius:50%;background:#000;box-shadow:0 0 0 6px #2a2a2a,0 18px 40px -20px rgba(0,0,0,.45);}
+  .shot-watch.big{max-width:340px;}
+  .shot-phone{display:block;width:100%;height:auto;max-width:250px;margin:0 auto;border-radius:20px;border:6px solid #1c1c1c;box-shadow:0 18px 40px -22px rgba(0,0,0,.5);}
+  html[data-lang="en"] img[data-en]{display:block;}
 
   /* 한 줄 문장 */
   .statement{background:var(--bg-2);padding:40px 0;}
   .statement p{font-weight:600;font-size:clamp(18px,2.2vw,24px);margin:0;letter-spacing:-0.01em;}
 
-  /* 단계 */
-  .tiers{padding:clamp(64px,9vw,104px) 0;}
-  .tiers > .wrap > h2{font-size:clamp(24px,2.8vw,34px);line-height:1.3;}
-  .tiers > .wrap > p.sub{color:var(--mute);margin:12px 0 0;max-width:38em;}
-  .tier-list{margin-top:36px;border-top:1px solid var(--ink);}
-  .tier{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--line);}
-  .tier .num{font-weight:700;font-size:15px;color:var(--mute);padding-top:2px;}
-  .tier h3{font-size:19px;}
-  .tier .tag{display:inline-block;margin-left:8px;font-size:12.5px;font-weight:500;color:var(--mute);vertical-align:2px;border:1px solid var(--line);border-radius:4px;padding:1px 7px;letter-spacing:0;}
-  .tier.req .tag{color:var(--brand);border-color:rgba(168,100,43,.35);}
-  .tier p{margin:8px 0 0;color:var(--mute);max-width:40em;}
-  .tier .req-note{font-size:14px;color:var(--mute);}
+  /* 기능 구역 */
+  .feat{padding:clamp(64px,9vw,104px) 0;}
+  .band{background:var(--bg-2);}
+  .feat h2{font-size:clamp(24px,2.8vw,34px);line-height:1.3;}
+  .feat .sub{color:var(--mute);margin:12px 0 0;max-width:40em;}
+  .feat .sub a{color:var(--ink);}
+  .shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:32px;}
+  .shots.phones{grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px;}
+  .shots figure{margin:0;background:var(--bg-2);border-radius:12px;padding:28px 20px 18px;display:grid;gap:14px;min-width:0;}
+  .band .shots figure{background:#fff;}
+  .shots figcaption{text-align:center;font-size:14px;color:var(--mute);}
+  .flist{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 32px;}
+  .flist.three{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .flist li{border-top:2px solid var(--ink);padding-top:14px;min-width:0;}
+  .flist h3{font-size:17px;}
+  .flist p{margin:6px 0 0;color:var(--mute);font-size:15px;}
+  .new{display:inline-block;font-size:11px;font-weight:700;color:var(--brand);border:1px solid rgba(168,100,43,.4);border-radius:4px;padding:0 5px;vertical-align:3px;letter-spacing:.04em;}
+  .appicon{width:26px;height:26px;border-radius:6px;display:block}
+  .wordmark{display:flex;align-items:center;gap:8px}
 
   /* footer */
   footer{border-top:1px solid var(--line);padding:32px 0 48px;}
@@ -106,8 +107,11 @@
 
   @media (max-width:860px){
     .hero .wrap{grid-template-columns:1fr;gap:40px}
-    .watch{max-width:260px;}
-    .tier{grid-template-columns:40px 1fr;gap:12px}
+    .shot-watch.big{max-width:260px;}
+    .shots{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+    .shots figure{padding:14px 8px 10px;gap:8px}
+    .shots figcaption{font-size:12px}
+    .flist,.flist.three{grid-template-columns:1fr;}
   }
   @media (max-width:560px){
     header.nav .wrap{height:56px}
@@ -118,15 +122,6 @@
     .home .lbl-long{display:none}
     .home .lbl-short{display:inline}
   }
-
-  /* 편의 기능 */
-  .extras{padding:clamp(64px,9vw,104px) 0 0;}
-  .extras h2{font-size:clamp(24px,2.8vw,34px);line-height:1.3;}
-  .extra-list{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
-  .extra-list li{border-top:2px solid var(--ink);padding-top:14px;}
-  .extra-list h3{font-size:17px;}
-  .extra-list p{margin:6px 0 0;color:var(--mute);font-size:15px;}
-  @media (max-width:860px){.extra-list{grid-template-columns:1fr}}
 
   [data-en]{display:none;}
   html[data-lang="en"] [data-ko]{display:none;}
@@ -168,7 +163,7 @@
 <path fill="none" stroke-width="1.49" stroke-linecap="round" stroke-linejoin="round" class="lg-line" stroke-opacity="1" stroke-miterlimit="4" d="M 451.28 34.12 L 457.64 36.08 L 449.95 39.50 L 456.88 41.00 " transform="matrix(0.998884, 0, 0, 0.998884, 0, 0.0837054)"/>
 </svg></a>
       <span class="sep" aria-hidden="true"></span>
-      <div class="wordmark">Teswatch</div>
+      <div class="wordmark"><img class="appicon" src="/teswatch/img/app-icon.webp" width="128" height="128" alt="">Teswatch</div>
     </div>
     <div class="navr">
       <a class="home" href="/"><span class="lbl-long"><span data-ko>Lazy Gompany 홈</span><span data-en>Lazy Gompany home</span></span><span class="lbl-short"><span data-ko>홈</span><span data-en>Home</span></span></a>
@@ -185,25 +180,25 @@
     <div class="wrap">
       <div>
         <h1>
-          <span data-ko>폰 없이, 손목에서<br>테슬라를 엽니다</span>
-          <span data-en>Open your Tesla<br>from your wrist. No phone.</span>
+          <span data-ko>손목 위의<br>테슬라 디지털 키</span>
+          <span data-en>Your Tesla key,<br>on your wrist.</span>
         </h1>
         <p class="lede">
-          <span data-ko>Teswatch는 Wear OS 워치 전용 테슬라 키 앱입니다. 워치와 차량이 블루투스로 직접 연결돼, 트렁크·프렁크·충전구·잠금을 손목에서 바로 조작합니다.</span>
-          <span data-en>Teswatch is a Tesla key app built for Wear OS. Your watch connects to the car directly over Bluetooth — control the trunk, frunk, charge port, and locks right from your wrist.</span>
+          <span data-ko>Teswatch는 Wear OS 워치와 폰으로 쓰는 테슬라 키 앱입니다. 워치가 블루투스로 차와 직접 연결돼 잠금, 프렁크, 트렁크, 충전구를 손목에서 바로 엽니다. 폰 앱은 차 상태, 주행 기록, 내 차 찾기를 맡습니다.</span>
+          <span data-en>Teswatch is a Tesla key app for Wear OS watches and phones. Your watch talks to the car directly over Bluetooth to lock, unlock and open the frunk, trunk and charge port. The phone app keeps car status, drive history and finds your car.</span>
         </p>
         <div class="badge">
-          <span data-ko>구독료 없음 · 계정 가입 불필요</span>
-          <span data-en>No subscription. No account.</span>
+          <span data-ko>구독료 없음 · 내 데이터는 내 폰에만</span>
+          <span data-en>No subscription. Your data stays on your phone.</span>
         </div>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.donghoon.teswatch" target="_blank" rel="noopener">
             <span data-ko>Play 스토어에서 받기</span>
             <span data-en>Get it on Google Play</span>
           </a>
-          <a class="btn btn-ghost" href="#how">
-            <span data-ko>작동 방식 보기</span>
-            <span data-en>See how it works</span>
+          <a class="btn btn-ghost" href="#watch">
+            <span data-ko>기능 보기</span>
+            <span data-en>See features</span>
           </a>
           <a class="btn btn-ghost" href="/teswatch/guide-ko.pdf" id="guide-link" target="_blank" rel="noopener">
             <span data-ko>API 연결 안내 (PDF)</span>
@@ -211,129 +206,112 @@
           </a>
         </div>
       </div>
-
-      <div class="watch-stage" aria-hidden="true"><div class="watch">
-        <div class="grid">
-          <div class="cell f">
-            <svg viewBox="0 0 394 329" fill="none"><g stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="18,207 19,203 20,199 20,195 21,191 24,187 27,183 31,179 35,176 39,173 43,170 47,168 51,166 55,163 59,161 63,160 67,158 71,156 75,155 79,153 83,152 87,151 91,149 95,148 99,147 103,146 107,144 111,143 115,142 119,141 123,140 127,139 131,138 135,138 139,137 143,136 147,135 151,135 155,134 159,133 163,133 167,132 171,132 175,131 179,131 183,130 187,129 191,128 195,127 199,126 203,125 207,123 211,121 215,119 219,116 223,112 227,109 231,106 235,103 239,100 243,96 247,93 251,90 255,87 259,84 263,82 267,79 271,76 275,74 279,71 283,69 287,67 291,65 295,63 299,62 303,60 307,59 311,57 315,56 319,55 323,54 327,53 331,52 335,51 339,50 343,49 347,49 351,48 355,48 359,47 363,47 367,46 371,46 375,46 379,46 383,46 386,45"/>
-              <polyline points="78,281 76,282 74,281 72,281 70,281 68,281 66,281 64,281 62,281 60,281 58,281 56,281 54,281 52,280 50,280 48,280 46,280 44,280 42,280 40,280 38,280 36,280 34,279 32,279 30,278 28,278 26,277 24,277 22,276 20,275 18,275 16,273 14,271 12,269 11,267 10,265 10,263 9,261 9,259 9,257 9,255 9,253 8,251 8,249 8,247 8,245 9,243 9,241 9,239 9,237 9,235 10,233 10,231 10,229 10,227 11,225 11,223 11,221 12,219 12,217 13,215 13,213 14,211 15,209 17,208"/>
-              <polyline points="19,208 21,208 23,208 25,208 27,208 29,208 31,208 33,208 35,208 37,207 39,207 41,207 43,207 45,207 47,206 49,206 51,205 53,205 55,204 57,203 59,202 61,201 63,200 65,199 67,198 69,197 71,195 73,194 75,192 77,191 79,189 81,188 83,186"/>
-              <polyline points="363,281 362,282 361,282 360,281 359,281 358,281 357,281 356,281 355,281 354,281 353,281 352,281 351,281 350,281 349,281 348,281 347,281 346,281 345,281 344,281 343,281 342,281 341,281 340,281 339,281 338,281 337,281 336,281 335,281 334,281 333,281 332,281 331,281 330,281 329,281 328,281 327,281 326,281 325,281 324,281 323,281 322,281 321,281 320,281 319,281 318,281 317,281 316,281 315,281 314,281 313,281 312,281 311,281 310,281 309,281 308,281 307,281 306,281 305,281 304,281 303,281 302,281 301,281 300,281 299,281 298,281 297,281 296,281 295,281 294,281 293,281 292,281 291,281 290,281 289,281 288,281 287,281 286,281 285,281 284,281 283,281 282,281 281,281 280,281 279,281 278,281 277,281 276,282 275,282 274,281"/>
-              <polygon points="149,314 145,311 141,308 137,304 133,300 130,296 127,292 125,288 123,284 122,280 121,276 120,272 120,268 120,264 120,260 120,256 121,252 122,248 123,244 124,240 126,236 128,232 131,228 134,224 138,220 142,217 146,214 150,211 154,209 158,208 162,206 166,205 170,204 174,204 178,204 182,204 186,204 190,205 194,206 198,207 202,208 206,210 210,212 214,215 218,218 222,222 225,226 229,230 231,234 233,238 235,242 236,246 237,250 238,254 238,258 239,262 239,266 238,270 237,274 237,278 235,282 234,286 232,290 230,294 227,298 223,302 219,306 215,310 211,313 207,315 203,317 199,318 195,320 191,320 187,321 183,321 179,321 175,321 171,321 167,320 163,320 159,318 155,317 151,315 149,314" fill="none"/>
-            </g></svg>
-            <span data-ko>프렁크</span><span data-en>Frunk</span>
-          </div>
-          <div class="cell u">
-            <svg viewBox="0 0 100 100" fill="none"><path d="M32 46V33a18 18 0 0136 0v13" stroke="#fff" stroke-width="9" stroke-linecap="round"/><rect x="24" y="46" width="52" height="38" rx="9" fill="#fff"/></svg>
-            <span data-ko>차량</span><span data-en>Vehicle</span>
-          </div>
-          <div class="cell t">
-            <svg viewBox="0 0 178 156" fill="none"><g stroke="#fff" stroke-width="7.2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="8,37 9,37 10,37 11,37 12,37 13,37 14,37 15,37 16,37 17,37 18,37 19,37 20,37 21,37 22,37 23,37 24,37 25,37 26,37 27,37 28,37 29,37 30,37 31,38 32,38 33,38 34,38 35,38 36,38 37,38 38,38 39,39 40,39 41,39 42,39 43,39 44,39 45,39 46,39 47,40 48,40 49,40 50,40 51,40 52,40 53,41 54,41 55,41 56,41 57,41 58,42 59,42 60,42 61,42 62,42 63,43 64,43 65,43 66,43 67,44 68,44 69,44 70,44 71,45 72,45 73,45 74,46 75,46 76,46 77,46 78,47 79,47 80,47 81,48 82,48 83,48 84,48 85,49 86,49 87,50 88,50 89,50 90,51 91,51 92,52 93,52 94,52 95,53 96,53 97,53 98,54 99,54 100,55 101,55 102,56 103,56 104,57 105,57 106,57 107,58 108,58 109,59 110,59 111,59 112,60 113,60 114,61 115,61 116,62 117,62 118,63 119,63 120,64 121,64 122,65 123,65 124,66 125,66 126,67 127,67 128,68 129,68 130,69 131,69 132,70 133,70 134,71 135,71 136,72 137,72 138,73 139,73 140,74 141,75 141,76 142,77 143,78 143,79 143,80 143,81 144,82 144,83 144,84 144,85 144,86 144,87"/>
-              <polyline points="123,85 124,86 125,86 126,87 127,87 128,87 129,87 130,87 131,88 132,88 133,88 134,88 135,88 136,88 137,88 138,88 139,88 140,88 141,88 142,88 143,88"/>
-              <polyline points="145,88 146,89 147,90 147,91 148,92 148,93 148,94 149,95 149,96 149,97 150,98 150,99 151,100 151,101 152,102 152,103 153,104 153,105 153,106 153,107 154,108 154,109 154,110 154,111 154,112 154,113 154,114 154,115 154,116 154,117 154,118 154,119 154,120 154,121 154,122 153,123 153,124 153,125 152,126 151,127 150,128 149,129 148,129 147,129 146,130 145,130 144,130 143,130 142,131 141,131 140,131 139,131 138,131 137,131 136,131 135,131 134,131 133,131 132,131 131,131 130,131"/>
-              <polyline points="58,130 57,130 56,131 55,131 54,131 53,131 52,131 51,131 50,131 49,131 48,131 47,131 46,131 45,131 44,131 43,131 42,131 41,131 40,131 39,131 38,131 37,131 36,131 35,131 34,131 33,131 32,131 31,131 30,131 29,131 28,131 27,131 26,131 25,131 24,131 23,131 22,131 21,131 20,131 19,131 18,131"/>
-              <polygon points="94,98 93,99 92,99 91,99 90,99 89,99 88,99 87,100 86,100 85,100 84,101 83,101 82,102 81,102 80,103 79,104 78,105 77,106 76,107 75,108 74,109 73,110 73,111 72,112 71,113 71,114 71,115 70,116 70,117 70,118 70,119 70,120 70,121 70,122 69,123 69,124 69,125 70,126 70,127 70,128 70,129 70,130 70,131 70,132 71,133 71,134 72,135 72,136 73,137 74,138 74,139 75,140 76,141 77,142 78,143 79,143 80,144 81,145 82,145 83,146 84,146 85,146 86,147 87,147 88,148 89,148 90,148 91,148 92,148 93,148 94,148 95,148 96,148 97,148 98,148 99,148 100,147 101,147 102,147 103,146 104,146 105,146 106,145 107,144 108,144 109,143 110,142 111,141 112,140 113,139 114,138 114,137 115,136 115,135 116,134 116,133 117,132 117,131 117,130 118,129 118,128 118,127 118,126 118,125 118,124 118,123 118,122 118,121 118,120 118,119 118,118 117,117 117,116 117,115 116,114 116,113 115,112 115,111 114,110 114,109 113,108 112,107 111,106 110,105 109,104 108,103 107,102 106,102 105,101 104,101 103,101 102,100 101,100 100,100 99,99 98,99 97,99 96,99 95,99 94,98" fill="none"/>
-            </g></svg>
-            <span data-ko>트렁크</span><span data-en>Trunk</span>
-          </div>
-          <div class="cell c">
-            <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 L4.5 13.5 L11 13.5 L9.5 22 L19.5 9.5 L12.5 9.5 Z" fill="#fff"/></svg>
-            <span data-ko>충전구</span><span data-en>Charge</span>
-          </div>
-        </div>
-      </div></div>
+      <div class="watch-stage">
+        <img class="shot-watch big" data-ko src="/teswatch/img/watch-key-ko.webp" width="454" height="454" alt="워치 키 화면: 프렁크, 잠금, 트렁크, 충전구">
+        <img class="shot-watch big" data-en src="/teswatch/img/watch-key-en.webp" width="454" height="454" alt="Watch key: frunk, lock, trunk, charge port">
+      </div>
     </div>
   </section>
 
   <section class="statement">
     <div class="wrap">
       <p>
-        <span data-ko>한 번 구매로 끝. 월 구독료도, 회원가입도, 서버에 남는 개인정보도 없습니다.</span>
-        <span data-en>Buy once, done. No monthly fee, no sign-up, nothing stored on a server.</span>
+        <span data-ko>매달 내는 요금이 없습니다. 주행 기록, 위치, 녹음은 모두 내 폰에만 저장됩니다.</span>
+        <span data-en>No monthly fee. Drives, locations and recordings stay on your phone.</span>
       </p>
     </div>
   </section>
 
-  <section class="extras" id="features">
+  <section class="feat" id="watch">
     <div class="wrap">
-      <h2><span data-ko>폰을 꺼낼 일이 더 줄어듭니다</span><span data-en>Even fewer reasons to reach for your phone</span></h2>
-      <ul class="extra-list">
-        <li>
-          <h3><span data-ko>오토락</span><span data-en>Walk-away lock</span></h3>
-          <p><span data-ko>차에서 멀어지면 워치가 알아서 문을 잠급니다. 잠갔는지 다시 돌아볼 필요가 없습니다.</span><span data-en>Walk away and your watch locks the car for you. No more turning back to check.</span></p>
-        </li>
-        <li>
-          <h3><span data-ko>차 방향 나침반</span><span data-en>Car compass</span></h3>
-          <p><span data-ko>넓은 주차장에서 차가 어느 쪽에 있는지 워치 화면의 화살표가 가리킵니다.</span><span data-en>In a big parking lot, an arrow on your watch points toward your car.</span></p>
-        </li>
-        <li>
-          <h3><span data-ko>차까지 거리</span><span data-en>Distance to car</span></h3>
-          <p><span data-ko>차까지 몇 미터 남았는지 워치에서 바로 보여줍니다.</span><span data-en>See how many meters you are from your car, right on your watch.</span></p>
-        </li>
+      <h2><span data-ko>워치 앱</span><span data-en>Watch app</span></h2>
+      <div class="shots">
+        <figure>
+          <img class="shot-watch" data-ko src="/teswatch/img/watch-key-ko.webp" width="454" height="454" alt="워치 키 화면: 프렁크, 잠금, 트렁크, 충전구" loading="lazy">
+          <img class="shot-watch" data-en src="/teswatch/img/watch-key-en.webp" width="454" height="454" alt="Watch key: frunk, lock, trunk, charge port" loading="lazy">
+          <figcaption><span data-ko>차 키</span><span data-en>Car key</span></figcaption>
+        </figure>
+        <figure>
+          <img class="shot-watch" src="/teswatch/img/watch-more-en.webp" width="454" height="454" alt="워치 두 번째 화면: 공조, 배터리, 경적과 라이트, 차 위치" loading="lazy">
+          <figcaption><span data-ko>공조 · 경적 · 차 위치</span><span data-en>Climate, horn, location</span></figcaption>
+        </figure>
+        <figure>
+          <img class="shot-watch" src="/teswatch/img/watch-tile-ko.webp" width="384" height="384" alt="워치 타일: 잠김 · 85% · 320 km와 버튼 4개" loading="lazy">
+          <figcaption><span data-ko>타일</span><span data-en>Tile</span></figcaption>
+        </figure>
+      </div>
+      <ul class="flist">
+        <li><h3><span data-ko>손목 위 차 키</span><span data-en>Car key on your wrist</span></h3>
+          <p><span data-ko>블루투스로 차와 직접 연결해 잠금·잠금 해제, 프렁크, 트렁크, 충전구를 엽니다. 인터넷이 없어도 됩니다.</span><span data-en>Connects to the car directly over Bluetooth to lock, unlock, and open the frunk, trunk and charge port. No internet needed.</span></p></li>
+        <li><h3><span data-ko>폰 없이 사용</span><span data-en>Works without your phone</span></h3>
+          <p><span data-ko>처음 설정만 폰에서 하면, 그 뒤로는 워치만으로 작동합니다.</span><span data-en>Set it up once on the phone, then the watch works on its own.</span></p></li>
+        <li><h3><span data-ko>공조·경적·차 위치</span><span data-en>Climate, horn and car location</span></h3>
+          <p><span data-ko>실내 온도 조절, 경적과 라이트, 차 위치 확인. 일부 기능은 Tesla API 연결이 필요합니다.</span><span data-en>Set the cabin temperature, honk and flash, and see where the car is. Some need the Tesla API connected.</span></p></li>
+        <li><h3><span data-ko>타일</span><span data-en>Tile</span> <span class="new">NEW</span></h3>
+          <p><span data-ko>워치 화면을 옆으로 넘기면 앱을 열지 않고 바로 프렁크·잠금·트렁크·충전구 버튼이 나옵니다. 위쪽에 잠금 상태, 배터리, 주행 가능 거리를 보여 줍니다.</span><span data-en>Swipe on the watch face for frunk, lock, trunk and charge port buttons without opening the app, with lock status, battery and range on top.</span></p></li>
+        <li><h3><span data-ko>컴플리케이션</span><span data-en>Complication</span> <span class="new">NEW</span></h3>
+          <p><span data-ko>워치 페이스에 차 배터리를 둥근 게이지와 %로 표시하고, 잠김 여부를 아이콘으로 보여 줍니다.</span><span data-en>Shows the car's battery on your watch face as a round gauge with %, plus a lock icon.</span></p></li>
       </ul>
     </div>
   </section>
 
-  <section class="tiers" id="how">
+  <section class="feat band" id="phone">
     <div class="wrap">
-      <h2>
-        <span data-ko>필요한 만큼만 연결하세요</span>
-        <span data-en>Connect only as much as you need</span>
-      </h2>
-      <p class="sub">
-        <span data-ko>기본 기능은 설치 즉시 동작합니다. 더 쓰고 싶을 때만 다음 단계를 추가하면 됩니다.</span>
-        <span data-en>The basics work the moment you install it. Add the next step only if you want more.</span>
-      </p>
-
-      <div class="tier-list">
-        <div class="tier req">
-          <div class="num">01</div>
-          <div>
-            <h3>
-              <span data-ko>BLE 직결</span><span data-en>Direct Bluetooth</span>
-              <span class="tag"><span data-ko>기본</span><span data-en>Included</span></span>
-            </h3>
-            <p>
-              <span data-ko>워치와 차량이 블루투스로 바로 연결됩니다. 폰 없이, 차량 근처에서 잠금·해제, 트렁크·프렁크 열기, 충전구 조작이 가능합니다. 주행도 가능합니다.</span>
-              <span data-en>Your watch talks to the car directly over Bluetooth. Near the car, with no phone: lock and unlock, open the trunk and frunk, and work the charge port. You can also drive with it.</span>
-            </p>
-          </div>
-        </div>
-
-        <div class="tier req">
-          <div class="num">02</div>
-          <div>
-            <h3>
-              <span data-ko>카드키 대체</span><span data-en>Card key replacement</span>
-              <span class="tag"><span data-ko>기본</span><span data-en>Included</span></span>
-            </h3>
-            <p>
-              <span data-ko>테슬라가 제공하는 정품 카드키와 동일한 방식으로 동작합니다. 별도 설정 없이 바로 씁니다.</span>
-              <span data-en>Works the same way as Tesla's own card key, out of the box — no extra setup.</span>
-            </p>
-          </div>
-        </div>
-
-        <div class="tier opt">
-          <div class="num">03</div>
-          <div>
-            <h3>
-              <span data-ko>Tesla API 연동</span><span data-en>Tesla API connection</span>
-              <span class="tag"><span data-ko>선택</span><span data-en>Optional</span></span>
-            </h3>
-            <p>
-              <span data-ko>인터넷을 통해 01번 기능은 물론, 공조기, 배터리 상태, 경적·플래시, 차량 위치까지 확인할 수 있습니다.</span>
-              <span data-en>Over the internet, you get everything in step 01 plus climate control, battery status, horn and flash, and vehicle location.</span>
-            </p>
-            <p class="req-note">
-              <span data-ko>* Cloudflare, GitHub, Tesla 개발자 계정이 필요합니다. 본인 소유 계정만 사용하며, 앱 서버에 정보가 저장되지 않습니다.</span>
-              <span data-en>* Requires your own Cloudflare, GitHub, and Tesla Developer accounts. Only your own accounts are used — nothing is stored on an app server.</span>
-            </p>
-          </div>
-        </div>
+      <h2><span data-ko>폰 앱</span><span data-en>Phone app</span></h2>
+      <div class="shots phones">
+        <figure>
+          <img class="shot-phone" data-ko src="/teswatch/img/phone-home-ko.webp" width="540" height="960" alt="폰 앱 홈 화면" loading="lazy">
+          <img class="shot-phone" data-en src="/teswatch/img/phone-home-en.webp" width="540" height="960" alt="Phone app home" loading="lazy">
+          <figcaption><span data-ko>차 상태 · 보안 점검</span><span data-en>Car status, security check</span></figcaption>
+        </figure>
+        <figure>
+          <img class="shot-phone" data-ko src="/teswatch/img/phone-drive-ko.webp" width="540" height="960" alt="주행 기록 상세" loading="lazy">
+          <img class="shot-phone" data-en src="/teswatch/img/phone-drive-en.webp" width="540" height="960" alt="Drive history detail" loading="lazy">
+          <figcaption><span data-ko>주행 기록</span><span data-en>Drive history</span></figcaption>
+        </figure>
       </div>
+      <ul class="flist">
+        <li><h3><span data-ko>차 상태 한눈에</span><span data-en>Car status at a glance</span></h3>
+          <p><span data-ko>배터리, 주행 가능 거리, 잠김 여부, 주차한 지 얼마나 됐는지 보여 줍니다.</span><span data-en>Battery, range, lock status and how long the car has been parked.</span></p></li>
+        <li><h3><span data-ko>보안 점검</span><span data-en>Security check</span></h3>
+          <p><span data-ko>차에 등록된 키 개수와 보안 위험을 주기적으로 확인합니다.</span><span data-en>Regularly checks how many keys the car has and flags security risks.</span></p></li>
+        <li><h3><span data-ko>주행 기록</span><span data-en>Drive history</span></h3>
+          <p><span data-ko>차에 타면 자동으로 기록을 시작해 지도 경로, 거리, 시간, 효율, 배터리 사용량을 남깁니다.</span><span data-en>Starts recording when you get in the car and keeps the route map, distance, time, efficiency and battery used.</span></p></li>
+        <li><h3><span data-ko>내 차 찾기</span><span data-en>Where's my car</span></h3>
+          <p><span data-ko>차에서 내린 뒤 걸어간 길을 기록해 돌아가는 방향을 알려 줍니다. 지하 주차장처럼 GPS가 약한 곳에서도 걸음 수와 방향으로 찾습니다.</span><span data-en>Records your walk after you leave the car and shows the way back, even in underground parking where GPS is weak, using steps and direction.</span></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="feat" id="soon">
+    <div class="wrap">
+      <h2><span data-ko>출시 예정</span><span data-en>Coming soon</span></h2>
+      <p class="sub"><span data-ko>지금 테스트 중인 기능입니다. 정식 업데이트에 순서대로 들어갑니다.</span><span data-en>These are in testing and will arrive in upcoming updates.</span></p>
+      <ul class="flist">
+        <li><h3><span data-ko>워크어웨이</span><span data-en>Walkaway</span></h3>
+          <p><span data-ko>차에 다가가면 자동으로 열리고, 멀어지면 자동으로 잠깁니다. 잠그는 거리는 약 3 m / 6 m / 10 m 중에서 고릅니다.</span><span data-en>Unlocks as you walk up and locks as you walk away. Choose the lock distance: about 3 m, 6 m or 10 m.</span></p></li>
+        <li><h3><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span></h3>
+          <p><span data-ko>테슬라 블랙박스에는 소리가 녹음되지 않습니다. Teswatch가 주행 중 폰 마이크로 차내 소리를 녹음하고, 테슬라 앱이나 USB에서 받은 블랙박스 영상에 같은 시각의 소리를 붙여 줍니다. 저장하기 전에 미리 들으면서 싱크를 맞출 수 있어, 별도 블랙박스를 살 필요가 없습니다.</span><span data-en>Tesla's dashcam records no audio. Teswatch records in-cabin audio with your phone's mic while you drive and adds it to dashcam clips saved from the Tesla app or the car's USB drive. Preview and fine-tune the sync before saving. No separate dashcam needed.</span></p></li>
+        <li><h3><span data-ko>사고 알림</span><span data-en>Crash alert</span></h3>
+          <p><span data-ko>주행 중 큰 충격 뒤 차가 멈춰 있으면 30초 카운트다운이 시작됩니다. 취소하지 않으면 지정한 사람(최대 3명)에게 위치 지도 링크 문자와 사고 전후 차내 녹음을 보냅니다.</span><span data-en>After a hard impact while driving, if the car stays still, a 30-second countdown starts. If you don't cancel, up to 3 contacts get a text with a map link and an MMS with the in-cabin audio from around the crash.</span></p></li>
+        <li><h3><span data-ko>충전 기록·월간 리포트</span><span data-en>Charging history and monthly report</span></h3>
+          <p><span data-ko>충전 기록, 슈퍼차저 이용 기록, 한 달 주행·충전 리포트, 국내 충전 요금을 정리합니다.</span><span data-en>Charging sessions, Supercharger history and a monthly drive and charging report.</span></p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="feat band" id="privacy-cost">
+    <div class="wrap">
+      <h2><span data-ko>개인정보와 비용</span><span data-en>Privacy and cost</span></h2>
+      <ul class="flist three">
+        <li><h3><span data-ko>구독료 없음</span><span data-en>No subscription</span></h3>
+          <p><span data-ko>매달 내는 요금이 없습니다.</span><span data-en>No monthly fee.</span></p></li>
+        <li><h3><span data-ko>서버에 저장하는 데이터 없음</span><span data-en>No data on our servers</span></h3>
+          <p><span data-ko>주행 기록, 위치, 녹음은 모두 폰에만 저장됩니다.</span><span data-en>Drives, locations and recordings stay on your phone.</span></p></li>
+        <li><h3><span data-ko>내 Tesla API 키 사용</span><span data-en>Your own Tesla API key</span></h3>
+          <p><span data-ko>내 계정의 Tesla 개발자 앱으로 연결합니다. 앱이 이번 달 예상 API 비용을 보여 주며, 보통 Tesla가 매달 주는 $10 크레딧 안에서 해결됩니다.</span><span data-en>Connects through your own Tesla developer app. The app shows this month's estimated API cost, which usually stays within Tesla's $10 monthly credit.</span></p></li>
+      </ul>
+      <p class="sub"><span data-ko>API 연결 방법은 <a href="/teswatch/guide-ko.pdf" class="guide-foot" target="_blank" rel="noopener">API 연결 안내 (PDF)</a>에 정리해 두었습니다.</span><span data-en>Setup steps are in the <a href="/teswatch/guide-en.pdf" target="_blank" rel="noopener">API setup guide (PDF)</a>.</span></p>
     </div>
   </section>
 
@@ -345,7 +323,7 @@
     <div class="links">
       <a href="/teswatch/privacy"><span data-ko>개인정보처리방침</span><span data-en>Privacy Policy</span></a>
       <a href="/"><span data-ko>Lazy Gompany 홈</span><span data-en>Lazy Gompany</span></a>
-      <a href="mailto:fate1048@gmail.com"><span data-ko>문의하기</span><span data-en>Contact</span></a>
+      <a href="mailto:hello@lazycompany.app"><span data-ko>문의하기</span><span data-en>Contact</span></a>
       <a href="/teswatch/guide-ko.pdf" class="guide-foot" target="_blank" rel="noopener"><span data-ko>API 연결 안내</span><span data-en>API setup guide</span></a>
       <a href="https://play.google.com/store/apps/details?id=com.donghoon.teswatch" target="_blank" rel="noopener"><span data-ko>Play 스토어</span><span data-en>Google Play</span></a>
     </div>
