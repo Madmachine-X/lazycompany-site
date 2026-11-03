@@ -94,6 +94,14 @@
   .flist h3{font-size:17px;}
   .flist p{margin:6px 0 0;color:var(--mute);font-size:15px;}
   .new{display:inline-block;font-size:11px;font-weight:700;color:var(--brand);border:1px solid rgba(168,100,43,.4);border-radius:4px;padding:0 5px;vertical-align:3px;letter-spacing:.04em;}
+  .deep{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:36px;}
+  .deep article{background:var(--bg-2);border-radius:12px;padding:clamp(22px,3vw,32px);min-width:0;}
+  .deep h3{font-size:20px;}
+  .deep .why{margin:10px 0 0;color:var(--mute);}
+  .howto{margin:20px 0 0;padding:0;list-style:none;counter-reset:h;display:grid;gap:12px;}
+  .howto li{counter-increment:h;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;font-size:15px;}
+  .howto li::before{content:counter(h);width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .new.soon{color:var(--mute);border-color:var(--line);}
   .appicon{width:26px;height:26px;border-radius:6px;display:block}
   .wordmark{display:flex;align-items:center;gap:8px}
 
@@ -111,7 +119,7 @@
     .shots{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
     .shots figure{padding:14px 8px 10px;gap:8px}
     .shots figcaption{font-size:12px}
-    .flist,.flist.three{grid-template-columns:1fr;}
+    .flist,.flist.three,.deep{grid-template-columns:1fr;}
   }
   @media (max-width:560px){
     header.nav .wrap{height:56px}
@@ -251,6 +259,8 @@
           <p><span data-ko>워치 화면을 옆으로 넘기면 앱을 열지 않고 바로 프렁크·잠금·트렁크·충전구 버튼이 나옵니다. 위쪽에 잠금 상태, 배터리, 주행 가능 거리를 보여 줍니다.</span><span data-en>Swipe on the watch face for frunk, lock, trunk and charge port buttons without opening the app, with lock status, battery and range on top.</span></p></li>
         <li><h3><span data-ko>컴플리케이션</span><span data-en>Complication</span> <span class="new">NEW</span></h3>
           <p><span data-ko>워치 페이스에 차 배터리를 둥근 게이지와 %로 표시하고, 잠김 여부를 아이콘으로 보여 줍니다.</span><span data-en>Shows the car's battery on your watch face as a round gauge with %, plus a lock icon.</span></p></li>
+        <li><h3><span data-ko>워크어웨이</span><span data-en>Walkaway</span> <span class="new">NEW</span></h3>
+          <p><span data-ko>차에 다가가면 자동으로 열리고, 멀어지면 자동으로 잠깁니다. 잠그는 거리는 약 3 m / 6 m / 10 m 중에서 고릅니다.</span><span data-en>Unlocks as you walk up and locks as you walk away. Choose the lock distance: about 3 m, 6 m or 10 m.</span></p></li>
       </ul>
     </div>
   </section>
@@ -283,24 +293,44 @@
     </div>
   </section>
 
-  <section class="feat" id="soon">
+  <section class="feat" id="safety">
     <div class="wrap">
-      <h2><span data-ko>출시 예정</span><span data-en>Coming soon</span></h2>
-      <p class="sub"><span data-ko>지금 테스트 중인 기능입니다. 정식 업데이트에 순서대로 들어갑니다.</span><span data-en>These are in testing and will arrive in upcoming updates.</span></p>
+      <h2><span data-ko>블랙박스 소리와 사고 알림</span><span data-en>Dashcam audio and crash alert</span></h2>
+      <p class="sub"><span data-ko>주행 중에 폰이 차내 소리를 녹음해 두기 때문에 가능한 두 가지 기능입니다. 녹음은 폰에만 저장됩니다.</span><span data-en>Both work because your phone records in-cabin audio while you drive. Recordings stay on your phone.</span></p>
+      <div class="deep">
+        <article>
+          <h3><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span> <span class="new soon"><span data-ko>출시 예정</span><span data-en>SOON</span></span></h3>
+          <p class="why"><span data-ko>테슬라 블랙박스 영상에는 소리가 없습니다. 사고 순간의 경적, 충돌음, 대화가 남지 않습니다. Teswatch가 그 빈자리를 채워서, 별도 블랙박스를 살 필요가 없습니다.</span><span data-en>Tesla dashcam clips have no audio, so horns, impact sounds and voices are lost. Teswatch fills that gap, so you don't need a separate dashcam.</span></p>
+          <ol class="howto">
+            <li><span data-ko>주행 중 폰 마이크로 차내 소리를 녹음합니다.</span><span data-en>While you drive, your phone's mic records in-cabin audio.</span></li>
+            <li><span data-ko>테슬라 앱이나 차의 USB에서 받은 블랙박스 영상을 불러오면, 같은 시각의 소리를 찾아 붙여 줍니다.</span><span data-en>Load a dashcam clip saved from the Tesla app or the car's USB drive, and Teswatch adds the audio from the same moment.</span></li>
+            <li><span data-ko>저장하기 전에 미리 들으면서 영상과 소리의 싱크를 맞춥니다.</span><span data-en>Preview it and fine-tune the sync before saving.</span></li>
+          </ol>
+        </article>
+        <article>
+          <h3><span data-ko>사고 알림</span><span data-en>Crash alert</span> <span class="new soon"><span data-ko>출시 예정</span><span data-en>SOON</span></span></h3>
+          <p class="why"><span data-ko>사고가 나면 연락할 정신이 없을 수 있습니다. 내가 움직이지 못해도, 미리 정해 둔 사람에게 위치와 상황이 전달됩니다.</span><span data-en>After a crash you may not be able to call anyone. Even then, the people you chose get your location and what happened.</span></p>
+          <ol class="howto">
+            <li><span data-ko>주행 중 큰 충격을 감지합니다.</span><span data-en>Teswatch detects a hard impact while driving.</span></li>
+            <li><span data-ko>그 뒤 차가 멈춰 있으면 30초 카운트다운이 시작됩니다. 괜찮다면 취소하면 됩니다.</span><span data-en>If the car then stays still, a 30-second countdown starts. Cancel it if you're fine.</span></li>
+            <li><span data-ko>취소하지 않으면 지정한 사람(최대 3명)에게 위치 지도 링크 문자와 사고 전후 차내 녹음을 보냅니다.</span><span data-en>If you don't cancel, up to 3 contacts get a text with a map link and an MMS with the in-cabin audio from around the crash.</span></li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="feat band" id="soon">
+    <div class="wrap">
+      <h2><span data-ko>그 밖의 출시 예정</span><span data-en>Also coming soon</span></h2>
       <ul class="flist">
-        <li><h3><span data-ko>워크어웨이</span><span data-en>Walkaway</span></h3>
-          <p><span data-ko>차에 다가가면 자동으로 열리고, 멀어지면 자동으로 잠깁니다. 잠그는 거리는 약 3 m / 6 m / 10 m 중에서 고릅니다.</span><span data-en>Unlocks as you walk up and locks as you walk away. Choose the lock distance: about 3 m, 6 m or 10 m.</span></p></li>
-        <li><h3><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span></h3>
-          <p><span data-ko>테슬라 블랙박스에는 소리가 녹음되지 않습니다. Teswatch가 주행 중 폰 마이크로 차내 소리를 녹음하고, 테슬라 앱이나 USB에서 받은 블랙박스 영상에 같은 시각의 소리를 붙여 줍니다. 저장하기 전에 미리 들으면서 싱크를 맞출 수 있어, 별도 블랙박스를 살 필요가 없습니다.</span><span data-en>Tesla's dashcam records no audio. Teswatch records in-cabin audio with your phone's mic while you drive and adds it to dashcam clips saved from the Tesla app or the car's USB drive. Preview and fine-tune the sync before saving. No separate dashcam needed.</span></p></li>
-        <li><h3><span data-ko>사고 알림</span><span data-en>Crash alert</span></h3>
-          <p><span data-ko>주행 중 큰 충격 뒤 차가 멈춰 있으면 30초 카운트다운이 시작됩니다. 취소하지 않으면 지정한 사람(최대 3명)에게 위치 지도 링크 문자와 사고 전후 차내 녹음을 보냅니다.</span><span data-en>After a hard impact while driving, if the car stays still, a 30-second countdown starts. If you don't cancel, up to 3 contacts get a text with a map link and an MMS with the in-cabin audio from around the crash.</span></p></li>
         <li><h3><span data-ko>충전 기록·월간 리포트</span><span data-en>Charging history and monthly report</span></h3>
           <p><span data-ko>충전 기록, 슈퍼차저 이용 기록, 한 달 주행·충전 리포트, 국내 충전 요금을 정리합니다.</span><span data-en>Charging sessions, Supercharger history and a monthly drive and charging report.</span></p></li>
       </ul>
     </div>
   </section>
 
-  <section class="feat band" id="privacy-cost">
+  <section class="feat" id="privacy-cost">
     <div class="wrap">
       <h2><span data-ko>개인정보와 비용</span><span data-en>Privacy and cost</span></h2>
       <ul class="flist three">
