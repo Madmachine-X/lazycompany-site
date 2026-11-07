@@ -324,6 +324,7 @@ footer a{text-decoration:none}
   .map{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+html[lang="en"] .ko-only{display:none!important}
 </style>
 
 <div class="wrap">
@@ -585,7 +586,7 @@ footer a{text-decoration:none}
   </main>
 
   <footer>
-    <a href="/">← Lazy Gompany</a>
+    <span><a href="/">← Lazy Gompany</a><span class="ko-only"> · <a href="https://cafe.naver.com/lazygompany" target="_blank" rel="noopener">커뮤니티 (네이버 카페)</a></span></span>
     <span class="label">Built with obsession. Used with a yawn.</span>
   </footer>
   <div class="biz" lang="ko">
