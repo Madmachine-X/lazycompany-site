@@ -115,7 +115,7 @@
     <li><b>블루투스(BLE) 통신</b>: 워치가 차량과 직접 BLE로 통신해 키 명령을 주고받습니다. 이 통신은 워치와 차량 사이에서만 이루어지며 외부 서버를 거치지 않습니다.</li>
     <li><b>위치 정보</b>: (1) 테슬라 서버가 제공하는 차량의 위치, (2) 워치 자체의 GPS 위치. 워치 위치는 차량과의 거리 표시, 나침반 방향 계산, 오토락(walkaway) 기능에만 사용됩니다.</li>
     <li><b>기기 센서</b>: 나침반 표시를 위해 워치의 방향 센서(회전 벡터)를 사용합니다.</li>
-    <li><b>충전소 찾기(선택)</b>: 한국어 설정에서만 제공되는 선택 기능이며 <b>기본값은 꺼짐</b>입니다. 사용자가 직접 켠 경우에만 현재 위치를 이용해 주변 충전소 정보를 조회합니다. 끄면 이 용도로 위치를 사용하지 않습니다.</li>
+    <li><b>충전소 찾기(선택)</b>: 한국어 설정에서만 제공되는 선택 기능이며 <b>기본값은 꺼짐</b>입니다. 사용자가 직접 켠 경우에만 주변 충전소를 찾기 위해 <b>현재 위치 좌표를 공공데이터포털(data.go.kr)의 충전소 정보 서비스로 보냅니다</b>. 끄면 이 용도로 위치를 사용하지 않습니다.</li>
     <li><b>주소 표시</b>: 좌표를 사람이 읽을 수 있는 주소로 바꾸기 위해 안드로이드 기본 기능(Geocoder)을 사용합니다. 이 과정에서 <b>좌표가 기기의 위치 서비스 제공자(예: Google)에게 전송될 수 있으며</b>, 해당 처리는 그 제공자의 개인정보처리방침을 따릅니다.</li>
   </ul>
 
@@ -153,7 +153,7 @@
     <li><b>Location</b>: (1) the vehicle's location as reported by Tesla's servers, and (2) the watch's own GPS location, used only to show distance/compass direction to the vehicle and to power the walkaway auto-lock feature.</li>
     <li><b>Device sensors</b>: the watch's rotation-vector sensor is used to render the live compass.</li>
     <li><b>Address display</b>: to turn coordinates into a readable address, the app uses Android's built-in Geocoder. <b>Coordinates may be sent to the device's location service provider (e.g. Google)</b> for this, and that processing is governed by the provider's own privacy policy.</li>
-    <li><b>Charging station finder</b>: an optional feature available only when the app language is Korean, and <b>turned off by default</b>. When you turn it on, your current location is used to look up nearby charging stations.</li>
+    <li><b>Charging station finder</b>: an optional feature available only when the app language is Korean, and <b>turned off by default</b>. Only when you turn it on, <b>your current coordinates are sent to the charging station service of Korea's Public Data Portal (data.go.kr)</b> to find nearby stations. When it is off, location is not used for this purpose.</li>
   </ul>
 
   <h2>2. How information is stored or shared</h2>
