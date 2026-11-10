@@ -107,75 +107,112 @@
   <section data-sec="ko" lang="ko">
   <h1>Teswatch 개인정보처리방침</h1>
   <p class="updated">시행일: 2026년 11월 11일</p>
-  <p>Teswatch(이하 "앱")는 Wear OS 스마트워치를 테슬라 차량의 디지털 키로 사용할 수 있게 해주는 앱입니다. 본 방침은 앱이 어떤 정보를 다루는지, 어떻게 사용하고 저장하는지를 설명합니다.</p>
+  <p>Teswatch(이하 "앱")는 Wear OS 워치를 테슬라 차량의 키로 쓰고, 휴대폰에서 주행·충전·보안 기록을 보여 주는 앱입니다. 앱은 회원가입이 없고, 개인정보를 판매하거나 광고에 쓰지 않습니다. 이 방침은 앱이 어떤 정보를 어디에서 처리하는지 설명합니다.</p>
 
-  <h2>1. 앱이 사용하는 정보</h2>
+  <h2>1. 기기 안에서만 처리하는 정보</h2>
+  <p>다음 정보는 사용자의 휴대폰과 워치 안에만 저장되며, 개발자 서버로 보내지 않습니다.</p>
   <ul>
-    <li><b>테슬라 계정 및 차량 데이터</b>: 사용자가 직접 로그인해 연동한 테슬라 계정을 통해, 테슬라 Fleet API가 제공하는 차량 상태(배터리, 충전, 냉난방, 도어락, 위치 등)를 조회하고 잠금/해제·경적·비상등 등 명령을 전송합니다.</li>
-    <li><b>블루투스(BLE) 통신</b>: 워치가 차량과 직접 BLE로 통신해 키 명령을 주고받습니다. 이 통신은 워치와 차량 사이에서만 이루어지며 외부 서버를 거치지 않습니다.</li>
-    <li><b>위치 정보</b>: (1) 테슬라 서버가 제공하는 차량의 위치, (2) 워치 자체의 GPS 위치. 워치 위치는 차량과의 거리 표시, 나침반 방향 계산, 오토락(walkaway) 기능에만 사용됩니다.</li>
-    <li><b>기기 센서</b>: 나침반 표시를 위해 워치의 방향 센서(회전 벡터)를 사용합니다.</li>
-    <li><b>충전소 찾기(선택)</b>: 한국어 설정에서만 제공되는 선택 기능이며 <b>기본값은 꺼짐</b>입니다. 사용자가 직접 켠 경우에만 주변 충전소를 찾기 위해 <b>현재 위치 좌표를 공공데이터포털(data.go.kr)의 충전소 정보 서비스로 보냅니다</b>. 끄면 이 용도로 위치를 사용하지 않습니다.</li>
-    <li><b>주소 표시</b>: 좌표를 사람이 읽을 수 있는 주소로 바꾸기 위해 안드로이드 기본 기능(Geocoder)을 사용합니다. 이 과정에서 <b>좌표가 기기의 위치 서비스 제공자(예: Google)에게 전송될 수 있으며</b>, 해당 처리는 그 제공자의 개인정보처리방침을 따릅니다.</li>
+    <li><b>Tesla 로그인 정보(토큰)</b>: 워치는 차량 명령용, 휴대폰은 상세 기록용(읽기 전용, 선택)으로 각각 보관합니다. Android Keystore로 암호화해 앱 전용 저장 공간에 보관합니다.</li>
+    <li><b>차량 정보</b>: 배터리, 주행거리, 잠김·문 상태, 차량 위치, 충전 정보, 타이어 공기압, 소프트웨어 버전 등.</li>
+    <li><b>휴대폰 위치(GPS)</b>: 주행 경로 기록, 내 차 찾기(주차 후 걸어간 경로), 집 위치 설정에 씁니다.</li>
+    <li><b>신체 활동(걸음 인식)과 기압·방향 센서</b>: 내 차 찾기에서 걸음과 층 이동을 계산합니다.</li>
+    <li><b>블루투스</b>: 워치와 차의 직접 통신, 차 신호 감지(자동 기록·워크어웨이)에 씁니다.</li>
+    <li><b>차내 녹음(마이크, 선택, 기본 꺼짐)</b>: "주행 중 녹음"을 켜면 주행하는 동안 차 안 소리를 녹음해 휴대폰에만 저장합니다. 블랙박스 영상과 합치기, 사고 알림, 사고 경위서에 씁니다. 녹음은 7일 뒤 자동으로 지워지고, 사용자가 "보관"한 녹음만 남습니다. 충돌음·경적 같은 소리 감지와 대화 받아쓰기(경위서에서 사용자가 켤 때만)는 휴대폰 안에서만 처리합니다.</li>
+    <li><b>앱이 만든 기록</b>: 주행·충전·주차·보안 기록, 사고 알림 결과와 경위서, 설정한 요금.</li>
   </ul>
 
-  <h2>2. 정보를 저장하거나 공유하는 방식</h2>
+  <h2>2. 외부로 보내는 정보</h2>
   <ul>
-    <li>차량 데이터, 위치 정보, 테슬라 인증 토큰은 <b>사용자의 기기 안에만</b> 저장되며, 개발자나 제3자의 서버에 저장되지 않습니다.</li>
-    <li>테슬라 인증 토큰(access/refresh)은 <b>Android Keystore로 암호화</b>해 기기에 저장합니다.</li>
-    <li>본 웹사이트(Cloudflare Worker)는 테슬라 로그인 과정에서 발급되는 <b>일회성 인증 코드</b>를 워치와 휴대폰 사이에서 최대 5분간 중계하는 역할만 하며, 전달 즉시 또는 5분 후 자동으로 삭제됩니다. 이 서버는 테슬라 계정 정보, access/refresh 토큰, 차량 데이터를 저장하거나 열람하지 않습니다.</li>
-    <li>수집된 정보를 광고, 마케팅 목적으로 사용하거나 제3자에게 판매·공유하지 않습니다.</li>
+    <li><b>Tesla</b>: 차량 조회·명령은 기기에서 Tesla 서버(Fleet API)로 바로 보냅니다. 이 처리에는 Tesla의 개인정보처리방침이 적용됩니다.</li>
+    <li><b>키 주소 서버(lazycompany.app, 개발자 운영)</b>: Tesla에 등록할 워치의 "공개 키", 주소 관리용 값의 해시, 생성 시각을 보관합니다. 차를 여는 데 쓰는 개인 키는 워치 밖으로 나가지 않습니다. Tesla 로그인 후 앱으로 돌아오는 과정은 이 서버를 거치지만, 로그인 정보나 코드를 저장하지 않습니다.</li>
+    <li><b>충전소 자동으로 찾기(선택, 기본 꺼짐, lazycompany.app, 개발자 운영)</b>: 사용자가 설정에서 동의하고 켠 경우에만, 충전 기록에 충전소 이름을 붙이기 위해 충전을 시작한 위치의 좌표를 보내 근처 충전소를 찾습니다. 테슬라 슈퍼차저에서는 보내지 않습니다. 이 설정은 앱을 한국어로 쓸 때만 있습니다. 미국·캐나다에서 충전하면 서버가 이 좌표로 미국 에너지부 충전소 데이터(NREL/NLR Alternative Fuels Data Center)를 조회합니다. 꺼져 있으면 충전 위치는 휴대폰에만 기록됩니다. 개발자는 이 요청을 따로 저장하거나 분석하지 않으며, 서버 운영사(Cloudflare)의 접속 기록과 같은 위치의 조회 결과 캐시에 짧은 기간 남을 수 있습니다.</li>
+    <li><b>Google</b>: 휴대폰과 워치 사이의 통신은 Google Play 서비스(Wear OS 데이터 레이어)를 통해 이루어집니다.</li>
+    <li><b>주소 표시</b>: 주행 기록의 출발·도착 주소를 보여 주기 위해 휴대폰의 Android 주소 변환 기능(Geocoder)을 씁니다. 이 기능은 휴대폰 제조사·Google 서버로 좌표를 보내 주소를 받아 올 수 있습니다. 등록한 장소(집·회사 등)로 표시되는 주행은 조회하지 않습니다.</li>
+    <li><b>사고 알림(선택, 기본 꺼짐)</b>: 사용자가 켜고 받는 사람(최대 3명)을 고른 경우에만, 주행 중 큰 충격 뒤 카운트다운을 취소하지 않으면 그 사람들에게 문자를 보냅니다. 문자(SMS)에는 시각과 위치(Google 지도 링크)가 들어가고, 소리 감지 결과(충돌음)와 워치에서 착용자 움직임이 없었는지가 붙을 수 있습니다. 주행 중 녹음을 켰다면 충격 20초 전부터 보낼 때까지의 차내 녹음을 MMS로 보냅니다. 문자는 사용자의 이동통신사를 거쳐 받는 사람에게 전달되며, 개발자 서버를 거치지 않습니다. 받는 사람 이름과 번호는 휴대폰에만 저장합니다(연락처 전체를 읽지 않고 고른 사람만 저장).</li>
+    <li><b>사용자가 직접 공유하는 파일</b>: 합친 블랙박스 영상, 사고 경위서 PDF, 워크어웨이 기록은 사용자가 공유 버튼으로 고른 앱으로만 보내집니다.</li>
+    <li><b>지도</b>: 지도를 표시할 때 OpenStreetMap 지도 서버에서 지도 그림을 받아 옵니다.</li>
   </ul>
 
-  <h2>3. 권한 사용 목적</h2>
+  <h2>3. 제3자 제공</h2>
+  <p>개발자는 사용자의 정보를 판매하거나 제3자에게 제공하지 않으며, 광고·마케팅에 쓰지 않습니다.</p>
+
+  <h2>4. 권한과 사용 목적</h2>
   <ul>
-    <li><b>블루투스(스캔/연결)</b>: 차량과의 직접 통신 및 오토락(walkaway) 감지</li>
-    <li><b>위치</b>: 차량과의 거리·방향 표시, 오토락 감지 정확도 향상, 주소 표시, 충전소 찾기(켠 경우에만)</li>
-    <li><b>배터리 최적화 제외</b>: 오토락 기능이 백그라운드에서 안정적으로 동작하도록 함</li>
+    <li><b>위치(항상 허용 포함)</b>: 주행 경로와 내 차 찾기를 앱이 닫혀 있을 때도 기록</li>
+    <li><b>신체 활동</b>: 걸음 수와 걸음 방향 계산</li>
+    <li><b>근처 기기(블루투스)</b>: 워치 연결, 차 신호 감지</li>
+    <li><b>마이크(선택)</b>: 주행 중 차내 녹음</li>
+    <li><b>문자 보내기(SMS, 선택)</b>: 사고 알림 문자·녹음 전송</li>
+    <li><b>전체 화면 알림·다른 앱 위에 표시(선택)</b>: 사고 카운트다운 화면을 잠금 화면 위에 띄우고, 백그라운드에서 녹음을 시작</li>
+    <li><b>알림</b>: 기록 중 표시, 보안 알림</li>
+    <li><b>배터리 최적화 제외(선택)</b>: 백그라운드 기록 유지</li>
   </ul>
 
-  <h2>4. 데이터 삭제</h2>
-  <p>앱을 삭제하면 워치에 저장된 모든 데이터(로그인 토큰, 캐시된 차량 정보 등)가 함께 삭제됩니다. 테슬라 계정 연동을 해제하려면 테슬라 계정의 "제3자 앱" 관리 화면에서 직접 연결을 해제할 수 있습니다.</p>
+  <h2>5. 보관과 삭제</h2>
+  <ul>
+    <li>앱을 삭제하면 기기에 저장된 모든 정보가 함께 삭제됩니다. 주행 기록은 앱에서 하나씩 지울 수 있습니다.</li>
+    <li>Tesla 연동은 앱의 연결 해제·로그아웃으로 끊을 수 있고, Tesla 계정의 "제3자 앱" 관리에서도 해제할 수 있습니다.</li>
+    <li>키 주소 서버의 공개 키 삭제를 원하면 아래 연락처로 요청해 주세요.</li>
+  </ul>
 
-  <h2>5. 문의</h2>
-  <p>본 방침이나 앱의 데이터 처리 방식에 대해 문의사항이 있다면 개발자에게 연락해 주세요. <a href="mailto:hello@lazycompany.app">hello@lazycompany.app</a></p>
+  <h2>6. 문의</h2>
+  <p><a href="mailto:fate1048@gmail.com">fate1048@gmail.com</a></p>
+  <p>이 방침이 바뀌면 앱과 홈페이지(lazycompany.app/teswatch)에 알립니다.</p>
   </section>
   <section data-sec="en" lang="en">
-
   <h1>Teswatch Privacy Policy</h1>
-  <p class="updated">Effective date: November 11, 2026</p>
-  <p>Teswatch lets a Wear OS smartwatch act as a digital key for a Tesla vehicle. This policy explains what information the app handles and how it is used and stored.</p>
+  <p class="updated">Effective: November 11, 2026</p>
+  <p>Teswatch (the "app") lets a Wear OS watch work as a key for a Tesla vehicle and shows drive, charging and security records on the phone. The app has no sign-up, and it never sells personal information or uses it for advertising. This policy explains what information the app handles and where.</p>
 
-  <h2>1. Information the app uses</h2>
+  <h2>1. Information handled only on your devices</h2>
+  <p>The following stays on your phone and watch and is never sent to the developer's servers.</p>
   <ul>
-    <li><b>Tesla account &amp; vehicle data</b>: after the user signs in and links their own Tesla account, the app reads vehicle state (battery, charging, climate, locks, location, etc.) via the Tesla Fleet API and sends commands such as lock/unlock, honk, and flash lights.</li>
-    <li><b>Bluetooth (BLE)</b>: the watch communicates directly with the vehicle over BLE to send key commands. This communication happens only between the watch and the vehicle and never passes through any external server.</li>
-    <li><b>Location</b>: (1) the vehicle's location as reported by Tesla's servers, and (2) the watch's own GPS location, used only to show distance/compass direction to the vehicle and to power the walkaway auto-lock feature.</li>
-    <li><b>Device sensors</b>: the watch's rotation-vector sensor is used to render the live compass.</li>
-    <li><b>Address display</b>: to turn coordinates into a readable address, the app uses Android's built-in Geocoder. <b>Coordinates may be sent to the device's location service provider (e.g. Google)</b> for this, and that processing is governed by the provider's own privacy policy.</li>
-    <li><b>Charging station finder</b>: an optional feature available only when the app language is Korean, and <b>turned off by default</b>. Only when you turn it on, <b>your current coordinates are sent to the charging station service of Korea's Public Data Portal (data.go.kr)</b> to find nearby stations. When it is off, location is not used for this purpose.</li>
+    <li><b>Tesla sign-in tokens</b>: the watch keeps one for vehicle commands; the phone keeps a separate read-only one for detailed tracking (optional). They are encrypted with the Android Keystore and kept in the app's private storage.</li>
+    <li><b>Vehicle data</b>: battery, odometer, lock and door state, vehicle location, charging, tyre pressure, software version and similar.</li>
+    <li><b>Phone location (GPS)</b>: used to record drive routes, for "Find my car" (the path you walked after parking) and to set your home location.</li>
+    <li><b>Physical activity (step detection) and pressure/orientation sensors</b>: used by "Find my car" to count steps and floor changes.</li>
+    <li><b>Bluetooth</b>: direct communication between the watch and the car, and detecting the car's signal (automatic recording, walk-away lock).</li>
+    <li><b>In-car audio (microphone, optional, off by default)</b>: when "Record while driving" is on, sound inside the car is recorded during drives and kept only on your phone. It is used to merge with dashcam video, for crash alerts and for accident statements. Recordings are deleted automatically after 7 days unless you "keep" them. Sound detection (crash, horn, ...) and transcription of conversation (only if you turn it on in an accident statement) run only on your phone.</li>
+    <li><b>Records the app creates</b>: drive, charging, parking and security records, crash alert results and accident statements, and the prices you set.</li>
   </ul>
 
-  <h2>2. How information is stored or shared</h2>
+  <h2>2. Information sent outside your devices</h2>
   <ul>
-    <li>Vehicle data, location data, and Tesla auth tokens are stored <b>only on the user's own device</b> and are never stored on the developer's or any third party's servers.</li>
-    <li>Tesla auth tokens (access/refresh) are <b>encrypted with the Android Keystore</b> before being stored on the device.</li>
-    <li>This website (a Cloudflare Worker) only relays a <b>one-time Tesla sign-in code</b> between the phone and the watch for up to 5 minutes, after which it is deleted automatically (or immediately after it is retrieved). This server never stores or reads Tesla account credentials, access/refresh tokens, or vehicle data.</li>
-    <li>Collected information is never used for advertising or marketing, nor sold or shared with third parties.</li>
+    <li><b>Tesla</b>: vehicle reads and commands go directly from your device to Tesla's servers (Fleet API). Tesla's privacy policy applies to that processing.</li>
+    <li><b>Key address server (lazycompany.app, run by the developer)</b>: stores the watch's public key to register with Tesla, a hash of the value used to manage the address, and its creation time. The private key that opens the car never leaves the watch. Returning to the app after Tesla sign-in passes through this server, but it does not store sign-in data or codes.</li>
+    <li><b>Find the charging station (optional, off by default, lazycompany.app, run by the developer)</b>: only if you agree and turn it on in settings, the coordinates where you start charging are sent to find nearby stations, to name the station in your charging records. Nothing is sent at Tesla Superchargers. This setting exists only when the app is used in Korean. When charging in the US or Canada, the server looks these coordinates up in the US Department of Energy station data (NREL/NLR Alternative Fuels Data Center). When it is off, the charging position is recorded only on your phone. The developer does not store or analyse these requests separately; they may remain briefly in the access logs of the server provider (Cloudflare) and in a short-lived cache of lookup results.</li>
+    <li><b>Google</b>: communication between the phone and the watch uses Google Play services (Wear OS Data Layer).</li>
+    <li><b>Addresses</b>: to show the start and end address of drives, the phone's Android address lookup (Geocoder) is used. It may send coordinates to the phone maker's or Google's servers to get the address. Drives shown with a saved place name (home, work, ...) are not looked up.</li>
+    <li><b>Crash alert (optional, off by default)</b>: only if you turn it on and choose recipients (up to 3), when a hard impact while driving is not cancelled during the countdown, the app texts them. The text (SMS) contains the time and the position (a Google Maps link), and may include the sound detection result (crash sound) and whether the watch wearer stayed still. If "Record while driving" is on, the in-car audio from 20 seconds before the impact until sending is sent by MMS. Texts go through your mobile carrier to the recipients, not through the developer's servers. Recipient names and numbers are stored only on your phone (only the people you pick, not your whole contact list).</li>
+    <li><b>Files you share yourself</b>: merged dashcam video, accident statement PDFs and the Walkaway log go only to the app you choose with the share button.</li>
+    <li><b>Maps</b>: map images are downloaded from OpenStreetMap tile servers when a map is shown.</li>
   </ul>
 
-  <h2>3. Why each permission is needed</h2>
+  <h2>3. Sharing</h2>
+  <p>The developer does not sell or share your information with third parties and does not use it for advertising or marketing.</p>
+
+  <h2>4. Permissions and why</h2>
   <ul>
-    <li><b>Bluetooth (scan/connect)</b>: direct communication with the vehicle and walkaway detection</li>
-    <li><b>Location</b>: showing distance/direction to the vehicle, improving walkaway detection accuracy, address display, and the charging station finder (only if turned on)</li>
-    <li><b>Battery optimization exemption</b>: keeps the walkaway feature working reliably in the background</li>
+    <li><b>Location (including "allow all the time")</b>: record drive routes and "Find my car" while the app is closed</li>
+    <li><b>Physical activity</b>: count steps and their direction</li>
+    <li><b>Nearby devices (Bluetooth)</b>: watch connection and detecting the car's signal</li>
+    <li><b>Microphone (optional)</b>: in-car audio while driving</li>
+    <li><b>Send SMS (optional)</b>: crash alert texts and audio</li>
+    <li><b>Full-screen notifications and display over other apps (optional)</b>: show the crash countdown over the lock screen, and start recording in the background</li>
+    <li><b>Notifications</b>: recording indicators and security alerts</li>
+    <li><b>Battery optimisation exemption (optional)</b>: keep background recording running</li>
   </ul>
 
-  <h2>4. Data deletion</h2>
-  <p>Uninstalling the app removes all data stored on the watch, including sign-in tokens and cached vehicle data. To revoke Tesla account access, use the "Third-Party Apps" management screen in your Tesla account.</p>
+  <h2>5. Retention and deletion</h2>
+  <ul>
+    <li>Uninstalling the app deletes everything stored on the device. Drive records can be deleted one by one in the app.</li>
+    <li>Tesla access can be removed with the app's disconnect / log-out options, or in the "Third-party apps" section of your Tesla account.</li>
+    <li>To have your public key removed from the key address server, contact us below.</li>
+  </ul>
 
-  <h2>5. Contact</h2>
-  <p>If you have questions about this policy or how the app handles data, please contact the developer at <a href="mailto:hello@lazycompany.app">hello@lazycompany.app</a>.</p>
+  <h2>6. Contact</h2>
+  <p><a href="mailto:fate1048@gmail.com">fate1048@gmail.com</a></p>
+  <p>If this policy changes, the update will be announced in the app and on the website (lazycompany.app/teswatch).</p>
   </section>
 </main>
 <footer>
