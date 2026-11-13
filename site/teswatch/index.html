@@ -84,6 +84,12 @@
   .phone-cam{position:absolute;top:18px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:#000;box-shadow:0 0 0 2px #151515;}
   .scr{position:absolute;inset:0;opacity:0;transform:translateX(14px);transition:opacity .35s ease,transform .35s ease;pointer-events:none;}
   .scr.is-on{opacity:1;transform:none;}
+  .cap{position:relative;}
+  .hot{position:absolute;appearance:none;border:0;padding:0;margin:0;background:transparent;border-radius:14px;cursor:pointer;pointer-events:auto;}
+  .hot::after{content:"";position:absolute;inset:-3px;border-radius:16px;border:2px solid rgba(168,100,43,.0);animation:hot 2.4s ease-in-out infinite;}
+  .hot:hover::after,.hot:focus-visible::after{border-color:rgba(168,100,43,.9);animation:none;}
+  @keyframes hot{0%,55%,100%{border-color:rgba(168,100,43,0)}25%{border-color:rgba(168,100,43,.85)}}
+  .scr:not(.is-on) .hot{pointer-events:none;}
   .scr img{display:none;width:100%;height:auto;}
   .scr img[data-ko]{display:block;}
   html[data-lang="en"] .scr img[data-ko]{display:none;}
@@ -118,7 +124,7 @@
     .demo-desc{color:var(--mute);font-size:15px;margin:0;max-width:34em;text-align:center;}
   }
   @media (min-width:861px){ .demo-desc{display:none;} }
-  @media (prefers-reduced-motion:reduce){ .scr{transition:none;} }
+  @media (prefers-reduced-motion:reduce){ .scr{transition:none;} .hot::after{animation:none;border-color:rgba(168,100,43,.6);} }
 
   /* 한 줄 문장 */
   .statement{background:var(--bg-2);padding:40px 0;}
@@ -316,27 +322,39 @@
   <section class="feat band" id="phone">
     <div class="wrap">
       <h2><span data-ko>폰 앱</span><span data-en>Phone app</span></h2>
-      <p class="sub"><span data-ko>기능을 누르면 실제 앱 화면이 바뀝니다.</span><span data-en>Tap a feature to see it in the app.</span></p>
+      <p class="sub"><span data-ko>기능을 누르면 실제 앱 화면이 나옵니다. 화면 속 버튼도 앱처럼 눌러 보세요.</span><span data-en>Pick a feature to see the real app screen. The buttons inside work like the app.</span></p>
 
       <div class="demo" id="phone-demo">
         <div class="demo-stage">
           <div class="phone" aria-live="polite">
             <div class="phone-screen">
               <div class="scr is-on" data-scr="home" style="background:#070D12">
-                <img data-ko src="/teswatch/img/phone-home-ko.webp" width="540" height="960" alt="폰 앱 홈 화면: 배터리 78%, 주행가능 352 km, 잠김, 보안 위험 없음">
-                <img data-en src="/teswatch/img/phone-home-en.webp" width="540" height="960" alt="Phone app home: 78% battery, 352 km range, locked, no security risk">
+                <div class="cap">
+                  <img data-ko src="/teswatch/img/phone-home-ko.webp" width="540" height="960" alt="폰 앱 홈 화면: 배터리 78%, 주행가능 352 km, 잠김, 보안 위험 없음">
+                  <img data-en src="/teswatch/img/phone-home-en.webp" width="540" height="960" alt="Phone app home: 78% battery, 352 km range, locked, no security risk">
+                  <button type="button" class="hot" data-go="drive" style="left:6%;top:59.6%;width:88%;height:9.8%" aria-label="주행 기록 내역 열기 / Open drive history"></button>
+                </div>
               </div>
               <div class="scr" data-scr="drive" style="background:#070D12">
-                <img data-ko src="/teswatch/img/phone-drive-ko.webp" width="540" height="960" alt="주행 기록 상세: 지도 경로, 거리, 시간, 효율" loading="lazy">
-                <img data-en src="/teswatch/img/phone-drive-en.webp" width="540" height="960" alt="Drive detail: route map, distance, time, efficiency" loading="lazy">
+                <div class="cap">
+                  <img data-ko src="/teswatch/img/phone-drive-ko.webp" width="540" height="960" alt="주행 기록 상세: 지도 경로, 거리, 시간, 효율" loading="lazy">
+                  <img data-en src="/teswatch/img/phone-drive-en.webp" width="540" height="960" alt="Drive detail: route map, distance, time, efficiency" loading="lazy">
+                  <button type="button" class="hot" data-go="home" style="left:2.5%;top:4%;width:16%;height:4.8%" aria-label="뒤로 / Back"></button>
+                </div>
               </div>
               <div class="scr" data-scr="dashcam" style="background:#04080B">
-                <img data-ko src="/teswatch/img/phone-dashcam-ko.webp" width="540" height="1170" alt="블랙박스 영상에 차내 녹음을 붙이고 싱크를 맞추는 화면" loading="lazy">
-                <img data-en src="/teswatch/img/phone-dashcam-en.webp" width="540" height="1170" alt="Dashcam clip with in-car audio and sync controls" loading="lazy">
+                <div class="cap">
+                  <img data-ko src="/teswatch/img/phone-dashcam-ko.webp" width="540" height="1170" alt="블랙박스 영상에 차내 녹음을 붙이고 싱크를 맞추는 화면" loading="lazy">
+                  <img data-en src="/teswatch/img/phone-dashcam-en.webp" width="540" height="1170" alt="Dashcam clip with in-car audio and sync controls" loading="lazy">
+                  <button type="button" class="hot" data-go="home" style="left:58%;top:84.6%;width:36%;height:4.8%" aria-label="닫기·저장 / Close, Save"></button>
+                </div>
               </div>
               <div class="scr" data-scr="crash" style="background:#3B1214">
-                <img data-ko src="/teswatch/img/phone-crash-ko.webp" width="540" height="1170" alt="사고 감지 30초 카운트다운 화면: 괜찮아요, 지금 보내기, 119 전화" loading="lazy">
-                <img data-en src="/teswatch/img/phone-crash-en.webp" width="540" height="1170" alt="Crash detected countdown: I'm OK, Send now, Call 119" loading="lazy">
+                <div class="cap">
+                  <img data-ko src="/teswatch/img/phone-crash-ko.webp" width="540" height="1170" alt="사고 감지 30초 카운트다운 화면: 괜찮아요, 지금 보내기, 119 전화" loading="lazy">
+                  <img data-en src="/teswatch/img/phone-crash-en.webp" width="540" height="1170" alt="Crash detected countdown: I'm OK, Send now, Call 119" loading="lazy">
+                  <button type="button" class="hot" data-go="home" style="left:6.7%;top:55%;width:86.6%;height:9.2%" aria-label="괜찮아요 / I'm OK"></button>
+                </div>
               </div>
             </div>
             <span class="phone-cam" aria-hidden="true"></span>
@@ -455,7 +473,7 @@
     var x0=null, screen=root.querySelector('.phone-screen');
     screen.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
     screen.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) show(cur+(dx<0?1:-1)); x0=null;});
-    screen.addEventListener('click',function(){show(cur+1);});
+    root.querySelectorAll('.hot').forEach(function(h){h.addEventListener('click',function(e){e.stopPropagation();var g=h.getAttribute('data-go');tabs.forEach(function(t,j){if(t.getAttribute('data-go')===g)show(j);});});});
     show(0);
   })();
 </script>
