@@ -74,6 +74,52 @@
   .shot-phone{display:block;width:100%;height:auto;max-width:250px;margin:0 auto;border-radius:20px;border:6px solid #1c1c1c;box-shadow:0 18px 40px -22px rgba(0,0,0,.5);}
   html[data-lang="en"] img[data-en]{display:block;}
 
+  /* 폰 앱 인터랙티브 데모: 왼쪽 실제 폰 모양, 오른쪽 기능 목록 */
+  .demo{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:clamp(32px,6vw,72px);align-items:center;margin-top:36px;}
+  .demo-stage{display:grid;gap:18px;justify-items:center;}
+  .phone{position:relative;width:100%;max-width:300px;aspect-ratio:540/1170;padding:10px;border-radius:44px;background:#151515;box-shadow:inset 0 0 0 2px #2c2c2c,0 30px 60px -30px rgba(0,0,0,.55);}
+  .phone::before,.phone::after{content:"";position:absolute;right:-3px;width:3px;border-radius:0 2px 2px 0;background:#2a2a2a;}
+  .phone::before{top:22%;height:9%;} .phone::after{top:34%;height:14%;}
+  .phone-screen{position:relative;width:100%;height:100%;border-radius:34px;overflow:hidden;background:#070D12;touch-action:pan-y;}
+  .phone-cam{position:absolute;top:18px;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:#000;box-shadow:0 0 0 2px #151515;}
+  .scr{position:absolute;inset:0;opacity:0;transform:translateX(14px);transition:opacity .35s ease,transform .35s ease;pointer-events:none;}
+  .scr.is-on{opacity:1;transform:none;}
+  .scr img{display:none;width:100%;height:auto;}
+  .scr img[data-ko]{display:block;}
+  html[data-lang="en"] .scr img[data-ko]{display:none;}
+  html[data-lang="en"] .scr img[data-en]{display:block;}
+  .demo-nav{display:flex;align-items:center;gap:14px;}
+  .demo-arrow{appearance:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:20px;line-height:1;cursor:pointer;}
+  .demo-arrow:hover{border-color:var(--ink);}
+  .demo-dots{display:flex;gap:7px;}
+  .demo-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .2s,width .2s;}
+  .demo-dots i.on{background:var(--ink);width:18px;border-radius:4px;}
+  .demo-tabs{display:grid;gap:8px;}
+  .dtab{appearance:none;text-align:left;font:inherit;color:inherit;background:transparent;border:0;border-left:2px solid var(--line);padding:12px 0 12px 20px;cursor:pointer;display:grid;gap:6px;}
+  .dtab:hover .dtab-h{color:var(--ink);}
+  .dtab-h{font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--mute);transition:color .2s;}
+  .dtab-b{display:none;color:var(--mute);font-size:15px;line-height:1.7;}
+  .dtab.is-on{border-left-color:var(--brand);}
+  .dtab.is-on .dtab-h{color:var(--ink);}
+  .dtab.is-on .dtab-b{display:block;}
+  .more-h{margin-top:clamp(56px,7vw,80px);font-size:20px;}
+  .more-h + .flist{margin-top:20px;}
+  @media (max-width:860px){
+    .demo{grid-template-columns:1fr;gap:28px;}
+    .phone{max-width:260px;}
+    .demo-tabs{order:-1;display:flex;overflow-x:auto;gap:8px;margin:0 calc(-1*clamp(16px,4vw,40px));padding:0 clamp(16px,4vw,40px) 4px;scrollbar-width:none;}
+    .demo-tabs::-webkit-scrollbar{display:none;}
+    .dtab{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:#fff;}
+    .dtab-h{font-size:14.5px;white-space:nowrap;}
+    .dtab.is-on{border-color:var(--ink);background:var(--ink);}
+    .dtab.is-on .dtab-h{color:#fff;}
+    .dtab.is-on .new{color:#fff;border-color:rgba(255,255,255,.5);}
+    .dtab .dtab-b{display:none!important;}
+    .demo-desc{color:var(--mute);font-size:15px;margin:0;max-width:34em;text-align:center;}
+  }
+  @media (min-width:861px){ .demo-desc{display:none;} }
+  @media (prefers-reduced-motion:reduce){ .scr{transition:none;} }
+
   /* 한 줄 문장 */
   .statement{background:var(--bg-2);padding:40px 0;}
   .statement p{font-weight:600;font-size:clamp(18px,2.2vw,24px);margin:0;letter-spacing:-0.01em;}
@@ -270,61 +316,75 @@
   <section class="feat band" id="phone">
     <div class="wrap">
       <h2><span data-ko>폰 앱</span><span data-en>Phone app</span></h2>
-      <div class="shots phones">
-        <figure>
-          <img class="shot-phone" data-ko src="/teswatch/img/phone-home-ko.webp" width="540" height="960" alt="폰 앱 홈 화면" loading="lazy">
-          <img class="shot-phone" data-en src="/teswatch/img/phone-home-en.webp" width="540" height="960" alt="Phone app home" loading="lazy">
-          <figcaption><span data-ko>차 상태 · 보안 점검</span><span data-en>Car status, security check</span></figcaption>
-        </figure>
-        <figure>
-          <img class="shot-phone" data-ko src="/teswatch/img/phone-drive-ko.webp" width="540" height="960" alt="주행 기록 상세" loading="lazy">
-          <img class="shot-phone" data-en src="/teswatch/img/phone-drive-en.webp" width="540" height="960" alt="Drive history detail" loading="lazy">
-          <figcaption><span data-ko>주행 기록</span><span data-en>Drive history</span></figcaption>
-        </figure>
+      <p class="sub"><span data-ko>기능을 누르면 실제 앱 화면이 바뀝니다.</span><span data-en>Tap a feature to see it in the app.</span></p>
+
+      <div class="demo" id="phone-demo">
+        <div class="demo-stage">
+          <div class="phone" aria-live="polite">
+            <div class="phone-screen">
+              <div class="scr is-on" data-scr="home" style="background:#070D12">
+                <img data-ko src="/teswatch/img/phone-home-ko.webp" width="540" height="960" alt="폰 앱 홈 화면: 배터리 78%, 주행가능 352 km, 잠김, 보안 위험 없음">
+                <img data-en src="/teswatch/img/phone-home-en.webp" width="540" height="960" alt="Phone app home: 78% battery, 352 km range, locked, no security risk">
+              </div>
+              <div class="scr" data-scr="drive" style="background:#070D12">
+                <img data-ko src="/teswatch/img/phone-drive-ko.webp" width="540" height="960" alt="주행 기록 상세: 지도 경로, 거리, 시간, 효율" loading="lazy">
+                <img data-en src="/teswatch/img/phone-drive-en.webp" width="540" height="960" alt="Drive detail: route map, distance, time, efficiency" loading="lazy">
+              </div>
+              <div class="scr" data-scr="dashcam" style="background:#04080B">
+                <img data-ko src="/teswatch/img/phone-dashcam-ko.webp" width="540" height="1170" alt="블랙박스 영상에 차내 녹음을 붙이고 싱크를 맞추는 화면" loading="lazy">
+                <img data-en src="/teswatch/img/phone-dashcam-en.webp" width="540" height="1170" alt="Dashcam clip with in-car audio and sync controls" loading="lazy">
+              </div>
+              <div class="scr" data-scr="crash" style="background:#3B1214">
+                <img data-ko src="/teswatch/img/phone-crash-ko.webp" width="540" height="1170" alt="사고 감지 30초 카운트다운 화면: 괜찮아요, 지금 보내기, 119 전화" loading="lazy">
+                <img data-en src="/teswatch/img/phone-crash-en.webp" width="540" height="1170" alt="Crash detected countdown: I'm OK, Send now, Call 119" loading="lazy">
+              </div>
+            </div>
+            <span class="phone-cam" aria-hidden="true"></span>
+          </div>
+          <div class="demo-nav">
+            <button type="button" class="demo-arrow" data-step="-1" aria-label="이전 화면 / Previous">‹</button>
+            <div class="demo-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+            <button type="button" class="demo-arrow" data-step="1" aria-label="다음 화면 / Next">›</button>
+          </div>
+        </div>
+
+        <div class="demo-tabs" role="tablist" aria-label="Phone app features">
+          <button type="button" class="dtab is-on" role="tab" aria-selected="true" data-go="home">
+            <span class="dtab-h"><span data-ko>차 상태 · 보안 점검</span><span data-en>Car status and security check</span></span>
+            <span class="dtab-b">
+              <span data-ko>배터리, 주행 가능 거리, 잠김 여부, 주차한 지 얼마나 됐는지 한 화면에 보여 줍니다. 차에 등록된 키 개수와 보안 위험도 주기적으로 확인합니다.</span><span data-en>Battery, range, lock status and how long the car has been parked, on one screen. It also regularly checks how many keys the car has and flags security risks.</span>
+            </span>
+          </button>
+          <button type="button" class="dtab" role="tab" aria-selected="false" data-go="drive">
+            <span class="dtab-h"><span data-ko>주행 기록</span><span data-en>Drive history</span></span>
+            <span class="dtab-b">
+              <span data-ko>차에 타면 자동으로 기록을 시작해 지도 경로, 거리, 시간, 효율, 배터리 사용량을 남깁니다.</span><span data-en>Starts recording when you get in the car and keeps the route map, distance, time, efficiency and battery used.</span>
+            </span>
+          </button>
+          <button type="button" class="dtab" role="tab" aria-selected="false" data-go="dashcam">
+            <span class="dtab-h"><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span> <span class="new">NEW</span></span>
+            <span class="dtab-b">
+              <span data-ko>테슬라 블랙박스 영상에는 소리가 없습니다. 주행 중 폰 마이크로 차내 소리를 녹음해 두었다가, 블랙박스 영상을 불러오면 같은 시각의 소리를 붙여 줍니다. 저장 전에 들으면서 싱크를 맞추고, 원하면 시각·속도·주소도 영상에 새겨 넣습니다.</span><span data-en>Tesla dashcam clips have no audio. Teswatch records in-cabin audio with your phone's mic while you drive, then adds the sound from the same moment when you load a clip. Fine-tune the sync before saving, and optionally stamp the time, speed and address on the video.</span>
+            </span>
+          </button>
+          <button type="button" class="dtab" role="tab" aria-selected="false" data-go="crash">
+            <span class="dtab-h"><span data-ko>사고 알림</span><span data-en>Crash alert</span> <span class="new">NEW</span></span>
+            <span class="dtab-b">
+              <span data-ko>주행 중 큰 충격 뒤 차가 멈춰 있으면 30초 카운트다운이 시작됩니다. 취소하지 않으면 미리 정한 사람(최대 3명)에게 위치 지도 링크와 사고 전후 차내 녹음을 보냅니다. 바로 보내거나 119에 전화할 수도 있습니다.</span><span data-en>After a hard impact, if the car stays still, a 30-second countdown starts. If you don't cancel, up to 3 contacts get a map link and the in-cabin audio from around the crash. You can also send right away or call 119.</span>
+            </span>
+          </button>
+        </div>
       </div>
+
+      <h3 class="more-h"><span data-ko>그 밖의 기능</span><span data-en>Also in the app</span></h3>
       <ul class="flist">
-        <li><h3><span data-ko>차 상태 한눈에</span><span data-en>Car status at a glance</span></h3>
-          <p><span data-ko>배터리, 주행 가능 거리, 잠김 여부, 주차한 지 얼마나 됐는지 보여 줍니다.</span><span data-en>Battery, range, lock status and how long the car has been parked.</span></p></li>
-        <li><h3><span data-ko>보안 점검</span><span data-en>Security check</span></h3>
-          <p><span data-ko>차에 등록된 키 개수와 보안 위험을 주기적으로 확인합니다.</span><span data-en>Regularly checks how many keys the car has and flags security risks.</span></p></li>
-        <li><h3><span data-ko>주행 기록</span><span data-en>Drive history</span></h3>
-          <p><span data-ko>차에 타면 자동으로 기록을 시작해 지도 경로, 거리, 시간, 효율, 배터리 사용량을 남깁니다.</span><span data-en>Starts recording when you get in the car and keeps the route map, distance, time, efficiency and battery used.</span></p></li>
         <li><h3><span data-ko>내 차 찾기</span><span data-en>Where's my car</span></h3>
           <p><span data-ko>차에서 내린 뒤 걸어간 길을 기록해 돌아가는 방향을 알려 줍니다. 지하 주차장처럼 GPS가 약한 곳에서도 걸음 수와 방향으로 찾습니다.</span><span data-en>Records your walk after you leave the car and shows the way back, even in underground parking where GPS is weak, using steps and direction.</span></p></li>
         <li><h3><span data-ko>충전 기록·월간 리포트</span><span data-en>Charging history and monthly report</span> <span class="new">NEW</span></h3>
           <p><span data-ko>충전 기록, 슈퍼차저 이용 기록, 한 달 주행·충전 리포트, 국내 충전 요금을 정리합니다.</span><span data-en>Charging sessions, Supercharger history and a monthly drive and charging report.</span></p></li>
       </ul>
-      <div class="deep">
-        <article>
-          <figure class="deep-shot">
-            <img class="shot-phone" data-ko src="/teswatch/img/phone-dashcam-ko.webp" width="540" height="1170" alt="블랙박스 영상에 차내 녹음을 붙이고 싱크를 맞추는 화면" loading="lazy">
-            <img class="shot-phone" data-en src="/teswatch/img/phone-dashcam-en.webp" width="540" height="1170" alt="Dashcam clip with in-car audio and sync controls" loading="lazy">
-          </figure>
-          <h3><span data-ko>소리 나는 블랙박스</span><span data-en>Dashcam with sound</span> <span class="new">NEW</span></h3>
-          <p class="why"><span data-ko>테슬라 블랙박스 영상에는 소리가 없습니다. 사고 순간의 경적, 충돌음, 대화가 남지 않습니다. Teswatch가 그 빈자리를 채워서, 별도 블랙박스를 살 필요가 없습니다.</span><span data-en>Tesla dashcam clips have no audio, so horns, impact sounds and voices are lost. Teswatch fills that gap, so you don't need a separate dashcam.</span></p>
-          <ol class="howto">
-            <li><span data-ko>주행 중 폰 마이크로 차내 소리를 녹음합니다.</span><span data-en>While you drive, your phone's mic records in-cabin audio.</span></li>
-            <li><span data-ko>테슬라 앱이나 차의 USB에서 받은 블랙박스 영상을 불러오면, 같은 시각의 소리를 찾아 붙여 줍니다.</span><span data-en>Load a dashcam clip saved from the Tesla app or the car's USB drive, and Teswatch adds the audio from the same moment.</span></li>
-            <li><span data-ko>저장하기 전에 미리 들으면서 영상과 소리의 싱크를 맞춥니다. 원하면 주행 기록의 GPS로 시각·속도·주소를 영상에 새겨 넣을 수 있습니다.</span><span data-en>Preview it and fine-tune the sync before saving. You can also stamp the time, speed and address from your drive log onto the video.</span></li>
-          </ol>
-        </article>
-        <article>
-          <figure class="deep-shot">
-            <img class="shot-phone" data-ko src="/teswatch/img/phone-crash-ko.webp" width="540" height="1170" alt="사고 감지 30초 카운트다운 화면: 괜찮아요, 지금 보내기, 119 전화" loading="lazy">
-            <img class="shot-phone" data-en src="/teswatch/img/phone-crash-en.webp" width="540" height="1170" alt="Crash detected countdown: I'm OK, Send now, Call 119" loading="lazy">
-          </figure>
-          <h3><span data-ko>사고 알림</span><span data-en>Crash alert</span> <span class="new">NEW</span></h3>
-          <p class="why"><span data-ko>사고가 나면 연락할 정신이 없을 수 있습니다. 내가 움직이지 못해도, 미리 정해 둔 사람에게 위치와 상황이 전달됩니다.</span><span data-en>After a crash you may not be able to call anyone. Even then, the people you chose get your location and what happened.</span></p>
-          <ol class="howto">
-            <li><span data-ko>주행 중 큰 충격을 감지합니다.</span><span data-en>Teswatch detects a hard impact while driving.</span></li>
-            <li><span data-ko>그 뒤 차가 멈춰 있으면 30초 카운트다운이 시작됩니다. 괜찮으면 "괜찮아요"를 누르고, 급하면 바로 보내거나 119에 전화할 수 있습니다.</span><span data-en>If the car then stays still, a 30-second countdown starts. Tap "I'm OK" if you're fine, or send right away or call 119.</span></li>
-            <li><span data-ko>취소하지 않으면 지정한 사람(최대 3명)에게 위치 지도 링크 문자와 사고 전후 차내 녹음을 보냅니다.</span><span data-en>If you don't cancel, up to 3 contacts get a text with a map link and an MMS with the in-cabin audio from around the crash.</span></li>
-          </ol>
-        </article>
-      </div>
     </div>
   </section>
-
   <section class="feat" id="privacy-cost">
     <div class="wrap">
       <h2><span data-ko>개인정보와 비용</span><span data-en>Privacy and cost</span></h2>
@@ -368,6 +428,35 @@
     var saved = null;
     try { saved = localStorage.getItem('teswatch-lang'); } catch(e) {}
     if (saved === 'en') setLang('en');
+  })();
+  // 폰 앱 데모: 기능을 누르면 폰 화면이 바뀜
+  (function(){
+    var root=document.getElementById('phone-demo'); if(!root) return;
+    var tabs=[].slice.call(root.querySelectorAll('.dtab'));
+    var scrs=[].slice.call(root.querySelectorAll('.scr'));
+    var dots=[].slice.call(root.querySelectorAll('.demo-dots i'));
+    var desc=document.createElement('p'); desc.className='demo-desc';
+    root.querySelector('.demo-stage').appendChild(desc);
+    var cur=0;
+    function show(i){
+      cur=(i+tabs.length)%tabs.length;
+      var key=tabs[cur].getAttribute('data-go');
+      tabs.forEach(function(t,j){t.classList.toggle('is-on',j===cur);t.setAttribute('aria-selected',j===cur?'true':'false');});
+      scrs.forEach(function(s){s.classList.toggle('is-on',s.getAttribute('data-scr')===key);});
+      dots.forEach(function(d,j){d.classList.toggle('on',j===cur);});
+      desc.innerHTML=tabs[cur].querySelector('.dtab-b').innerHTML;
+      if(window.matchMedia('(max-width:860px)').matches){
+        var bar=root.querySelector('.demo-tabs'), t=tabs[cur];
+        bar.scrollTo({left:t.offsetLeft-bar.clientWidth/2+t.clientWidth/2,behavior:'smooth'});
+      }
+    }
+    tabs.forEach(function(t,j){t.addEventListener('click',function(){show(j);});});
+    root.querySelectorAll('.demo-arrow').forEach(function(b){b.addEventListener('click',function(){show(cur+(+b.getAttribute('data-step')));});});
+    var x0=null, screen=root.querySelector('.phone-screen');
+    screen.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    screen.addEventListener('touchend',function(e){ if(x0===null) return; var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40) show(cur+(dx<0?1:-1)); x0=null;});
+    screen.addEventListener('click',function(){show(cur+1);});
+    show(0);
   })();
 </script>
 
