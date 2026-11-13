@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Teswatch 폰 앱 체험</title>
+<style>
+/* Colours = the app's light theme (mobile AppTheme.kt, LightPalette). */
+.tw-demo{--bg:#f2f2f4;--panel:#fff;--panel2:#f2f3f5;--line:#e1e5e9;--border:#c9d0d6;--text:#14191e;--muted:#5c6770;
+  --accent:#0f8a6c;--on-accent:#fff;--warn:#c0392b;--orange:#d9771c;--blue:#2a78c8;--sleep:#9cc3dd;
+  display:flex;gap:28px;justify-content:center;align-items:flex-start;flex-wrap:wrap;
+  font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--text);padding:16px;box-sizing:border-box}
+.tw-demo *{box-sizing:border-box}
+.tw-phone{width:340px;max-width:100%;height:680px;border:10px solid #14191e;border-radius:40px;background:var(--bg);overflow:hidden;display:flex;flex-direction:column;flex:none}
+.tw-bar{height:52px;flex:none;display:flex;align-items:center;padding:0 4px 0 16px;background:var(--bg)}
+.tw-bar .t{flex:1;min-width:0}
+.tw-bar .n{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tw-bar .s{font-size:12px;color:var(--muted)}
+.tw-body{flex:1;overflow-y:auto;padding:12px 16px 20px;display:flex;flex-direction:column;gap:16px}
+.tw-demo button{font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+.tw-demo button:focus-visible,.tw-demo [data-tip]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tw-txtbtn{height:44px;padding:0 12px!important;font-size:15px;color:var(--muted)!important}
+.tw-card{background:var(--panel);border:1px solid rgba(0,0,0,.06);border-radius:20px}
+.tw-pad{padding:20px;display:flex;flex-direction:column;gap:12px}
+.tw-panel{background:var(--panel);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.tw-row{display:flex;align-items:center;gap:12px}
+.tw-grow{flex:1;min-width:0}
+.tw-muted{color:var(--muted);font-size:13px;line-height:1.5}
+.tw-small{font-size:12px;color:var(--muted);line-height:1.5}
+.tw-big{font-size:36px;font-weight:700;line-height:38px}
+.tw-big small{font-size:20px}
+.tw-h1{font-size:24px;font-weight:700}
+.tw-h2{font-size:16px;font-weight:700}
+.tw-sec{font-size:13px;font-weight:500;color:var(--muted);padding:8px 0 0 4px}
+.tw-bold{font-weight:700;font-size:18px}
+.tw-accent{color:var(--accent)}
+.tw-warn{color:var(--warn)}
+.tw-meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.tw-meter i{display:block;height:100%;background:var(--accent)}
+.tw-hr{height:1px;background:var(--line)}
+.tw-nav{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 16px;width:100%}
+.tw-nav + .tw-nav{border-top:1px solid var(--line)}
+.tw-nav .ti{font-size:15px;font-weight:500}
+.tw-nav .ch{font-size:22px;color:var(--muted)}
+.tw-stats{display:flex;gap:8px}
+.tw-stat{flex:1;background:var(--panel2);border-radius:10px;padding:10px}
+.tw-stat b{display:block;font-size:18px}
+.tw-btn{height:44px;border-radius:22px;background:var(--accent)!important;color:var(--on-accent)!important;padding:0 20px!important;text-align:center!important;font-weight:500}
+.tw-obtn{height:44px;border-radius:22px;border:1px solid var(--border)!important;padding:0 16px!important;text-align:center!important}
+.tw-sw{width:44px;height:26px;border-radius:13px;background:var(--border);position:relative;flex:none}
+.tw-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s}
+.tw-sw.on{background:var(--accent)}
+.tw-sw.on::after{left:21px}
+.tw-map{height:150px;border-radius:12px;background:#e8ebee;position:relative;overflow:hidden}
+.tw-chart{height:90px;border-radius:10px;background:var(--panel2)}
+.tw-sel{box-shadow:0 0 0 2px var(--accent);border-radius:12px}
+[data-tip]{cursor:pointer}
+.tw-info{width:340px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;min-height:180px}
+.tw-info h3{margin:0 0 8px;font-size:18px}
+.tw-info p{margin:0 0 8px;font-size:15px;line-height:1.6;color:var(--text)}
+.tw-info .hint{color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){.tw-sw::after{transition:none}}
+</style>
+</head>
+<body style="margin:0;background:#fff">
+<div class="tw-demo" id="tw-demo">
+  <div class="tw-phone" aria-label="Teswatch 폰 앱 예시 화면">
+    <div class="tw-bar" id="tw-bar"></div>
+    <div class="tw-body" id="tw-body"></div>
+  </div>
+  <div class="tw-info" id="tw-info" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+// Every value below is a made-up example. No real car, place, VIN or drive is shown.
+var TIPS={
+ intro:['Teswatch 폰 앱 체험','화면의 항목을 눌러 보세요. 실제 앱처럼 화면이 바뀌고, 누른 기능의 설명이 여기에 나옵니다.','보이는 숫자와 장소는 모두 예시입니다.'],
+ topbar:['상단 차 상태','차 이름과 배터리, 지금 주차 중인지 주행·충전 중인지를 항상 보여 줍니다.'],
+ settings:['앱 설정','어떤 기록을 켤지, 요금·단위, 화면 테마, Tesla 로그인을 여기서 정합니다.'],
+ carpanel:['지금 내 차','배터리와 주행 가능 거리, 잠김 여부, 주차한 지 얼마나 됐는지를 한 번에 봅니다. 앱을 열 때 차가 깨어 있으면 새로 읽고, 자는 차는 깨우지 않습니다.'],
+ lock:['잠금 상태','차의 잠김 표시만 보고 판단합니다. 문이나 트렁크가 열려 있으면 "잠김 · 트렁크 열림"처럼 함께 보여 줍니다.'],
+ parked:['주차 시간','차에서 내린 뒤 지난 시간입니다. 누르면 내 차 찾기로 갑니다.'],
+ security:['보안 확인','내가 없는 동안 차가 열렸는지, 차에 등록된 키 수가 바뀌었는지 알려 줍니다. 워치가 1시간마다 확인합니다.'],
+ park:['내 차 찾기','차에서 내린 뒤 5분 동안 걸어간 경로를 걸음과 방향으로 기록합니다. GPS가 안 잡히는 지하 주차장에서도 왔던 길을 되짚어 차로 돌아갈 수 있습니다.'],
+ parkmap:['걸어간 경로','🚗는 차, 🚶는 기록이 끝난 곳입니다. 엘리베이터나 계단을 타면 그 지점에서 기록을 끊어, 차가 있는 층의 출입구까지만 남깁니다.'],
+ floor:['층 판단','휴대폰 기압 센서로 몇 층을 오르내렸는지 추정합니다.'],
+ ret:['돌아가기','왔던 길을 거꾸로 안내합니다. 차까지 남은 거리와 차 블루투스 신호 세기를 함께 보여 줍니다.'],
+ drive:['주행 기록 내역','차에 타면 자동으로 기록을 시작합니다. 경로, 거리, 전비, 비용을 주행마다 남깁니다.'],
+ drivestart:['직접 시작','자동 시작을 기다리지 않고 지금부터 기록할 수 있습니다.'],
+ driveitem:['주행 한 건','누르면 지도, 속도·전력 그래프, 배터리 사용량을 볼 수 있습니다.'],
+ drivemap:['주행 경로','속도에 따라 경로 색이 바뀝니다(느림 빨강 → 빠름 초록). 자주 가는 곳은 "집", "회사"처럼 이름을 붙일 수 있습니다.'],
+ drivestat:['주행 요약','전비, 비용, 배터리 사용, 평균·최고 속도, 회생제동으로 되찾은 양을 보여 줍니다.'],
+ drivechart:['속도와 전력','운전 중에만 차를 조회해 그립니다. 0 아래 초록 부분이 회생제동입니다.'],
+ audio:['차내 녹음','주행 중 휴대폰 마이크로 녹음해 블랙박스 영상에 소리를 붙일 수 있습니다. 보관하지 않은 녹음은 7일 뒤 지워지고, 휴대폰 밖으로 나가지 않습니다.'],
+ merge:['블랙박스 영상에 녹음 붙이기','Tesla 블랙박스 영상은 소리가 없습니다. 같은 시각의 차내 녹음을 붙여 갤러리에 저장합니다. 시각·속도·주소도 영상에 넣을 수 있습니다.'],
+ report1:['사고 경위서','사고 시각 앞뒤의 속도, 위치, 소리 기록으로 경위서 초안을 만들고 PDF로 저장합니다. GPS 좌표, 차대번호, 녹음 파일은 AI로 보내지 않습니다.'],
+ charge:['충전 기록 내역','충전 중에만 5분마다 읽어 충전량, 속도, 비용을 기록합니다.'],
+ chargemonth:['이번 달 충전','집, 완속, 급속, 슈퍼차저로 묶어 보여 줍니다. 묶음을 누르면 충전 기록이 펼쳐집니다.'],
+ chargeitem:['충전 한 건','비용은 요금표로 추정합니다. 결제 문자를 붙여넣으면 실제 금액으로 바뀝니다.'],
+ paysms:['결제 문자로 추가','카드 승인 문자를 붙여넣으면 금액을 읽어 충전 기록에 넣습니다.'],
+ bill:['월 청구액으로 맞추기','한 달에 한 번 정산되는 집 충전은 청구 금액을 넣어 추정치를 실제 값에 맞춥니다.'],
+ curve:['급속 충전 곡선','배터리 %에 따라 충전 속도(kW)가 어떻게 변했는지 보여 줍니다.'],
+ status:['상태 이력','잠금 이력, 주차 중 수면, 타이어 공기압, 소프트웨어 버전, 감시 모드 시간을 모아 봅니다.'],
+ lockhist:['잠금 이력','언제 잠기고 열렸는지, 워치로 했는지 자동(워크어웨이)인지 남깁니다.'],
+ sleep:['주차 중 수면','차가 잘 자고 있는지, 주차 중 배터리가 얼마나 줄었는지 봅니다. 워치의 1시간 확인으로 판단해 대략적입니다.'],
+ tyre:['타이어 공기압','주행이 끝날 때 한 번씩 읽어 기록합니다. 한쪽만 천천히 줄면 못이 박혔을 수 있어 표시해 줍니다.'],
+ version:['소프트웨어 버전','차 소프트웨어가 바뀐 날을 기록합니다.'],
+ sentry:['감시 모드','이번 달 감시 모드가 켜져 있던 시간을 대략 셉니다.'],
+ report:['월 리포트','한 달 주행, 충전 단가, 평균 전비, 주차 중 배터리 소모, 배터리 상태를 정리합니다.'],
+ repdrive:['주행','이번 달 주행 횟수와 거리입니다.'],
+ reprate:['충전 단가','이번 달 충전에 kWh당 얼마를 썼는지 계산합니다.'],
+ repeff:['평균 전비','출발·도착 배터리가 모두 읽힌 주행으로 계산합니다.'],
+ repdrain:['주차 중 배터리 소모','차에서 내렸다가 다시 탈 때까지 줄어든 배터리를 하루 기준으로 보여 줍니다.'],
+ rephealth:['배터리 상태','100%로 환산한 주행 가능 거리를 신차 때와 비교합니다. 충전으로 잰 실제 용량도 함께 봅니다.'],
+ usage:['Tesla API 사용료','앱이 Tesla에 조회한 횟수로 이번 달 예상 요금을 보여 줍니다. Tesla가 매달 $10까지 할인합니다. 상한에 닿으면 상세 기록을 자동으로 멈춥니다.'],
+ setdrive:['주행 기록 설정','속도·전력·배터리를 운전 중에만 조회합니다. 조회 간격을 고르면 예상 월 비용이 함께 보입니다.'],
+ setaudio:['주행 중 녹음','켜면 주행 기록 중에 휴대폰 마이크로 녹음합니다. 동승자에게 녹음 중임을 알려 주세요.'],
+ setcrash:['사고 알림','주행 중 큰 충격 뒤 차가 멈춰 있으면 30초 카운트다운 후, 지정한 사람(최대 3명)에게 위치 문자와 녹음을 보냅니다. 워치에서도 취소할 수 있습니다.'],
+ setcharge:['충전 기록 설정','충전 중에만 5분마다 읽습니다.'],
+ setstation:['충전소 자동으로 찾기','기본은 꺼짐입니다. 켜면 충전한 위치를 서버로 보내 근처 충전소 이름을 찾습니다. 끄면 위치만 휴대폰에 기록합니다.'],
+ setstatus:['상태 이력 설정','버전, 타이어, 수면 기록을 켭니다.'],
+ setsc:['슈퍼차저 내역','하루 한 번 Tesla에서 슈퍼차저 결제 내역을 받아옵니다.'],
+ setunits:['단위·요금','거리·온도·공기압 단위와 집·완속·급속 요금을 정합니다. 한전 시간대별 요금도 고를 수 있습니다.'],
+ setlogin:['폰 읽기 전용 로그인','이 로그인으로는 차를 열거나 잠글 수 없습니다. 차 제어는 워치에만 있습니다.'],
+ setimage:['차량 이미지 표시','메인 화면에 내 차 색과 휠에 맞는 그림을 보여 줍니다.'],
+ theme:['화면 테마','어둡게와 밝게 중에서 고릅니다. 이 체험 화면은 밝게입니다.'],
+ watch:['워치앱 연결 설정','워치와 연결됐는지 확인하고, 권한과 Tesla API 연결을 마칩니다.'],
+ home:['홈','메인 화면으로 돌아갑니다.']
+};
+var $=function(id){return document.getElementById(id)};
+function tip(k){var t=TIPS[k]||TIPS.intro;$('tw-info').innerHTML='<h3>'+t[0]+'</h3>'+t.slice(1).map(function(p,i){return '<p'+(i?' class="hint"':'')+'>'+p+'</p>'}).join('')}
+function nav(t,sub,val,go,k,live){return '<button class="tw-nav" data-go="'+go+'" data-tip="'+k+'"><span class="tw-grow"><span class="ti">'+(live?'<span class="tw-accent">● </span>':'')+t+'</span><br><span class="tw-muted">'+sub+'</span></span>'+(val?'<span class="tw-bold">'+val+'</span>':'')+'<span class="ch">›</span></button>'}
+function sw(t,sub,k,on){return '<div class="tw-row" data-tip="'+k+'" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">'+t+'</span><br><span class="tw-muted">'+sub+'</span></span><span class="tw-sw'+(on?' on':'')+'" data-sw></span></div>'}
+function stat(l,v){return '<div class="tw-stat"><span class="tw-small">'+l+'</span><b>'+v+'</b></div>'}
+function back(title){return '<button class="tw-muted" data-go="home" data-tip="home">‹ 홈</button><div class="tw-h1">'+title+'</div>'}
+var route='<svg viewBox="0 0 300 150" width="100%" height="100%" aria-hidden="true"><path d="M20 120 C60 60,110 130,150 80 S240 30,280 40" fill="none" stroke="#1f8a6b" stroke-width="5" stroke-linecap="round"/><circle cx="20" cy="120" r="7" fill="#87e8ce" stroke="#0b1117" stroke-width="2"/><circle cx="280" cy="40" r="7" fill="#fff" stroke="#0b1117" stroke-width="2"/></svg>';
+var chart='<svg viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70 L30 40 L70 30 L110 45 L150 20 L190 35 L230 25 L270 50 L300 75" fill="none" stroke="#2a78c8" stroke-width="2"/><path d="M0 60 L40 50 L80 62 L120 48 L160 66 L200 52 L240 64 L300 58" fill="none" stroke="#0f8a6c" stroke-width="2"/></svg>';
+var S={
+ home:function(){return ''+
+  '<div class="tw-card" data-tip="carpanel"><div class="tw-pad">'+
+   '<div class="tw-row"><span class="tw-muted tw-grow">모델 Y · 5분 전 업데이트</span><span class="tw-accent" style="font-size:13px;font-weight:500" data-tip="lock">잠김</span></div>'+
+   '<div class="tw-row" style="align-items:flex-start;gap:16px"><span class="tw-big">72<small>%</small></span><span><span class="tw-muted">주행가능</span><br><b style="font-size:18px">356 km</b></span></div>'+
+   '<div class="tw-meter"><i style="width:72%"></i></div>'+
+   '<button style="font-size:15px" data-go="park" data-tip="parked">3시간째 주차 중</button>'+
+   '<div class="tw-hr"></div>'+
+   '<div data-tip="security"><span style="font-size:15px">보안 위험: 없음</span><br><span class="tw-muted">마지막 확인 14:00 · 차에 등록된 키 3개</span></div>'+
+  '</div></div>'+
+  '<div class="tw-card">'+
+   nav('내 차 찾기','마지막 기록 11/13 (금) 11:20','','park','park')+
+   nav('주행 기록 내역','오늘 · 152 Wh/km · 1,240원','18.4 km','drive','drive')+
+   nav('충전 기록 내역','11월 · 4회 · 138 kWh','41,200원','charge','charge')+
+   nav('상태 이력','소프트웨어 2026.38.4','정상','status','status')+
+   nav('월 리포트','이번 달 주행 21회 · 412 km','','report','report')+
+  '</div>'+
+  '<div data-tip="usage" style="padding:0 4px"><div class="tw-row"><span class="tw-muted tw-grow">이번 달 예상 API 사용료</span><span style="font-size:13px;font-weight:500">$1.84 / $10</span></div><div class="tw-meter" style="height:4px;margin-top:6px"><i style="width:18%"></i></div></div>'},
+ park:function(){return back('내 차 찾기')+
+  '<div class="tw-panel"><span class="tw-muted">11/13 (금) 11:20 기록 · 약 140m 이동</span>'+
+   '<div class="tw-map" data-tip="parkmap"><svg viewBox="0 0 300 150" width="100%" height="100%" aria-hidden="true"><path d="M40 110 L120 110 L120 60 L220 60 L220 30" fill="none" stroke="#0f8a6c" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/><text x="26" y="118" font-size="20">🚗</text><text x="208" y="30" font-size="20">🚶</text></svg></div>'+
+   '<span style="font-size:15px" data-tip="floor">차는 2층 아래에 있습니다</span>'+
+   '<button class="tw-btn" data-tip="ret">돌아가기</button>'+
+   '<span class="tw-small">걸음과 방향으로 추정한 경로라 오래 걸을수록 오차가 커집니다.</span></div>'+
+  '<span class="tw-muted" data-tip="park">차에서 떠난 뒤 5분 동안 걸어간 경로가 자동으로 기록됩니다.</span>'},
+ drive:function(){return back('주행 기록 내역')+
+  '<button class="tw-obtn" data-tip="drivestart">지금부터 주행 기록</button>'+
+  '<span class="tw-muted">차에 타면 자동으로 기록됩니다.</span>'+
+  '<div class="tw-panel"><div class="tw-row"><span class="tw-h2 tw-grow">최근 주행</span><span class="tw-small">21회 · 412 km</span></div>'+
+   '<button class="tw-row" data-go="drivedetail" data-tip="driveitem"><span class="tw-grow"><span style="font-size:15px">집 → 회사</span><br><span class="tw-muted">11/13 (금) 08:10 · 32분</span></span><b>18.4 km</b><span class="tw-muted" style="font-size:22px">›</span></button><div class="tw-hr"></div>'+
+   '<button class="tw-row" data-go="drivedetail" data-tip="driveitem"><span class="tw-grow"><span style="font-size:15px">회사 → 집</span><br><span class="tw-muted">11/12 (목) 18:40 · 41분</span></span><b>19.1 km</b><span class="tw-muted" style="font-size:22px">›</span></button><div class="tw-hr"></div>'+
+   '<button class="tw-row" data-go="drivedetail" data-tip="driveitem"><span class="tw-grow"><span style="font-size:15px">집 → 마트</span><br><span class="tw-muted">11/11 (수) 19:20 · 12분</span></span><b>4.2 km</b><span class="tw-muted" style="font-size:22px">›</span></button></div>'},
+ drivedetail:function(){return '<button class="tw-muted" data-go="drive" data-tip="drive">‹ 주행 기록 내역</button><div class="tw-h1">집 → 회사</div><span class="tw-muted">11/13 (금) 08:10 → 08:42 · 기록 시작 원인: 차량 신호 감지</span>'+
+  '<div class="tw-map" data-tip="drivemap">'+route+'</div>'+
+  '<div data-tip="drivestat" style="display:flex;flex-direction:column;gap:8px"><div class="tw-stats">'+stat('전비','152 Wh/km')+stat('비용','1,240원')+'</div><div class="tw-stats">'+stat('평균 속도','34 km/h')+stat('최고 속도','82 km/h')+'</div><div class="tw-stats">'+stat('배터리 사용','4%')+stat('회생제동','0.6 kWh')+'</div></div>'+
+  '<div class="tw-panel" data-tip="drivechart"><span class="tw-h2">속도와 전력</span><div class="tw-chart">'+chart+'</div><span class="tw-small">가로축: 출발 후 시간(분)</span></div>'+
+  '<div class="tw-panel"><span class="tw-h2" data-tip="audio">차내 녹음</span><button class="tw-obtn" data-tip="merge">블랙박스 영상에 녹음 붙이기</button><button class="tw-obtn" data-tip="report1">경위서 만들기</button></div>'},
+ charge:function(){return back('충전 기록 내역')+
+  '<button class="tw-obtn" data-tip="paysms">결제 문자로 충전 기록 추가</button><button class="tw-obtn" data-tip="bill">월 청구액으로 맞추기 (집 충전)</button>'+
+  '<div class="tw-panel" data-tip="chargemonth"><div class="tw-row"><span class="tw-h2 tw-grow">이번 달 충전</span><span class="tw-small">4회 · 138 kWh</span></div>'+
+   '<div class="tw-row" data-tip="chargeitem" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">집 · 완속 7.0 kW</span><br><span class="tw-muted">11/10 (화) 23:10 · 42 kWh · 추정</span></span><b>7,560원</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="chargeitem" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">예시 충전소 · 급속 최고 96 kW</span><br><span class="tw-muted">11/07 (토) 14:30 · 38 kWh · 회원가</span></span><b>13,300원</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="chargeitem" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">Tesla 슈퍼차저 최고 210 kW</span><br><span class="tw-muted">11/02 (월) 12:05 · 31 kWh · Tesla 결제 금액</span></span><b>12,400원</b></div></div>'+
+  '<div class="tw-panel" data-tip="curve"><span class="tw-h2">지난 급속 충전</span><div class="tw-chart"><svg viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 L40 12 L100 14 L160 34 L220 56 L300 78" fill="none" stroke="#0f8a6c" stroke-width="2.5"/></svg></div></div>'},
+ status:function(){return back('상태 이력')+
+  '<div class="tw-panel" data-tip="lockhist"><span class="tw-h2">잠금 이력</span><div class="tw-row"><span class="tw-grow">11/13 08:43</span><span class="tw-accent">잠김 · 자동</span></div><div class="tw-row"><span class="tw-grow">11/13 08:09</span><span>열려 있음 · 워치</span></div></div>'+
+  '<div class="tw-panel" data-tip="sleep"><span class="tw-h2">마지막 주차 중 수면</span><div style="height:14px;border-radius:7px;background:linear-gradient(90deg,#9cc3dd 0 62%,#d9771c 62% 70%,#9cc3dd 70%)"></div><span class="tw-muted">주차 중 배터리 1%</span></div>'+
+  '<div class="tw-panel" data-tip="tyre"><span class="tw-h2">타이어 공기압</span><div class="tw-stats">'+stat('앞 왼쪽','2.9 bar')+stat('앞 오른쪽','2.9 bar')+'</div><div class="tw-stats">'+stat('뒤 왼쪽','2.8 bar')+stat('뒤 오른쪽','2.9 bar')+'</div></div>'+
+  '<div class="tw-panel" data-tip="version"><span class="tw-h2">소프트웨어 버전</span><div class="tw-row"><span class="tw-grow">2026.38.4</span><span class="tw-muted">11/05</span></div><div class="tw-row"><span class="tw-grow">2026.32.1</span><span class="tw-muted">10/02</span></div></div>'+
+  '<div class="tw-panel" data-tip="sentry"><span class="tw-h2">이번 달 감시 모드</span><span>켜진 시간 약 12시간</span></div>'},
+ report:function(){return back('월 리포트')+'<span class="tw-muted">이번 달 · 11/1–11/13</span>'+
+  '<div class="tw-panel"><div class="tw-row" data-tip="repdrive" tabindex="0" role="button"><span class="tw-grow">주행</span><b>412 km</b><span class="tw-muted">21회</span></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="reprate" tabindex="0" role="button"><span class="tw-grow">충전 단가</span><b>298원/kWh</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="repeff" tabindex="0" role="button"><span class="tw-grow">평균 전비</span><b>158 Wh/km</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="repdrain" tabindex="0" role="button"><span class="tw-grow">주차 중 배터리 소모</span><b>하루 0.8%</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="rephealth" tabindex="0" role="button"><span class="tw-grow">배터리 상태</span><b>신차 대비 96%</b></div></div>'+
+  '<div class="tw-panel" data-tip="repdrive"><span class="tw-h2">이번 달 일별</span><div class="tw-chart"><svg viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><g fill="#0f8a6c"><rect x="10" y="40" width="14" height="50"/><rect x="34" y="55" width="14" height="35"/><rect x="58" y="20" width="14" height="70"/><rect x="82" y="60" width="14" height="30"/><rect x="106" y="45" width="14" height="45"/><rect x="130" y="70" width="14" height="20"/><rect x="154" y="35" width="14" height="55"/><rect x="178" y="50" width="14" height="40"/><rect x="202" y="25" width="14" height="65"/><rect x="226" y="58" width="14" height="32"/><rect x="250" y="42" width="14" height="48"/><rect x="274" y="52" width="14" height="38"/></g></svg></div></div>'},
+ settings:function(){return ''+
+  '<div class="tw-sec">워치앱 연결 설정</div><div class="tw-panel" data-tip="watch"><div class="tw-row"><span class="tw-grow">워치 연결</span><span class="tw-accent">✓</span></div><div class="tw-row"><span class="tw-grow">Tesla API 연결</span><span class="tw-accent">✓</span></div></div>'+
+  '<div class="tw-sec">핸드폰앱 설정</div><div class="tw-panel">'+
+   sw('주행 기록 내역','속도·전력·배터리를 운전 중에만 조회','setdrive',1)+'<div class="tw-hr"></div>'+
+   sw('주행 중 녹음','휴대폰 마이크로 녹음해 블랙박스 영상에 소리를 붙입니다','setaudio',1)+'<div class="tw-hr"></div>'+
+   sw('사고 알림','큰 충격 뒤 지정한 사람에게 위치 문자를 보냅니다','setcrash',0)+'<div class="tw-hr"></div>'+
+   sw('충전 기록 내역','충전 중에만 5분마다','setcharge',1)+'<div class="tw-hr"></div>'+
+   sw('충전소 자동으로 찾기','끄면 충전 위치만 기록합니다','setstation',0)+'<div class="tw-hr"></div>'+
+   sw('상태 이력','버전·타이어·수면','setstatus',1)+'<div class="tw-hr"></div>'+
+   sw('슈퍼차저 내역','하루 1번','setsc',1)+'</div>'+
+  '<div class="tw-sec">단위·요금</div><div class="tw-panel" data-tip="setunits"><div class="tw-row"><span class="tw-grow">단위</span><span class="tw-muted">차량 설정</span></div><div class="tw-row"><span class="tw-grow">충전 요금 (kWh당)</span><span class="tw-muted">집 180원</span></div></div>'+
+  '<div class="tw-sec">Tesla API</div><div class="tw-panel"><div data-tip="usage"><div class="tw-row"><span class="tw-grow">이번 달 예상 API 사용료</span><b style="font-size:14px">$1.84 / $10</b></div></div><div class="tw-hr"></div><div data-tip="setlogin"><span>폰 읽기 전용 로그인</span><br><span class="tw-muted">이 로그인으로는 차를 열거나 잠글 수 없습니다.</span></div></div>'+
+  '<div class="tw-sec">표시</div><div class="tw-panel">'+sw('차량 이미지 표시','Model 3·Y·S·X·사이버트럭 지원','setimage',0)+'</div>'+
+  '<div class="tw-sec">화면 테마</div><div class="tw-row" data-tip="theme"><span class="tw-obtn tw-grow" style="display:flex;align-items:center;justify-content:center">어둡게</span><span class="tw-btn tw-grow" style="display:flex;align-items:center;justify-content:center">밝게</span></div>'}
+};
+var cur='home';
+function show(name){
+ cur=name;
+ var onSet=name==='settings';
+ $('tw-bar').innerHTML=(name==='home'||onSet)?'<div class="t" data-tip="topbar"><div class="n">모델 Y · 72%</div><div class="s">3시간째 주차 중</div></div><button class="tw-txtbtn" data-go="'+(onSet?'home':'settings')+'" data-tip="'+(onSet?'home':'settings')+'">'+(onSet?'⌂  홈':'⚙  앱 설정')+'</button>':'';
+ $('tw-bar').style.display=(name==='home'||onSet)?'flex':'none';
+ $('tw-body').innerHTML=S[name]();
+ $('tw-body').scrollTop=0;
+}
+function act(e){
+ var t=e.target.closest('[data-tip],[data-go]');
+ if(!t||!$('tw-demo').contains(t))return;
+ var s=e.target.closest('[data-sw]')||t.querySelector('[data-sw]');
+ if(s)s.classList.toggle('on');
+ var k=t.getAttribute('data-tip'),go=t.getAttribute('data-go');
+ if(go)show(go);
+ else{var old=document.querySelector('.tw-sel');if(old)old.classList.remove('tw-sel');t.classList.add('tw-sel')}
+ if(k)tip(k);
+}
+$('tw-demo').addEventListener('click',act);
+$('tw-demo').addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button]')){e.preventDefault();act(e)}});
+show('home');tip('intro');
+})();
+</script>
+</body>
+</html>

@@ -126,6 +126,16 @@
   @media (min-width:861px){ .demo-desc{display:none;} }
   @media (prefers-reduced-motion:reduce){ .scr{transition:none;} .hot::after{animation:none;border-color:rgba(168,100,43,.6);} }
 
+  /* 워치 캡처: 언어에 맞는 것만 */
+  .shots.watches{grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px;}
+  .shots .only-en{display:none;}
+  html[data-lang="en"] .shots .only-en{display:grid;}
+  html[data-lang="en"] .shots .only-ko{display:none;}
+  /* 폰 앱 체험(앱 밝은 테마를 HTML로 옮긴 화면) */
+  .try .sub{margin-top:8px;}
+  .try-frame{margin-top:24px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;}
+  .try-frame iframe{display:block;width:100%;height:740px;border:0;}
+  @media (max-width:760px){ .try-frame{border:0;border-radius:0;margin-left:calc(-1*clamp(16px,4vw,40px));margin-right:calc(-1*clamp(16px,4vw,40px));} .try-frame iframe{height:1010px;} }
   /* 한 줄 문장 */
   .statement{background:var(--bg-2);padding:40px 0;}
   .statement p{font-weight:600;font-size:clamp(18px,2.2vw,24px);margin:0;letter-spacing:-0.01em;}
@@ -287,17 +297,17 @@
   <section class="feat" id="watch">
     <div class="wrap">
       <h2><span data-ko>워치 앱</span><span data-en>Watch app</span></h2>
-      <div class="shots">
+      <div class="shots watches">
         <figure>
           <img class="shot-watch" data-ko src="/teswatch/img/watch-key-ko.webp" width="454" height="454" alt="워치 키 화면: 프렁크, 잠금, 트렁크, 충전구" loading="lazy">
           <img class="shot-watch" data-en src="/teswatch/img/watch-key-en.webp" width="454" height="454" alt="Watch key: frunk, lock, trunk, charge port" loading="lazy">
           <figcaption><span data-ko>차 키</span><span data-en>Car key</span></figcaption>
         </figure>
-        <figure>
+        <figure class="only-en">
           <img class="shot-watch" src="/teswatch/img/watch-more-en.webp" width="454" height="454" alt="워치 두 번째 화면: 공조, 배터리, 경적과 라이트, 차 위치" loading="lazy">
           <figcaption><span data-ko>공조 · 경적 · 차 위치</span><span data-en>Climate, horn, location</span></figcaption>
         </figure>
-        <figure>
+        <figure class="only-ko">
           <img class="shot-watch" src="/teswatch/img/watch-tile-ko.webp" width="384" height="384" alt="워치 타일: 잠김 · 85% · 320 km와 버튼 4개" loading="lazy">
           <figcaption><span data-ko>타일</span><span data-en>Tile</span></figcaption>
         </figure>
@@ -391,6 +401,14 @@
               <span data-ko>주행 중 큰 충격 뒤 차가 멈춰 있으면 30초 카운트다운이 시작됩니다. 취소하지 않으면 미리 정한 사람(최대 3명)에게 위치 지도 링크와 사고 전후 차내 녹음을 보냅니다. 바로 보내거나 119에 전화할 수도 있습니다.</span><span data-en>After a hard impact, if the car stays still, a 30-second countdown starts. If you don't cancel, up to 3 contacts get a map link and the in-cabin audio from around the crash. You can also send right away or call 119.</span>
             </span>
           </button>
+        </div>
+      </div>
+
+      <div class="try" id="try">
+        <h3 class="more-h"><span data-ko>앱 미리보기</span><span data-en>App preview</span></h3>
+        <p class="sub"><span data-ko>폰 앱을 그대로 옮겨 온 체험 화면입니다. 메뉴를 눌러 화면을 오가 보세요. 누른 기능의 설명이 함께 나옵니다. 보이는 숫자와 장소는 모두 예시입니다.</span><span data-en>A hands-on copy of the phone app (light theme). Tap around to move between screens; each feature you tap is explained. The demo is in Korean, and every number and place in it is an example.</span></p>
+        <div class="try-frame">
+          <iframe src="/teswatch/demo.html" title="Teswatch 폰 앱 체험 / Teswatch phone app demo" loading="lazy"></iframe>
         </div>
       </div>
 
