@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Teswatch phone app demo</title>
+<style>
+/* Colours = the app's light theme (mobile AppTheme.kt, LightPalette). */
+.tw-demo{--bg:#f2f2f4;--panel:#fff;--panel2:#f2f3f5;--line:#e1e5e9;--border:#c9d0d6;--text:#14191e;--muted:#5c6770;
+  --accent:#0f8a6c;--on-accent:#fff;--warn:#c0392b;--orange:#d9771c;--blue:#2a78c8;--sleep:#9cc3dd;
+  display:flex;gap:28px;justify-content:center;align-items:flex-start;flex-wrap:wrap;
+  font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:var(--text);padding:16px;box-sizing:border-box}
+.tw-demo *{box-sizing:border-box}
+.tw-phone{width:340px;max-width:100%;height:680px;border:10px solid #14191e;border-radius:40px;background:var(--bg);overflow:hidden;display:flex;flex-direction:column;flex:none}
+.tw-bar{height:52px;flex:none;display:flex;align-items:center;padding:0 4px 0 16px;background:var(--bg)}
+.tw-bar .t{flex:1;min-width:0}
+.tw-bar .n{font-size:17px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tw-bar .s{font-size:12px;color:var(--muted)}
+.tw-body{flex:1;overflow-y:auto;padding:12px 16px 20px;display:flex;flex-direction:column;gap:16px}
+.tw-demo button{font:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+.tw-demo button:focus-visible,.tw-demo [data-tip]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tw-txtbtn{height:44px;padding:0 12px!important;font-size:15px;color:var(--muted)!important}
+.tw-card{background:var(--panel);border:1px solid rgba(0,0,0,.06);border-radius:20px}
+.tw-pad{padding:20px;display:flex;flex-direction:column;gap:12px}
+.tw-panel{background:var(--panel);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.tw-row{display:flex;align-items:center;gap:12px}
+.tw-grow{flex:1;min-width:0}
+.tw-muted{color:var(--muted);font-size:13px;line-height:1.5}
+.tw-small{font-size:12px;color:var(--muted);line-height:1.5}
+.tw-big{font-size:36px;font-weight:700;line-height:38px}
+.tw-big small{font-size:20px}
+.tw-h1{font-size:24px;font-weight:700}
+.tw-h2{font-size:16px;font-weight:700}
+.tw-sec{font-size:13px;font-weight:500;color:var(--muted);padding:8px 0 0 4px}
+.tw-bold{font-weight:700;font-size:18px}
+.tw-accent{color:var(--accent)}
+.tw-warn{color:var(--warn)}
+.tw-meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.tw-meter i{display:block;height:100%;background:var(--accent)}
+.tw-hr{height:1px;background:var(--line)}
+.tw-nav{display:flex;align-items:center;gap:12px;min-height:64px;padding:12px 16px;width:100%}
+.tw-nav + .tw-nav{border-top:1px solid var(--line)}
+.tw-nav .ti{font-size:15px;font-weight:500}
+.tw-nav .ch{font-size:22px;color:var(--muted)}
+.tw-stats{display:flex;gap:8px}
+.tw-stat{flex:1;background:var(--panel2);border-radius:10px;padding:10px}
+.tw-stat b{display:block;font-size:18px}
+.tw-btn{height:44px;border-radius:22px;background:var(--accent)!important;color:var(--on-accent)!important;padding:0 20px!important;text-align:center!important;font-weight:500}
+.tw-obtn{height:44px;border-radius:22px;border:1px solid var(--border)!important;padding:0 16px!important;text-align:center!important}
+.tw-sw{width:44px;height:26px;border-radius:13px;background:var(--border);position:relative;flex:none}
+.tw-sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s}
+.tw-sw.on{background:var(--accent)}
+.tw-sw.on::after{left:21px}
+.tw-map{height:150px;border-radius:12px;background:#e8ebee;position:relative;overflow:hidden}
+.tw-chart{height:90px;border-radius:10px;background:var(--panel2)}
+.tw-sel{box-shadow:0 0 0 2px var(--accent);border-radius:12px}
+[data-tip]{cursor:pointer}
+.tw-info{width:340px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;min-height:180px}
+.tw-info h3{margin:0 0 8px;font-size:18px}
+.tw-info p{margin:0 0 8px;font-size:15px;line-height:1.6;color:var(--text)}
+.tw-info .hint{color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){.tw-sw::after{transition:none}}
+</style>
+</head>
+<body style="margin:0;background:#fff">
+<div class="tw-demo" id="tw-demo">
+  <div class="tw-phone" aria-label="Teswatch phone app example screen">
+    <div class="tw-bar" id="tw-bar"></div>
+    <div class="tw-body" id="tw-body"></div>
+  </div>
+  <div class="tw-info" id="tw-info" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+// Every value below is a made-up example. No real car, place, VIN or drive is shown.
+var TIPS={
+ intro:['Try the Teswatch phone app','Tap anything on the screen. It moves between screens like the real app, and what you tapped is explained here.','Every number and place shown is an example.'],
+ topbar:['Car status bar','Always shows the car name, battery, and whether it is parked, driving or charging.'],
+ settings:['App settings','Choose which logs to keep, rates and units, the theme, and your Tesla sign-in.'],
+ carpanel:['Your car now','Battery, range, lock status and how long it has been parked, at a glance. If the car is awake when you open the app it refreshes; a sleeping car is never woken.'],
+ lock:['Lock status','Based on the car\'s own lock state. If a door or the trunk is open it says so, like "Locked · Trunk open".'],
+ parked:['Parked time','Time since you left the car. Tap to open Where\'s my car.'],
+ security:['Security check','Tells you if the car was unlocked while you were away or if the number of keys changed. The watch checks every hour.'],
+ park:['Where\'s my car','Records your first 5 minutes of walking after you leave the car, using steps and direction. Retrace your path back to the car even in underground parking with no GPS.'],
+ parkmap:['Your walk','🚗 is the car, 🚶 is where recording stopped. Taking a lift or stairs ends the path there, so it only keeps the way to the exit on the car\'s floor.'],
+ floor:['Floor change','Estimates how many floors you went up or down with the phone\'s barometer.'],
+ ret:['Go back','Guides you back along your path, with the distance left and the car\'s Bluetooth signal strength.'],
+ drive:['Drive history','Starts recording when you get in the car and keeps the route, distance, efficiency and cost of every drive.'],
+ drivestart:['Start manually','Start recording now instead of waiting for the automatic start.'],
+ driveitem:['One drive','Tap for the map, speed and power chart, and battery used.'],
+ drivemap:['Route','The line changes colour with speed (slow red → fast green). Name places you visit often, like "Home" or "Work".'],
+ drivestat:['Drive summary','Efficiency, cost, battery used, average and top speed, and energy recovered by regen.'],
+ drivechart:['Speed and power','Drawn from data read only while driving. The green part below 0 is regen.'],
+ audio:['In-car audio','Records with the phone mic while driving so you can add sound to dashcam clips. Unsaved recordings are deleted after 7 days and never leave the phone.'],
+ merge:['Add audio to a dashcam clip','Tesla dashcam clips have no sound. Teswatch adds the in-car audio from the same moment and saves it to your gallery. You can also stamp the time, speed and address.'],
+ report1:['Accident report','Drafts an accident report from the speed, location and audio around the crash and saves it as a PDF. GPS coordinates, VIN and recordings are never sent to AI.'],
+ charge:['Charging history','Reads every 5 minutes only while charging to log energy, speed and cost.'],
+ chargemonth:['This month\'s charging','Grouped into home, AC, DC fast and Supercharger. Tap a group to see its sessions.'],
+ chargeitem:['One session','Cost is estimated from your rates. Paste the payment text message to replace it with the real amount.'],
+ paysms:['Add from payment SMS','Paste a card approval text and the amount goes into your charging history.'],
+ bill:['Match the monthly bill','For home charging billed monthly, enter the bill to correct the estimates.'],
+ curve:['Fast-charge curve','How charging speed (kW) changed with battery %.'],
+ status:['Status history','Lock history, sleep while parked, tyre pressure, software versions and Sentry Mode time in one place.'],
+ lockhist:['Lock history','When it was locked or unlocked, and whether by the watch or automatically (Walkaway).'],
+ sleep:['Sleep while parked','Whether the car is sleeping properly and how much battery it lost while parked. Approximate, based on the watch\'s hourly check.'],
+ tyre:['Tyre pressure','Read once at the end of each drive. If one tyre slowly loses pressure it is flagged, as it may have a nail.'],
+ version:['Software version','Logs the day the car\'s software changed.'],
+ sentry:['Sentry Mode','Roughly how long Sentry Mode was on this month.'],
+ report:['Monthly report','Your month of driving, charging cost per kWh, average efficiency, battery drain while parked and battery health.'],
+ repdrive:['Driving','Number of drives and distance this month.'],
+ reprate:['Charging cost','What you paid per kWh this month.'],
+ repeff:['Average efficiency','Calculated from drives with both start and end battery readings.'],
+ repdrain:['Drain while parked','Battery lost between leaving and returning to the car, per day.'],
+ rephealth:['Battery health','Range at 100% compared with when new, plus the real capacity measured from charging.'],
+ usage:['Tesla API cost','This month\'s estimated cost from how often the app asked Tesla. Tesla credits up to $10 a month. Detailed logging pauses automatically at the limit.'],
+ setdrive:['Drive history setting','Reads speed, power and battery only while driving. Pick an interval to see the estimated monthly cost.'],
+ setaudio:['Record while driving','When on, the phone mic records during drive logging. Let passengers know you are recording.'],
+ setcrash:['Crash alert','After a hard impact, if the car stays still, a 30-second countdown starts, then up to 3 chosen contacts get a location text and the audio. You can cancel on the watch too.'],
+ setcharge:['Charging history setting','Reads every 5 minutes, only while charging.'],
+ setstation:['Find charging station','Off by default. When on, the charging location is sent to a server to find the nearby station name. When off, only the location is kept on the phone.'],
+ setstatus:['Status history setting','Turns on version, tyre and sleep logs.'],
+ setsc:['Supercharger history','Fetches your Supercharger charges from Tesla once a day.'],
+ setunits:['Units and rates','Set distance, temperature and pressure units and home, AC and DC rates. Time-of-use rates are supported.'],
+ setlogin:['Read-only phone sign-in','This sign-in cannot lock or unlock the car. Car control lives only on the watch.'],
+ setimage:['Show car image','Shows a picture matching your car\'s colour and wheels on the main screen.'],
+ theme:['Theme','Choose dark or light. This demo uses light.'],
+ watch:['Watch app setup','Check the watch connection and finish permissions and the Tesla API link.'],
+ home:['Home','Back to the main screen.']
+};
+var $=function(id){return document.getElementById(id)};
+function tip(k){var t=TIPS[k]||TIPS.intro;$('tw-info').innerHTML='<h3>'+t[0]+'</h3>'+t.slice(1).map(function(p,i){return '<p'+(i?' class="hint"':'')+'>'+p+'</p>'}).join('')}
+function nav(t,sub,val,go,k,live){return '<button class="tw-nav" data-go="'+go+'" data-tip="'+k+'"><span class="tw-grow"><span class="ti">'+(live?'<span class="tw-accent">● </span>':'')+t+'</span><br><span class="tw-muted">'+sub+'</span></span>'+(val?'<span class="tw-bold">'+val+'</span>':'')+'<span class="ch">›</span></button>'}
+function sw(t,sub,k,on){return '<div class="tw-row" data-tip="'+k+'" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">'+t+'</span><br><span class="tw-muted">'+sub+'</span></span><span class="tw-sw'+(on?' on':'')+'" data-sw></span></div>'}
+function stat(l,v){return '<div class="tw-stat"><span class="tw-small">'+l+'</span><b>'+v+'</b></div>'}
+function back(title){return '<button class="tw-muted" data-go="home" data-tip="home">‹ Home</button><div class="tw-h1">'+title+'</div>'}
+var route='<svg viewBox="0 0 300 150" width="100%" height="100%" aria-hidden="true"><path d="M20 120 C60 60,110 130,150 80 S240 30,280 40" fill="none" stroke="#1f8a6b" stroke-width="5" stroke-linecap="round"/><circle cx="20" cy="120" r="7" fill="#87e8ce" stroke="#0b1117" stroke-width="2"/><circle cx="280" cy="40" r="7" fill="#fff" stroke="#0b1117" stroke-width="2"/></svg>';
+var chart='<svg viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70 L30 40 L70 30 L110 45 L150 20 L190 35 L230 25 L270 50 L300 75" fill="none" stroke="#2a78c8" stroke-width="2"/><path d="M0 60 L40 50 L80 62 L120 48 L160 66 L200 52 L240 64 L300 58" fill="none" stroke="#0f8a6c" stroke-width="2"/></svg>';
+var S={
+ home:function(){return ''+
+  '<div class="tw-card" data-tip="carpanel"><div class="tw-pad">'+
+   '<div class="tw-row"><span class="tw-muted tw-grow">Model Y · updated 5 min ago</span><span class="tw-accent" style="font-size:13px;font-weight:500" data-tip="lock">Locked</span></div>'+
+   '<div class="tw-row" style="align-items:flex-start;gap:16px"><span class="tw-big">72<small>%</small></span><span><span class="tw-muted">Range</span><br><b style="font-size:18px">356 km</b></span></div>'+
+   '<div class="tw-meter"><i style="width:72%"></i></div>'+
+   '<button style="font-size:15px" data-go="park" data-tip="parked">Parked for 3 h</button>'+
+   '<div class="tw-hr"></div>'+
+   '<div data-tip="security"><span style="font-size:15px">Security risks: none</span><br><span class="tw-muted">Last check 14:00 · 3 keys on the car</span></div>'+
+  '</div></div>'+
+  '<div class="tw-card">'+
+   nav('Where\'s my car','Last recorded Fri 11/13 11:20','','park','park')+
+   nav('Drive history','Today · 152 Wh/km · ₩1,240','18.4 km','drive','drive')+
+   nav('Charging history','November · 4 sessions · 138 kWh','₩41,200','charge','charge')+
+   nav('Status history','Software 2026.38.4','Normal','status','status')+
+   nav('Monthly report','This month 21 drives · 412 km','','report','report')+
+  '</div>'+
+  '<div data-tip="usage" style="padding:0 4px"><div class="tw-row"><span class="tw-muted tw-grow">Estimated API cost this month</span><span style="font-size:13px;font-weight:500">$1.84 / $10</span></div><div class="tw-meter" style="height:4px;margin-top:6px"><i style="width:18%"></i></div></div>'},
+ park:function(){return back('Where\'s my car')+
+  '<div class="tw-panel"><span class="tw-muted">Recorded Fri 11/13 11:20 · about 140 m walked</span>'+
+   '<div class="tw-map" data-tip="parkmap"><svg viewBox="0 0 300 150" width="100%" height="100%" aria-hidden="true"><path d="M40 110 L120 110 L120 60 L220 60 L220 30" fill="none" stroke="#0f8a6c" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/><text x="26" y="118" font-size="20">🚗</text><text x="208" y="30" font-size="20">🚶</text></svg></div>'+
+   '<span style="font-size:15px" data-tip="floor">The car is 2 floors down</span>'+
+   '<button class="tw-btn" data-tip="ret">Go back</button>'+
+   '<span class="tw-small">The path is estimated from steps and direction, so it drifts the longer you walk.</span></div>'+
+  '<span class="tw-muted" data-tip="park">Your first 5 minutes of walking after leaving the car are recorded automatically.</span>'},
+ drive:function(){return back('Drive history')+
+  '<button class="tw-obtn" data-tip="drivestart">Start recording now</button>'+
+  '<span class="tw-muted">Recording starts automatically when you get in.</span>'+
+  '<div class="tw-panel"><div class="tw-row"><span class="tw-h2 tw-grow">Recent drives</span><span class="tw-small">21 drives · 412 km</span></div>'+
+   '<button class="tw-row" data-go="drivedetail" data-tip="driveitem"><span class="tw-grow"><span style="font-size:15px">Home → Work</span><br><span class="tw-muted">Fri 11/13 08:10 · 32 min</span></span><b>18.4 km</b><span class="tw-muted" style="font-size:22px">›</span></button><div class="tw-hr"></div>'+
+   '<button class="tw-row" data-go="drivedetail" data-tip="driveitem"><span class="tw-grow"><span style="font-size:15px">Work → Home</span><br><span class="tw-muted">Thu 11/12 18:40 · 41 min</span></span><b>19.1 km</b><span class="tw-muted" style="font-size:22px">›</span></button><div class="tw-hr"></div>'+
+   '<button class="tw-row" data-go="drivedetail" data-tip="driveitem"><span class="tw-grow"><span style="font-size:15px">Home → Market</span><br><span class="tw-muted">Wed 11/11 19:20 · 12 min</span></span><b>4.2 km</b><span class="tw-muted" style="font-size:22px">›</span></button></div>'},
+ drivedetail:function(){return '<button class="tw-muted" data-go="drive" data-tip="drive">‹ Drive history</button><div class="tw-h1">Home → Work</div><span class="tw-muted">Fri 11/13 08:10 → 08:42 · Started by: car signal detected</span>'+
+  '<div class="tw-map" data-tip="drivemap">'+route+'</div>'+
+  '<div data-tip="drivestat" style="display:flex;flex-direction:column;gap:8px"><div class="tw-stats">'+stat('Efficiency','152 Wh/km')+stat('Cost','₩1,240')+'</div><div class="tw-stats">'+stat('Avg speed','34 km/h')+stat('Top speed','82 km/h')+'</div><div class="tw-stats">'+stat('Battery used','4%')+stat('Regen','0.6 kWh')+'</div></div>'+
+  '<div class="tw-panel" data-tip="drivechart"><span class="tw-h2">Speed and power</span><div class="tw-chart">'+chart+'</div><span class="tw-small">X axis: minutes since start</span></div>'+
+  '<div class="tw-panel"><span class="tw-h2" data-tip="audio">In-car audio</span><button class="tw-obtn" data-tip="merge">Add audio to a dashcam clip</button><button class="tw-obtn" data-tip="report1">Create accident report</button></div>'},
+ charge:function(){return back('Charging history')+
+  '<button class="tw-obtn" data-tip="paysms">Add charge from payment SMS</button><button class="tw-obtn" data-tip="bill">Match monthly bill (home charging)</button>'+
+  '<div class="tw-panel" data-tip="chargemonth"><div class="tw-row"><span class="tw-h2 tw-grow">This month\'s charging</span><span class="tw-small">4 sessions · 138 kWh</span></div>'+
+   '<div class="tw-row" data-tip="chargeitem" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">Home · AC 7.0 kW</span><br><span class="tw-muted">Tue 11/10 23:10 · 42 kWh · estimated</span></span><b>₩7,560</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="chargeitem" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">Sample station · DC up to 96 kW</span><br><span class="tw-muted">Sat 11/07 14:30 · 38 kWh · member rate</span></span><b>₩13,300</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="chargeitem" tabindex="0" role="button"><span class="tw-grow"><span style="font-size:15px">Tesla Supercharger up to 210 kW</span><br><span class="tw-muted">Mon 11/02 12:05 · 31 kWh · Tesla billed amount</span></span><b>₩12,400</b></div></div>'+
+  '<div class="tw-panel" data-tip="curve"><span class="tw-h2">Last fast charge</span><div class="tw-chart"><svg viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 L40 12 L100 14 L160 34 L220 56 L300 78" fill="none" stroke="#0f8a6c" stroke-width="2.5"/></svg></div></div>'},
+ status:function(){return back('Status history')+
+  '<div class="tw-panel" data-tip="lockhist"><span class="tw-h2">Lock history</span><div class="tw-row"><span class="tw-grow">11/13 08:43</span><span class="tw-accent">Locked · auto</span></div><div class="tw-row"><span class="tw-grow">11/13 08:09</span><span>Unlocked · watch</span></div></div>'+
+  '<div class="tw-panel" data-tip="sleep"><span class="tw-h2">Last sleep while parked</span><div style="height:14px;border-radius:7px;background:linear-gradient(90deg,#9cc3dd 0 62%,#d9771c 62% 70%,#9cc3dd 70%)"></div><span class="tw-muted">Battery used while parked: 1%</span></div>'+
+  '<div class="tw-panel" data-tip="tyre"><span class="tw-h2">Tyre pressure</span><div class="tw-stats">'+stat('Front left','2.9 bar')+stat('Front right','2.9 bar')+'</div><div class="tw-stats">'+stat('Rear left','2.8 bar')+stat('Rear right','2.9 bar')+'</div></div>'+
+  '<div class="tw-panel" data-tip="version"><span class="tw-h2">Software version</span><div class="tw-row"><span class="tw-grow">2026.38.4</span><span class="tw-muted">11/05</span></div><div class="tw-row"><span class="tw-grow">2026.32.1</span><span class="tw-muted">10/02</span></div></div>'+
+  '<div class="tw-panel" data-tip="sentry"><span class="tw-h2">Sentry Mode this month</span><span>On for about 12 h</span></div>'},
+ report:function(){return back('Monthly report')+'<span class="tw-muted">This month · 11/1–11/13</span>'+
+  '<div class="tw-panel"><div class="tw-row" data-tip="repdrive" tabindex="0" role="button"><span class="tw-grow">Driving</span><b>412 km</b><span class="tw-muted">21 drives</span></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="reprate" tabindex="0" role="button"><span class="tw-grow">Charging cost</span><b>₩298/kWh</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="repeff" tabindex="0" role="button"><span class="tw-grow">Avg efficiency</span><b>158 Wh/km</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="repdrain" tabindex="0" role="button"><span class="tw-grow">Drain while parked</span><b>0.8%/day</b></div><div class="tw-hr"></div>'+
+   '<div class="tw-row" data-tip="rephealth" tabindex="0" role="button"><span class="tw-grow">Battery health</span><b>96% of new</b></div></div>'+
+  '<div class="tw-panel" data-tip="repdrive"><span class="tw-h2">This month by day</span><div class="tw-chart"><svg viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true"><g fill="#0f8a6c"><rect x="10" y="40" width="14" height="50"/><rect x="34" y="55" width="14" height="35"/><rect x="58" y="20" width="14" height="70"/><rect x="82" y="60" width="14" height="30"/><rect x="106" y="45" width="14" height="45"/><rect x="130" y="70" width="14" height="20"/><rect x="154" y="35" width="14" height="55"/><rect x="178" y="50" width="14" height="40"/><rect x="202" y="25" width="14" height="65"/><rect x="226" y="58" width="14" height="32"/><rect x="250" y="42" width="14" height="48"/><rect x="274" y="52" width="14" height="38"/></g></svg></div></div>'},
+ settings:function(){return ''+
+  '<div class="tw-sec">Watch app setup</div><div class="tw-panel" data-tip="watch"><div class="tw-row"><span class="tw-grow">Watch connected</span><span class="tw-accent">✓</span></div><div class="tw-row"><span class="tw-grow">Tesla API linked</span><span class="tw-accent">✓</span></div></div>'+
+  '<div class="tw-sec">Phone app settings</div><div class="tw-panel">'+
+   sw('Drive history','Reads speed, power and battery only while driving','setdrive',1)+'<div class="tw-hr"></div>'+
+   sw('Record while driving','Phone mic audio for your dashcam clips','setaudio',1)+'<div class="tw-hr"></div>'+
+   sw('Crash alert','Texts your location to chosen contacts after a hard impact','setcrash',0)+'<div class="tw-hr"></div>'+
+   sw('Charging history','Every 5 min, only while charging','setcharge',1)+'<div class="tw-hr"></div>'+
+   sw('Find charging station','When off, only the location is kept','setstation',0)+'<div class="tw-hr"></div>'+
+   sw('Status history','Version, tyres, sleep','setstatus',1)+'<div class="tw-hr"></div>'+
+   sw('Supercharger history','Once a day','setsc',1)+'</div>'+
+  '<div class="tw-sec">Units and rates</div><div class="tw-panel" data-tip="setunits"><div class="tw-row"><span class="tw-grow">Units</span><span class="tw-muted">Same as car</span></div><div class="tw-row"><span class="tw-grow">Charging rate (per kWh)</span><span class="tw-muted">Home ₩180</span></div></div>'+
+  '<div class="tw-sec">Tesla API</div><div class="tw-panel"><div data-tip="usage"><div class="tw-row"><span class="tw-grow">Estimated API cost this month</span><b style="font-size:14px">$1.84 / $10</b></div></div><div class="tw-hr"></div><div data-tip="setlogin"><span>Read-only phone sign-in</span><br><span class="tw-muted">This sign-in cannot lock or unlock the car.</span></div></div>'+
+  '<div class="tw-sec">Display</div><div class="tw-panel">'+sw('Show car image','Model 3, Y, S, X and Cybertruck','setimage',0)+'</div>'+
+  '<div class="tw-sec">Theme</div><div class="tw-row" data-tip="theme"><span class="tw-obtn tw-grow" style="display:flex;align-items:center;justify-content:center">Dark</span><span class="tw-btn tw-grow" style="display:flex;align-items:center;justify-content:center">Light</span></div>'}
+};
+var cur='home';
+function show(name){
+ cur=name;
+ var onSet=name==='settings';
+ $('tw-bar').innerHTML=(name==='home'||onSet)?'<div class="t" data-tip="topbar"><div class="n">Model Y · 72%</div><div class="s">Parked for 3 h</div></div><button class="tw-txtbtn" data-go="'+(onSet?'home':'settings')+'" data-tip="'+(onSet?'home':'settings')+'">'+(onSet?'⌂  Home':'⚙  Settings')+'</button>':'';
+ $('tw-bar').style.display=(name==='home'||onSet)?'flex':'none';
+ $('tw-body').innerHTML=S[name]();
+ $('tw-body').scrollTop=0;
+}
+function act(e){
+ var t=e.target.closest('[data-tip],[data-go]');
+ if(!t||!$('tw-demo').contains(t))return;
+ var s=e.target.closest('[data-sw]')||t.querySelector('[data-sw]');
+ if(s)s.classList.toggle('on');
+ var k=t.getAttribute('data-tip'),go=t.getAttribute('data-go');
+ if(go)show(go);
+ else{var old=document.querySelector('.tw-sel');if(old)old.classList.remove('tw-sel');t.classList.add('tw-sel')}
+ if(k)tip(k);
+}
+$('tw-demo').addEventListener('click',act);
+$('tw-demo').addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button]')){e.preventDefault();act(e)}});
+show('home');tip('intro');
+})();
+</script>
+</body>
+</html>
