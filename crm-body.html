@@ -314,7 +314,13 @@ footer a{text-decoration:none}
   .why div:nth-child(even),.steps div:nth-child(even){padding-left:16px;border-left:1px solid var(--hair)}
   .ai-list li{grid-template-columns:1fr;gap:4px}
   .ai-list .arw{text-align:left;transform:rotate(90deg);width:20px}
-  .top nav{display:none}
+  /* 모바일: 메뉴를 로고 아래 가로 한 줄로(넘치면 옆으로 밀어서 보기) */
+  .top{padding-block:20px 0;row-gap:12px}
+  .top-right{display:contents}
+  .top nav{order:3;width:100%;gap:22px;padding-bottom:12px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .top nav::-webkit-scrollbar{display:none}
+  .top nav{gap:20px;padding-right:28px;-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(to right,#000 calc(100% - 28px),transparent)}
+  .top nav a{flex:none;color:var(--ink)}
   .app{height:620px}
 }
 @media (max-width:560px){
