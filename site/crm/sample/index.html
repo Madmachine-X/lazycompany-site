@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>샘플 CRM 데모 · Lazy Gompany</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a calm, shipped B2B sales tool — dense but readable, for a live demo.
+   IDEA: the CRM a small B2B sales team opens every morning; matches the lazycompany.app look.
+   PICTURE: the working app itself: sidebar, KPI row, pipeline board, detail drawer.
+   COLOUR and TYPE: site grey #f5f5f3 ground, white surfaces, ink #1f1a17, muted #6f6a66, logo brown #a8642b as the single accent; Noto Sans KR.
+   LAYOUT: fixed sidebar + main; collapses to top tabs under 860px; drawer slides over on the right. */
+:root{color-scheme:light;
+  --bg:light-dark(#f5f5f3,#151311);--card:light-dark(#ffffff,#1f1c19);--ink:light-dark(#1f1a17,#f2efec);
+  --muted:light-dark(#6f6a66,#aaa39d);--line:light-dark(#e6e4e1,#34302c);--honey:light-dark(#a8642b,#d39a62);--honey-soft:light-dark(#f1ebe4,#33281f);
+  --brown:light-dark(#7a4a22,#d9a46f);--side:#1f1a17;--ok:light-dark(#2f7a52,#5fd39c);--warn:light-dark(#b8432c,#f08a6c)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 "Noto Sans KR",system-ui,sans-serif;overflow-x:clip;word-break:keep-all}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--honey);outline-offset:2px}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}
+aside{background:var(--side);color:#efe6d8;padding:20px 14px;display:flex;flex-direction:column;gap:6px;position:sticky;top:0;height:100vh}
+.brand{font-size:20px;font-weight:800;letter-spacing:-.02em;padding:6px 10px 20px;color:#fff}.brand small{display:block;font-size:12px;font-weight:400;color:#a59d95;letter-spacing:0}
+nav button{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:0 12px;border:0;border-radius:10px;background:none;text-align:left;color:#cfc3b2;font-size:15px}
+nav button:hover{background:#ffffff14}
+nav button[aria-current=true]{background:#fff;color:#1f1a17;font-weight:700}
+nav svg{width:18px;height:18px;flex:none}
+.side-foot{margin-top:auto;font-size:12px;color:#9c8f7c;padding:8px}
+main{padding:22px clamp(14px,2.6vw,34px) 60px}
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px}
+h1{font-weight:800;letter-spacing:-.02em;font-size:28px;line-height:1.05;margin:0}
+.sub{color:var(--muted);font-size:13px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.search{min-height:44px;width:min(280px,100%);padding:0 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:16px}
+.btn{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:700}
+.btn.ai{background:var(--card);border-color:var(--honey);color:var(--honey);font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi b{display:block;font-weight:800;letter-spacing:-.02em;font-size:28px;line-height:1.1;white-space:nowrap}
+.kpi span{color:var(--muted);font-size:13px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.panel h2{font-size:16px;margin:0 0 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.funnel .row{display:grid;grid-template-columns:64px minmax(0,1fr) 92px;gap:10px;align-items:center;padding:6px 0;font-size:14px}
+.meter{height:26px;background:var(--honey-soft);border-radius:7px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--honey);border-radius:7px;transition:width .5s}
+.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.todo{list-style:none;margin:0;padding:0}
+.todo li{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.todo li:first-child{border-top:0}
+.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:none;background:var(--honey)}
+.dot.late{background:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--muted);font-weight:500;font-size:13px;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line)}
+tbody tr{cursor:pointer}tbody tr:hover{background:var(--honey-soft)}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;background:var(--honey-soft);color:var(--brown);white-space:nowrap;font-weight:500}
+.pill.g{background:light-dark(#dff3e8,#173a29);color:var(--ok)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{min-height:36px;padding:0 13px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.board{display:grid;grid-template-columns:repeat(5,minmax(200px,1fr));gap:12px;overflow-x:auto;padding-bottom:8px}
+.col{background:light-dark(#ebe9e5,#1a1816);border-radius:14px;padding:10px;min-height:320px;display:flex;flex-direction:column;gap:8px}
+.col.over{outline:3px dashed var(--honey);outline-offset:-3px}
+.col h3{margin:2px 4px 4px;font-size:14px;display:flex;justify-content:space-between}
+.col h3 small{color:var(--muted);font-weight:400}
+.deal{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 12px;cursor:grab;font-size:13px}
+.deal:active{cursor:grabbing}
+.deal b{display:block;font-size:14px}
+.deal .m{display:flex;justify-content:space-between;color:var(--muted);margin-top:4px}
+.jar{height:5px;border-radius:3px;background:var(--honey-soft);margin-top:8px;overflow:hidden}.jar i{display:block;height:100%;background:var(--honey)}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(520px,100%);background:var(--card);border-left:1px solid var(--line);box-shadow:-20px 0 50px #0003;transform:translateX(105%);transition:transform .28s;z-index:20;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.dh{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.db{padding:16px 20px;overflow-y:auto;flex:1}
+.db h4{margin:18px 0 8px;font-size:14px;color:var(--muted);font-weight:500}
+.kv{display:grid;grid-template-columns:90px minmax(0,1fr);gap:4px 10px;font-size:14px}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+.x{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:none;font-size:20px;flex:none}
+.timeline{list-style:none;padding:0;margin:0;border-left:2px solid var(--line)}
+.timeline li{padding:0 0 12px 14px;position:relative;font-size:14px}
+.timeline li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--brown)}
+.timeline small{color:var(--muted);display:block}
+.form{display:grid;gap:10px}
+.form label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.form input,.form select,.form textarea{min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:16px;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal{position:fixed;inset:0;background:#0007;display:none;place-items:center;z-index:30;padding:16px}
+.modal.open{display:grid}
+.box{background:var(--card);border-radius:16px;width:min(620px,100%);max-height:92vh;overflow:auto;padding:20px 22px}
+.box h3{margin:0 0 4px;font-weight:800;font-size:22px}
+.drop{border:2px dashed var(--line);border-radius:14px;padding:22px;text-align:center;display:grid;gap:8px;place-items:center}
+.card-prev{width:260px;max-width:100%;aspect-ratio:1.75;border-radius:10px;background:linear-gradient(135deg,#ffffff,#eceae6);color:#1f1a17;padding:16px;text-align:left;position:relative;box-shadow:0 6px 18px #0002;overflow:hidden}
+.card-prev .scan{position:absolute;left:0;right:0;height:3px;background:var(--honey);box-shadow:0 0 14px var(--honey);top:0;animation:scan 1.1s linear infinite}
+@keyframes scan{to{top:100%}}
+.ai-out{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;min-height:120px}
+.typing::after{content:"▍";animation:blink .8s infinite}@keyframes blink{50%{opacity:0}}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,120px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;transition:transform .25s;z-index:40;font-size:14px}
+.toast.show{transform:translate(-50%,0)}
+.demo-note{font-size:12px;color:var(--muted);margin-top:22px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media(max-width:1100px){.grid2{grid-template-columns:1fr}}
+@media(max-width:860px){.app{grid-template-columns:1fr}aside{position:sticky;height:auto;flex-direction:row;align-items:center;padding:8px;overflow-x:auto;z-index:10}.brand{display:none}nav{display:flex;gap:4px;flex:none}nav button{width:auto;flex:none;white-space:nowrap}nav button span{display:inline}.side-foot{display:none}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:6.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:6em;margin-inline-start:-6.5em;color:var(--muted)}.two{grid-template-columns:1fr}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<div class="app">
+<aside>
+  <div class="brand"><span>Sales CRM</span><small>by Lazy Gompany</small></div>
+  <nav id="nav"></nav>
+  <div class="side-foot">레이지곰패니 시연용<br>데이터는 모두 가상입니다</div>
+</aside>
+<main id="main"></main>
+</div>
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="false" aria-label="상세 정보"><div class="dh"><div id="dhT"></div><button class="x" id="dClose" aria-label="닫기">×</button></div><div class="db" id="dBody"></div></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="box" id="mBox"></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+{
+const TODAY=new Date('2026-11-20');
+const STAGES=['리드','미팅','제안','협상','계약'];
+const PROB={리드:10,미팅:25,제안:50,협상:75,계약:100};
+let companies=[
+ {id:1,name:'한결바이오',type:'바이오텍',country:'한국',tier:'A',status:'고객'},
+ {id:2,name:'세온제약',type:'제약사',country:'한국',tier:'A',status:'영업 중'},
+ {id:3,name:'리브라테라퓨틱스',type:'바이오텍',country:'미국',tier:'B',status:'영업 중'},
+ {id:4,name:'누리셀',type:'바이오텍',country:'한국',tier:'B',status:'영업 중'},
+ {id:5,name:'파인진',type:'바이오텍',country:'일본',tier:'C',status:'잠재'},
+ {id:6,name:'솔빛파마',type:'제약사',country:'한국',tier:'A',status:'고객'},
+ {id:7,name:'아라메드',type:'의료기기',country:'대만',tier:'C',status:'잠재'},
+ {id:8,name:'코어진랩',type:'바이오텍',country:'싱가포르',tier:'B',status:'영업 중'}];
+let contacts=[
+ {id:1,cid:1,name:'김서윤',title:'임상개발팀장',email:'sy.kim@hangyeol.example',phone:'010-1234-0001'},
+ {id:2,cid:2,name:'박도현',title:'사업개발 이사',email:'dh.park@seon.example',phone:'010-1234-0002'},
+ {id:3,cid:2,name:'이지안',title:'임상운영 매니저',email:'ja.lee@seon.example',phone:'010-1234-0003'},
+ {id:4,cid:3,name:'Emily Carter',title:'VP, Clinical Operations',email:'ecarter@libra.example',phone:'+1-555-0104'},
+ {id:5,cid:4,name:'최민준',title:'CMO',email:'mj.choi@nuricell.example',phone:'010-1234-0005'},
+ {id:6,cid:5,name:'Sato Kenji',title:'Head of BD',email:'k.sato@finegene.example',phone:'+81-3-0000-0006'},
+ {id:7,cid:6,name:'정하은',title:'개발본부장',email:'he.jung@solbit.example',phone:'010-1234-0007'},
+ {id:8,cid:7,name:'Lin Wei',title:'Product Manager',email:'lin.w@arammed.example',phone:'+886-2-0000-0008'},
+ {id:9,cid:8,name:'Rachel Tan',title:'Director, BD',email:'r.tan@coregen.example',phone:'+65-0000-0009'}];
+let deals=[
+ {id:1,cid:2,title:'1상 임상 운영 위탁',stage:'협상',amount:42000,close:'2026-12-15',owner:'장동훈'},
+ {id:2,cid:3,title:'아시아 2상 국가 확장',stage:'제안',amount:68000,close:'2027-02-28',owner:'장동훈'},
+ {id:3,cid:4,title:'세포치료제 IND 컨설팅',stage:'미팅',amount:9500,close:'2027-01-20',owner:'김하늘'},
+ {id:4,cid:5,title:'일본 공동개발 탐색',stage:'리드',amount:30000,close:'2027-04-30',owner:'장동훈'},
+ {id:5,cid:8,title:'PK 분석 서비스',stage:'제안',amount:7800,close:'2026-12-30',owner:'김하늘'},
+ {id:6,cid:1,title:'2상 데이터관리 추가 계약',stage:'계약',amount:15000,close:'2026-11-10',owner:'장동훈'},
+ {id:7,cid:7,title:'의료기기 임상 설계',stage:'리드',amount:6000,close:'2027-03-15',owner:'김하늘'},
+ {id:8,cid:6,title:'3상 모니터링 연장',stage:'협상',amount:25000,close:'2026-12-05',owner:'장동훈'}];
+let acts=[
+ {id:1,cid:2,date:'2026-11-18',type:'미팅',memo:'예산 확정 단계. 12월 첫 주 최종 견적 요청 받음'},
+ {id:2,cid:3,date:'2026-11-12',type:'메일',memo:'제안서 발송. 대만·일본 사이트 수 문의'},
+ {id:3,cid:4,date:'2026-11-05',type:'통화',memo:'CMO와 첫 통화. IND 일정 2027년 2분기 목표'},
+ {id:4,cid:8,date:'2026-10-28',type:'미팅',memo:'BIO Asia에서 미팅. PK 견적 요청'},
+ {id:5,cid:6,date:'2026-11-14',type:'메일',memo:'연장 조건 회신 대기'},
+ {id:6,cid:1,date:'2026-11-10',type:'계약',memo:'추가 계약 서명 완료'},
+ {id:7,cid:5,date:'2026-10-20',type:'메일',memo:'소개 메일 발송, 회신 없음'}];
+let contracts=[
+ {cid:1,title:'2상 데이터관리',amount:15000,start:'2026-11-10',end:'2027-11-09'},
+ {cid:6,title:'3상 모니터링',amount:52000,start:'2025-12-01',end:'2026-12-31'}];
+
+const $=s=>document.querySelector(s);
+const co=id=>companies.find(c=>c.id===id);
+const won=n=>n>=10000?(n/10000).toFixed(n%10000?1:0)+'억원':n.toLocaleString()+'만원';
+const days=d=>Math.round((TODAY-new Date(d))/864e5);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let view='dash',typeFilter='전체',q='';
+
+const ICON={dash:'<path d="M3 13h8V3H3zm10 8h8V11h-8zM3 21h8v-6H3zm10-18v6h8V3z"/>',companies:'<path d="M4 21V5l8-3 8 3v16h-6v-5h-4v5z"/>',board:'<path d="M3 4h5v16H3zm6.5 0h5v10h-5zM16 4h5v13h-5z"/>',contacts:'<path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm-8 9c0-4 3.6-7 8-7s8 3 8 7z"/>',acts:'<path d="M5 3h14v18l-7-4-7 4z"/>'};
+const VIEWS=[['dash','대시보드'],['companies','회사'],['board','영업 단계'],['contacts','담당자'],['acts','활동 기록']];
+function nav(){$('#nav').innerHTML=VIEWS.map(([k,l])=>`<button data-v="${k}" aria-current="${view===k}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${ICON[k]}</svg><span>${l}</span></button>`).join('')}
+function lastAct(cid){return acts.filter(a=>a.cid===cid).sort((a,b)=>b.date.localeCompare(a.date))[0]}
+
+function suggestions(){
+  const out=[];
+  deals.filter(d=>d.stage!=='계약').forEach(d=>{
+    const la=lastAct(d.cid),gap=la?days(la.date):99,c=co(d.cid);
+    if(gap>=14) out.push({late:true,t:la?`${c.name} — 마지막 연락 ${gap}일 전`:`${c.name} — 아직 연락 기록 없음`,s:`'${d.title}' 후속 연락이 필요합니다`,cid:c.id});
+    else if(new Date(d.close)-TODAY<30*864e5) out.push({late:false,t:`${c.name} — 마감 ${d.close.slice(5).replace('-','/')}`,s:`${d.stage} 단계, ${won(d.amount)} — 이번 주 결정권자 확인`,cid:c.id});
+  });
+  contracts.forEach(k=>{if(new Date(k.end)-TODAY<60*864e5) out.push({late:false,t:`${co(k.cid).name} — 계약 종료 임박`,s:`${k.end} 종료, 연장 제안 준비`,cid:k.cid})});
+  return out;
+}
+
+function head(title,sub,extra=''){return `<div class="top"><div><h1>${title}</h1><div class="sub">${sub}</div></div><div class="tools">${extra}</div></div>`}
+const aiBtns=`<button class="btn ai" data-act="scan">명함으로 담당자 추가</button><button class="btn primary" data-act="newAct">+ 활동 기록</button>`;
+
+function dash(){
+  const open=deals.filter(d=>d.stage!=='계약');
+  const pipe=open.reduce((s,d)=>s+d.amount,0);
+  const weighted=open.reduce((s,d)=>s+d.amount*PROB[d.stage]/100,0);
+  const wonSum=deals.filter(d=>d.stage==='계약').reduce((s,d)=>s+d.amount,0);
+  const max=Math.max(...STAGES.map(s=>deals.filter(d=>d.stage===s).reduce((a,d)=>a+d.amount,0)));
+  const sug=suggestions();
+  return head('대시보드','2026년 11월 20일 기준',aiBtns)+
+  `<div class="kpis"><div class="kpi"><span>진행 중 영업 기회</span><b>${open.length}건</b></div><div class="kpi"><span>파이프라인 금액</span><b>${won(pipe)}</b></div><div class="kpi"><span>가중 예상 매출</span><b>${won(Math.round(weighted))}</b></div><div class="kpi"><span>이번 분기 계약</span><b>${won(wonSum)}</b></div></div>
+  <div class="grid2"><div style="display:grid;gap:14px;align-content:start"><section class="panel funnel"><h2>단계별 금액 <span class="sub">카드를 옮기면 바로 반영됩니다</span></h2>${STAGES.map(s=>{const v=deals.filter(d=>d.stage===s).reduce((a,d)=>a+d.amount,0),n=deals.filter(d=>d.stage===s).length;return `<div class="row"><span>${s} <small class="sub">${n}</small></span><div class="meter"><i style="width:${max?v/max*100:0}%"></i></div><span class="num">${won(v)}</span></div>`}).join('')}</section>`+recent()+`</div>
+  <section class="panel"><h2>AI 추천: 다음에 할 일 <span class="pill">${sug.length}건</span></h2><ul class="todo">${sug.map(x=>`<li><span class="dot ${x.late?'late':''}"></span><div><b>${x.t}</b><br><span class="sub">${x.s}</span><br><button class="btn" style="min-height:34px;margin-top:6px" data-mail="${x.cid}">후속 메일 초안</button></div></li>`).join('')||'<li>지금은 급한 일이 없습니다</li>'}</ul></section></div>`;
+}
+
+function recent(){const r=[...acts].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);return `<section class="panel"><h2>최근 활동 <button class="btn" style="min-height:34px" data-v="acts">전체 보기</button></h2><ul class="timeline">${r.map(a=>`<li><small>${a.date} · ${a.type} · ${co(a.cid).name}</small>${esc(a.memo)}</li>`).join('')}</ul></section>`}
+function companiesView(){
+  const types=['전체','제약사','바이오텍','의료기기'];
+  const rows=companies.filter(c=>(typeFilter==='전체'||c.type===typeFilter)&&(!q||c.name.includes(q)||c.country.includes(q)));
+  return head('회사',`${companies.length}개사 · 행을 누르면 담당자·활동·계약이 한 화면에`,aiBtns)+
+  `<div class="filters">${types.map(t=>`<button class="chip" data-type="${t}" aria-pressed="${typeFilter===t}">${t}</button>`).join('')}<input class="search" id="q" placeholder="회사·국가 검색" value="${esc(q)}" aria-label="검색"></div>
+  <div class="panel"><table class="stack"><thead><tr><th>회사</th><th>유형</th><th>국가</th><th>등급</th><th>상태</th><th>마지막 연락</th></tr></thead><tbody>${rows.map(c=>{const la=lastAct(c.id);return `<tr data-co="${c.id}"><td><b>${c.name}</b></td><td>${c.type}</td><td>${c.country}</td><td>${c.tier}</td><td><span class="pill ${c.status==='고객'?'g':''}">${c.status}</span></td><td>${la?la.date+' · '+la.type:'-'}</td></tr>`}).join('')||'<tr><td colspan="6">검색 결과가 없습니다</td></tr>'}</tbody></table></div>`;
+}
+
+function board(){
+  return head('영업 단계','카드를 끌어 다른 단계로 옮겨 보세요',aiBtns)+`<div class="board">${STAGES.map(s=>{const ds=deals.filter(d=>d.stage===s);return `<div class="col" data-stage="${s}"><h3>${s}<small>${ds.length}건 · ${won(ds.reduce((a,d)=>a+d.amount,0))}</small></h3>${ds.map(d=>`<div class="deal" draggable="true" data-deal="${d.id}" tabindex="0"><b>${co(d.cid).name}</b>${d.title}<div class="m"><span>${won(d.amount)}</span><span>${d.close.slice(5).replace('-','/')}</span></div><div class="jar" aria-hidden="true"><i style="width:${PROB[s]}%"></i></div></div>`).join('')}</div>`}).join('')}</div><p class="demo-note">키보드: 카드를 선택하고 ←/→ 키로 단계를 옮길 수 있습니다.</p>`;
+}
+
+function contactsView(){
+  const rows=contacts.filter(c=>!q||c.name.includes(q)||co(c.cid).name.includes(q));
+  return head('담당자',`${contacts.length}명`,aiBtns)+`<div class="filters"><input class="search" id="q" placeholder="이름·회사 검색" value="${esc(q)}" aria-label="검색"></div><div class="panel"><table class="stack"><thead><tr><th>이름</th><th>회사</th><th>직함</th><th>이메일</th><th>전화</th></tr></thead><tbody>${rows.map(c=>`<tr data-co="${c.cid}"><td><b>${esc(c.name)}</b></td><td>${co(c.cid).name}</td><td>${esc(c.title)}</td><td>${esc(c.email)}</td><td>${esc(c.phone)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+function actsView(){
+  const rows=[...acts].sort((a,b)=>b.date.localeCompare(a.date));
+  return head('활동 기록','미팅·메일·통화를 남기면 회사 화면에 자동으로 모입니다',aiBtns)+`<div class="panel"><table class="stack"><thead><tr><th>날짜</th><th>회사</th><th>유형</th><th>내용</th></tr></thead><tbody>${rows.map(a=>`<tr data-co="${a.cid}"><td>${a.date}</td><td>${co(a.cid).name}</td><td><span class="pill">${a.type}</span></td><td>${esc(a.memo)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+function render(){
+  nav();
+  const f={dash,companies:companiesView,board,contacts:contactsView,acts:actsView}[view];
+  $('#main').innerHTML=f()+'<p class="demo-note">시연용 화면입니다. 회사·인물·금액은 모두 가상이며, AI 기능은 실제 AI를 부르지 않고 동작을 보여주는 데모입니다.</p>';
+  const qi=$('#q');if(qi){qi.oninput=e=>{q=e.target.value;const pos=e.target.selectionStart;render();const n=$('#q');n.focus();n.setSelectionRange(pos,pos)}}
+}
+
+function openCo(id){
+  const c=co(id),cs=contacts.filter(x=>x.cid===id),ds=deals.filter(x=>x.cid===id),as=acts.filter(x=>x.cid===id).sort((a,b)=>b.date.localeCompare(a.date)),ks=contracts.filter(x=>x.cid===id);
+  $('#dhT').innerHTML=`<div class="sub">${c.type} · ${c.country} · ${c.tier}등급</div><h1>${c.name}</h1>`;
+  $('#dBody').innerHTML=`<div class="tools"><button class="btn primary" data-act="newAct" data-cid="${id}">+ 활동 기록</button><button class="btn ai" data-mail="${id}">AI 후속 메일 초안</button></div>
+  <h4>담당자 ${cs.length}명</h4>${cs.map(p=>`<dl class="kv"><dt>${esc(p.name)}</dt><dd>${esc(p.title)}<br><span class="sub">${esc(p.email)}</span></dd></dl>`).join('<br>')||'<p class="sub">아직 없습니다</p>'}
+  <h4>영업 기회</h4>${ds.map(d=>`<dl class="kv"><dt><span class="pill">${d.stage}</span></dt><dd>${d.title} · ${won(d.amount)}<br><span class="sub">예상 마감 ${d.close} · 담당 ${d.owner}</span></dd></dl>`).join('<br>')||'<p class="sub">없음</p>'}
+  <h4>계약</h4>${ks.map(k=>`<dl class="kv"><dt><span class="pill g">계약</span></dt><dd>${k.title} · ${won(k.amount)}<br><span class="sub">${k.start} ~ ${k.end}</span></dd></dl>`).join('')||'<p class="sub">없음</p>'}
+  <h4>활동 ${as.length}건</h4><ul class="timeline">${as.map(a=>`<li><small>${a.date} · ${a.type}</small>${esc(a.memo)}</li>`).join('')}</ul>`;
+  $('#drawer').classList.add('open');$('#dClose').focus();
+}
+
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2600)}
+function modal(html){$('#mBox').innerHTML=html;$('#modal').classList.add('open');const f=$('#mBox').querySelector('input,textarea,button');f&&f.focus()}
+function closeModal(){$('#modal').classList.remove('open')}
+
+function newAct(cid){
+  modal(`<h3>활동 기록</h3><p class="sub">남긴 기록은 회사 화면과 대시보드 추천에 바로 반영됩니다.</p><form class="form" id="actForm"><div class="two"><label>회사<select name="cid">${companies.map(c=>`<option value="${c.id}" ${c.id==cid?'selected':''}>${c.name}</option>`).join('')}</select></label><label>유형<select name="type"><option>미팅</option><option>메일</option><option>통화</option></select></label></div><label>날짜<input type="date" name="date" value="2026-11-20" required></label><label>내용<textarea name="memo" rows="3" required placeholder="예: 견적 범위 확정, 다음 주 화요일 재미팅"></textarea></label><div class="tools"><button class="btn primary" type="submit">저장</button><button class="btn" type="button" data-close>취소</button></div></form>`);
+  $('#actForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);acts.push({id:Date.now(),cid:+f.get('cid'),type:f.get('type'),date:f.get('date'),memo:f.get('memo')});closeModal();render();if($('#drawer').classList.contains('open'))openCo(+f.get('cid'));toast('활동을 저장했습니다')};
+}
+
+function scan(){
+  modal(`<h3>명함으로 담당자 추가</h3><p class="sub">명함 사진을 올리면 AI가 이름·회사·연락처를 읽어 칸을 채웁니다. 데모에서는 어떤 사진을 올려도 예시 명함으로 동작합니다.</p>
+  <div class="drop" id="drop"><div class="card-prev" id="cardPrev"><b style="font-size:17px">윤재희</b><br><span style="font-size:12px">Director, Clinical Development</span><br><span style="font-size:12px">한별테라퓨틱스<br>jh.yoon@hanbyeol.example<br>010-1234-0010</span></div><label class="btn">사진 선택<input type="file" accept="image/*" id="file" hidden></label><button class="btn ai" id="go">예시 명함으로 읽기</button></div>
+  <form class="form" id="scanForm" style="margin-top:14px"><div class="two"><label>이름<input name="name"></label><label>회사<input name="company"></label></div><div class="two"><label>직함<input name="title"></label><label>전화<input name="phone"></label></div><label>이메일<input name="email"></label><div class="tools"><button class="btn primary" type="submit">담당자 저장</button><button class="btn" type="button" data-close>취소</button></div></form>`);
+  const run=()=>{const p=$('#cardPrev');p.insertAdjacentHTML('beforeend','<div class="scan"></div>');const vals={name:'윤재희',company:'한별테라퓨틱스',title:'Director, Clinical Development',phone:'010-1234-0010',email:'jh.yoon@hanbyeol.example'};setTimeout(()=>{p.querySelector('.scan')?.remove();let i=0;for(const k in vals){setTimeout(()=>{const el=$('#scanForm').elements[k];el.value=vals[k];el.style.background='var(--honey-soft)'},i++*220)}},1400)};
+  $('#go').onclick=run;$('#file').onchange=e=>{if(e.target.files[0]){const r=new FileReader();r.onload=()=>{$('#cardPrev').style.background=`center/cover url(${r.result})`;$('#cardPrev').innerHTML='';run()};r.readAsDataURL(e.target.files[0])}};
+  $('#scanForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);if(!f.get('name'))return toast('먼저 명함을 읽어 주세요');let c=companies.find(x=>x.name===f.get('company'));if(!c){c={id:companies.length+1,name:f.get('company'),type:'바이오텍',country:'한국',tier:'C',status:'잠재'};companies.push(c)}contacts.push({id:Date.now(),cid:c.id,name:f.get('name'),title:f.get('title'),email:f.get('email'),phone:f.get('phone')});closeModal();view='contacts';q='';render();toast(`${f.get('name')} 님과 ${c.name}을(를) 추가했습니다`)};
+}
+
+function mail(cid){
+  const c=co(cid),p=contacts.find(x=>x.cid===cid),d=deals.find(x=>x.cid===cid&&x.stage!=='계약')||deals.find(x=>x.cid===cid),la=lastAct(cid);
+  const greet=/[a-zA-Z]/.test(p?.name||'')?`Dear ${p.name.split(' ')[0]},`:`${p?p.name:'담당자'} ${p&&p.title.includes('이사')?'이사님':'님'}, 안녕하세요.`;
+  const body=`${greet}\n\n${la?`지난 ${la.date.slice(5).replace('-','월 ')}일 ${la.type} 이후 연락드립니다. (${la.memo})\n\n`:''}${d?`'${d.title}' 건과 관련해, ${d.stage==='협상'?'최종 조건을 정리한 견적서를 이번 주 안에 보내드리겠습니다. 검토하실 때 추가로 필요하신 항목이 있을까요?':d.stage==='제안'?'보내드린 제안서를 검토하시면서 궁금하신 점이 있는지 여쭙고 싶습니다. 다음 주 중 30분 정도 통화 가능하실까요?':'다음 단계 논의를 위해 짧게 미팅을 잡고 싶습니다. 편하신 일정 알려주시면 맞추겠습니다.'}\n\n`:''}감사합니다.\n장동훈 드림`;
+  modal(`<h3>AI 후속 메일 초안</h3><p class="sub">${c.name}의 마지막 활동과 영업 단계를 읽고 초안을 씁니다. 보내기 전에 꼭 확인하세요.</p><div class="ai-out typing" id="out"></div><div class="tools" style="margin-top:12px"><button class="btn primary" id="copy">복사</button><button class="btn" data-close>닫기</button></div>`);
+  const o=$('#out');let i=0;const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;const step=()=>{i+=reduce?body.length:4;o.textContent=body.slice(0,i);if(i<body.length)setTimeout(step,16);else o.classList.remove('typing')};step();
+  $('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(body);toast('복사했습니다')}catch(e){toast('복사가 막혀 있습니다. 직접 선택해 복사해 주세요')}};
+}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,[data-co]');if(!t)return;
+  if(t.dataset.v){view=t.dataset.v;q='';$('#drawer').classList.remove('open');render();return}
+  if(t.dataset.type){typeFilter=t.dataset.type;render();return}
+  if(t.dataset.act==='newAct')return newAct(t.dataset.cid);
+  if(t.dataset.act==='scan')return scan();
+  if(t.dataset.mail)return mail(+t.dataset.mail);
+  if(t.hasAttribute('data-close'))return closeModal();
+  if(t.dataset.co)return openCo(+t.dataset.co);
+});
+$('#dClose').onclick=()=>$('#drawer').classList.remove('open');
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeModal();$('#drawer').classList.remove('open')}
+  const card=document.activeElement?.closest?.('.deal');
+  if(card&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){const d=deals.find(x=>x.id==card.dataset.deal);const i=STAGES.indexOf(d.stage)+(e.key==='ArrowRight'?1:-1);if(i>=0&&i<STAGES.length){d.stage=STAGES[i];render();document.querySelector(`[data-deal="${d.id}"]`)?.focus();toast(`${co(d.cid).name} → ${d.stage}`)}}
+});
+let dragId=null;
+document.addEventListener('dragstart',e=>{const c=e.target.closest('.deal');if(c){dragId=+c.dataset.deal;e.dataTransfer.setData('text/plain',dragId)}});
+document.addEventListener('dragover',e=>{const col=e.target.closest('.col');if(col){e.preventDefault();document.querySelectorAll('.col').forEach(x=>x.classList.toggle('over',x===col))}});
+document.addEventListener('drop',e=>{const col=e.target.closest('.col');if(col&&dragId){e.preventDefault();const d=deals.find(x=>x.id===dragId);d.stage=col.dataset.stage;dragId=null;render();toast(`${co(d.cid).name} → ${d.stage}`)}});
+document.addEventListener('dragend',()=>document.querySelectorAll('.col').forEach(x=>x.classList.remove('over')));
+const hv=location.hash.slice(1);if(VIEWS.some(v=>v[0]===hv))view=hv;
+render();
+}
+</script>
+</body>
+</html>
