@@ -151,14 +151,14 @@ let contacts=[
  {id:8,cid:7,name:'Lin Wei',title:'Product Manager',email:'lin.w@arammed.example',phone:'+886-2-0000-0008'},
  {id:9,cid:8,name:'Rachel Tan',title:'Director, BD',email:'r.tan@coregen.example',phone:'+65-0000-0009'}];
 let deals=[
- {id:1,cid:2,title:'Phase 1 trial operations',stage:'Negotiation',amount:42000,close:'2026-12-15',owner:'Donghoon Jang'},
- {id:2,cid:3,title:'Phase 2 expansion in Asia',stage:'Proposal',amount:68000,close:'2027-02-28',owner:'Donghoon Jang'},
+ {id:1,cid:2,title:'Phase 1 trial operations',stage:'Negotiation',amount:42000,close:'2026-12-15',owner:'Jiwoo Han'},
+ {id:2,cid:3,title:'Phase 2 expansion in Asia',stage:'Proposal',amount:68000,close:'2027-02-28',owner:'Jiwoo Han'},
  {id:3,cid:4,title:'Cell therapy IND consulting',stage:'Meeting',amount:9500,close:'2027-01-20',owner:'Haneul Kim'},
- {id:4,cid:5,title:'Japan co-development talks',stage:'Lead',amount:30000,close:'2027-04-30',owner:'Donghoon Jang'},
+ {id:4,cid:5,title:'Japan co-development talks',stage:'Lead',amount:30000,close:'2027-04-30',owner:'Jiwoo Han'},
  {id:5,cid:8,title:'PK analysis service',stage:'Proposal',amount:7800,close:'2026-12-30',owner:'Haneul Kim'},
- {id:6,cid:1,title:'Phase 2 data management add-on',stage:'Won',amount:15000,close:'2026-11-10',owner:'Donghoon Jang'},
+ {id:6,cid:1,title:'Phase 2 data management add-on',stage:'Won',amount:15000,close:'2026-11-10',owner:'Jiwoo Han'},
  {id:7,cid:7,title:'Device trial design',stage:'Lead',amount:6000,close:'2027-03-15',owner:'Haneul Kim'},
- {id:8,cid:6,title:'Phase 3 monitoring extension',stage:'Negotiation',amount:25000,close:'2026-12-05',owner:'Donghoon Jang'}];
+ {id:8,cid:6,title:'Phase 3 monitoring extension',stage:'Negotiation',amount:25000,close:'2026-12-05',owner:'Jiwoo Han'}];
 let acts=[
  {id:1,cid:2,date:'2026-11-18',type:'Meeting',memo:'Budget being finalized. Asked for a final quote in the first week of December'},
  {id:2,cid:3,date:'2026-11-12',type:'Email',memo:'Proposal sent. They asked about site counts in Taiwan and Japan'},
@@ -272,7 +272,7 @@ function scan(){
 function mail(cid){
   const c=co(cid),p=contacts.find(x=>x.cid===cid),d=deals.find(x=>x.cid===cid&&x.stage!=='Won')||deals.find(x=>x.cid===cid),la=lastAct(cid);
   const greet=`Dear ${p?p.name.split(' ')[0]:'there'},`;
-  const body=`${greet}\n\n${la?`Following up on our ${la.type.toLowerCase()} on ${new Date(la.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})} (${la.memo}).\n\n`:''}${d?`Regarding '${d.title}', ${d.stage==='Negotiation'?'we will send a quote with the final terms this week. Is there anything else you need for your review?':d.stage==='Proposal'?'I wanted to check whether you have any questions as you review our proposal. Would you have 30 minutes for a call next week?':'I would like to set up a short meeting to discuss next steps. Let me know what times work for you.'}\n\n`:''}Best regards,\nDonghoon Jang`;
+  const body=`${greet}\n\n${la?`Following up on our ${la.type.toLowerCase()} on ${new Date(la.date).toLocaleDateString('en-US',{month:'short',day:'numeric'})} (${la.memo}).\n\n`:''}${d?`Regarding '${d.title}', ${d.stage==='Negotiation'?'we will send a quote with the final terms this week. Is there anything else you need for your review?':d.stage==='Proposal'?'I wanted to check whether you have any questions as you review our proposal. Would you have 30 minutes for a call next week?':'I would like to set up a short meeting to discuss next steps. Let me know what times work for you.'}\n\n`:''}Best regards,\nJiwoo Han`;
   modal(`<h3>AI follow-up draft</h3><p class="sub">Drafted from ${c.name}'s latest activity and deal stage. Always check before sending.</p><div class="ai-out typing" id="out"></div><div class="tools" style="margin-top:12px"><button class="btn primary" id="copy">Copy</button><button class="btn" data-close>Close</button></div>`);
   const o=$('#out');let i=0;const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;const step=()=>{i+=reduce?body.length:4;o.textContent=body.slice(0,i);if(i<body.length)setTimeout(step,16);else o.classList.remove('typing')};step();
   $('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(body);toast('Copied')}catch(e){toast('Copying is blocked. Please select and copy the text.')}};
