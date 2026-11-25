@@ -246,12 +246,46 @@ section{padding-block:clamp(72px,10vw,128px)}
 .cost{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(32px,6vw,96px);align-items:center;border-top:1px solid var(--hair);padding-top:40px}
 .cost-bars{display:grid;gap:22px}
 .cb .row{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:15px}
-.cb .row b{font-weight:600;font-variant-numeric:tabular-nums}
+.cb .row b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 .cb .trk{height:18px;border-radius:999px;background:var(--hair);overflow:hidden}
 .cb .fill{height:100%;border-radius:999px;background:var(--mute)}
 .cb.us .fill{background:var(--klein)}
 .cb.us .row b{color:var(--klein)}
 .fine{font-size:12.5px;color:var(--mute);margin:14px 0 0}
+.cost-sub{font-size:13.5px;color:var(--mute);margin:0 0 18px}
+.cb .trk{position:relative}
+.cb .fill{position:absolute;top:0;bottom:0;min-width:10px}
+.cb .row span{min-width:0}
+.cmp-btn{margin-top:22px}
+.cmp-btn[aria-expanded="true"] .arr{transform:rotate(180deg)}
+.cmp-btn .arr{display:inline-block;transition:transform .2s}
+.cmp{margin-top:28px;border-top:1px solid var(--hair);padding-top:28px}
+.cmp[hidden]{display:none}
+.cmp-note{font-size:14px;color:var(--mute);margin:0 0 18px;max-width:760px}
+.cmp-hint{display:none;font-size:12.5px;color:var(--mute);margin:-8px 0 10px}
+@media (max-width:900px){.cmp-hint{display:block}}
+.cmp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--hair);border-radius:14px}
+.cmp table{border-collapse:collapse;width:100%;min-width:940px;font-size:14px;line-height:1.55}
+.cmp th,.cmp td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--hair)}
+.cmp thead th{background:var(--card-2);font-size:12.5px;font-weight:600;color:var(--mute);white-space:nowrap}
+.cmp tbody tr:last-child td,.cmp tbody tr:last-child th{border-bottom:0}
+.cmp tbody th{font-weight:700;white-space:nowrap}
+.cmp tbody th a{display:block;font-size:12.5px;font-weight:500;color:var(--klein);text-decoration:none;margin-top:4px}
+.cmp tbody th a:hover{text-decoration:underline}
+.cmp td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.cmp .plans-l{margin:0;padding:0;list-style:none;display:grid;gap:2px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cmp .plans-l span{color:var(--mute)}
+.cmp div.plans-l{white-space:normal;min-width:150px}
+.cmp td:nth-child(4){min-width:150px}
+.cmp tr.grp td{background:var(--card-2);font-size:12.5px;font-weight:600;color:var(--mute);padding:9px 16px}
+.cmp tr.ours th,.cmp tr.ours td.num{color:var(--klein)}
+.cmp .tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;background:var(--card-2);border:1px solid var(--hair);color:var(--mute);margin:2px 4px 0 0;white-space:nowrap}
+.cmp-diff{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:26px;border-top:1px solid var(--hair)}
+.cmp-diff>div{padding:20px 24px 4px 0;min-width:0}
+.cmp-diff>div+div{padding-left:24px;border-left:1px solid var(--hair)}
+.cmp-diff strong{display:block;font-size:16px;margin:6px 0 6px}
+.cmp-diff p{margin:0;color:var(--mute);font-size:14px}
+@media (max-width:900px){.cmp-diff{grid-template-columns:1fr}.cmp-diff>div,.cmp-diff>div+div{padding:18px 0;border-left:0;border-bottom:1px solid var(--hair)}}
 
 /* salesforce */
 .sf{background:var(--engine);color:var(--engine-fg);border-radius:20px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,5vw,72px);align-items:center}
@@ -575,14 +609,23 @@ footer a{text-decoration:none}
           <h2 class="h2" data-i18n-html="c_h">기능은 필요한 만큼,<br><em>비용은 게으를 만큼.</em></h2>
         </div>
         <div>
+          <p class="cost-sub" data-i18n="c_sub">영업팀 5명이 1년 쓸 때 드는 도구 요금 (구축비 제외)</p>
           <div class="cost-bars">
-            <div class="cb"><div class="row"><span data-i18n="c_big">대형 CRM 1인 라이선스</span><b data-i18n="c_bigv">연 수백만 원</b></div><div class="trk"><div class="fill" style="width:100%"></div></div></div>
-            <div class="cb us"><div class="row"><span data-i18n="c_us">Superhuman Docs CRM (Pro)</span><b data-i18n="c_usv">연 약 20.2만 원</b></div><div class="trk"><div class="fill" style="width:6.7%"></div></div></div>
-            <div class="cb us"><div class="row"><span data-i18n="c_us2">노션 CRM (Notion Plus)</span><b data-i18n="c_usv2">연 약 16.8만 원</b></div><div class="trk"><div class="fill" style="width:5.6%"></div></div></div>
-            <div class="cb us"><div class="row"><span data-i18n="c_ai">AI 맞춤 CRM (팀 전체, 인원 무관)</span><b data-i18n="c_aiv">연 약 76~109만 원</b></div><div class="trk"><div class="fill" style="width:30%"></div></div></div>
+            <div class="cb"><div class="row"><span data-i18n="c_big">대형 CRM (중상위 요금제)</span><b data-i18n="c_bigv">연 약 756만~1,386만 원</b></div><div class="trk"><div class="fill" style="left:54.5%;width:45.5%"></div></div></div>
+            <div class="cb"><div class="row"><span data-i18n="c_mid">가격 경쟁력 있는 CRM 앱 (입문~중간 요금제)</span><b data-i18n="c_midv">연 약 76만~328만 원</b></div><div class="trk"><div class="fill" style="left:5.5%;width:18.2%"></div></div></div>
+            <div class="cb us"><div class="row"><span data-i18n="c_us">노코드 구축형 (유료 계정 1~2개)</span><b data-i18n="c_usv">연 약 17만~40만 원</b></div><div class="trk"><div class="fill" style="left:1.2%;width:1.7%"></div></div></div>
+            <div class="cb us"><div class="row"><span data-i18n="c_ai">AI 맞춤 개발형 (인원 무관)</span><b data-i18n="c_aiv">연 약 76만~109만 원</b></div><div class="trk"><div class="fill" style="left:5.5%;width:2.4%"></div></div></div>
           </div>
-          <p class="fine" data-i18n="c_fine">* 2026년 10월 공식 요금, 연간 결제, 유료 사용자 1명, $1 = 1,400원, 세금 제외 기준입니다. 무료로 참여하는 팀원(노션 게스트, Superhuman Docs Editor)은 권한 범위가 다릅니다. AI 맞춤 CRM은 1인이 아니라 팀 전체 도구비(데이터베이스·AI 도구)입니다. 구축 비용은 별도이고, 막대 길이는 대략적인 비교입니다.</p>
+          <p class="fine" data-i18n="c_fine">* 2026년 11월 25일 기준 각 사 공식 요금, 연간 결제, 세금 제외, $1 = 1,400원으로 계산했습니다. CRM 앱은 사람 수만큼 요금이 늘어납니다. 막대는 금액 범위를 같은 눈금으로 그린 것이고, 구축 비용은 별도입니다.</p>
+          <button type="button" class="btn ghost cmp-btn" id="cmpBtn" aria-expanded="false" aria-controls="cmp"><span data-i18n="c_more">자세히 비교</span> <span class="arr" aria-hidden="true">▾</span></button>
         </div>
+      </div>
+      <div class="cmp" id="cmp" hidden>
+        <p class="cmp-note" data-i18n="cmp_note">많이 쓰는 CRM 7곳의 공식 요금과 특징을 모았습니다. 금액은 1인당 월 요금(연간 결제)이고, 오른쪽 끝 칸은 5명 팀이 입문~중간 요금제를 1년 쓸 때의 합계입니다.</p>
+        <p class="cmp-hint" data-i18n="cmp_hint">← 표를 옆으로 밀면 더 볼 수 있어요</p>
+        <div class="cmp-scroll"><table id="cmpTable"></table></div>
+        <div class="cmp-diff" id="cmpDiff"></div>
+        <p class="fine" data-i18n="cmp_fine">* 2026년 11월 25일 기준으로 각 사 요금 페이지와 공개 자료를 확인했습니다. 할인·환율·세금·추가 기능에 따라 실제 금액은 달라질 수 있으니, 정확한 금액은 각 사 홈페이지에서 확인해 주세요. 상담 때 최신 기준으로 다시 비교해 드립니다.</p>
       </div>
     </section>
 
@@ -686,7 +729,7 @@ footer a{text-decoration:none}
 (function(){
   /* ───────── 페이지 문구 (한/영) ───────── */
   var T={
-    ko:{nav_plans:"서비스",nav_ai:"AI 맞춤",p_lbl:"Two ways to build",p_h:"CRM을 만드는 두 가지 방법, <em>고르기만 하세요.</em>",p_note:"비싼 CRM을 사서 업무를 맞추는 대신, 업무에 맞춰 조립하거나 직접 만듭니다. 구축과 초기 관리는 레이지곰패니가 맡고, 도구·서버 요금은 고객사가 직접 냅니다. 월 구독료는 없습니다.",p1l:"01 · 빠른 시작",p1t:"노코드 구축형",p1:"노션 또는 Superhuman Docs로 CRM을 설계하고 만들어 드립니다.",p1x:["기존 엑셀·명함 데이터 이관","사용 교육","팀이 자리 잡을 때까지 초기 관리"],p1m:"2~3주 · 도구 요금은 고객사 부담: 노션 1인당 월 $10~20, Superhuman Docs는 관리자만 월 $12",p3l:"02 · 맞춤",p3t:"AI 맞춤 개발형",p3:"AI로 우리 회사 전용 웹 CRM을 직접 만들어 드립니다.",p3x:["업무 흐름 그대로 설계","명함 인식, 메일 초안, 다음 할 일 추천","고객사 계정에 서버·DB 세팅, 초기 관리 포함","사용자가 늘어도 비용은 거의 그대로"],p3m:"4~8주 · 서버·도구비는 고객사 부담, 인원과 관계없이 월 약 $45~65",p_fine:"* 구축비(초기 관리 포함)는 범위에 따라 별도 견적이고, 월 구독료는 없습니다. 도구비는 2026년 11월 공식 요금, 연간 결제 기준입니다.",x_lbl:"AI custom build",x_h:"AI로 직접 만드는, <em>우리 회사 전용 CRM.</em>",x_note:"개발팀과 몇 달 걸리던 일을, 업무를 잘 아는 사람과 AI가 몇 주 만에 만듭니다.",x1l:"Brain",x1t:"AI 코딩 도구",x1:"Claude Code 같은 AI 코딩 도구로 회사·담당자·영업 기회 표와 화면을 만듭니다.",x2l:"Storage",x2t:"데이터베이스",x2:"Supabase 같은 클라우드 데이터베이스. 로그인, 권한, 백업까지 기본으로 갖춥니다.",x3l:"Face",x3t:"웹 화면",x3:"브라우저와 핸드폰에서 여는 우리 회사 전용 CRM. 아래 데모가 그 예입니다.",x_cap:"↑ 샘플 CRM 데모. 카드를 끌어 단계를 옮기고, 명함 추가와 AI 메일 초안을 눌러 보세요. 회사·인물·금액은 모두 가상이고, AI 기능은 실제 AI를 부르지 않는 시연용입니다.",x_open:"새 창에서 크게 보기 ↗",x_good_l:"Good",x_good_h:"우리 업무에 100% 맞춤",x_good:["우리 업무 흐름 그대로 설계","사용자가 늘어도 비용이 거의 그대로","명함 인식, 메일 초안처럼 원하는 AI 기능 추가","데이터와 서버를 우리 회사가 소유"],x_bad_l:"Watch out",x_bad_h:"대신 누군가 관리해야 합니다",x_bad:["버그 수정과 업데이트를 누군가 해야 함","보안·백업·권한 설계에 책임이 따름","만든 사람이 없으면 고치기 어려움","그래서 구축 후 초기 관리 기간 동안 레이지곰패니가 안정화를 돕습니다"],x_fine:"* 월 운영 도구비 예시: Supabase Pro $25 + Claude Pro $20 + 웹 호스팅 무료~$20 = 약 $45~65 (2026년 11월 공식 요금). 서버·도구 요금은 고객사 계정에서 직접 결제하고, 사용자가 10명이든 50명이든 거의 같습니다. 구축비는 별도입니다.",c_ai:"AI 맞춤 CRM (팀 전체, 인원 무관)",c_aiv:"연 약 76~109만 원",q7:"두 가지 방식 중 무엇을 골라야 하나요?",q7a:"적은 예산으로 이번 달 안에 시작하고 싶다면 노코드 구축형, 우리만의 업무 흐름이 있고 AI 기능을 붙이고 싶다면 AI 맞춤 개발형을 권합니다. 노션으로 시작해 데이터가 쌓이면 AI 맞춤 CRM으로 옮길 수도 있습니다. 영업 인원이 30명이 넘고 글로벌 표준 보고가 필요하다면 Salesforce 같은 기성 CRM이 더 맞습니다.",nav_demo:"데모",t_c_lbl:"Superhuman Docs · 구 Coda",nav_contact:"상담",eyebrow:"CRM Building · Notion · Superhuman Docs · AI",
+    ko:{nav_plans:"서비스",nav_ai:"AI 맞춤",p_lbl:"Two ways to build",p_h:"CRM을 만드는 두 가지 방법, <em>고르기만 하세요.</em>",p_note:"비싼 CRM을 사서 업무를 맞추는 대신, 업무에 맞춰 조립하거나 직접 만듭니다. 구축과 초기 관리는 레이지곰패니가 맡고, 도구·서버 요금은 고객사가 직접 냅니다. 월 구독료는 없습니다.",p1l:"01 · 빠른 시작",p1t:"노코드 구축형",p1:"노션 또는 Superhuman Docs로 CRM을 설계하고 만들어 드립니다.",p1x:["기존 엑셀·명함 데이터 이관","사용 교육","팀이 자리 잡을 때까지 초기 관리"],p1m:"2~3주 · 도구 요금은 고객사 부담: 노션 1인당 월 $10~20, Superhuman Docs는 관리자만 월 $12",p3l:"02 · 맞춤",p3t:"AI 맞춤 개발형",p3:"AI로 우리 회사 전용 웹 CRM을 직접 만들어 드립니다.",p3x:["업무 흐름 그대로 설계","명함 인식, 메일 초안, 다음 할 일 추천","고객사 계정에 서버·DB 세팅, 초기 관리 포함","사용자가 늘어도 비용은 거의 그대로"],p3m:"4~8주 · 서버·도구비는 고객사 부담, 인원과 관계없이 월 약 $45~65",p_fine:"* 구축비(초기 관리 포함)는 범위에 따라 별도 견적이고, 월 구독료는 없습니다. 도구비는 2026년 11월 공식 요금, 연간 결제 기준입니다.",x_lbl:"AI custom build",x_h:"AI로 직접 만드는, <em>우리 회사 전용 CRM.</em>",x_note:"개발팀과 몇 달 걸리던 일을, 업무를 잘 아는 사람과 AI가 몇 주 만에 만듭니다.",x1l:"Brain",x1t:"AI 코딩 도구",x1:"Claude Code 같은 AI 코딩 도구로 회사·담당자·영업 기회 표와 화면을 만듭니다.",x2l:"Storage",x2t:"데이터베이스",x2:"Supabase 같은 클라우드 데이터베이스. 로그인, 권한, 백업까지 기본으로 갖춥니다.",x3l:"Face",x3t:"웹 화면",x3:"브라우저와 핸드폰에서 여는 우리 회사 전용 CRM. 아래 데모가 그 예입니다.",x_cap:"↑ 샘플 CRM 데모. 카드를 끌어 단계를 옮기고, 명함 추가와 AI 메일 초안을 눌러 보세요. 회사·인물·금액은 모두 가상이고, AI 기능은 실제 AI를 부르지 않는 시연용입니다.",x_open:"새 창에서 크게 보기 ↗",x_good_l:"Good",x_good_h:"우리 업무에 100% 맞춤",x_good:["우리 업무 흐름 그대로 설계","사용자가 늘어도 비용이 거의 그대로","명함 인식, 메일 초안처럼 원하는 AI 기능 추가","데이터와 서버를 우리 회사가 소유"],x_bad_l:"Watch out",x_bad_h:"대신 누군가 관리해야 합니다",x_bad:["버그 수정과 업데이트를 누군가 해야 함","보안·백업·권한 설계에 책임이 따름","만든 사람이 없으면 고치기 어려움","그래서 구축 후 초기 관리 기간 동안 레이지곰패니가 안정화를 돕습니다"],x_fine:"* 월 운영 도구비 예시: Supabase Pro $25 + Claude Pro $20 + 웹 호스팅 무료~$20 = 약 $45~65 (2026년 11월 공식 요금). 서버·도구 요금은 고객사 계정에서 직접 결제하고, 사용자가 10명이든 50명이든 거의 같습니다. 구축비는 별도입니다.",c_ai:"AI 맞춤 개발형 (인원 무관)",c_aiv:"연 약 76만~109만 원",q7:"두 가지 방식 중 무엇을 골라야 하나요?",q7a:"적은 예산으로 이번 달 안에 시작하고 싶다면 노코드 구축형, 우리만의 업무 흐름이 있고 AI 기능을 붙이고 싶다면 AI 맞춤 개발형을 권합니다. 노션으로 시작해 데이터가 쌓이면 AI 맞춤 CRM으로 옮길 수도 있습니다. 영업 인원이 30명이 넘고 글로벌 표준 보고가 필요하다면 Salesforce 같은 기성 CRM이 더 맞습니다.",nav_demo:"데모",t_c_lbl:"Superhuman Docs · 구 Coda",nav_contact:"상담",eyebrow:"CRM Building · Notion · Superhuman Docs · AI",
       h1a:"CRM은 게으르게 쓰고,",h1b:"설계는 지독하게 합니다.",
       lede:"Salesforce를 10년 넘게 써 온 BD가 당신 팀에 꼭 맞는 CRM을 지어 드립니다. 노션·Superhuman Docs(구 Coda)로 빠르게 조립하거나, AI로 우리 회사 전용 CRM을 직접 만듭니다. 유지비는 <b>유료 계정 1개, 연 17만 원부터</b>. 구축과 초기 관리는 맡기고, 팀은 쓰기만 하면 됩니다.",
       cta1:"데모 직접 눌러보기 ↓",cta2:"상담 요청하기",f1v:"₩17만~",f1:"유지비 / 년 · 1인",f2:"Years of Salesforce",f3:"Auto + Mobile",
@@ -703,8 +746,9 @@ footer a{text-decoration:none}
       t_c_h:"수식과 버튼으로 움직이는 CRM",t_c:["견적·실적처럼 계산이 많은 영업 관리","버튼 한 번으로 단계 이동, 메일 발송 같은 자동화를 많이 쓰고 싶을 때","지메일·슬랙·구글 캘린더 같은 외부 서비스와 연결이 필요할 때","문서를 만드는 사람(Doc Maker)만 유료, 입력하는 팀원(Editor)은 무료. 유료 계정에는 AI 기능 포함"],
       t_fine:"* 유료 1인 기준 연간 요금은 노션 Plus 약 16.8만 원, Superhuman Docs Pro 약 20.2만 원입니다. Coda는 2026년 7월 Superhuman Docs로 이름이 바뀌었고, 요금은 그대로입니다. 요금과 기능은 바뀔 수 있어, 상담 때 최신 기준으로 다시 비교해 드립니다.",
       q6:"노션과 Superhuman Docs 중 무엇을 골라야 하나요?",q6a:"이미 노션을 쓰거나 문서 관리가 중요하면 노션, 계산과 자동화가 많으면 Superhuman Docs를 권합니다. 상담 때 팀 상황을 보고 하나를 추천해 드립니다.",
-      c_lbl:"Running cost",c_h:"기능은 필요한 만큼,<br><em>비용은 게으를 만큼.</em>",c_big:"대형 CRM 1인 라이선스",c_bigv:"연 수백만 원",c_us:"Superhuman Docs CRM (Pro)",c_usv:"연 약 20.2만 원",c_us2:"노션 CRM (Notion Plus)",c_usv2:"연 약 16.8만 원",
-      c_fine:"* 2026년 10월 공식 요금, 연간 결제, 유료 사용자 1명, $1 = 1,400원, 세금 제외 기준입니다. 무료로 참여하는 팀원(노션 게스트, Superhuman Docs Editor)은 권한 범위가 다릅니다. AI 맞춤 CRM은 1인이 아니라 팀 전체 도구비(데이터베이스·AI 도구)입니다. 구축 비용은 별도이고, 막대 길이는 대략적인 비교입니다.",
+      c_lbl:"Running cost",c_h:"기능은 필요한 만큼,<br><em>비용은 게으를 만큼.</em>",c_sub:"영업팀 5명이 1년 쓸 때 드는 도구 요금 (구축비 제외)",c_big:"대형 CRM (중상위 요금제)",c_bigv:"연 약 756만~1,386만 원",c_mid:"가격 경쟁력 있는 CRM 앱 (입문~중간 요금제)",c_midv:"연 약 76만~328만 원",c_us:"노코드 구축형 (유료 계정 1~2개)",c_usv:"연 약 17만~40만 원",c_more:"자세히 비교",cmp_hint:"← 표를 옆으로 밀면 더 볼 수 있어요",c_less:"비교 접기",
+      cmp_note:"많이 쓰는 CRM 7곳의 공식 요금과 특징을 모았습니다. 금액은 1인당 월 요금(연간 결제)이고, 오른쪽 끝 칸은 5명 팀이 입문~중간 요금제를 1년 쓸 때의 합계입니다.",cmp_fine:"* 2026년 11월 25일 기준으로 각 사 요금 페이지와 공개 자료를 확인했습니다. 할인·환율·세금·추가 기능에 따라 실제 금액은 달라질 수 있으니, 정확한 금액은 각 사 홈페이지에서 확인해 주세요. 상담 때 최신 기준으로 다시 비교해 드립니다.",
+      c_fine:"* 2026년 11월 25일 기준 각 사 공식 요금, 연간 결제, 세금 제외, $1 = 1,400원으로 계산했습니다. CRM 앱은 사람 수만큼 요금이 늘어납니다. 막대는 금액 범위를 같은 눈금으로 그린 것이고, 구축 비용은 별도입니다.",
       s_lbl:"10+ years of Salesforce",s_h:"Salesforce 10년, 그래서 무엇을 뺄지 압니다.",
       s_p1:"대형 CRM의 수많은 기능 중 매일 쓰는 건 일부입니다. <b>10년 넘게 Salesforce로 영업을 관리하고 15년간 B2B 현장에서 BD를 해 온 경험</b>으로, 꼭 필요한 구조만 남기고 나머지는 덜어냅니다.",
       s_p2:"회사·담당자·영업 기회·활동이 서로 연결되는 Salesforce의 핵심 구조를 노션 위에 그대로 살리고, 당신 팀의 단계와 용어에 맞춥니다.",
@@ -722,7 +766,7 @@ footer a{text-decoration:none}
       q5:"구축 비용은 얼마인가요?",q5a:"두 방식 모두 인원과 범위에 따라 달라서, 짧은 상담 후 견적을 드립니다. 월 구독료는 없고, 도구·서버 요금은 고객사가 직접 냅니다. 기간은 노코드 구축형 2~3주, AI 맞춤 개발형 4~8주 정도입니다.",
       k_lbl:"Talk to us",k_h:"엑셀 영업 관리에 지쳤다면, 한 줄만 보내 주세요.",k_p:"팀 인원과 지금 쓰는 방식만 알려 주시면 됩니다.",k_btn:"메일 쓰기",
       copy:"주소 복사",copied:"복사했습니다.",copyfail:"주소를 선택해 두었습니다. 복사해서 써 주세요.",mailSubject:"CRM 빌딩 상담"},
-    en:{nav_plans:"Plans",nav_ai:"AI custom",p_lbl:"Two ways to build",p_h:"Two ways to build a CRM. <em>Just pick one.</em>",p_note:"Instead of buying an expensive CRM and bending your work to fit it, we assemble or build one around how you work. We handle the build and the early-stage support; you pay the tool and server bills directly. No monthly subscription.",p1l:"01 · Quick start",p1t:"No-code build",p1:"We design and build your CRM in Notion or Superhuman Docs.",p1x:["Move your spreadsheets and business cards in","Team training","Early-stage support until the team settles in"],p1m:"2–3 weeks · Tools paid by you: Notion $10–20 per member/mo; Superhuman Docs $12/mo for admins only",p3l:"02 · Custom",p3t:"Custom AI build",p3:"We build a web CRM just for your company, with AI.",p3x:["Designed around your exact workflow","Business card reading, email drafts, next-step suggestions","Servers and database set up in your own accounts, early-stage support included","Cost barely changes as your team grows"],p3m:"4–8 weeks · Servers and tools paid by you: about $45–65/mo, any team size",p_fine:"* The build fee (including early-stage support) is quoted by scope. No monthly subscription. Tool costs are official annual-billing prices as of November 2026.",x_lbl:"AI custom build",x_h:"Built with AI, <em>just for your company.</em>",x_note:"What used to take months with a dev team now takes a few weeks with someone who knows the work and AI.",x1l:"Brain",x1t:"AI coding tools",x1:"Tools like Claude Code build the company, contact and deal tables and the screens.",x2l:"Storage",x2t:"Database",x2:"A cloud database like Supabase, with logins, permissions and backups built in.",x3l:"Face",x3t:"Web app",x3:"Your own CRM that opens in a browser or on a phone. The demo below is an example.",x_cap:"↑ Sample CRM demo. Drag cards between stages, add a contact from a business card, or try the AI email draft. All companies, people and amounts are fictional, and the AI features are a demo that does not call a real AI.",x_open:"Open full screen ↗",x_good_l:"Good",x_good_h:"Fits your work 100%",x_good:["Designed around your exact workflow","Cost barely changes as users grow","Add the AI features you want, like card reading and email drafts","Your company owns the data and the servers"],x_bad_l:"Watch out",x_bad_h:"But someone has to look after it",x_bad:["Someone has to fix bugs and ship updates","Security, backups and permissions need an owner","Hard to fix if the builder is gone","So Lazy Gompany stays on through an early-stage support period after launch"],x_fine:"* Example monthly tool cost: Supabase Pro $25 + Claude Pro $20 + web hosting free–$20 = about $45–65 (official pricing, November 2026). You pay these directly from your own accounts, and it is roughly the same for 10 or 50 users. The build is billed separately.",c_ai:"Custom AI CRM (whole team, any size)",c_aiv:"$540–780 / yr",q7:"Which of the two should we choose?",q7a:"Start with a no-code build if you want to launch this month on a small budget, and go custom AI if your workflow is unusual and you want AI features. You can start in Notion and move to a custom AI CRM once the data grows. If you have 30+ salespeople and need global standard reporting, an established CRM like Salesforce is the better fit.",nav_demo:"Demo",t_c_lbl:"Superhuman Docs · formerly Coda",nav_how:"How",nav_contact:"Contact",eyebrow:"CRM Building · Notion · Superhuman Docs · AI",
+    en:{nav_plans:"Plans",nav_ai:"AI custom",p_lbl:"Two ways to build",p_h:"Two ways to build a CRM. <em>Just pick one.</em>",p_note:"Instead of buying an expensive CRM and bending your work to fit it, we assemble or build one around how you work. We handle the build and the early-stage support; you pay the tool and server bills directly. No monthly subscription.",p1l:"01 · Quick start",p1t:"No-code build",p1:"We design and build your CRM in Notion or Superhuman Docs.",p1x:["Move your spreadsheets and business cards in","Team training","Early-stage support until the team settles in"],p1m:"2–3 weeks · Tools paid by you: Notion $10–20 per member/mo; Superhuman Docs $12/mo for admins only",p3l:"02 · Custom",p3t:"Custom AI build",p3:"We build a web CRM just for your company, with AI.",p3x:["Designed around your exact workflow","Business card reading, email drafts, next-step suggestions","Servers and database set up in your own accounts, early-stage support included","Cost barely changes as your team grows"],p3m:"4–8 weeks · Servers and tools paid by you: about $45–65/mo, any team size",p_fine:"* The build fee (including early-stage support) is quoted by scope. No monthly subscription. Tool costs are official annual-billing prices as of November 2026.",x_lbl:"AI custom build",x_h:"Built with AI, <em>just for your company.</em>",x_note:"What used to take months with a dev team now takes a few weeks with someone who knows the work and AI.",x1l:"Brain",x1t:"AI coding tools",x1:"Tools like Claude Code build the company, contact and deal tables and the screens.",x2l:"Storage",x2t:"Database",x2:"A cloud database like Supabase, with logins, permissions and backups built in.",x3l:"Face",x3t:"Web app",x3:"Your own CRM that opens in a browser or on a phone. The demo below is an example.",x_cap:"↑ Sample CRM demo. Drag cards between stages, add a contact from a business card, or try the AI email draft. All companies, people and amounts are fictional, and the AI features are a demo that does not call a real AI.",x_open:"Open full screen ↗",x_good_l:"Good",x_good_h:"Fits your work 100%",x_good:["Designed around your exact workflow","Cost barely changes as users grow","Add the AI features you want, like card reading and email drafts","Your company owns the data and the servers"],x_bad_l:"Watch out",x_bad_h:"But someone has to look after it",x_bad:["Someone has to fix bugs and ship updates","Security, backups and permissions need an owner","Hard to fix if the builder is gone","So Lazy Gompany stays on through an early-stage support period after launch"],x_fine:"* Example monthly tool cost: Supabase Pro $25 + Claude Pro $20 + web hosting free–$20 = about $45–65 (official pricing, November 2026). You pay these directly from your own accounts, and it is roughly the same for 10 or 50 users. The build is billed separately.",c_ai:"Custom AI build (any team size)",c_aiv:"about $540–780 / yr",q7:"Which of the two should we choose?",q7a:"Start with a no-code build if you want to launch this month on a small budget, and go custom AI if your workflow is unusual and you want AI features. You can start in Notion and move to a custom AI CRM once the data grows. If you have 30+ salespeople and need global standard reporting, an established CRM like Salesforce is the better fit.",nav_demo:"Demo",t_c_lbl:"Superhuman Docs · formerly Coda",nav_how:"How",nav_contact:"Contact",eyebrow:"CRM Building · Notion · Superhuman Docs · AI",
       h1a:"Use your CRM lazily.",h1b:"We design it obsessively.",
       lede:"A BD lead with 10+ years on Salesforce builds a CRM that fits your team. Assemble it fast in Notion or Superhuman Docs (formerly Coda), or get a CRM built just for your company with AI. Running cost starts at <b>one paid seat, about ₩170,000 a year</b>. We build it and help you settle in; your team just uses it.",
       cta1:"Try the live demo ↓",cta2:"Talk to us",f1v:"₩170K+",f1:"Per year · 1 seat",f2:"Years of Salesforce",f3:"Auto + Mobile",
@@ -739,8 +783,9 @@ footer a{text-decoration:none}
       t_c_h:"A CRM driven by formulas and buttons",t_c:["Sales tracking with lots of math, like quotes and revenue","Heavy automation: one button to move a stage or send an email","Connecting outside services like Gmail, Slack and Google Calendar","Only Doc Makers pay; editors are free. Paid seats include Docs AI"],
       t_fine:"* One paid seat, billed annually: Notion Plus $120, Superhuman Docs Pro $144. Coda was renamed Superhuman Docs in July 2026; pricing did not change. Pricing and features change, so we re-check them during the call.",
       q6:"Notion or Superhuman Docs, which should we pick?",q6a:"Notion if you already use it or care most about documents; Superhuman Docs if you need lots of calculation and automation. We recommend one after hearing how your team works.",
-      c_lbl:"Running cost",c_h:"Features as needed.<br><em>Costs as lazy as possible.</em>",c_big:"Enterprise CRM, 1 seat",c_bigv:"Thousands of $ / yr",c_us:"Superhuman Docs CRM (Pro)",c_usv:"$144 / yr",c_us2:"Notion CRM (Notion Plus)",c_usv2:"$120 / yr",
-      c_fine:"* Official pricing as of October 2026, billed annually, one paid user, before tax. Free collaborators (Notion guests, Superhuman Docs editors) have different permissions. The custom AI CRM figure covers the whole team (database and AI tools), not one seat. Setup is billed separately; bar lengths are approximate.",
+      c_lbl:"Running cost",c_h:"Features as needed.<br><em>Costs as lazy as possible.</em>",c_sub:"Tool cost for a 5-person sales team over one year (build fee not included)",c_big:"Big-name CRMs (mid to upper plans)",c_bigv:"about $5,400–9,900 / yr",c_mid:"Price-competitive CRM apps (entry to mid plans)",c_midv:"about $540–2,340 / yr",c_us:"No-code build (1–2 paid seats)",c_usv:"about $120–288 / yr",c_more:"Compare in detail",cmp_hint:"← Swipe the table sideways to see more",c_less:"Hide comparison",
+      cmp_note:"Official pricing and key features of seven popular CRMs. Prices are per user per month, billed annually. The last column is the yearly total for a 5-person team on the entry to mid plans.",cmp_fine:"* Checked against each vendor's pricing page and public sources as of November 25, 2026. Discounts, currency, tax and add-ons change the real bill, so please confirm on each vendor's site. We re-check the numbers with you during the call.",
+      c_fine:"* Official pricing as of November 25, 2026, billed annually, before tax. CRM apps charge for every user, so the bill grows with the team. Bars show each price range on the same scale; the build fee is separate.",
       s_lbl:"10+ years of Salesforce",s_h:"A decade on Salesforce taught us what to leave out.",
       s_p1:"Most teams use a fraction of an enterprise CRM. With <b>10+ years running sales on Salesforce and 15 years doing B2B business development</b>, we keep the structure that matters and drop the rest.",
       s_p2:"Companies, contacts, opportunities and activities stay linked, just like Salesforce's core model, then get tuned to your stages and vocabulary.",
@@ -1147,6 +1192,46 @@ footer a{text-decoration:none}
   $("viewDesk").addEventListener("click",function(){setPhone(false);});
   window.addEventListener("resize",fit);
 
+  /* CRM 요금 비교표 (2026-11-25 기준, 1인/월, 연간 결제, USD) */
+  var CMP=[
+    {n:"Salesforce Sales Cloud",u:"https://www.salesforce.com/",p:[["Starter Suite","$25"],["Pro Suite","$100"],["Enterprise","$165"],["Unlimited","$330"]],f:{ko:"없음 (30일 체험)",en:"No (30-day trial)"},m:{ko:"사용자당 과금, 연간 계약. Starter는 최대 10명",en:"Per user, annual contract. Starter capped at 10 users"},t:{ko:["글로벌 표준","강력한 보고·맞춤 설정","상위 요금제에 API·자동화"],en:["Global standard","Deep reporting and customization","API and automation on higher plans"]},y:[25,100]},
+    {n:"HubSpot Sales Hub",u:"https://www.hubspot.com/",p:[["Free","$0"],["Starter","$20"],["Professional","$90"],["Enterprise","$150"]],f:{ko:"있음 (2명까지)",en:"Yes (up to 2 users)"},m:{ko:"좌석당 과금. Professional 이상은 온보딩비 $1,500~3,500 별도",en:"Per seat. Professional and up add a $1,500–3,500 onboarding fee"},t:{ko:["마케팅·고객지원과 한 플랫폼","쉬운 화면","워크플로 자동화"],en:["Marketing and service on one platform","Easy to use","Workflow automation"]},y:[20,90]},
+    {n:"Pipedrive",u:"https://www.pipedrive.com/",p:[["Lite","$14"],["Growth","$39"],["Premium","$59"],["Ultimate","$79"]],f:{ko:"없음 (14일 체험)",en:"No (14-day trial)"},m:{ko:"좌석당 과금",en:"Per seat"},t:{ko:["영업 파이프라인 중심","메일 연동·자동화(Growth부터)","AI 보고서"],en:["Built around the sales pipeline","Email sync and automation from Growth","AI reports"]},y:[14,39]},
+    {n:"Zoho CRM",u:"https://www.zoho.com/crm/",p:[["Free","$0"],["Standard","$14"],["Professional","$23"],["Enterprise","$40"],["Ultimate","$52"]],f:{ko:"있음 (3명까지)",en:"Yes (up to 3 users)"},m:{ko:"사용자당 과금",en:"Per user"},t:{ko:["낮은 가격대","Zoho 업무 앱과 연동","세밀한 설정"],en:["Low price point","Connects with other Zoho apps","Highly configurable"]},y:[14,23]},
+    {n:"monday CRM",u:"https://monday.com/crm",p:[["Basic","$12"],["Standard","$17"],["Pro","$28"],["Enterprise",{ko:"문의",en:"Quote"}]],f:{ko:"없음 (14일 체험)",en:"No (14-day trial)"},m:{ko:"최소 3석 단위로 구매",en:"Seats sold in blocks, minimum 3"},t:{ko:["보드형 화면","프로젝트 관리와 함께","자동화 횟수 제한"],en:["Visual boards","Works with project management","Automation run limits"]},y:[12,17]},
+    {n:"Attio",u:"https://attio.com/",p:[["Free","$0"],["Plus","$35"],["Pro","$79"],["Enterprise",{ko:"문의",en:"Quote"}]],f:{ko:"있음 (3명까지)",en:"Yes (up to 3 seats)"},m:{ko:"좌석당 과금. Plus는 최대 10석",en:"Per seat. Plus capped at 10 seats"},t:{ko:["요즘 스타트업이 많이 씀","데이터 구조 자유롭게","AI 크레딧 포함"],en:["Popular with startups","Flexible data model","AI credits included"]},y:[35,79]},
+    {n:"Freshsales",u:"https://www.freshworks.com/crm/",p:[["Growth","$9"],["Pro","$39"],["Enterprise","$59"]],f:{ko:"없음 (21일 체험)",en:"No (21-day trial)"},m:{ko:"사용자당 과금",en:"Per user"},t:{ko:["입문 요금이 가장 낮음","메일·전화·채팅 내장","AI 기능은 별도 구매"],en:["Lowest entry price","Built-in email, phone and chat","AI agent sold separately"]},y:[9,39]}
+  ];
+  var OURS=[
+    {n:{ko:"노코드 구축형",en:"No-code build"},p:{ko:"월 구독료 없음<br><span>도구 요금 유료 계정 1~2개</span>",en:"No subscription<br><span>Tool fee for 1–2 paid seats</span>"},f:{ko:"입력만 하는 팀원은 무료 참여",en:"Data-entry teammates join free"},m:{ko:"구축비 1회 + 도구 요금은 고객사가 직접 결제",en:"One-time build fee; you pay the tool bill directly"},t:{ko:["우리 업무에 맞춘 설계","2~3주 구축","데이터 이관·교육·초기 관리"],en:["Designed around your work","2–3 week build","Data move, training, early support"]},yr:{ko:"약 17만~40만 원",en:"about $120–288"}},
+    {n:{ko:"AI 맞춤 개발형",en:"Custom AI build"},p:{ko:"월 구독료 없음<br><span>서버·도구비 팀 전체 월 $45~65</span>",en:"No subscription<br><span>Servers and tools $45–65/mo, whole team</span>"},f:{ko:"인원 제한 없음",en:"No user limit"},m:{ko:"구축비 1회 + 서버·도구 요금은 고객사 계정에서 결제",en:"One-time build fee; servers and tools billed to your accounts"},t:{ko:["우리 회사 전용 웹 CRM","명함 인식·AI 메일 초안","데이터·서버를 회사가 소유"],en:["A web CRM just for you","Card reading, AI email drafts","You own the data and servers"]},yr:{ko:"약 76만~109만 원",en:"about $540–780"}}
+  ];
+  var CMPT={
+    ko:{h:["서비스","요금 (1인/월, 연간 결제)","무료 플랜","과금 방식","특징","5명 팀 연 비용"],g1:"타사 CRM 앱",g2:"레이지곰패니",site:"공식 홈페이지 ↗",
+      d:[["Seat","사람 수만큼 늘지 않는 비용","CRM 앱은 팀원이 늘 때마다 요금이 늘어납니다. 우리 방식은 유료 계정 1~2개, 또는 인원과 관계없는 서버비만 냅니다."],["Fit","업무에 맞춘 CRM","기성 CRM의 정해진 화면에 업무를 맞추는 대신, 우리 팀의 단계와 용어로 처음부터 설계합니다."],["Own","구독 없이, 우리 회사 소유","월 구독료가 없고, 데이터와 계정은 고객사 소유입니다. 구축비만 한 번 냅니다."]]},
+    en:{h:["Product","Price (per user/mo, annual)","Free plan","How you pay","Highlights","5-person team, per year"],g1:"Other CRM apps",g2:"Lazy Gompany",site:"Official site ↗",
+      d:[["Seat","Costs that don't scale with headcount","CRM apps charge more for every new teammate. With us you pay for 1–2 paid seats, or a server bill that stays flat whatever the team size."],["Fit","A CRM that fits your work","Instead of bending your process to a vendor's screens, we design it from scratch around your stages and terms."],["Own","No subscription, and it's yours","No monthly fee from us, and the data and accounts belong to you. You pay the build once."]]}
+  };
+  function fmtYr(a,b,l){var k=function(v){return l==="en"?"$"+(v*60).toLocaleString("en-US"):Math.round(v*60*1400/10000).toLocaleString("ko-KR")+"만";};return l==="en"?"about "+k(a)+"–"+k(b):"약 "+k(a)+"~"+k(b)+" 원";}
+  function L(v,l){return typeof v==="string"?v:v[l];}
+  function renderCmp(l){
+    var c=CMPT[l],h="<thead><tr>"+c.h.map(function(x){return '<th scope="col">'+x+"</th>";}).join("")+"</tr></thead><tbody>";
+    h+='<tr class="grp"><td colspan="6">'+c.g1+"</td></tr>";
+    CMP.forEach(function(r){
+      h+='<tr><th scope="row">'+r.n+'<a href="'+r.u+'" target="_blank" rel="noopener">'+c.site+"</a></th>";
+      h+='<td><ul class="plans-l">'+r.p.map(function(q){return "<li><span>"+q[0]+"</span> "+L(q[1],l)+"</li>";}).join("")+"</ul></td>";
+      h+="<td>"+r.f[l]+"</td><td>"+r.m[l]+"</td><td>"+r.t[l].map(function(x){return '<span class="tag">'+x+"</span>";}).join("")+'</td><td class="num">'+fmtYr(r.y[0],r.y[1],l)+"</td></tr>";
+    });
+    h+='<tr class="grp"><td colspan="6">'+c.g2+"</td></tr>";
+    OURS.forEach(function(r){
+      h+='<tr class="ours"><th scope="row">'+r.n[l]+'</th><td><div class="plans-l">'+r.p[l]+"</div></td><td>"+r.f[l]+"</td><td>"+r.m[l]+"</td><td>"+r.t[l].map(function(x){return '<span class="tag">'+x+"</span>";}).join("")+'</td><td class="num">'+r.yr[l]+"</td></tr>";
+    });
+    $("cmpTable").innerHTML=h+"</tbody>";
+    $("cmpDiff").innerHTML=c.d.map(function(x){return '<div><span class="label">'+x[0]+"</span><strong>"+x[1]+"</strong><p>"+x[2]+"</p></div>";}).join("");
+    var open=$("cmpBtn").getAttribute("aria-expanded")==="true";$("cmpBtn").firstChild.textContent=T[l][open?"c_less":"c_more"];
+  }
+  $("cmpBtn").addEventListener("click",function(){var b=this,open=b.getAttribute("aria-expanded")!=="true";b.setAttribute("aria-expanded",open);$("cmp").hidden=!open;b.firstChild.textContent=T[lang][open?"c_less":"c_more"];});
+
   /* 언어 */
   function setLang(l){
     lang=l;var d=T[l];document.documentElement.lang=l;
@@ -1156,7 +1241,7 @@ footer a{text-decoration:none}
     document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false");});
     var af=$("aiFrame"),as=l==="en"?"/crm/sample/en.html":"/crm/sample/";if(af.getAttribute("src")!==as)af.setAttribute("src",as);$("aiOpen").href=as;
     $("mailBtn").href="mailto:hello@lazycompany.app?subject="+encodeURIComponent(d.mailSubject);
-    rerender();
+    rerender();renderCmp(l);
     closePeek();closePhPage();
     if(!forced){try{localStorage.setItem("lc-lang",l);}catch(e){}}
   }
